@@ -2,15 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
 
   --color-white: #fff;
-  --color-gray-100: #D9D9D9;
-  --color-gray-400: #1A1818;
+  --color-gray-100: #d9d9d9;
+  --color-gray-300: #626262;
+  --color-gray-310: rgba(68, 73, 77, 0.2);
+  --color-gray-400: #1a1818;
+  --color-red-500: #ee0033;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -31,4 +33,17 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb)); */
+  p {
+    color: var(--color-gray-400);
+  }
+}
+
+.section-name {
+  @apply text-center font-semibold text-4xl relative mb-6;
+  &:after {
+    @apply absolute bg-th-red-500 -bottom-5 left-1/2 -translate-x-1/2;
+    content: "";
+    width: 120px;
+    height: 3px;
+  }
 }

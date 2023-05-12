@@ -1,12 +1,12 @@
 {
-  "Index": {
-    "title": "Hello world!"
-  },
   "header": {
     "home": "Trang chủ",
     "introduce": "Giới thiệu",
     "service": "Dịch vụ",
     "news": "Tin tức",
     "contact": "Liên hệ"
+  },
+  "section_name": {
+    "about_us": "Về chúng tôi"
   }
 }

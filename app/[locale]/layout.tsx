@@ -1,8 +1,8 @@
-import "../globals.css";
+import "../globals.scss";
 
 import { useLocale } from "next-intl";
 import { notFound } from "next/navigation";
-import Header from "./Header";
+import Header from "./components/Header";
 import localFont from "next/font/local";
 
 const SVNgilroy = localFont({
@@ -22,12 +22,13 @@ const SVNgilroy = localFont({
       weight: "600",
       style: "normal",
     },
+    {
+      path: "../../assets/fonts/SVN-Gilroy Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
   ],
 });
-
-export function generateStaticParams() {
-  return [{ locale: "en" }, { locale: "vi" }];
-}
 
 export const metadata = {
   title: "Viettel Logistics",

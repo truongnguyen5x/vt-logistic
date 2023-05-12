@@ -3,27 +3,36 @@ import { useTranslations } from "next-intl";
 import React, { Fragment } from "react";
 import styles from "./styles.module.scss";
 import { useLocale } from "next-intl";
-import content from "./content.json";
+import { fetchAsset } from "@api/index";
+import { ILOCALE } from "@type/locale";
+import SliderHome from "./components/Slider";
+import AboutUs, { IAbout } from "./components/AboutUs";
 
-const getData = (locale: string) => {
-  //@ts-ignore
-  return content[locale];
+type IContent = {
+  banner: string[];
+  features: Array<{ image: string; title: string }>;
+  abouts: IAbout[];
 };
 
-export default function Home() {
+export default async function Home() {
   const locale = useLocale();
-  const data = getData(locale);
-  const t = useTranslations("Index");
+
+  const data: IContent = await fetchAsset("home", locale as ILOCALE);
+
   return (
     <Fragment>
-      <section className={[styles.banner].join(" ")}></section>
+      <SliderHome images={data.banner} />
       <section className={[styles.feature].join(" ")}>
-        <div className="container flex justify-center items-center">
-          {data.features.map((i: any, index: number) => (
-            <div key={index}>{i.title}</div>
+        <div className="container mx-auto flex  items-center justify-between my-4">
+          {data.features.map((i, index: number) => (
+            <div key={index} className={styles.featureItem}>
+              <img src={i.image} />
+              <p>{i.title}</p>
+            </div>
           ))}
         </div>
       </section>
+      <AboutUs content={data.abouts} />
     </Fragment>
   );
 }

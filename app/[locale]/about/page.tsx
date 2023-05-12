@@ -1,7 +1,9 @@
+import { useTranslations } from "next-intl";
 import { Fragment } from "react";
 
 const About = () => {
-  return <Fragment>About page</Fragment>;
+  const t = useTranslations();
+  return <Fragment>About</Fragment>;
 };
 
 export default About;
