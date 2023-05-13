@@ -5,9 +5,11 @@ import VnFlagImg from "@assets/images/flag/vn.png";
 import Link from "next/link";
 import ProfileImg from "@assets/images/icons/profile.svg";
 import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 
 const Header = () => {
   const t = useTranslations("header");
+  const r = useRouter();
 
   const listTab = [
     {
@@ -42,7 +44,7 @@ const Header = () => {
           {listTab.map((i, idx) => (
             <Link
               key={idx}
-              className="w-44 block text-center h-[74px] leading-[74px]"
+              className="w-44 block text-center h-[74px] leading-[74px] transition-colors hover:text-th-red-500"
               href={i.path}
             >
               {t(i.name)}

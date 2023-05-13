@@ -1,5 +1,7 @@
-import "../globals.scss";
-
+import "@assets/css/globals.scss";
+import "@assets/css/theme.scss";
+import "@assets/css/responsive.scss";
+import "animate.css";
 import { useLocale } from "next-intl";
 import { notFound } from "next/navigation";
 import Header from "./components/Header";
@@ -49,6 +51,18 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body className={SVNgilroy.className}>
+        {/* START LOADER  */}
+        {/* <div id="loader-wrapper">
+          <div id="loading-center-absolute">
+            <div className="object" id="object_four"></div>
+            <div className="object" id="object_three"></div>
+            <div className="object" id="object_two"></div>
+            <div className="object" id="object_one"></div>
+          </div>
+          <div className="loader-section section-left"></div>
+          <div className="loader-section section-right"></div>
+        </div> */}
+        {/* END LOADER  */}
         <Header />
         {children}
       </body>

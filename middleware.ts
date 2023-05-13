@@ -1,8 +1,9 @@
+import { LIST_LOCALE } from "@ultility/constant";
 import createMiddleware from "next-intl/middleware";
 
 export default createMiddleware({
   // A list of all locales that are supported
-  locales: ["en", "vi"],
+  locales: LIST_LOCALE,
 
   // If this locale is matched, pathnames work without a prefix (e.g. `/about`)
   defaultLocale: "vi",
