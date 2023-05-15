@@ -36,24 +36,23 @@ const TabLookup: FC<TabLookupProps> = ({ content }) => {
           </div>
         ))}
       </div>
-      <div className={styles.lookUpBg}>
-        <Slider
-          ref={slickRef}
-          arrows={false}
-          //TODO: 1
-          initialSlide={0}
-          draggable={false}
-          afterChange={onSliderChange}
-          slidesToShow={1}
-          slidesToScroll={1}
-          dots={false}
-          speed={500}
-        >
-          <FormLookup />
-          <FormLookup />
-          <FormLookup />
-        </Slider>
-      </div>
+
+      <Slider
+        ref={slickRef}
+        arrows={false}
+        //TODO: 1
+        initialSlide={0}
+        draggable={false}
+        afterChange={onSliderChange}
+        slidesToShow={1}
+        slidesToScroll={1}
+        dots={false}
+        speed={500}
+      >
+        <FormLookup content={content} index={0} />
+        <FormLookup content={content} index={1} />
+        <FormLookup content={content} index={0} />
+      </Slider>
     </Fragment>
   );
 };

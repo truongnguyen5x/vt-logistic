@@ -185,10 +185,23 @@
   }
 }
 .lookUpBg {
+  @apply relative;
   height: 477px;
   background-color: var(--color-gray-250);
   border-top: 1px solid var(--color-gray-100);
   border-bottom: 1px solid var(--color-gray-100);
+}
+.formIconWp {
+  @apply flex flex-col gap-1 items-center;
+  width: 38px;
+  & > div {
+    @apply w-0;
+    height: 129px;
+    border: 1px dashed var(--color-gray-260);
+  }
+}
+.formTitle {
+  @apply text-th-gray-300 font-medium text-2xl;
 }
 /**************
  * END TAB LOOKUP *

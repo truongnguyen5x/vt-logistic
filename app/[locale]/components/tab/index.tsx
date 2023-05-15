@@ -17,6 +17,14 @@ export type IServiceItem = {
 
 export type ILookupContent = {
   title: string[];
+  imgs: string[];
+  from: string;
+  to: string;
+  service_available: string;
+  service_available_des: string;
+  service_unavailable: string;
+  contacts: Array<{ name: string; phone: string }>;
+  btn: string;
 };
 
 export type IAboutContent = {
