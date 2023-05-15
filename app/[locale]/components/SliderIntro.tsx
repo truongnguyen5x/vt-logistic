@@ -8,6 +8,7 @@ import { IAbout } from "./AboutUs";
 import LeftArrowImg from "@assets/images/icons/arrow_left.svg";
 import RightArrowImg from "@assets/images/icons/arrow_right.svg";
 import Image from "next/image";
+import AnimatedNumber from "@components/AnimatedNumber";
 
 interface Props {
   content: IAbout[];
@@ -52,10 +53,16 @@ const SliderIntro: FC<Props> = ({ content }) => {
     <Slider {...settings}>
       {content.map((i, idx) => (
         <div key={idx} className={styles.aboutItem}>
-          <p>{i.heading}</p>
+          <p>
+            {i.is_plus ? "+" : ""}
+            {i.heading}
+          </p>
           <div className={styles.aboutItem1}>
             <div className={styles.aboutItemHead}>
-              <p>{i.heading}</p>
+              <p>
+                {i.is_plus ? "+" : ""}
+                <AnimatedNumber n={i.heading} />
+              </p>
               <p>{i.subject}</p>
             </div>
             <p>{i.detail}</p>

@@ -4,7 +4,8 @@ import styles from "./styles.module.scss";
 import SliderIntro from "./SliderIntro";
 
 export type IAbout = {
-  heading: string;
+  is_plus: boolean;
+  heading: number;
   subject: string;
   detail: string;
 };

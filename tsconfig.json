@@ -25,7 +25,8 @@
       "@api/*": ["api/*"],
       "@type/*": ["types/*"],
       "@ultility/*": ["ultility/*"],
-      "@configs/*": ["configs/*"]
+      "@configs/*": ["configs/*"],
+      "@components/*": ["components/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
