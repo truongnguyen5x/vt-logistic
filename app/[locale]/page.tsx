@@ -4,7 +4,7 @@ import { useLocale } from "next-intl";
 import { fetchAsset } from "@api/index";
 import { ILocale, i18n } from "@configs/i18n";
 import SliderHome from "./components/Slider";
-import AboutUs, { IAbout } from "./components/AboutUs";
+import AboutUs, { IAbout } from "./components/about";
 import Image from "next/image";
 
 type IContent = {

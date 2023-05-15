@@ -2,6 +2,7 @@ import { useTranslations } from "next-intl";
 import { FC } from "react";
 import styles from "./styles.module.scss";
 import SliderIntro from "./SliderIntro";
+import AboutInfoTab from "./AboutInfoTab";
 
 export type IAbout = {
   is_plus: boolean;
@@ -22,6 +23,7 @@ const AboutUs: FC<IAboutProps> = ({ content }) => {
       </p>
       <div className="mt-16" />
       <SliderIntro content={content} />
+      <AboutInfoTab />
     </section>
   );
 };

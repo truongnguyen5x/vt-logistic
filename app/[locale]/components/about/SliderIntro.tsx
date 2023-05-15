@@ -2,9 +2,9 @@
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import styles from "../styles.module.scss";
+import styles from "@app/styles.module.scss";
 import { FC } from "react";
-import { IAbout } from "./AboutUs";
+import { IAbout } from "./";
 import LeftArrowImg from "@assets/images/icons/arrow_left.svg";
 import RightArrowImg from "@assets/images/icons/arrow_right.svg";
 import Image from "next/image";
