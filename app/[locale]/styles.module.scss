@@ -118,7 +118,7 @@
  * MY SERVICE *
  **************/
 .bgMyService {
-  @apply relative grid grid-flow-col;
+  @apply relative grid grid-cols-5;
   height: 417px;
   gap: 5px;
   & > img {
@@ -127,22 +127,42 @@
   }
 }
 .serviceItem {
-  @apply flex flex-col items-center p-11 z-10;
+  @apply flex flex-col items-center py-11 px-11 z-10;
   background-color: var(--color-black-400);
-  & > p {
+}
+.serviceLink {
+  img {
+    @apply mx-auto;
+  }
+  p {
     @apply text-th-white text-2xl font-semibold mt-8;
+  }
+  &:hover p {
+    @apply underline underline-offset-8;
   }
 }
 .serviceDes {
   @apply self-start flex items-start my-2;
   img {
-    @apply mr-3;
-    margin-top: 4px;
+    @apply mr-3 mt-1;
   }
   p {
     @apply text-th-white font-medium text-sm;
   }
+  &:hover p {
+    @apply underline underline-offset-4;
+  }
 }
 /**************
  * END MY SERVICE *
+ **************/
+
+/**************
+ * TAB LOOKUP *
+ **************/
+.tabHeaderLookup {
+  @apply w-28;
+}
+/**************
+ * END TAB LOOKUP *
  **************/

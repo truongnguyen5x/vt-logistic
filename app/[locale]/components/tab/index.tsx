@@ -15,15 +15,20 @@ export type IServiceItem = {
   subs?: string[];
 };
 
+export type ILookupContent = {
+  title: string[];
+};
+
 export type IAboutContent = {
   tabs: Array<{ title: string; img: string }>;
   service_tab: IServiceItem[];
   service_bg: string;
   all_service: string;
+  lookup_tab: ILookupContent;
 };
 
 const AboutInfoTab = ({ data }: { data: IAboutContent }) => {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState(1);
   const slickRef = useRef<Slider>(null);
 
   const handleChangeTab = (index: number) => {
@@ -66,13 +71,15 @@ const AboutInfoTab = ({ data }: { data: IAboutContent }) => {
       <Slider
         ref={slickRef}
         arrows={false}
+        initialSlide={1}
+        draggable={false}
         afterChange={onSliderChange}
         slidesToShow={1}
         slidesToScroll={1}
         dots={false}
         speed={500}
       >
-        <TabLookup />
+        <TabLookup content={data.lookup_tab} />
         <TabMyService
           background={data.service_bg}
           contents={data.service_tab}
