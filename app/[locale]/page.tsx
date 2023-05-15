@@ -6,7 +6,7 @@ import { ILocale, i18n } from "@configs/i18n";
 import SliderHome from "./components/Slider";
 import AboutUs, { IAbout } from "./components/about";
 import Image from "next/image";
-import AboutInfoTab, { IAboutContent } from "./components/AboutInfoTab";
+import AboutInfoTab, { IAboutContent } from "./components/tab";
 
 type IContent = {
   banner: string[];

@@ -5,6 +5,7 @@ import Image from "next/image";
 import styles from "@app/styles.module.scss";
 import RightImg from "@assets/images/icons/arrow_right_2.svg";
 import RightDarkImg from "@assets/images/icons/arrow_right_2_dark.svg";
+import TabMyService from "./TabMyService";
 
 export type IAboutContent = {
   tabs: Array<{ title: string; img: string }>;
@@ -40,6 +41,7 @@ const AboutInfoTab = ({ data }: { data: IAboutContent }) => {
           </div>
         ))}
       </div>
+      {activeTab == 1 && <TabMyService />}
     </Fragment>
   );
 };

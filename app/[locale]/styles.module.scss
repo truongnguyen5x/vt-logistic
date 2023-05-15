@@ -123,7 +123,7 @@
   padding: 31px;
   @apply border-th-gray-200 cursor-pointer text-2xl font-semibold gap-4;
   p {
-    @apply whitespace-pre-line;
+    @apply whitespace-pre-line text-th-gray-300;
   }
   & > div {
     @apply relative;
@@ -131,10 +131,14 @@
       @apply absolute bottom-0 -right-7;
     }
   }
+  &:hover p {
+    @apply text-th-red-500;
+  }
 }
 
 .selectedTab {
   @apply bg-th-red-500;
+  &:hover p,
   p {
     @apply text-white;
   }
