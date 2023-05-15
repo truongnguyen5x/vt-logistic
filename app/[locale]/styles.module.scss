@@ -112,3 +112,33 @@
 /**************
  * END HEADER *
  **************/
+
+/***************
+ * ABOUT > TAB *
+ ***************/
+.tabWp {
+  width: 376px;
+  height: 125px;
+  border-width: 1px;
+  padding: 31px;
+  @apply border-th-gray-200 cursor-pointer text-2xl font-semibold gap-4;
+  p {
+    @apply whitespace-pre-line;
+  }
+  & > div {
+    @apply relative;
+    img {
+      @apply absolute bottom-0 -right-7;
+    }
+  }
+}
+
+.selectedTab {
+  @apply bg-th-red-500;
+  p {
+    @apply text-white;
+  }
+}
+/*******************
+ * END ABOUT > TAB *
+ *******************/

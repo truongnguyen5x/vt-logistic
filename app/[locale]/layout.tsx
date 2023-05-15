@@ -7,6 +7,7 @@ import { notFound } from "next/navigation";
 import Header from "./components/Header";
 import localFont from "next/font/local";
 import Loader from "./components/Loader";
+import { ILocale, i18n } from "@configs/i18n";
 
 const SVNgilroy = localFont({
   src: [

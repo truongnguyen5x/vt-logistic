@@ -14,6 +14,7 @@ module.exports = {
       },
       colors: {
         "th-gray-100": "var(--color-gray-100)",
+        "th-gray-200": "var(--color-gray-200)",
         "th-gray-300": "var(--color-gray-300)",
         "th-gray-400": "var(--color-gray-400)",
         "th-red-500": "var(--color-red-500)",
