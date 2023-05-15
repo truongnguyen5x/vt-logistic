@@ -28,7 +28,8 @@ export type IAboutContent = {
 };
 
 const AboutInfoTab = ({ data }: { data: IAboutContent }) => {
-  const [activeTab, setActiveTab] = useState(1);
+  //TODO: 1
+  const [activeTab, setActiveTab] = useState(0);
   const slickRef = useRef<Slider>(null);
 
   const handleChangeTab = (index: number) => {
@@ -71,7 +72,8 @@ const AboutInfoTab = ({ data }: { data: IAboutContent }) => {
       <Slider
         ref={slickRef}
         arrows={false}
-        initialSlide={1}
+        //TODO: 1
+        initialSlide={0}
         draggable={false}
         afterChange={onSliderChange}
         slidesToShow={1}

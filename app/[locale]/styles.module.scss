@@ -161,7 +161,34 @@
  * TAB LOOKUP *
  **************/
 .tabHeaderLookup {
-  @apply w-28;
+  @apply w-40 text-th-gray-300 font-medium text-2xl cursor-pointer relative text-center pb-4;
+  // transition: color 1s;
+  &::before {
+    content: "";
+    transition: width 0.2s;
+    @apply absolute w-0 bg-th-red-500 bottom-0 border-t rounded-t-[20px] left-0 right-0 mx-auto;
+    height: 5px;
+    &:hover {
+      @apply w-20;
+      // height: 5px;
+    }
+  }
+  &:hover {
+    @apply text-th-red-500;
+  }
+}
+.tabSelectLookup {
+  @apply text-th-red-500 font-semibold;
+  &::before {
+    @apply w-20;
+    // height: 5px;
+  }
+}
+.lookUpBg {
+  height: 477px;
+  background-color: var(--color-gray-250);
+  border-top: 1px solid var(--color-gray-100);
+  border-bottom: 1px solid var(--color-gray-100);
 }
 /**************
  * END TAB LOOKUP *
