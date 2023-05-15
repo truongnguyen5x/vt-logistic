@@ -15,6 +15,7 @@ type IContent = {
   abouts_content: IAboutContent;
 };
 
+// TODO: generateStaticParams what for?
 // export async function generateStaticParams() {
 //   return i18n.locales.map((i: ILocale) => ({ locale: i }));
 // }

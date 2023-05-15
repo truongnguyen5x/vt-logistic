@@ -9,7 +9,7 @@ import ProfileImg from "@assets/images/icons/profile.svg";
 import { useTranslations } from "next-intl";
 import { useRouter, useSelectedLayoutSegment } from "next/navigation";
 import { FC } from "react";
-import styles from "../styles.module.scss";
+
 import clsx from "clsx";
 
 interface HeaderProps {
@@ -38,8 +38,8 @@ const Header: FC<HeaderProps> = ({ titles }) => {
           {listTab.map((i, idx) => (
             <div
               key={idx}
-              className={clsx(styles.navBtn, {
-                [styles.navBtnSelected]: "/" + (segment || "") == i,
+              className={clsx("nav-btn", {
+                "nav-btn-selected": "/" + (segment || "") == i,
               })}
             >
               <Link

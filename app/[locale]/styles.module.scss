@@ -79,40 +79,6 @@
  * END LIST ABOUT *
  ******************/
 
-/**********
- * HEADER *
- **********/
-
-.navBtn {
-  @apply relative;
-  // @apply text-th-red-500;
-  transition: color 2s;
-  &::before {
-    content: "";
-    transition: width 0.2s;
-    @apply absolute w-0 bg-th-red-500 bottom-0 border-t rounded-t-[20px] left-0 right-0 mx-auto;
-    height: 5px;
-    &:hover {
-      @apply w-20;
-      // height: 5px;
-    }
-  }
-  &:hover {
-    @apply text-th-red-500;
-  }
-}
-
-.navBtnSelected {
-  @apply text-th-red-500;
-  &::before {
-    @apply w-20;
-    // height: 5px;
-  }
-}
-/**************
- * END HEADER *
- **************/
-
 /***************
  * ABOUT > TAB *
  ***************/
@@ -128,11 +94,11 @@
   & > div {
     @apply relative;
     img {
-      @apply absolute bottom-0 -right-7;
+      @apply inline ml-1;
     }
   }
-  &:hover p {
-    @apply text-th-red-500;
+  &:hover {
+    @apply shadow-2xl;
   }
 }
 
@@ -140,9 +106,43 @@
   @apply bg-th-red-500;
   &:hover p,
   p {
-    @apply text-white;
+    @apply text-th-white;
   }
 }
+
 /*******************
  * END ABOUT > TAB *
  *******************/
+
+/**************
+ * MY SERVICE *
+ **************/
+.bgMyService {
+  @apply relative grid grid-flow-col;
+  height: 417px;
+  gap: 5px;
+  & > img {
+    @apply w-full absolute top-0 left-0;
+    height: 417px;
+  }
+}
+.serviceItem {
+  @apply flex flex-col items-center p-11 z-10;
+  background-color: var(--color-black-400);
+  & > p {
+    @apply text-th-white text-2xl font-semibold mt-8;
+  }
+}
+.serviceDes {
+  @apply self-start flex items-start my-2;
+  img {
+    @apply mr-3;
+    margin-top: 4px;
+  }
+  p {
+    @apply text-th-white font-medium text-sm;
+  }
+}
+/**************
+ * END MY SERVICE *
+ **************/
