@@ -55,7 +55,7 @@ export default function RootLayout({
   return (
     <html lang={locale}>
       <body className={SVNgilroy.className}>
-        {/* <Loader /> */}
+        <Loader />
         <Header
           titles={[
             t("home"),

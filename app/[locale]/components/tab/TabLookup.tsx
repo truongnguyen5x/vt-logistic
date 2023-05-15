@@ -40,7 +40,6 @@ const TabLookup: FC<TabLookupProps> = ({ content }) => {
       <Slider
         ref={slickRef}
         arrows={false}
-        //TODO: 1
         initialSlide={0}
         draggable={false}
         afterChange={onSliderChange}
