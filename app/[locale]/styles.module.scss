@@ -1,10 +1,21 @@
+/****************
+ * FIRST SLIDER *
+ ****************/
 .sliderWp {
   height: 479px;
 }
+
 .banner {
   height: 450px;
   @apply object-cover;
 }
+/********************
+ * END FIRST SLIDER *
+ ********************/
+
+/****************
+ * LIST FEATURE *
+ ****************/
 .feature {
   //height: 80px;
   border-bottom: 1px solid var(--color-gray-100);
@@ -18,6 +29,13 @@
     @apply whitespace-pre-line text-sm font-semibold;
   }
 }
+/********************
+ * END LIST FEATURE *
+ ********************/
+
+/**************
+ * LIST ABOUT *
+ **************/
 .aboutItem {
   @apply relative;
   & > p {
@@ -57,3 +75,40 @@
   width: 40px !important;
   right: -50px !important;
 }
+/******************
+ * END LIST ABOUT *
+ ******************/
+
+/**********
+ * HEADER *
+ **********/
+
+.navBtn {
+  @apply relative;
+  // @apply text-th-red-500;
+  transition: color 2s;
+  &::before {
+    content: "";
+    transition: width 0.2s;
+    @apply absolute w-0 bg-th-red-500 bottom-0 border-t rounded-t-[20px] left-0 right-0 mx-auto;
+    height: 5px;
+    &:hover {
+      @apply w-20;
+      // height: 5px;
+    }
+  }
+  &:hover {
+    @apply text-th-red-500;
+  }
+}
+
+.navBtnSelected {
+  @apply text-th-red-500;
+  &::before {
+    @apply w-20;
+    // height: 5px;
+  }
+}
+/**************
+ * END HEADER *
+ **************/

@@ -9,7 +9,8 @@ import ProfileImg from "@assets/images/icons/profile.svg";
 import { useTranslations } from "next-intl";
 import { useRouter, useSelectedLayoutSegment } from "next/navigation";
 import { FC } from "react";
-// import { useSelectedLayoutSegment } from "next/navigation";
+import styles from "../styles.module.scss";
+import clsx from "clsx";
 
 interface HeaderProps {
   titles: string[];
@@ -35,13 +36,19 @@ const Header: FC<HeaderProps> = ({ titles }) => {
         </Link>
         <div className="grid grid-cols-6 gap-2">
           {listTab.map((i, idx) => (
-            <Link
+            <div
               key={idx}
-              className="w-44 block text-center h-[74px] leading-[74px] transition-colors hover:text-th-red-500"
-              href={i}
+              className={clsx(styles.navBtn, {
+                [styles.navBtnSelected]: "/" + (segment || "") == i,
+              })}
             >
-              {titles[idx]}
-            </Link>
+              <Link
+                className="w-44 block text-center h-[74px] leading-[74px] transition-colors hover:text-th-red-500"
+                href={i}
+              >
+                {titles[idx]}
+              </Link>
+            </div>
           ))}
         </div>
         <div className="flex gap-7">
