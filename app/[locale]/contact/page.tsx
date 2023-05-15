@@ -3,7 +3,7 @@ import { Fragment } from "react";
 
 const About = () => {
   const t = useTranslations();
-  return <Fragment>About</Fragment>;
+  return <Fragment>Contact</Fragment>;
 };
 
 export default About;

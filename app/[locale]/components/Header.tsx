@@ -1,3 +1,5 @@
+"use client";
+
 import LogoImg from "@assets/images/logos/logo_light.svg";
 import Image from "next/image";
 import SearchImg from "@assets/images/icons/search.svg";
@@ -5,33 +7,24 @@ import VnFlagImg from "@assets/images/flag/vn.png";
 import Link from "next/link";
 import ProfileImg from "@assets/images/icons/profile.svg";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import { useRouter, useSelectedLayoutSegment } from "next/navigation";
+import { FC } from "react";
+// import { useSelectedLayoutSegment } from "next/navigation";
 
-const Header = () => {
-  const t = useTranslations("header");
-  const r = useRouter();
+interface HeaderProps {
+  titles: string[];
+}
 
+const Header: FC<HeaderProps> = ({ titles }) => {
+  const segment = useSelectedLayoutSegment();
+  console.log(segment);
   const listTab = [
-    {
-      path: "/",
-      name: "home",
-    },
-    {
-      path: "/introduce",
-      name: "introduce",
-    },
-    {
-      path: "/service",
-      name: "service",
-    },
-    {
-      path: "/news",
-      name: "news",
-    },
-    {
-      path: "/contact",
-      name: "contact",
-    },
+    "/",
+    "/introduce",
+    "/service",
+    "/news",
+    "/recruitment",
+    "/contact",
   ];
 
   return (
@@ -40,14 +33,14 @@ const Header = () => {
         <Link href="/">
           <Image src={LogoImg} alt="logo" />
         </Link>
-        <div className="grid grid-cols-5 gap-2">
+        <div className="grid grid-cols-6 gap-2">
           {listTab.map((i, idx) => (
             <Link
               key={idx}
               className="w-44 block text-center h-[74px] leading-[74px] transition-colors hover:text-th-red-500"
-              href={i.path}
+              href={i}
             >
-              {t(i.name)}
+              {titles[idx]}
             </Link>
           ))}
         </div>
