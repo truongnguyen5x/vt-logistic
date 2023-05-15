@@ -1,5 +1,6 @@
 "use client";
 import { Fragment, useEffect, useState } from "react";
+import clsx from "clsx";
 
 const Loader = () => {
   const [loaded, setLoaded] = useState(false);
@@ -9,7 +10,12 @@ const Loader = () => {
   return (
     <Fragment>
       {/* START LOADER  */}
-      <div id="loader-wrapper" className={loaded ? "loaded" : ""}>
+      <div
+        id="loader-wrapper"
+        className={clsx({
+          loaded: loaded,
+        })}
+      >
         <div id="loading-center-absolute">
           <div className="object" id="object_four"></div>
           <div className="object" id="object_three"></div>

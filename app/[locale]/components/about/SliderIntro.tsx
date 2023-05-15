@@ -40,22 +40,20 @@ function SamplePrevArrow(props: any) {
 }
 
 const SliderIntro: FC<Props> = ({ content }) => {
-  const settings = {
-    // dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />,
-  };
   return (
-    <Slider {...settings}>
+    <Slider
+      infinite
+      speed={500}
+      slidesToShow={3}
+      slidesToScroll={1}
+      nextArrow={<SampleNextArrow />}
+      prevArrow={<SamplePrevArrow />}
+    >
       {content.map((i, idx) => (
         <div key={idx} className={styles.aboutItem}>
           <p>
             {i.is_plus ? "+" : ""}
-            {i.heading}
+            <AnimatedNumber n={i.heading} />
           </p>
           <div className={styles.aboutItem1}>
             <div className={styles.aboutItemHead}>

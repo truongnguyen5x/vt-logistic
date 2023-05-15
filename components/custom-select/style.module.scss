@@ -1,6 +1,10 @@
 .customSelect {
-  @apply bg-th-white pl-5;
+  @apply bg-th-white pl-5 cursor-pointer;
   width: 700px;
   height: 65px;
+
   border: 1px solid var(--color-gray-200);
+  &:focus {
+    outline: none;
+  }
 }

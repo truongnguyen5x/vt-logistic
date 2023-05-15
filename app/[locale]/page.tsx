@@ -1,18 +1,22 @@
-import React, { Fragment } from "react";
+import React, { Fragment, Suspense } from "react";
 import styles from "./styles.module.scss";
-import { useLocale } from "next-intl";
-import { fetchAsset } from "@api/index";
+import { useLocale, useTranslations } from "next-intl";
+import { fetchAsset, fetchHomePost } from "@api/index";
 import { ILocale, i18n } from "@configs/i18n";
 import SliderHome from "./components/Slider";
 import AboutUs, { IAbout } from "./components/about";
 import Image from "next/image";
 import AboutInfoTab, { IAboutContent } from "./components/tab";
+import Partner, { IPartner } from "./components/Partner";
+import ListPost from "./components/ListPost";
 
 type IContent = {
   banner: string[];
   features: Array<{ image: string; title: string }>;
   abouts: IAbout[];
   abouts_content: IAboutContent;
+  list_partner: IPartner;
+  news: { title: string; learn_more: string };
 };
 
 // TODO: generateStaticParams what for?
@@ -25,6 +29,8 @@ export default async function Home({ params }: { params: { lang: ILocale } }) {
     "home",
     params.lang || i18n.defaultLocale
   );
+
+  const listHomePost = fetchHomePost(params.lang || i18n.defaultLocale);
 
   return (
     <Fragment>
@@ -47,6 +53,14 @@ export default async function Home({ params }: { params: { lang: ILocale } }) {
       </section>
       <AboutUs content={data.abouts} />
       <AboutInfoTab data={data.abouts_content} />
+      <Partner data={data.list_partner} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <ListPost
+          title={data.news.title}
+          learn_more={data.news.learn_more}
+          promise={listHomePost}
+        />
+      </Suspense>
     </Fragment>
   );
 }

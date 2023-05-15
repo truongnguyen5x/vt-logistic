@@ -88,6 +88,7 @@ const AboutInfoTab = ({ data }: { data: IAboutContent }) => {
         slidesToScroll={1}
         dots={false}
         speed={500}
+        className="custom-slider"
       >
         <TabLookup content={data.lookup_tab} />
         <TabMyService

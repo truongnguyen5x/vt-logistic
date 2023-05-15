@@ -267,9 +267,9 @@ body {
   }
 }
 .btn-red {
-  @apply w-64 text-th-white font-medium text-2xl rounded-full bg-th-red-500;
+  @apply w-64 text-th-white font-medium text-2xl rounded-full bg-th-red-500 shadow-xl;
   height: 60px;
-  box-shadow: 0px 4px 4px rgba(111, 59, 59, 0.25);
+  // box-shadow: 0px 4px 4px rgba(111, 59, 59, 0.25);
   transition: all 0.5s;
   &:hover {
     background-color: var(--color-red-600);
@@ -281,6 +281,20 @@ body {
   }
 }
 .custom-select {
+}
+.custom-slider {
+  -webkit-user-select: text !important;
+  -khtml-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+  // .slick-list.draggable {
+  //   -webkit-user-select: none;
+  //   -khtml-user-select: none;
+  //   -moz-user-select: none;
+  //   -ms-user-select: none;
+  //   user-select: none;
+  // }
 }
 /********************
  * END COMMON COMPONENT *

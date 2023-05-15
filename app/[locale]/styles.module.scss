@@ -206,3 +206,19 @@
 /**************
  * END TAB LOOKUP *
  **************/
+
+/****************
+ * LIST PARTNER *
+ ****************/
+.partnerItem {
+  @apply flex justify-center items-center border-th-gray-200 shadow-lg p-3;
+  border-width: 1px;
+  display: flex !important;
+  width: 253px !important;
+  height: 165px;
+  img {
+  }
+}
+/****************
+ * LIST PARTNER *
+ ****************/

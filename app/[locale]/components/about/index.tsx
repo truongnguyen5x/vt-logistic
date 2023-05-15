@@ -14,7 +14,7 @@ type IAboutProps = {
   content: IAbout[];
 };
 const AboutUs: FC<IAboutProps> = ({ content }) => {
-  const t = useTranslations("section_name");
+  const t = useTranslations("home");
   return (
     <section className="container mx-auto pt-20">
       <p className="section-name animate__animated  animate__fadeInDown animate__delay-1s">

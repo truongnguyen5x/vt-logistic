@@ -9,17 +9,18 @@ import Image from "next/image";
 interface Props {
   images: string[];
 }
-const settings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-};
+
 const SliderHome: FC<Props> = ({ images }) => {
   return (
     <section className={styles.sliderWp}>
-      <Slider {...settings} arrows={false}>
+      <Slider
+        dots
+        infinite
+        speed={500}
+        slidesToShow={1}
+        slidesToScroll={1}
+        arrows={false}
+      >
         {images.map((i, idx) => (
           <Image
             src={i}
