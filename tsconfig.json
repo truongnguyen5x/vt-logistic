@@ -24,7 +24,8 @@
       "@assets/*": ["assets/*"],
       "@api/*": ["api/*"],
       "@type/*": ["types/*"],
-      "@ultility/*": ["ultility/*"]
+      "@ultility/*": ["ultility/*"],
+      "@configs/*": ["configs/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

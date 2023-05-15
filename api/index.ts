@@ -1,7 +1,7 @@
 import "server-only";
-import { ILOCALE } from "@type/locale";
+import { ILocale } from "@configs/i18n";
 
-export const fetchAsset = async (page: string, locale: ILOCALE) => {
+export const fetchAsset = async (page: string, locale: ILocale) => {
   const res = await fetch(`${process.env.API_URL}/${page}/${locale}.json`).then(
     (res) => res.json()
   );

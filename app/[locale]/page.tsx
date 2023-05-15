@@ -1,12 +1,11 @@
-import Image from "next/image";
-import { useTranslations } from "next-intl";
 import React, { Fragment } from "react";
 import styles from "./styles.module.scss";
 import { useLocale } from "next-intl";
 import { fetchAsset } from "@api/index";
-import { ILOCALE } from "@type/locale";
+import { ILocale, i18n } from "@configs/i18n";
 import SliderHome from "./components/Slider";
 import AboutUs, { IAbout } from "./components/AboutUs";
+import Image from "next/image";
 
 type IContent = {
   banner: string[];
@@ -14,10 +13,14 @@ type IContent = {
   abouts: IAbout[];
 };
 
+// export async function generateStaticParams() {
+//   return i18n.locales.map((i: ILocale) => ({ locale: i }));
+// }
+
 export default async function Home() {
   const locale = useLocale();
 
-  const data: IContent = await fetchAsset("home", locale as ILOCALE);
+  const data: IContent = await fetchAsset("home", locale as ILocale);
 
   return (
     <Fragment>
@@ -26,7 +29,7 @@ export default async function Home() {
         <div className="container mx-auto flex  items-center justify-between my-4">
           {data.features.map((i, index: number) => (
             <div key={index} className={styles.featureItem}>
-              <img src={i.image} />
+              <Image src={i.image} alt="" width={50} height={50} />
               <p>{i.title}</p>
             </div>
           ))}
