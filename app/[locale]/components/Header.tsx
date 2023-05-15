@@ -17,7 +17,7 @@ interface HeaderProps {
 
 const Header: FC<HeaderProps> = ({ titles }) => {
   const segment = useSelectedLayoutSegment();
-  console.log(segment);
+
   const listTab = [
     "/",
     "/introduce",
