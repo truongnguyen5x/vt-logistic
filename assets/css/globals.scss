@@ -257,6 +257,7 @@ body {
     @apply absolute bg-white text-th-gray-400 font-normal w-52 hidden shadow-lg py-1;
     li {
       @apply px-4 py-2 relative z-10;
+      transition: background-color 0.7s;
       &:hover {
         @apply text-th-red-500 font-medium;
         background-color: var(--color-gray-100);
