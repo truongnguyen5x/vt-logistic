@@ -296,6 +296,11 @@ body {
   //   user-select: none;
   // }
 }
+.custom-horizontal-divider {
+  @apply w-full;
+  height: 1px;
+  background-color: var(--color-gray-270);
+}
 /********************
  * END COMMON COMPONENT *
  ********************/
@@ -321,6 +326,32 @@ body {
   button {
     @apply w-32 rounded-r-full text-th-white text-xl font-semibold;
     background-color: var(--color-gray-320);
+  }
+}
+.footer-col {
+  @apply text-th-gray-400 font-semibold mb-4;
+  font-size: 21px;
+}
+.footer-link {
+  @apply text-sm text-th-gray-400 block;
+  img {
+    @apply inline mr-2;
+    margin-bottom: 2px;
+  }
+}
+a.footer-link {
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.footer-copyright {
+  @apply bg-th-red-500;
+  padding-top: 1px;
+  height: 30px;
+  p {
+    @apply text-th-white text-center;
+    font-size: 13px;
+    margin-top: 5px;
   }
 }
 /**********

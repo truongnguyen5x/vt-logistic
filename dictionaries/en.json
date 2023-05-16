@@ -1,13 +1,16 @@
 {
-  "header": {
+  "home": {
     "home": "Trang chủ",
     "introduce": "Giới thiệu",
     "service": "Dịch vụ",
     "news": "Tin tức",
     "recruitment": "Tuyển dụng",
-    "contact": "Liên hệ"
+    "contact": "Liên hệ",
+    "about": "Giới thiệu về viettel logistics",
+    "connect_with_us": "Kết nối với chúng tôi",
+    "certified_by": "Chứng nhận bởi"
   },
-  "home": {
+  "section": {
     "about_us": "Về chúng tôi"
   }
 }

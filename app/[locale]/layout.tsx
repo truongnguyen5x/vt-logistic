@@ -48,7 +48,7 @@ export default function RootLayout({
   params: any;
 }) {
   const locale = useLocale();
-  const t = useTranslations("header");
+  const t = useTranslations("home");
   if (params.locale !== locale) {
     notFound();
   }
@@ -68,7 +68,12 @@ export default function RootLayout({
           ]}
         />
         {children}
-        <Footer locale={locale as ILocale} />
+        <Footer
+          introduceTxt={t("about")}
+          connectTxt={t("connect_with_us")}
+          certifiedBy={t("certified_by")}
+          locale={locale as ILocale}
+        />
       </body>
     </html>
   );
