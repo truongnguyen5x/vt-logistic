@@ -19,13 +19,16 @@ module.exports = {
         "th-gray-100": "var(--color-gray-100)",
         "th-gray-200": "var(--color-gray-200)",
         "th-gray-250": "var(--color-gray-250)",
+        "th-gray-280": "var(--color-gray-280)",
         "th-gray-300": "var(--color-gray-300)",
         "th-gray-310": "var(--color-gray-310)",
+        "th-gray-330": "var(--color-gray-330)",
         "th-gray-400": "var(--color-gray-400)",
         "th-gray-500": "var(--color-gray-500)",
         "th-red-500": "var(--color-red-500)",
         "th-white": "var(--color-white)",
-        "th-overlay": "var(--color-overlay)"
+        "th-black-overlay": "var(--color-black-overlay)",
+        "th-white-overlay": "var(--color-white-overlay)"
       },
     },
   },

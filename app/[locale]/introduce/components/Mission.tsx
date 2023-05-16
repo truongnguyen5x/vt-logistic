@@ -32,7 +32,7 @@ const Mission: FC<Props> = ({ data, className = "" }) => {
           </div>
           {!!data.description && <Truncate content={data.description} />}
           {!!data.properties.length && (
-            <div className="flex items-center justify-center max-w-[800px] mx-auto px-5 border-solid border-th-gray-50 border border-x-0 mt-[55px]">
+            <div className="flex items-center justify-between max-w-[800px] mx-auto px-5 border-solid border-th-gray-50 border border-x-0 mt-[55px]">
               {data.properties.map((item, index) => (
                 <div key={index} className="flex items-center justify-between">
                   <div className="flex items-center justify-center gap-4 min-w-[181px] py-6">
