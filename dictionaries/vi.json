@@ -1,5 +1,5 @@
 {
-  "home": {
+  "layout": {
     "home": "Trang chủ",
     "introduce": "Giới thiệu",
     "service": "Dịch vụ",
@@ -25,7 +25,7 @@
     "market_news": "Tin thị trường",
     "specialized_news": "Kiến thức chuyên ngành"
   },
-  "section": {
+  "home": {
     "about_us": "Về chúng tôi"
   },
   "introduce": {
@@ -37,6 +37,13 @@
     "breadcrumbs": {
       "home": "Trang chủ",
       "introduce": "Giới thiệu"
+    }
+  },
+  "service": {
+    "title": "Dịch vụ",
+    "breadcrumbs": {
+      "home": "Trang chủ",
+      "service": "Dịch vụ"
     }
   }
 }

@@ -48,7 +48,7 @@ export default function RootLayout({
   params: any;
 }) {
   const locale = useLocale();
-  const t = useTranslations("home");
+  const t = useTranslations("layout");
   if (params.locale !== locale) {
     notFound();
   }

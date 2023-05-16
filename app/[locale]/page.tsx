@@ -1,6 +1,7 @@
 import React, { Fragment, Suspense } from "react";
 import styles from "./styles.module.scss";
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { fetchAsset, fetchHomePost } from "@api/index";
 import { ILocale, i18n } from "@configs/i18n";
 import SliderHome from "./components/Slider";
@@ -24,11 +25,10 @@ type IContent = {
 //   return i18n.locales.map((i: ILocale) => ({ locale: i }));
 // }
 
-export default async function Home({ params }: { params: { lang: ILocale } }) {
-  const lang = params.lang || i18n.defaultLocale;
-  const assetData: IContent = await fetchAsset("home", lang);
-
-  const listHomePost = fetchHomePost(lang);
+export default async function Home() {
+  const locale = useLocale();
+  const assetData: IContent = await fetchAsset("home", locale as ILocale);
+  const listHomePost = fetchHomePost(locale as ILocale);
 
   return (
     <Fragment>
