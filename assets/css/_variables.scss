@@ -1,0 +1,11 @@
+@mixin text-clip {
+  //   text-overflow: ellipsis;
+  //   overflow: hidden;
+  //   white-space: nowrap;
+
+  display: -webkit-box;
+
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

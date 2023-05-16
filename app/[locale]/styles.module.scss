@@ -1,3 +1,4 @@
+@import "../../assets/css/_variables.scss";
 /****************
  * FIRST SLIDER *
  ****************/
@@ -222,3 +223,41 @@
 /****************
  * LIST PARTNER *
  ****************/
+
+/******************
+ * HOME LIST POST *
+ ******************/
+.postItem {
+  @apply relative shadow-xl;
+  padding-top: 87%;
+}
+.postImg {
+  @apply block;
+  flex-basis: 57%;
+  img {
+    @apply w-full h-full object-cover;
+  }
+}
+.postContent {
+  flex-basis: 43%;
+  padding: 10px 15px 30px;
+}
+.postTitle {
+  @apply font-semibold text-base;
+  color: var(--color-gray-320);
+}
+.postTimestamp {
+  @apply text-th-gray-300 font-medium mt-1;
+  font-size: 11px;
+  img {
+    @apply inline;
+    margin: 0 5px 2px 0;
+  }
+}
+.postDes {
+  @apply font-medium text-xs text-th-gray-300 mt-1;
+  @include text-clip();
+}
+/******************
+ * HOME LIST POST *
+ ******************/
