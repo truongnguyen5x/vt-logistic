@@ -11,7 +11,7 @@ export type IPartner = {
   title: string;
 };
 interface PartnerProps {
-  data: IPartner;
+  assets: IPartner;
 }
 
 function SampleNextArrow(props: any) {
@@ -40,12 +40,12 @@ function SamplePrevArrow(props: any) {
   );
 }
 
-const Partner: FC<PartnerProps> = ({ data }) => {
+const Partner: FC<PartnerProps> = ({ assets }) => {
   return (
     <Fragment>
       <div className="container mx-auto">
         <p className="section-name animate__animated  animate__fadeInDown animate__delay-1s ">
-          {data.title}
+          {assets.title}
         </p>
         <div className="mb-16" />
         <Slider
@@ -58,7 +58,7 @@ const Partner: FC<PartnerProps> = ({ data }) => {
           nextArrow={<SampleNextArrow />}
           prevArrow={<SamplePrevArrow />}
         >
-          {data.imgs.map((i, idx) => (
+          {assets.imgs.map((i, idx) => (
             <div key={idx} className={styles.partnerItem}>
               <Image alt="" src={i} width={253} height={165} />
             </div>

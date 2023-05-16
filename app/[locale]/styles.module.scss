@@ -232,7 +232,7 @@
   padding-top: 87%;
 }
 .postImg {
-  @apply block;
+  @apply block min-h-0;
   flex-basis: 57%;
   img {
     @apply w-full h-full object-cover;
@@ -246,6 +246,10 @@
   @apply font-semibold text-base;
   color: var(--color-gray-320);
 }
+.postTitleLarge {
+  @apply font-semibold text-2xl;
+  color: var(--color-gray-320);
+}
 .postTimestamp {
   @apply text-th-gray-300 font-medium mt-1;
   font-size: 11px;
@@ -254,10 +258,51 @@
     margin: 0 5px 2px 0;
   }
 }
+.postTimestampLarge {
+  @apply text-th-gray-300 font-medium mt-2;
+  font-size: 13px;
+  img {
+    @apply inline;
+    margin: 0 5px 2px 0;
+  }
+}
 .postDes {
   @apply font-medium text-xs text-th-gray-300 mt-1;
-  @include text-clip();
+  @include text-clip(2);
+}
+.postDesLarge {
+  @apply font-medium text-sm text-th-gray-300 mt-5;
+  @include text-clip(3);
+}
+.postLink {
+  @apply text-th-red-500 font-medium absolute bottom-3 right-4;
+  font-size: 12px;
+  img {
+    @apply inline;
+    width: 13px;
+    height: 13px;
+    margin: 0 0 2px 5px;
+  }
+}
+.postLinkLarge {
+  @apply text-th-red-500 font-medium absolute bottom-3 right-4;
+  font-size: 15px;
+  img {
+    @apply inline;
+    margin: 0 0 2px 5px;
+  }
 }
 /******************
- * HOME LIST POST *
+ * END HOME LIST POST *
  ******************/
+
+/*****************
+ * FORM REGISTER *
+ *****************/
+.formWp {
+  @apply bg-th-red-500;
+  height: 120px;
+}
+/*****************
+ * END FORM REGISTER *
+ *****************/

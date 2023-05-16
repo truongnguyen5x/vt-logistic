@@ -35,7 +35,7 @@ export type IAboutContent = {
   lookup_tab: ILookupContent;
 };
 
-const AboutInfoTab = ({ data }: { data: IAboutContent }) => {
+const AboutInfoTab = ({ assets }: { assets: IAboutContent }) => {
   //TODO: 1
   const [activeTab, setActiveTab] = useState(1);
   const slickRef = useRef<Slider>(null);
@@ -50,7 +50,7 @@ const AboutInfoTab = ({ data }: { data: IAboutContent }) => {
   return (
     <Fragment>
       <div className="flex justify-center gap-4 mt-20 mb-20">
-        {data.tabs.map((i, idx) => (
+        {assets.tabs.map((i, idx) => (
           <div
             key={idx}
             onClick={() => handleChangeTab(idx)}
@@ -90,11 +90,11 @@ const AboutInfoTab = ({ data }: { data: IAboutContent }) => {
         speed={500}
         className="custom-slider"
       >
-        <TabLookup content={data.lookup_tab} />
+        <TabLookup content={assets.lookup_tab} />
         <TabMyService
-          background={data.service_bg}
-          contents={data.service_tab}
-          allService={data.all_service}
+          background={assets.service_bg}
+          contents={assets.service_tab}
+          allService={assets.all_service}
         />
       </Slider>
     </Fragment>

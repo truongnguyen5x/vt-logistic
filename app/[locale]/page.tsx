@@ -9,6 +9,7 @@ import Image from "next/image";
 import AboutInfoTab, { IAboutContent } from "./components/tab";
 import Partner, { IPartner } from "./components/Partner";
 import ListPost from "./components/post";
+import FormRegister, { IFormRegister } from "./components/FormRegister";
 
 type IContent = {
   banner: string[];
@@ -17,6 +18,7 @@ type IContent = {
   abouts_content: IAboutContent;
   list_partner: IPartner;
   news: { title: string; learn_more: string; detail: string };
+  form_register: IFormRegister;
 };
 
 // TODO: generateStaticParams what for?
@@ -25,7 +27,7 @@ type IContent = {
 // }
 
 export default async function Home({ params }: { params: { lang: ILocale } }) {
-  const data: IContent = await fetchAsset(
+  const assetData: IContent = await fetchAsset(
     "home",
     params.lang || i18n.defaultLocale
   );
@@ -34,10 +36,10 @@ export default async function Home({ params }: { params: { lang: ILocale } }) {
 
   return (
     <Fragment>
-      <SliderHome images={data.banner} />
+      <SliderHome images={assetData.banner} />
       <section className={[styles.feature].join(" ")}>
         <div className="container mx-auto flex  items-center justify-between my-4">
-          {data.features.map((i, index: number) => (
+          {assetData.features.map((i, index: number) => (
             <div
               key={index}
               className={[
@@ -51,17 +53,18 @@ export default async function Home({ params }: { params: { lang: ILocale } }) {
           ))}
         </div>
       </section>
-      <AboutUs content={data.abouts} />
-      <AboutInfoTab data={data.abouts_content} />
-      <Partner data={data.list_partner} />
+      <AboutUs content={assetData.abouts} />
+      <AboutInfoTab assets={assetData.abouts_content} />
+      <Partner assets={assetData.list_partner} />
       <Suspense fallback={<div>Loading...</div>}>
         <ListPost
-          title={data.news.title}
-          detail={data.news.detail}
-          learn_more={data.news.learn_more}
+          title={assetData.news.title}
+          detail={assetData.news.detail}
+          learn_more={assetData.news.learn_more}
           promise={listHomePost}
         />
       </Suspense>
+      <FormRegister assets={assetData.form_register} />
     </Fragment>
   );
 }
