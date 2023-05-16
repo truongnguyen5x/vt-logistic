@@ -8,31 +8,10 @@ Version      : 1.7
     CSS INDEX
     =============================
     01. GENERAL STYLE (body, link color, section-title, overlay, section-padding etc)
-    02. HEADER DESIGN
-    03. BANNER SECTION
-    04. WHY CHOOSE SECTION
-    05. ABOUT SECTION
-    06. TOKEN SECTION
-    07. TIMELINE SECTION
-    08. MOBILE APP SECTION
-    09. TEAM SECTION
-    10. FAQ SECTION
-    11. CONTACT SECTION
-    12. CLIENT SECTION
-    13. FOOTER SECTION
-    14. ABOUT US PAGE
-    15. SERVICES PAGE
-    16. PRICING PAGE
-    17. START 404 PAGE
-    18. BLOG SECTION
-    19. LOGIN PAGE
-    20. SIDEBAR SECTION 
-    21. POST DETAIL SECTION 
-    22. CONTACT PAGE
-    23. DIGITAL NETWORK SECTION
-    24. WHITEPAPER SECTION
-    25. TOKEN RATING SECTION
-    26. TOKEN NOTIFICATION POPUP
+    02. START LOADER DESIGN
+    03. HEADER
+    04. FOOTER
+    05. COMMON COMPONENT
 	
 *=============================================================*/
 
@@ -74,9 +53,12 @@ body {
     color: var(--color-gray-400);
   }
 }
+/*===================================*
+    END GENERAL STYLE
+*===================================*/
 
 /***********************
- * START LOADER DESIGN *
+    02. START LOADER DESIGN
  ***********************/
 
 #loader-wrapper {
@@ -221,14 +203,9 @@ body {
  ************************/
 
 /**********
- * HEADER *
+ * 03. HEADER *
  **********/
-.header-logo {
-  animation: slide-in-top 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
-}
-.header-right-action {
-  animation: slide-in-top 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.7s both;
-}
+
 .nav-btn {
   @apply relative z-10;
   transition: color 2s;
@@ -248,7 +225,7 @@ body {
       @apply block;
     }
   }
-  animation: slide-in-top 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
+
   & > ul {
     @apply absolute bg-white text-th-gray-400 font-normal w-52 hidden shadow-lg py-1;
     li {
@@ -288,90 +265,8 @@ body {
 /**************
  * END HEADER *
  **************/
-
-/********************
- * COMMON COMPONENT *
- ********************/
-.section-name {
-  @apply text-center font-semibold text-4xl relative;
-  &:after {
-    @apply absolute bg-th-red-500 -bottom-5 left-1/2 -translate-x-1/2;
-    content: "";
-    width: 120px;
-    height: 3px;
-  }
-  animation: slide-in-top 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
-}
-.section-name-left {
-  @apply text-left font-semibold text-4xl relative;
-  &:after {
-    @apply absolute bg-th-red-500 left-0 -bottom-5;
-    content: "";
-    width: 120px;
-    height: 3px;
-  }
-  animation: slide-in-top 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
-}
-.section-name-light-left {
-  @extend .section-name-left;
-  @apply text-th-white;
-}
-.btn-red {
-  @apply w-64 text-th-white font-medium text-2xl rounded-full bg-th-red-500 shadow-xl;
-  height: 60px;
-  // box-shadow: 0px 4px 4px rgba(111, 59, 59, 0.25);
-  transition: all 0.5s;
-  &:hover {
-    background-color: var(--color-red-600);
-  }
-  img {
-    display: inline !important;
-    @apply ml-4;
-    margin-bottom: 2px;
-  }
-}
-.btn-white-outline {
-  @apply relative text-th-white font-medium text-2xl rounded-full bg-transparent shadow-xl border-th-white border-2;
-  height: 60px;
-  width: 425px;
-  // box-shadow: 0px 4px 4px rgba(111, 59, 59, 0.25);
-  transition: all 0.5s;
-  &:hover {
-    // background-color: var(--color-red-600);
-  }
-  img {
-    display: inline !important;
-    @apply ml-4;
-    margin-bottom: 2px;
-  }
-}
-.custom-select {
-}
-.custom-slider {
-  -webkit-user-select: text !important;
-  -khtml-user-select: text !important;
-  -moz-user-select: text !important;
-  -ms-user-select: text !important;
-  user-select: text !important;
-  // .slick-list.draggable {
-  //   -webkit-user-select: none;
-  //   -khtml-user-select: none;
-  //   -moz-user-select: none;
-  //   -ms-user-select: none;
-  //   user-select: none;
-  // }
-}
-.custom-horizontal-divider {
-  @apply w-full;
-  height: 1px;
-  background-color: var(--color-gray-270);
-}
-/********************
- * END COMMON COMPONENT *
- ********************/
-
 /**********
- * FOOTER *
+ * 04. FOOTER *
  **********/
 .footer-form-register {
   @apply bg-th-red-500;
@@ -422,3 +317,74 @@ a.footer-link {
 /**********
  * END FOOTER *
  **********/
+
+/********************
+ * 05. COMMON COMPONENT *
+ ********************/
+.section-name {
+  @apply text-center font-semibold text-4xl relative;
+  &:after {
+    @apply absolute bg-th-red-500 -bottom-5 left-1/2 -translate-x-1/2;
+    content: "";
+    width: 120px;
+    height: 3px;
+  }
+}
+.section-name-left {
+  @apply text-left font-semibold text-4xl relative;
+  &:after {
+    @apply absolute bg-th-red-500 left-0 -bottom-5;
+    content: "";
+    width: 120px;
+    height: 3px;
+  }
+}
+.section-name-light-left {
+  @extend .section-name-left;
+  @apply text-th-white;
+}
+.btn-red {
+  @apply w-64 text-th-white font-medium text-2xl rounded-full bg-th-red-500 shadow-xl;
+  height: 60px;
+  // box-shadow: 0px 4px 4px rgba(111, 59, 59, 0.25);
+  transition: all 0.5s;
+  &:hover {
+    background-color: var(--color-red-600);
+  }
+  img {
+    display: inline !important;
+    @apply ml-4;
+    margin-bottom: 2px;
+  }
+}
+.btn-white-outline {
+  @apply relative text-th-white font-medium text-2xl rounded-full bg-transparent shadow-xl border-th-white border-2;
+  height: 60px;
+  width: 425px;
+  // box-shadow: 0px 4px 4px rgba(111, 59, 59, 0.25);
+  transition: all 0.5s;
+  &:hover {
+    // background-color: var(--color-red-600);
+  }
+  img {
+    display: inline !important;
+    @apply ml-4;
+    margin-bottom: 2px;
+  }
+}
+
+.custom-slider {
+  -webkit-user-select: text !important;
+  -khtml-user-select: text !important;
+  -moz-user-select: text !important;
+  -ms-user-select: text !important;
+  user-select: text !important;
+}
+.custom-horizontal-divider {
+  @apply w-full;
+  height: 1px;
+  background-color: var(--color-gray-270);
+}
+/********************
+ * END COMMON COMPONENT *
+ ********************/

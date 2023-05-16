@@ -152,7 +152,7 @@ const Header: FC<HeaderProps> = ({ titles }) => {
 
   return (
     <div className="container mx-auto h-[74px] flex justify-between items-center">
-      <Link href="/" className="header-logo">
+      <Link href="/">
         <Image src={LogoImg} alt="logo" />
       </Link>
       <nav>
@@ -163,9 +163,9 @@ const Header: FC<HeaderProps> = ({ titles }) => {
               className={clsx("nav-btn", {
                 "nav-btn-selected": "/" + (segment || "") == i.path,
               })}
-              style={{
-                animationDelay: `${1.1 + 0.1 * idx}s`,
-              }}
+              // style={{
+              //   animationDelay: `${1.1 + 0.1 * idx}s`,
+              // }}
             >
               <Link
                 className="w-44 block text-center h-[74px] leading-[74px] transition-colors hover:text-th-red-500"
@@ -178,7 +178,7 @@ const Header: FC<HeaderProps> = ({ titles }) => {
           ))}
         </ul>
       </nav>
-      <div className="flex gap-7 header-right-action">
+      <div className="flex gap-7">
         <Image src={SearchImg} alt="search-icon" />
         <Image src={VnFlagImg} alt="flag" />
         <Image src={ProfileImg} alt="profile" />
