@@ -69,7 +69,7 @@ const Footer = async () => {
 
   return (
     <Fragment>
-      <div className="footer-form-register">
+      <div className="footer-form-register animation">
         <div className="container mx-auto flex justify-between items-center h-full">
           <div className="flex items-center gap-12">
             <Image src={SmsImg} width={50} height={50} alt="" />
@@ -82,7 +82,10 @@ const Footer = async () => {
         </div>
       </div>
       <div className="container mx-auto py-16 ">
-        <div className="grid grid-cols-5 gap-3 mb-7">
+        <div
+          className="grid grid-cols-5 gap-3 mb-7 animation"
+          data-animation-delay="0.3s"
+        >
           {footerAsset.links.map((item, idx) => (
             <div key={idx}>
               <p className="footer-col">{item.title}</p>
@@ -91,7 +94,10 @@ const Footer = async () => {
           ))}
         </div>
         <div className="custom-horizontal-divider"></div>
-        <div className="grid grid-cols-5 gap-7 mt-7">
+        <div
+          className="grid grid-cols-5 gap-7 mt-7 animation"
+          data-animation-delay="0.4s"
+        >
           <div className="col-span-2">
             <Image src={LogoImg} width={154} height={55} alt="logo" />
             <p className="footer-col mt-7">{t("about")}</p>
