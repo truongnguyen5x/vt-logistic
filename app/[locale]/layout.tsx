@@ -2,6 +2,7 @@ import "@assets/css/globals.scss";
 import "@assets/css/theme.scss";
 import "@assets/css/responsive.scss";
 import "@assets/css/animate.scss";
+
 import { useLocale, useTranslations } from "next-intl";
 import { notFound } from "next/navigation";
 import Header from "./Header";
@@ -9,6 +10,7 @@ import localFont from "next/font/local";
 import Loader from "./components/Loader";
 import { ILocale, i18n } from "@configs/i18n";
 import Footer from "./Footer";
+import Script from "next/script";
 
 const SVNgilroy = localFont({
   src: [
@@ -85,6 +87,7 @@ export default function RootLayout({
         {children}
         <Footer />
       </body>
+      <Script src="./js/script.js" />
     </html>
   );
 }

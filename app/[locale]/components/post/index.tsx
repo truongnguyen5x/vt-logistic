@@ -22,8 +22,11 @@ const ListPost = async ({
   const handleClickMore = () => {};
   return (
     <div className="container mx-auto mt-24">
-      <p className="section-name mb-6">{title}</p>
-      <div className="grid grid-cols-12 gap-7 mt-20">
+      <p className="section-name mb-6 animation">{title}</p>
+      <div
+        className="grid grid-cols-12 gap-7 mt-20 animation"
+        data-animation-delay="0.4s"
+      >
         <div className="col-span-6">
           <PostHome detailTxt={detail} size="LARGE" postData={listPost[0]} />
         </div>
@@ -34,7 +37,10 @@ const ListPost = async ({
           <PostHome detailTxt={detail} postData={listPost[4]} />
         </div>
       </div>
-      <div className="mt-12 text-center mb-24">
+      <div
+        className="mt-12 text-center mb-24 animation"
+        data-animation-delay="0.6s"
+      >
         <button className="btn-red" onClick={handleClickMore}>
           {learn_more}
           <Image src={RightImg} width={28} height={28} alt="" />

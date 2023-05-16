@@ -49,7 +49,7 @@ const AboutInfoTab = ({ assets }: { assets: IAboutContent }) => {
   };
   return (
     <Fragment>
-      <div className="flex justify-center gap-4 mt-20 mb-20">
+      <div className="flex justify-center gap-4 mt-20 mb-20 animation">
         {assets.tabs.map((i, idx) => (
           <div
             key={idx}
@@ -77,26 +77,28 @@ const AboutInfoTab = ({ assets }: { assets: IAboutContent }) => {
           </div>
         ))}
       </div>
-      <Slider
-        ref={slickRef}
-        arrows={false}
-        //TODO: 1
-        initialSlide={1}
-        draggable={false}
-        afterChange={onSliderChange}
-        slidesToShow={1}
-        slidesToScroll={1}
-        dots={false}
-        speed={500}
-        className="custom-slider"
-      >
-        <TabLookup content={assets.lookup_tab} />
-        <TabMyService
-          background={assets.service_bg}
-          contents={assets.service_tab}
-          allService={assets.all_service}
-        />
-      </Slider>
+      <div className="animation" data-animation-delay="0.4s">
+        <Slider
+          ref={slickRef}
+          arrows={false}
+          //TODO: 1
+          initialSlide={1}
+          draggable={false}
+          afterChange={onSliderChange}
+          slidesToShow={1}
+          slidesToScroll={1}
+          dots={false}
+          speed={500}
+          className="custom-slider"
+        >
+          <TabLookup content={assets.lookup_tab} />
+          <TabMyService
+            background={assets.service_bg}
+            contents={assets.service_tab}
+            allService={assets.all_service}
+          />
+        </Slider>
+      </div>
     </Fragment>
   );
 };

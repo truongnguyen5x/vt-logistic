@@ -44,24 +44,26 @@ const Partner: FC<PartnerProps> = ({ assets, title }) => {
   return (
     <Fragment>
       <div className="container mx-auto">
-        <p className="section-name mb-6">{title}</p>
-        <div className="mb-16" />
-        <Slider
-          speed={500}
-          dots={false}
-          autoplay
-          infinite
-          slidesToShow={5}
-          slidesToScroll={5}
-          nextArrow={<SampleNextArrow />}
-          prevArrow={<SamplePrevArrow />}
-        >
-          {assets.imgs.map((i, idx) => (
-            <div key={idx} className={styles.partnerItem}>
-              <Image alt="" src={i} width={253} height={165} />
-            </div>
-          ))}
-        </Slider>
+        <p className="animation section-name mb-6">{title}</p>
+
+        <div className="mt-16 animation" data-animation-delay="0.4s">
+          <Slider
+            speed={500}
+            dots={false}
+            autoplay
+            infinite
+            slidesToShow={5}
+            slidesToScroll={5}
+            nextArrow={<SampleNextArrow />}
+            prevArrow={<SamplePrevArrow />}
+          >
+            {assets.imgs.map((i, idx) => (
+              <div key={idx} className={styles.partnerItem}>
+                <Image alt="" src={i} width={253} height={165} />
+              </div>
+            ))}
+          </Slider>
+        </div>
       </div>
     </Fragment>
   );

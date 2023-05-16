@@ -152,7 +152,7 @@ const Header: FC<HeaderProps> = ({ titles }) => {
 
   return (
     <div className="container mx-auto h-[74px] flex justify-between items-center">
-      <Link href="/">
+      <Link href="/" className="animation">
         <Image src={LogoImg} alt="logo" />
       </Link>
       <nav>
@@ -160,9 +160,10 @@ const Header: FC<HeaderProps> = ({ titles }) => {
           {listTab.map((i, idx) => (
             <li
               key={idx}
-              className={clsx("nav-btn", {
+              className={clsx("nav-btn animation", {
                 "nav-btn-selected": "/" + (segment || "") == i.path,
               })}
+              data-animtion-delay={`${0.3 + 0.1 * idx}s`}
               // style={{
               //   animationDelay: `${1.1 + 0.1 * idx}s`,
               // }}
@@ -178,7 +179,7 @@ const Header: FC<HeaderProps> = ({ titles }) => {
           ))}
         </ul>
       </nav>
-      <div className="flex gap-7">
+      <div className="flex gap-7 animation" data-animation-delay="0.8s">
         <Image src={SearchImg} alt="search-icon" />
         <Image src={VnFlagImg} alt="flag" />
         <Image src={ProfileImg} alt="profile" />

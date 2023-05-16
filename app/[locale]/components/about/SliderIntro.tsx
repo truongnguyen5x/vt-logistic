@@ -41,33 +41,35 @@ function SamplePrevArrow(props: any) {
 
 const SliderIntro: FC<Props> = ({ content }) => {
   return (
-    <Slider
-      infinite
-      speed={500}
-      slidesToShow={3}
-      slidesToScroll={1}
-      nextArrow={<SampleNextArrow />}
-      prevArrow={<SamplePrevArrow />}
-    >
-      {content.map((i, idx) => (
-        <div key={idx} className={styles.aboutItem}>
-          <p>
-            {i.is_plus ? "+" : ""}
-            <AnimatedNumber n={i.heading} />
-          </p>
-          <div className={styles.aboutItem1}>
-            <div className={styles.aboutItemHead}>
-              <p>
-                {i.is_plus ? "+" : ""}
-                <AnimatedNumber n={i.heading} />
-              </p>
-              <p>{i.subject}</p>
+    <div className="animation" data-animation-delay="0.4s">
+      <Slider
+        infinite
+        speed={500}
+        slidesToShow={3}
+        slidesToScroll={1}
+        nextArrow={<SampleNextArrow />}
+        prevArrow={<SamplePrevArrow />}
+      >
+        {content.map((i, idx) => (
+          <div key={idx} className={styles.aboutItem}>
+            <p>
+              {i.is_plus ? "+" : ""}
+              <AnimatedNumber n={i.heading} />
+            </p>
+            <div className={styles.aboutItem1}>
+              <div className={styles.aboutItemHead}>
+                <p>
+                  {i.is_plus ? "+" : ""}
+                  <AnimatedNumber n={i.heading} />
+                </p>
+                <p>{i.subject}</p>
+              </div>
+              <p>{i.detail}</p>
             </div>
-            <p>{i.detail}</p>
           </div>
-        </div>
-      ))}
-    </Slider>
+        ))}
+      </Slider>
+    </div>
   );
 };
 
