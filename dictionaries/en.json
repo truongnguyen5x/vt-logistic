@@ -44,6 +44,14 @@
     "breadcrumbs": {
       "home": "Trang chủ",
       "service": "Dịch vụ"
+     }
+   },
+  "milestones": {
+    "title": "Dấu mốc phát triển",
+    "breadcrumbs": {
+      "home": "Trang chủ",
+      "introduce": "Giới thiệu",
+      "general_intro": "Giới thiệu chung"
     }
   }
 }
