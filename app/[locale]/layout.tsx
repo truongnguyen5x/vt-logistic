@@ -58,14 +58,29 @@ export default function RootLayout({
       <body className={SVNgilroy.className}>
         <Loader />
         <Header
-          titles={[
-            t("home"),
-            t("introduce"),
-            t("service"),
-            t("news"),
-            t("recruitment"),
-            t("contact"),
-          ]}
+          titles={{
+            home: t("home"),
+            introduce: t("introduce"),
+            service: t("service"),
+            news: t("news"),
+            contact: t("contact"),
+            recruitment: t("recruitment"),
+            introduce_general: t("introduce_general"),
+            milestones: t("milestones"),
+            info_contact: t("info_contact"),
+            transportation: t("transportation"),
+            trucking: t("trucking"),
+            rail_transportation: t("rail_transportation"),
+            sea_transport: t("sea_transport"),
+            air_freight: t("air_freight"),
+            customs: t("customs"),
+            warehouse: t("warehouse"),
+            endpoint_delivery: t("endpoint_delivery"),
+            packing: t("packing"),
+            insider_news: t("insider_news"),
+            market_news: t("market_news"),
+            specialized_news: t("specialized_news"),
+          }}
         />
         {children}
         <Footer

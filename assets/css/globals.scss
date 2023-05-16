@@ -230,7 +230,7 @@ body {
   animation: slide-in-top 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.7s both;
 }
 .nav-btn {
-  @apply relative;
+  @apply relative z-10;
   // @apply text-th-red-500;
   transition: color 2s;
   &::before {
@@ -245,15 +245,41 @@ body {
   }
   &:hover {
     @apply text-th-red-500;
+    & > ul {
+      @apply block;
+    }
   }
   animation-name: slide-in-top;
   animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   animation-duration: 1s;
   animation-fill-mode: both;
+  & > ul {
+    @apply absolute bg-white text-th-gray-400 font-normal w-52 hidden shadow-lg py-1;
+    li {
+      @apply px-4 py-2 relative z-10;
+      &:hover {
+        @apply text-th-red-500 font-medium;
+        background-color: var(--color-gray-100);
+        & > ul {
+          @apply block;
+        }
+      }
+      &.menu-toggle {
+        @apply pr-8;
+        &::after {
+          @apply absolute right-4 text-xl bottom-2;
+          content: ">";
+        }
+      }
+      ul {
+        @apply absolute bg-white text-th-gray-400 font-normal w-52 hidden shadow-lg py-1 -right-52 top-0;
+      }
+    }
+  }
 }
 
 .nav-btn-selected {
-  @apply text-th-red-500;
+  @apply text-th-red-500 font-semibold;
   &::before {
     @apply w-20;
     // height: 5px;
@@ -339,7 +365,7 @@ body {
   }
 }
 .footer-col {
-  @apply text-th-gray-400 font-semibold mb-4;
+  @apply text-th-gray-400 font-semibold mb-4 uppercase;
   font-size: 21px;
 }
 .footer-link {

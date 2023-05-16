@@ -11,22 +11,146 @@ import { useRouter, useSelectedLayoutSegment } from "next/navigation";
 import { FC } from "react";
 
 import clsx from "clsx";
+import path from "path";
 
 interface HeaderProps {
-  titles: string[];
+  titles: any;
 }
+
+type IMenu = {
+  path: string;
+  key: string;
+  children?: IMenu[];
+};
 
 const Header: FC<HeaderProps> = ({ titles }) => {
   const segment = useSelectedLayoutSegment();
 
-  const listTab = [
-    "/",
-    "/introduce",
-    "/service",
-    "/news",
-    "/recruitment",
-    "/contact",
+  const listTab: IMenu[] = [
+    {
+      path: "/",
+      key: "home",
+    },
+    {
+      path: "/introduce",
+      key: "introduce",
+      children: [
+        {
+          path: "/introduce",
+          key: "introduce_general",
+        },
+        {
+          path: "/introduce/milestones",
+          key: "milestones",
+        },
+        {
+          path: "/contact",
+          key: "info_contact",
+        },
+      ],
+    },
+    {
+      path: "/service",
+      key: "service",
+      children: [
+        {
+          path: "/service/transportation",
+          key: "transportation",
+          children: [
+            {
+              path: "/service/trucking",
+              key: "trucking",
+            },
+            {
+              path: "/service/rail-transportation",
+              key: "rail_transportation",
+            },
+            {
+              path: "/service/sea-transport",
+              key: "sea_transport",
+            },
+            {
+              path: "/service/air-freight",
+              key: "air_freight",
+            },
+          ],
+        },
+        {
+          path: "/service/customs",
+          key: "customs",
+        },
+        {
+          path: "/service/warehouse",
+          key: "warehouse",
+        },
+        {
+          path: "/service/packing",
+          key: "packing",
+        },
+        {
+          path: "/service/endpoint_delivery",
+          key: "endpoint_delivery",
+        },
+      ],
+    },
+    {
+      path: "/news",
+      key: "news",
+      children: [
+        {
+          key: "insider_news",
+          path: "/news/insider-news",
+        },
+        {
+          key: "market_news",
+          path: "/news/market-news",
+        },
+        {
+          key: "specialized_news",
+          path: "/news/specialized-news",
+        },
+      ],
+    },
+    {
+      path: "/recruitment",
+      key: "recruitment",
+    },
+    {
+      path: "/contact",
+      key: "contact",
+    },
   ];
+
+  const renderSecondLevelMenu = (menus?: IMenu[]) => {
+    if (menus && menus.length) {
+      return (
+        <ul>
+          {menus.map((i, idx) => (
+            <li className={i.children ? "menu-toggle" : ""}>
+              <Link href={i.path}>{titles[i.key]}</Link>
+              {renderThreeLevelMenu(i.children)}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+    return null;
+  };
+
+  const renderThreeLevelMenu = (menus?: IMenu[]) => {
+    if (menus && menus.length) {
+      return (
+        <ul>
+          {menus.map((i, idx) => (
+            <li>
+              <Link href={i.path}>{titles[i.key]}</Link>
+            </li>
+          ))}
+        </ul>
+      );
+    }
+    return null;
+  };
 
   return (
     <div className="container mx-auto h-[74px] flex justify-between items-center">
@@ -39,7 +163,7 @@ const Header: FC<HeaderProps> = ({ titles }) => {
             <li
               key={idx}
               className={clsx("nav-btn", {
-                "nav-btn-selected": "/" + (segment || "") == i,
+                "nav-btn-selected": "/" + (segment || "") == i.path,
               })}
               style={{
                 animationDelay: `${1.1 + 0.1 * idx}s`,
@@ -47,10 +171,11 @@ const Header: FC<HeaderProps> = ({ titles }) => {
             >
               <Link
                 className="w-44 block text-center h-[74px] leading-[74px] transition-colors hover:text-th-red-500"
-                href={i}
+                href={i.path}
               >
-                {titles[idx]}
+                {titles[i.key]}
               </Link>
+              {renderSecondLevelMenu(i.children)}
             </li>
           ))}
         </ul>
