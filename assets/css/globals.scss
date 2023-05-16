@@ -241,6 +241,10 @@ body {
   &:hover {
     @apply text-th-red-500;
   }
+  animation-name: slide-in-top;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation-duration: 1s;
+  animation-fill-mode: both;
 }
 
 .nav-btn-selected {
@@ -265,6 +269,7 @@ body {
     width: 120px;
     height: 3px;
   }
+  animation: slide-in-top 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
 }
 .btn-red {
   @apply w-64 text-th-white font-medium text-2xl rounded-full bg-th-red-500 shadow-xl;

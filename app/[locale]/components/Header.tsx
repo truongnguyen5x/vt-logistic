@@ -41,6 +41,9 @@ const Header: FC<HeaderProps> = ({ titles }) => {
               className={clsx("nav-btn", {
                 "nav-btn-selected": "/" + (segment || "") == i,
               })}
+              style={{
+                animationDelay: `${1.1 + 0.1 * idx}s`,
+              }}
             >
               <Link
                 className="w-44 block text-center h-[74px] leading-[74px] transition-colors hover:text-th-red-500"

@@ -38,13 +38,7 @@ export default async function Home({ params }: { params: { lang: ILocale } }) {
       <section className={[styles.feature].join(" ")}>
         <div className="container mx-auto flex  items-center justify-between my-4">
           {assetData.features.map((i, index: number) => (
-            <div
-              key={index}
-              className={[
-                styles.featureItem,
-                "animate__animated animate__fadeInDown animate__delay-1s",
-              ].join(" ")}
-            >
+            <div key={index} className={[styles.featureItem].join(" ")}>
               <Image src={i.image} alt="" width={50} height={50} />
               <p>{i.title}</p>
             </div>

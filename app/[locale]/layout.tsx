@@ -1,7 +1,7 @@
 import "@assets/css/globals.scss";
 import "@assets/css/theme.scss";
 import "@assets/css/responsive.scss";
-import "animate.css";
+import "@assets/css/animate.scss";
 import { useLocale, useTranslations } from "next-intl";
 import { notFound } from "next/navigation";
 import Header from "./components/Header";

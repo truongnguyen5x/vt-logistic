@@ -17,9 +17,7 @@ const AboutUs: FC<IAboutProps> = ({ content }) => {
   const t = useTranslations("section");
   return (
     <section className="container mx-auto pt-20">
-      <p className="section-name animate__animated  animate__fadeInDown animate__delay-1s">
-        {t("about_us")}
-      </p>
+      <p className="section-name">{t("about_us")}</p>
       <div className="mt-16" />
       <SliderIntro content={content} />
     </section>
