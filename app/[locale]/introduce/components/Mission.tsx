@@ -1,4 +1,4 @@
-import Truncate from "app/[locale]/components/Truncate";
+import Truncate from "@components/Truncate";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { FC, useLayoutEffect, useRef, useState } from "react";
@@ -30,9 +30,7 @@ const Mission: FC<Props> = ({ data, className = "" }) => {
               {t("mission")}
             </h4>
           </div>
-          {!!data.description && (
-            <Truncate content={data.description} />
-          )}
+          {!!data.description && <Truncate content={data.description} />}
           {!!data.properties.length && (
             <div className="flex items-center justify-center max-w-[800px] mx-auto px-5 border-solid border-th-gray-50 border border-x-0 mt-[55px]">
               {data.properties.map((item, index) => (
@@ -67,4 +65,3 @@ const Mission: FC<Props> = ({ data, className = "" }) => {
 };
 
 export default Mission;
-
