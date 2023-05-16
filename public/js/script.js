@@ -23,7 +23,12 @@ document.querySelectorAll(".animation").forEach((element) => {
   observer.observe(element);
 });
 
-console.log("run script");
+const navBar = document.querySelector("nav");
+navBar.addEventListener("click", (e) => {
+  navBar.querySelectorAll(".animation").forEach((navItem) => {
+    navItem.style.animation = "none";
+  });
+});
 
 /*****************
  * END ADD ANIMATION *
