@@ -23,6 +23,7 @@ document.querySelectorAll(".animation").forEach((element) => {
   observer.observe(element);
 });
 
+// remove animation after click header to change URL
 const navBar = document.querySelector("nav");
 navBar.addEventListener("click", (e) => {
   navBar.querySelectorAll(".animation").forEach((navItem) => {
