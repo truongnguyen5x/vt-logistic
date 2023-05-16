@@ -44,7 +44,7 @@ const Partner: FC<PartnerProps> = ({ assets }) => {
   return (
     <Fragment>
       <div className="container mx-auto">
-        <p className="section-name">{assets.title}</p>
+        <p className="section-name mb-6">{assets.title}</p>
         <div className="mb-16" />
         <Slider
           speed={500}

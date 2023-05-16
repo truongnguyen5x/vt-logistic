@@ -37,9 +37,7 @@ const IntroGeneral: FC<Props> = ({ data, className = "" }) => {
           </div>
         </div>
         <div>
-          <h3 className="text-th-gray-400 font-semibold text-4xl relative after:content-[''] after:left-0 after:absolute after:-bottom-2 after:w-[120px] after:h-[3px] after:bg-th-red-500">
-            {t("common")}
-          </h3>
+          <p className="section-name-left mb-6">{t("common")}</p>
           {!!data.title && (
             <h4 className="text-th-gray-400 font-semibold text-2xl mt-12">
               {data.title}

@@ -41,11 +41,14 @@
   },
   "service": {
     "title": "Dịch vụ",
+    "my_service": "Dịch vụ của chúng tôi",
+    "learn_more": "Tìm hiểu thêm Logistics Viettel",
     "breadcrumbs": {
       "home": "Trang chủ",
       "service": "Dịch vụ"
-     }
-   },
+    },
+    "transportation": "Dịch vụ vận tải"
+  },
   "milestones": {
     "title": "Dấu mốc phát triển",
     "breadcrumbs": {

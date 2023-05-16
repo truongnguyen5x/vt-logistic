@@ -294,7 +294,7 @@ body {
  * COMMON COMPONENT *
  ********************/
 .section-name {
-  @apply text-center font-semibold text-4xl relative mb-6;
+  @apply text-center font-semibold text-4xl relative;
   &:after {
     @apply absolute bg-th-red-500 -bottom-5 left-1/2 -translate-x-1/2;
     content: "";
@@ -303,6 +303,20 @@ body {
   }
   animation: slide-in-top 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
 }
+.section-name-left {
+  @apply text-left font-semibold text-4xl relative;
+  &:after {
+    @apply absolute bg-th-red-500 left-0 -bottom-5;
+    content: "";
+    width: 120px;
+    height: 3px;
+  }
+  animation: slide-in-top 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
+}
+.section-name-light-left {
+  @extend .section-name-left;
+  @apply text-th-white;
+}
 .btn-red {
   @apply w-64 text-th-white font-medium text-2xl rounded-full bg-th-red-500 shadow-xl;
   height: 60px;
@@ -310,6 +324,21 @@ body {
   transition: all 0.5s;
   &:hover {
     background-color: var(--color-red-600);
+  }
+  img {
+    display: inline !important;
+    @apply ml-4;
+    margin-bottom: 2px;
+  }
+}
+.btn-white-outline {
+  @apply relative text-th-white font-medium text-2xl rounded-full bg-transparent shadow-xl border-th-white border-2;
+  height: 60px;
+  width: 425px;
+  // box-shadow: 0px 4px 4px rgba(111, 59, 59, 0.25);
+  transition: all 0.5s;
+  &:hover {
+    // background-color: var(--color-red-600);
   }
   img {
     display: inline !important;

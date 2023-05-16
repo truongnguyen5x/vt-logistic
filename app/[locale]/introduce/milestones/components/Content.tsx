@@ -47,9 +47,7 @@ const Content: FC<Props> = ({ data }) => {
               className="mb-6"
             />
             {!!selected.datetime && (
-              <div className="mb-16 text-th-gray-400 font-semibold text-4xl leading-[18px] relative after:content-[''] after:left-0 after:absolute after:-bottom-5 after:w-[120px] after:h-[3px] after:bg-th-red-500">
-                {selected.datetime}
-              </div>
+              <p className="section-name-left mb-12">{selected.datetime}</p>
             )}
             <div className="text-th-gray-400 font-semibold text-[25px] max-w-[400px] break-words">
               {selected.content}

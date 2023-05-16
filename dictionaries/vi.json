@@ -16,7 +16,7 @@
     "trucking": "Vận tải đường bộ",
     "rail_transportation": "Vận tải đường sắt",
     "sea_transport": "Vận tải đường biển",
-    "air_freight": "Vận tải đường hàng không",
+    "air_freight": "Vận t ải đường hàng không",
     "customs": "Hải quan",
     "warehouse": "Kho bãi",
     "endpoint_delivery": "Giao hàng điểm cuối",
@@ -41,9 +41,20 @@
   },
   "service": {
     "title": "Dịch vụ",
+    "my_service": "Dịch vụ của chúng tôi",
+    "learn_more": "Tìm hiểu thêm Logistics Viettel",
     "breadcrumbs": {
       "home": "Trang chủ",
       "service": "Dịch vụ"
+    },
+    "transportation": "Dịch vụ vận tải"
+  },
+  "milestones": {
+    "title": "Dấu mốc phát triển",
+    "breadcrumbs": {
+      "home": "Trang chủ",
+      "introduce": "Giới thiệu",
+      "general_intro": "Giới thiệu chung"
     }
   }
 }

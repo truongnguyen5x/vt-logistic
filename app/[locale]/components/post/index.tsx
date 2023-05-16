@@ -22,7 +22,7 @@ const ListPost = async ({
   const handleClickMore = () => {};
   return (
     <div className="container mx-auto mt-24">
-      <p className="section-name">{title}</p>
+      <p className="section-name mb-6">{title}</p>
       <div className="grid grid-cols-12 gap-7 mt-20">
         <div className="col-span-6">
           <PostHome detailTxt={detail} size="LARGE" postData={listPost[0]} />

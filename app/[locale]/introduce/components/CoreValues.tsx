@@ -25,9 +25,7 @@ const CoreValues: FC<Props> = ({ data, className = "" }) => {
       <div className="flex items-start gap-20">
         <Image src={data.image} alt="" width={725} height={432} />
         <div>
-          <h3 className="text-4xl font-semibold text-th-gray-400 relative after:content-[''] after:absolute after:w-[120px] after:h-[3px] after:bg-th-red-500 after:-bottom-3 after:left-0">
-            {t("core_values")}
-          </h3>
+          <p className="section-name-left">{t("core_values")}</p>
           <div className="mt-10">
             <h4 className="text-th-gray-400 font-semibold text-[25px] mb-6">
               {data.center_customer.title}

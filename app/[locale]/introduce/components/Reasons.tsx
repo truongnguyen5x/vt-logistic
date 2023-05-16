@@ -26,7 +26,7 @@ const Reasons: FC<Props> = ({ className = "", data }) => {
       )}
       <div className="container mx-auto py-20">
         <div className="flex items-center justify-center">
-          <p className="section-name">{t("reason")}</p>
+          <p className="section-name mb-6">{t("reason")}</p>
         </div>
         <p className="mt-10 text-base font-medium text-th-gray-300 text-center">
           {data.description}

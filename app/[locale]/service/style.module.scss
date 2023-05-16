@@ -1,0 +1,12 @@
+@import "../../../assets/css/_variables.scss";
+@import "../../../assets/css/animate.scss";
+
+.overviewWp {
+  @apply relative flex items-end;
+  height: 880px;
+  & > img {
+    &:first-child {
+      @apply absolute w-full h-full object-cover;
+    }
+  }
+}
