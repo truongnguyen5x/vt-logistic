@@ -47,7 +47,7 @@ const Mission: FC<Props> = ({ data, className = "" }) => {
           {!!data.introduce.length && (
             <div className="flex items-baseline justify-between gap-[50px] mt-[55px]">
               {data.introduce.map((item, index) => (
-                <div>
+                <div key={index}>
                   <Image src={item.image} alt="" width={64} height={64} />
                   <div className="text-th-gray-500 font-bold text-[25px] mt-[22px] max-w-[305px] min-w-[274px]">
                     {item.content}

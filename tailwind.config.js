@@ -11,8 +11,10 @@ module.exports = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        "gradient-red": "linear-gradient(94.06deg, #EE0033 -1.21%, #FF6D8D 58.66%, #FFF5F7 116.84%)",
-        "gradient-overlay": "linear-gradient(180deg, rgba(68, 73, 77, 0) 0%, #44494D 100%)"
+        "gradient-red":
+          "linear-gradient(94.06deg, #EE0033 -1.21%, #FF6D8D 58.66%, #FFF5F7 116.84%)",
+        "gradient-overlay":
+          "linear-gradient(180deg, rgba(68, 73, 77, 0) 0%, #44494D 100%)",
       },
       colors: {
         "th-gray-50": "var(--color-gray-50)",
@@ -28,11 +30,8 @@ module.exports = {
         "th-red-500": "var(--color-red-500)",
         "th-white": "var(--color-white)",
         "th-black-overlay": "var(--color-black-overlay)",
-        "th-white-overlay": "var(--color-white-overlay)"
+        "th-white-overlay": "var(--color-white-overlay)",
       },
     },
   },
-  plugins: [
-    require('@tailwindcss/line-clamp'),
-  ],
 };

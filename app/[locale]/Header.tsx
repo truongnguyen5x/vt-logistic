@@ -126,8 +126,9 @@ const Header: FC<HeaderProps> = ({ titles }) => {
       return (
         <ul>
           {menus.map((i, idx) => (
-            <li className={i.children ? "menu-toggle" : ""}>
+            <li key={idx} className={i.children ? "menu-toggle" : ""}>
               <Link href={i.path}>{titles[i.key]}</Link>
+              {i.children && <div />}
               {renderThreeLevelMenu(i.children)}
             </li>
           ))}
@@ -142,7 +143,7 @@ const Header: FC<HeaderProps> = ({ titles }) => {
       return (
         <ul>
           {menus.map((i, idx) => (
-            <li>
+            <li key={idx}>
               <Link href={i.path}>{titles[i.key]}</Link>
             </li>
           ))}
