@@ -4,7 +4,8 @@ import styles from "@app/styles.module.scss";
 import Image from "next/image";
 import ClockImg from "@assets/images/icons/clock.svg";
 import { formatDate } from "@ultility/date_time";
-import { Link } from "next-intl";
+
+import Link from "next-intl/link";
 import ArrowRightImg from "@assets/images/icons/arrow_right_red.svg";
 
 interface PostHomeProps {

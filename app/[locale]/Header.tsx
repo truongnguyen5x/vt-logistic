@@ -6,12 +6,9 @@ import SearchImg from "@assets/images/icons/search.svg";
 import VnFlagImg from "@assets/images/flag/vn.png";
 import Link from "next/link";
 import ProfileImg from "@assets/images/icons/profile.svg";
-import { useTranslations } from "next-intl";
 import { useRouter, useSelectedLayoutSegment } from "next/navigation";
 import { FC } from "react";
-
 import clsx from "clsx";
-import path from "path";
 
 interface HeaderProps {
   titles: any;

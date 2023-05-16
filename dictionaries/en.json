@@ -23,10 +23,17 @@
     "packing": "Đóng gói & Chia chọn",
     "insider_news": "Tin nội bộ",
     "market_news": "Tin thị trường",
-    "specialized_news": "Kiến thức chuyên ngành"
+    "specialized_news": "Kiến thức chuyên ngành",
+    "receive_info": "Nhận thông tin mới nhất từ Viettel Logistics",
+    "placeholder": "Nhập địa chỉ Email",
+    "register_txt": "Đăng ký"
   },
   "home": {
-    "about_us": "Về chúng tôi"
+    "about_us": "Về chúng tôi",
+    "partner": "Đối tác chiến lược",
+    "news_event": "Tin tức & Sự kiện",
+    "learn_more": "Tìm hiểu thêm",
+    "detail": "Chi tiết"
   },
   "introduce": {
     "common": "Giới thiệu chung",

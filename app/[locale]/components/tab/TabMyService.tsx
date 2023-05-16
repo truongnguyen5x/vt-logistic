@@ -4,7 +4,7 @@ import ArrowListImg from "@assets/images/icons/arrow_list.svg";
 import { FC } from "react";
 import { IServiceItem } from ".";
 import RightImg from "@assets/images/icons/arrow_right_2.svg";
-import { Link } from "next-intl";
+import Link from "next-intl/link";
 import { useRouter } from "next-intl/client";
 
 interface TabMyServiceProps {

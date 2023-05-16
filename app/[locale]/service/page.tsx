@@ -20,11 +20,11 @@ type IServiceAsset = {
 
 const Service = async () => {
   const locale = useLocale();
-  const t = await getTranslations("service");
-  const serviceAsset: IServiceAsset = await fetchAsset(
-    "service",
-    locale as ILocale
-  );
+
+  const [serviceAsset, t] = await Promise.all([
+    fetchAsset<IServiceAsset>("service", locale as ILocale),
+    getTranslations("service"),
+  ]);
 
   const breadcrumbs = [
     { title: t("breadcrumbs.home"), link: "#" },

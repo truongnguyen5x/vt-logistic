@@ -4,10 +4,12 @@ import SmsImg from "@assets/images/icons/sms_tracking.svg";
 import Image from "next/image";
 import { ILocale } from "@configs/i18n";
 import { fetchAsset } from "@api/index";
-import { Link } from "next-intl";
+import { useLocale } from "next-intl";
+import Link from "next-intl/link";
 import LogoImg from "@assets/images/logos/logo_light.svg";
 import BCTimg from "@assets/images/logos/bo_cong_thuong.png";
 import VtImg from "@assets/images/logos/viettel.png";
+import { getTranslations } from "next-intl/server";
 
 type ILink = {
   txt: string;
@@ -28,20 +30,12 @@ export type IFooter = {
   copyright: string;
 };
 
-interface FooterProps {
-  locale: ILocale;
-  introduceTxt: string;
-  connectTxt: string;
-  certifiedBy: string;
-}
-
-const Footer = async ({
-  locale,
-  introduceTxt,
-  connectTxt,
-  certifiedBy,
-}: FooterProps) => {
-  const footerAsset: IFooter = await fetchAsset("footer", locale);
+const Footer = async () => {
+  const locale = useLocale();
+  const [footerAsset, t] = await Promise.all([
+    fetchAsset<IFooter>("footer", locale as ILocale),
+    getTranslations("layout"),
+  ]);
 
   const renderLinkItem = (asset: ILink) => {
     if (asset?.href) {
@@ -79,11 +73,11 @@ const Footer = async ({
         <div className="container mx-auto flex justify-between items-center h-full">
           <div className="flex items-center gap-12">
             <Image src={SmsImg} width={50} height={50} alt="" />
-            <p className="footer-title">{footerAsset.title}</p>
+            <p className="footer-title">{t("receive_info")}</p>
           </div>
           <div className="footer-input-register">
-            <input placeholder={footerAsset.placeholder} type="text" />
-            <button>{footerAsset.register_txt}</button>
+            <input placeholder={t("placeholder")} type="text" />
+            <button>{t("register_txt")}</button>
           </div>
         </div>
       </div>
@@ -100,7 +94,7 @@ const Footer = async ({
         <div className="grid grid-cols-5 gap-7 mt-7">
           <div className="col-span-2">
             <Image src={LogoImg} width={154} height={55} alt="logo" />
-            <p className="footer-col mt-7">{introduceTxt}</p>
+            <p className="footer-col mt-7">{t("about")}</p>
             {footerAsset.links2.map((i, idx1) => (
               <a
                 key={idx1}
@@ -113,7 +107,7 @@ const Footer = async ({
             ))}
           </div>
           <div>
-            <p className="footer-col">{connectTxt}</p>
+            <p className="footer-col">{t("connect_with_us")}</p>
             <div className="flex justify-start gap-7 mt-9">
               {footerAsset.socials.map((i, idx2) => (
                 <a key={idx2} target="_blank" href={i.url}>
@@ -123,7 +117,7 @@ const Footer = async ({
             </div>
           </div>
           <div className="col-span-2">
-            <p className="footer-col">{certifiedBy}</p>
+            <p className="footer-col">{t("certified_by")}</p>
             <div className="flex justify-start gap-12 mt-9">
               <Image
                 src={BCTimg}
@@ -143,4 +137,4 @@ const Footer = async ({
   );
 };
 
-export default Footer as unknown as FC<FooterProps>;
+export default Footer as unknown as FC<{}>;

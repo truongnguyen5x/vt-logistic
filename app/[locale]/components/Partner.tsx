@@ -8,10 +8,10 @@ import RightArrowImg from "@assets/images/icons/arrow_right.svg";
 
 export type IPartner = {
   imgs: string[];
-  title: string;
 };
 interface PartnerProps {
   assets: IPartner;
+  title: string;
 }
 
 function SampleNextArrow(props: any) {
@@ -40,11 +40,11 @@ function SamplePrevArrow(props: any) {
   );
 }
 
-const Partner: FC<PartnerProps> = ({ assets }) => {
+const Partner: FC<PartnerProps> = ({ assets, title }) => {
   return (
     <Fragment>
       <div className="container mx-auto">
-        <p className="section-name mb-6">{assets.title}</p>
+        <p className="section-name mb-6">{title}</p>
         <div className="mb-16" />
         <Slider
           speed={500}

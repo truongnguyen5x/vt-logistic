@@ -68,9 +68,11 @@ type IIntroduce = {
 
 const Introduce = async () => {
   const locale = useLocale();
-  const t = await getTranslations("introduce");
 
-  const data: IIntroduce = await fetchAsset("introduce", locale as ILocale);
+  const [data, t] = await Promise.all([
+    fetchAsset<IIntroduce>("introduce", locale as ILocale),
+    getTranslations("introduce"),
+  ]);
 
   const breadcrumbs = [
     { title: t("breadcrumbs.home"), link: "#" },

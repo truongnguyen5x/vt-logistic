@@ -11,13 +11,12 @@ import AboutInfoTab, { IAboutContent } from "./components/tab";
 import Partner, { IPartner } from "./components/Partner";
 import ListPost from "./components/post";
 
-type IContent = {
+type IHomeContent = {
   banner: string[];
   features: Array<{ image: string; title: string }>;
   abouts: IAbout[];
   abouts_content: IAboutContent;
   list_partner: IPartner;
-  news: { title: string; learn_more: string; detail: string };
 };
 
 // TODO: generateStaticParams what for?
@@ -27,8 +26,13 @@ type IContent = {
 
 export default async function Home() {
   const locale = useLocale();
-  const assetData: IContent = await fetchAsset("home", locale as ILocale);
+
   const listHomePost = fetchHomePost(locale as ILocale);
+
+  const [assetData, t] = await Promise.all([
+    fetchAsset<IHomeContent>("home", locale as ILocale),
+    getTranslations("home"),
+  ]);
 
   return (
     <Fragment>
@@ -45,12 +49,12 @@ export default async function Home() {
       </section>
       <AboutUs content={assetData.abouts} />
       <AboutInfoTab assets={assetData.abouts_content} />
-      <Partner assets={assetData.list_partner} />
+      <Partner title={t("partner")} assets={assetData.list_partner} />
       <Suspense fallback={<div>Loading...</div>}>
         <ListPost
-          title={assetData.news.title}
-          detail={assetData.news.detail}
-          learn_more={assetData.news.learn_more}
+          title={t("news_event")}
+          detail={t("detail")}
+          learn_more={t("learn_more")}
           promise={listHomePost}
         />
       </Suspense>

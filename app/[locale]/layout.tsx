@@ -83,12 +83,7 @@ export default function RootLayout({
           }}
         />
         {children}
-        <Footer
-          introduceTxt={t("about")}
-          connectTxt={t("connect_with_us")}
-          certifiedBy={t("certified_by")}
-          locale={locale as ILocale}
-        />
+        <Footer />
       </body>
     </html>
   );
