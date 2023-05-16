@@ -4,10 +4,12 @@ Template Name: Cryptocash – ICO, Cryptocurrency Website & ICO Landing Page HTM
 Version      : 1.6
 */
 :root {
+  --color-gray-50: #d4d4d4;
   --color-gray-100: #d9d9d9;
   --color-gray-200: #eeeeee;
   --color-gray-300: #626262;
   --color-gray-400: #1a1818;
+  --color-gray-500: #1C1F35;
   --color-red-500: #ee0033;
 
   /******************
@@ -20,6 +22,7 @@ Version      : 1.6
   --color-gray-250: #f6f7f9;
   --color-gray-260: #e3e3e3;
   --color-gray-270: #e3e3e3;
+  --color-overlay: rgba(0, 0, 0, 0.5);
 }
 
 @media (prefers-color-scheme: dark) {
