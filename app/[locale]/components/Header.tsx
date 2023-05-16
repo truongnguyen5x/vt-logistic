@@ -29,14 +29,14 @@ const Header: FC<HeaderProps> = ({ titles }) => {
   ];
 
   return (
-    <nav>
-      <div className="container mx-auto h-[74px] flex justify-between items-center">
-        <Link href="/">
-          <Image src={LogoImg} alt="logo" />
-        </Link>
-        <div className="grid grid-cols-6 gap-2">
+    <div className="container mx-auto h-[74px] flex justify-between items-center">
+      <Link href="/">
+        <Image src={LogoImg} alt="logo" />
+      </Link>
+      <nav>
+        <ul className="grid grid-cols-6 gap-2">
           {listTab.map((i, idx) => (
-            <div
+            <li
               key={idx}
               className={clsx("nav-btn", {
                 "nav-btn-selected": "/" + (segment || "") == i,
@@ -48,16 +48,16 @@ const Header: FC<HeaderProps> = ({ titles }) => {
               >
                 {titles[idx]}
               </Link>
-            </div>
+            </li>
           ))}
-        </div>
-        <div className="flex gap-7">
-          <Image src={SearchImg} alt="search-icon" />
-          <Image src={VnFlagImg} alt="flag" />
-          <Image src={ProfileImg} alt="profile" />
-        </div>
+        </ul>
+      </nav>
+      <div className="flex gap-7">
+        <Image src={SearchImg} alt="search-icon" />
+        <Image src={VnFlagImg} alt="flag" />
+        <Image src={ProfileImg} alt="profile" />
       </div>
-    </nav>
+    </div>
   );
 };
 

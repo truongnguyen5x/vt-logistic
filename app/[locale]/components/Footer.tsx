@@ -114,7 +114,7 @@ const Footer = async ({
           </div>
           <div>
             <p className="footer-col">{connectTxt}</p>
-            <div className="flex justify-between max-w-60 mt-11">
+            <div className="flex justify-start gap-7 mt-9">
               {footerAsset.socials.map((i, idx2) => (
                 <a key={idx2} target="_blank" href={i.url}>
                   <Image src={i.img} alt="" width={45} height={45} />
