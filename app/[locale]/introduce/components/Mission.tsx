@@ -26,9 +26,7 @@ const Mission: FC<Props> = ({ data, className = "" }) => {
         </div>
         <div className="container mx-auto relative -bottom-[363px] bg-white pt-20 px-20 pb-12 shadow-[0px_5px_20px_rgba(0,0,0,0.1)]">
           <div className="flex items-center justify-center">
-            <h4 className="text-4xl font-semibold text-th-gray-400 text-center relative after:content-[''] after:absolute after:w-[120px] after:h-[3px] after:bg-th-red-500 after:-bottom-3 after:left-3">
-              {t("mission")}
-            </h4>
+            <p className="section-name">{t("mission")}</p>
           </div>
           {!!data.description && <Truncate content={data.description} />}
           {!!data.properties.length && (
