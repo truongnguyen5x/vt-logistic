@@ -299,3 +299,30 @@ body {
 /********************
  * END COMMON COMPONENT *
  ********************/
+
+/**********
+ * FOOTER *
+ **********/
+.footer-form-register {
+  @apply bg-th-red-500;
+  height: 120px;
+}
+.footer-title {
+  @apply text-th-white font-semibold;
+  font-size: 28px;
+}
+.footer-input-register {
+  @apply flex;
+  width: 634px;
+  height: 50px;
+  input {
+    @apply flex-grow rounded-l-full pl-7;
+  }
+  button {
+    @apply w-32 rounded-r-full text-th-white text-xl font-semibold;
+    background-color: var(--color-gray-320);
+  }
+}
+/**********
+ * END FOOTER *
+ **********/

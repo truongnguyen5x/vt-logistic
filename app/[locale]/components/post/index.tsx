@@ -36,7 +36,7 @@ const ListPost = async ({
           <PostHome detailTxt={detail} postData={listPost[4]} />
         </div>
       </div>
-      <div className="mt-12 text-center mb-32">
+      <div className="mt-12 text-center mb-24">
         <button className="btn-red" onClick={handleClickMore}>
           {learn_more}
           <Image src={RightImg} width={28} height={28} alt="" />

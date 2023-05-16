@@ -9,7 +9,7 @@ import Image from "next/image";
 import AboutInfoTab, { IAboutContent } from "./components/tab";
 import Partner, { IPartner } from "./components/Partner";
 import ListPost from "./components/post";
-import FormRegister, { IFormRegister } from "./components/FormRegister";
+import Footer, { IFooter } from "./components/Footer";
 
 type IContent = {
   banner: string[];
@@ -18,7 +18,7 @@ type IContent = {
   abouts_content: IAboutContent;
   list_partner: IPartner;
   news: { title: string; learn_more: string; detail: string };
-  form_register: IFormRegister;
+  footer: IFooter;
 };
 
 // TODO: generateStaticParams what for?
@@ -27,12 +27,10 @@ type IContent = {
 // }
 
 export default async function Home({ params }: { params: { lang: ILocale } }) {
-  const assetData: IContent = await fetchAsset(
-    "home",
-    params.lang || i18n.defaultLocale
-  );
+  const lang = params.lang || i18n.defaultLocale;
+  const assetData: IContent = await fetchAsset("home", lang);
 
-  const listHomePost = fetchHomePost(params.lang || i18n.defaultLocale);
+  const listHomePost = fetchHomePost(lang);
 
   return (
     <Fragment>
@@ -64,7 +62,6 @@ export default async function Home({ params }: { params: { lang: ILocale } }) {
           promise={listHomePost}
         />
       </Suspense>
-      <FormRegister assets={assetData.form_register} />
     </Fragment>
   );
 }
