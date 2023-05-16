@@ -12,5 +12,16 @@
   },
   "section": {
     "about_us": "Về chúng tôi"
+  },
+  "introduce": {
+    "common": "Giới thiệu chung",
+    "mission": "Sứ mệnh",
+    "core_values": "Giá trị cốt lõi",
+    "read_more": "Đọc thêm",
+    "reason": "Tại sao chọn chúng tôi?",
+    "breadcrumbs": {
+      "home": "Trang chủ",
+      "introduce": "Giới thiệu"
+    }
   }
 }
