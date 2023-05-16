@@ -30,7 +30,7 @@ const Header: FC<HeaderProps> = ({ titles }) => {
 
   return (
     <div className="container mx-auto h-[74px] flex justify-between items-center">
-      <Link href="/">
+      <Link href="/" className="header-logo">
         <Image src={LogoImg} alt="logo" />
       </Link>
       <nav>
@@ -55,7 +55,7 @@ const Header: FC<HeaderProps> = ({ titles }) => {
           ))}
         </ul>
       </nav>
-      <div className="flex gap-7">
+      <div className="flex gap-7 header-right-action">
         <Image src={SearchImg} alt="search-icon" />
         <Image src={VnFlagImg} alt="flag" />
         <Image src={ProfileImg} alt="profile" />

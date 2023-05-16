@@ -4,11 +4,11 @@ import "@assets/css/responsive.scss";
 import "@assets/css/animate.scss";
 import { useLocale, useTranslations } from "next-intl";
 import { notFound } from "next/navigation";
-import Header from "./components/Header";
+import Header from "./Header";
 import localFont from "next/font/local";
 import Loader from "./components/Loader";
 import { ILocale, i18n } from "@configs/i18n";
-import Footer from "./components/Footer";
+import Footer from "./Footer";
 
 const SVNgilroy = localFont({
   src: [

@@ -223,7 +223,12 @@ body {
 /**********
  * HEADER *
  **********/
-
+.header-logo {
+  animation: slide-in-top 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1s both;
+}
+.header-right-action {
+  animation: slide-in-top 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 1.7s both;
+}
 .nav-btn {
   @apply relative;
   // @apply text-th-red-500;

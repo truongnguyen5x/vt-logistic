@@ -9,7 +9,6 @@ import Image from "next/image";
 import AboutInfoTab, { IAboutContent } from "./components/tab";
 import Partner, { IPartner } from "./components/Partner";
 import ListPost from "./components/post";
-import Footer, { IFooter } from "./components/Footer";
 
 type IContent = {
   banner: string[];
@@ -18,7 +17,6 @@ type IContent = {
   abouts_content: IAboutContent;
   list_partner: IPartner;
   news: { title: string; learn_more: string; detail: string };
-  footer: IFooter;
 };
 
 // TODO: generateStaticParams what for?
