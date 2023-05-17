@@ -2,6 +2,6 @@ export type IPost = {
   img: string;
   title: string;
   created_at: number;
-  content: string;
+  description: string;
   slug: string;
 };

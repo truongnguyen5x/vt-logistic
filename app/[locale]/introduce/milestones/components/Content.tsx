@@ -11,7 +11,7 @@ type Content = {
 };
 
 type Props = {
-  data: {
+  assets: {
     banner: string;
     bg_image?: string;
     image: string;
@@ -20,8 +20,8 @@ type Props = {
   };
 };
 
-const Content: FC<Props> = ({ data }) => {
-  const [selected, onSelect] = useState<Content>(data.contents[0]);
+const Content: FC<Props> = ({ assets }) => {
+  const [selected, onSelect] = useState<Content>(assets.contents[0]);
 
   return (
     <div className="absolute top-0 w-full">
@@ -31,7 +31,7 @@ const Content: FC<Props> = ({ data }) => {
         >
           <div className="p-8 rounded-2xl bg-th-gray-280">
             <Image
-              src={data.image}
+              src={assets.image}
               alt=""
               height={320}
               width={533}
@@ -40,7 +40,7 @@ const Content: FC<Props> = ({ data }) => {
           </div>
           <div>
             <Image
-              src={data.icon_content}
+              src={assets.icon_content}
               alt=""
               width={56}
               height={56}
@@ -55,7 +55,7 @@ const Content: FC<Props> = ({ data }) => {
           </div>
         </div>
         <div className="flex flex-col justify-center items-end min-h-[800px] pl-[108px] border-l border-th-gray-310">
-          {data.contents.map((item, index) => (
+          {assets.contents.map((item, index) => (
             <div
               key={index}
               className={`${

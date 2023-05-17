@@ -4,7 +4,7 @@ import { FC } from "react";
 
 type Props = {
   className?: string;
-  data: {
+  assets: {
     image?: string;
     description: string;
     reasons: Array<{
@@ -14,14 +14,14 @@ type Props = {
     }>;
   };
 };
-const Reasons: FC<Props> = ({ className = "", data }) => {
+const Reasons: FC<Props> = ({ className = "", assets }) => {
   const t = useTranslations("introduce");
 
   return (
     <section className={`relative bg-th-gray-250 ${className}`}>
-      {!!data.image && (
+      {!!assets.image && (
         <div className="absolute top-0 left-[calc(50%_-_550px)]">
-          <Image src={data.image} alt="" width={1155} height={632} />
+          <Image src={assets.image} alt="" width={1155} height={632} />
         </div>
       )}
       <div className="container mx-auto py-20">
@@ -32,14 +32,14 @@ const Reasons: FC<Props> = ({ className = "", data }) => {
           className="mt-10 text-base font-medium text-th-gray-300 text-center animation"
           data-animation-delay="0.3s"
         >
-          {data.description}
+          {assets.description}
         </p>
-        {!!data.reasons.length && (
+        {!!assets.reasons.length && (
           <div
             className="grid grid-cols-2 gap-x-[150px] gap-y-20 mt-[55px] animation"
             data-animation-delay="0.4s"
           >
-            {data.reasons.map((item, index) => (
+            {assets.reasons.map((item, index) => (
               <div key={index} className="flex items-start gap-8">
                 <Image src={item.image} alt="" width={50} height={50} />
                 <div>

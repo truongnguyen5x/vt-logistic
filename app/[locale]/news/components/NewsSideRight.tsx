@@ -4,19 +4,13 @@ import Image from "next/image";
 import { FC, Fragment } from "react";
 import Search from "@assets/images/icons/search-status.svg";
 import { SideCard } from "./Cards";
-
-type INew = {
-  created_at: string;
-  image: string;
-  title: string;
-  content?: string;
-};
+import { IPost } from "@type/post";
 
 type Props = {
-  data: INew[];
+  post: IPost[];
 };
 
-const NewsSideRight: FC<Props> = ({ data }) => {
+const NewsSideRight: FC<Props> = ({ post }) => {
   const t = useTranslations("news");
 
   return (
@@ -41,13 +35,8 @@ const NewsSideRight: FC<Props> = ({ data }) => {
         {t("hot_news")}
       </h3>
       <div className="flex flex-col gap-[50px]">
-        {!!data.length &&
-          data.map((item, index) => (
-            <SideCard
-              key={index}
-              data={{ ...item, link: `news/${item.title}` }}
-            />
-          ))}
+        {!!post.length &&
+          post.map((item, index) => <SideCard key={index} post={item} />)}
       </div>
       <div className="p-8 bg-th-gray-220 border border-th-gray-200 max-w-[490px] mt-[50px]">
         <h5 className="font-semibold text-xl text-th-gray-320 mb-3">

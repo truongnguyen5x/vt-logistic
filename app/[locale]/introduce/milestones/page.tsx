@@ -24,9 +24,11 @@ type IMilestones = {
 
 const Milestones = async () => {
   const locale = useLocale();
-  const t = await getTranslations("milestones");
 
-  const data: IMilestones = await fetchAsset("introduce", locale as ILocale);
+  const [assets, t] = await Promise.all([
+    fetchAsset<IMilestones>("introduce", locale as ILocale),
+    getTranslations("milestones"),
+  ]);
 
   const breadcrumbs = [
     { title: t("breadcrumbs.home"), link: "#" },
@@ -37,19 +39,19 @@ const Milestones = async () => {
 
   return (
     <section>
-      <Banner image={data.milestones.banner} title={t("title")} />
+      <Banner image={assets.milestones.banner} title={t("title")} />
       <div className="container mx-auto">
         <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6" />
         <div className="relative">
-          {!!data.milestones.bg_image && (
+          {!!assets.milestones.bg_image && (
             <Image
-              src={data.milestones.bg_image}
+              src={assets.milestones.bg_image}
               alt=""
               width={1570}
               height={1035}
             />
           )}
-          <Content data={data.milestones} />
+          <Content assets={assets.milestones} />
         </div>
       </div>
     </section>

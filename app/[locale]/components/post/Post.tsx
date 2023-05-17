@@ -51,7 +51,7 @@ const PostHome: FC<PostHomeProps> = ({
           <p
             className={size == "NORMAL" ? styles.postDes : styles.postDesLarge}
           >
-            {postData.content}
+            {postData.description}
           </p>
         </div>
       </div>

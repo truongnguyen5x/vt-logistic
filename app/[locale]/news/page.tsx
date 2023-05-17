@@ -9,27 +9,21 @@ import { Card } from "./components/Cards";
 import Pagination from "@components/pagination";
 import PaginationNews from "./components/PaginationNews";
 import NewsSideRight from "./components/NewsSideRight";
+import { IPost } from "@type/post";
 
-type INew = {
-  created_at: string;
-  image: string;
-  title: string;
-  content?: string;
-};
-
-type INews = {
+type INewsAsset = {
   news: {
     banner: string;
     count: number;
-    items: INew[];
+    items: IPost[];
   };
 };
 
 const News = async () => {
   const locale = useLocale();
 
-  const [data, t] = await Promise.all([
-    fetchAsset<INews>("news", locale as ILocale),
+  const [newsAsset, t] = await Promise.all([
+    fetchAsset<INewsAsset>("news", locale as ILocale),
     getTranslations("news"),
   ]);
 
@@ -41,20 +35,17 @@ const News = async () => {
 
   return (
     <Fragment>
-      <Banner image={data.news.banner} title={t("title")} />
+      <Banner image={newsAsset.news.banner} title={t("title")} />
       <div className="container mx-auto mb-32">
         <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6 mb-20" />
         <div className="flex items-start gap-[100px]">
           <div className="flex flex-col gap-[50px]">
-            {!!data.news.items.length &&
-              data.news.items.map((item, index) => (
-                <Card
-                  data={{ ...item, link: `news/${item.title}` }}
-                  key={index}
-                />
+            {!!newsAsset.news.items.length &&
+              newsAsset.news.items.map((item, index) => (
+                <Card post={item} key={index} />
               ))}
           </div>
-          <NewsSideRight data={data.news.items} />
+          <NewsSideRight post={newsAsset.news.items} />
         </div>
         <PaginationNews />
       </div>

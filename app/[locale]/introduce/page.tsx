@@ -69,7 +69,7 @@ type IIntroduce = {
 const Introduce = async () => {
   const locale = useLocale();
 
-  const [data, t] = await Promise.all([
+  const [introAssets, t] = await Promise.all([
     fetchAsset<IIntroduce>("introduce", locale as ILocale),
     getTranslations("introduce"),
   ]);
@@ -82,15 +82,21 @@ const Introduce = async () => {
 
   return (
     <Fragment>
-      <Banner image={data.introduce.banner} title={t("common")} />
+      <Banner image={introAssets.introduce.banner} title={t("common")} />
       <div className="container mx-auto">
         <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6 mb-10" />
-        <IntroGeneral data={data.introduce.general} className="py-10" />
+        <IntroGeneral
+          assets={introAssets.introduce.general}
+          className="py-10"
+        />
       </div>
-      <Mission data={data.introduce.mission} className="mt-20" />
-      <CoreValues data={data.introduce.core_values} />
-      <Reasons data={data.introduce.reasons_choose_we} className="mt-20" />
-      <MoreInfo data={data.introduce.more} className="mt-20 pb-20" />
+      <Mission assets={introAssets.introduce.mission} className="mt-20" />
+      <CoreValues assets={introAssets.introduce.core_values} />
+      <Reasons
+        assets={introAssets.introduce.reasons_choose_we}
+        className="mt-20"
+      />
+      <MoreInfo assets={introAssets.introduce.more} className="mt-20 pb-20" />
     </Fragment>
   );
 };

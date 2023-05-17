@@ -6,7 +6,7 @@ import ArrowRight from "@assets/images/icons/arrow_right.svg";
 import Link from "next/link";
 
 type Props = {
-  data: {
+  assets: {
     contact: {
       image: string;
       title: string;
@@ -23,26 +23,26 @@ type Props = {
   className?: string;
 };
 
-const MoreInfo: FC<Props> = ({ data, className = "" }) => {
+const MoreInfo: FC<Props> = ({ assets, className = "" }) => {
   const t = useTranslations("introduce");
 
   return (
     <section className={`container mx-auto ${className}`}>
       <div className="flex items-center gap-[50px]">
         <Link
-          href={data.contact.link}
+          href={assets.contact.link}
           className="relative cursor-pointer animation"
         >
           <div>
-            <Image src={data.contact.image} alt="" width={740} height={480} />
+            <Image src={assets.contact.image} alt="" width={740} height={480} />
             <div className="bg-gradient-overlay absolute top-0 left-0 w-full h-full"></div>
           </div>
           <div className="absolute bottom-6 z-10">
             <h4 className="text-white text-[25px] w-fit font-bold py-2 pl-8 pr-4 bg-th-red-500 rounded-tr-2xl leading-[26px]">
-              {data.contact.title}
+              {assets.contact.title}
             </h4>
             <p className="mt-4 text-white font-medium text-base px-8">
-              {data.contact.content}
+              {assets.contact.content}
             </p>
             <div className="flex gap-2 items-center justify-end mt-2 mx-8 text-white">
               {t("read_more")}
@@ -66,13 +66,13 @@ const MoreInfo: FC<Props> = ({ data, className = "" }) => {
           </div>
         </Link>
         <Link
-          href={data.milestones.link}
+          href={assets.milestones.link}
           className="relative cursor-pointer animation"
           data-animation-delay="0.4s"
         >
           <div>
             <Image
-              src={data.milestones.image}
+              src={assets.milestones.image}
               alt=""
               width={740}
               height={480}
@@ -81,10 +81,10 @@ const MoreInfo: FC<Props> = ({ data, className = "" }) => {
           </div>
           <div className="absolute bottom-6 z-10">
             <h4 className="text-white text-[25px] w-fit font-bold py-2 pl-8 pr-4 bg-th-red-500 rounded-tr-2xl leading-[26px]">
-              {data.milestones.title}
+              {assets.milestones.title}
             </h4>
             <p className="mt-4 text-white font-medium text-base px-8">
-              {data.milestones.content}
+              {assets.milestones.content}
             </p>
             <div className="flex gap-2 items-center justify-end mt-2 mx-8 text-white">
               {t("read_more")}
