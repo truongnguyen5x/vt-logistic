@@ -22,9 +22,22 @@ const Truncate: FC<{ content: string }> = ({ content }) => {
         {content}
       </p>
       {isTruncated && (
-        <button onClick={toggleIsShowingMore} className="mx-auto mt-2 flex items-center justify-center gap-2">
+        <button
+          onClick={toggleIsShowingMore}
+          className="mx-auto mt-2 flex items-center justify-center gap-2"
+        >
           {isShowingMore ? "Ẩn bớt" : "Đọc thêm"}
-          <Image src={ArrowRight} alt="" width={24} height={24} className={isShowingMore ? "-rotate-90 transition-all" : "rotate-90 transition-all"} />
+          <Image
+            src={ArrowRight}
+            alt=""
+            width={24}
+            height={24}
+            className={
+              isShowingMore
+                ? "-rotate-90 transition-all"
+                : "rotate-90 transition-all"
+            }
+          />
         </button>
       )}
     </>
