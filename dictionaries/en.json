@@ -90,5 +90,19 @@
       "service": "Dịch vụ",
       "customs": "Hải quan"
     }
+  },
+  "news": {
+    "title": "Tin nội bộ",
+    "search": "Tìm kiếm",
+    "placeholder": "Nhập từ khóa",
+    "hot_news": "Tin nổi bật",
+    "contact": "Liên hệ",
+    "breadcrumbs": {
+      "home": "Trang chủ",
+      "news": "Tin tức"
+    },
+    "read_more": "Đọc thêm",
+    "help_title": "Chúng tôi có thể giúp gì?",
+    "help_content": "Bạn đang tìm kiếm thêm về giải pháp vận chuyển cho doanh nghiệp của bạn?"
   }
 }
