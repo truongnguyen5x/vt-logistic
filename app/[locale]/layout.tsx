@@ -87,7 +87,7 @@ export default function RootLayout({
         {children}
         <Footer />
       </body>
-      <Script src="./js/script.js" />
+      <Script src="/js/script.js" />
     </html>
   );
 }

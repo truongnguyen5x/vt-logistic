@@ -26,9 +26,19 @@ const ServiceOverview: FC<ServiceOverviewProps> = ({
       <div className="bg-gradient-overlay w-full h-full absolute left-0 top-0"></div>
       <div className="flex justify-between relative container mx-auto">
         <div className="max-w-[540px] pb-8">
-          <p className="section-name-light-left mb-10">{t("my_service")}</p>
-          <p className="text-base font-medium text-th-white mb-10">{txt}</p>
-          <button className="btn-white-outline">
+          <p className="section-name-light-left mb-10 animation">
+            {t("my_service")}
+          </p>
+          <p
+            className="text-base font-medium text-th-white mb-10 animation"
+            data-animation-delay="0.3s"
+          >
+            {txt}
+          </p>
+          <button
+            className="btn-white-outline animation"
+            data-animation-delay="0.4s"
+          >
             {t("learn_more")}
             <Image src={RightImg} width={28} height={28} alt="" />
           </button>
