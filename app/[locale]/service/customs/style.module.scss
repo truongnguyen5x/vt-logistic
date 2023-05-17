@@ -1,2 +1,30 @@
 @import "../../../../assets/css/_variables.scss";
 @import "../../../../assets/css/animate.scss";
+
+.procedureWp {
+  @apply relative;
+  padding-top: 58%;
+}
+.index {
+  @apply w-20 h-20 absolute bg-th-white rounded-full text-th-red-500 -top-10 -left-10 shadow-md text-center;
+  line-height: 80px;
+  font-size: 36px;
+  font-weight: 600;
+}
+.indexActive {
+  @extend .index;
+  @apply text-th-white;
+  background-color: var(--color-gray-320);
+}
+.gradientBox {
+  @apply w-14 h-14 bg-gradient-red;
+  min-height: 56px;
+}
+.procedureTxt {
+  @apply font-semibold text-th-gray-400;
+  font-size: 25px;
+}
+.learnMore {
+  @apply relative flex flex-col justify-end items-center gap-4 pb-8 mb-24;
+  height: 480px;
+}
