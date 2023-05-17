@@ -78,5 +78,12 @@
       "service": "Dịch vụ",
       "trucking": "Dịch vụ vận tải đường bộ"
     }
+  },
+  "customs": {
+    "pricing": "Bảng giá",
+    "register_now": "Đăng ký ngay",
+    "procedure": "Quy trình",
+    "title": "Dịch vụ hải quan",
+    "policy": "Tham khảo thêm về chính sách và chính sách chiết khấu hấp dẫn nhất"
   }
 }
