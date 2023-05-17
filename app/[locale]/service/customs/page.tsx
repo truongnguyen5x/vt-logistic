@@ -13,6 +13,11 @@ import MoreService from "@components/more-service";
 type ICustomsAsset = {
   bg_img: string;
   description: string;
+  intro_img: string;
+  intro_sub_img: string;
+  features: string[];
+  procedures: Array<{ is_active: boolean; txt: string }>;
+  price_img: string;
 };
 
 const Customs = async () => {
@@ -34,9 +39,34 @@ const Customs = async () => {
 
   return (
     <Fragment>
-      <Banner image={customsAsset.bg_img} title={t("title")} />
+      <Banner image={customsAsset.bg_img} title={t("short_name")} />
       <div className="container mx-auto">
         <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6 mb-10" />
+        <div className="flex gap-24 mt-14 mb-28">
+          <div>
+            <div className="relative animation" data-animation-delay="0.4s">
+              <Image
+                src={customsAsset.intro_img}
+                alt=""
+                width={700}
+                height={480}
+                className="rounded-lg"
+              />
+              <Image
+                src={customsAsset.intro_sub_img}
+                alt=""
+                width={310}
+                height={300}
+                className="rounded-lg absolute -bottom-8 -right-8 shadow-[-31px_-31px_#fff]"
+              />
+            </div>
+          </div>
+          <div>
+            <h3 className="section-name-left mb-10 animation mt-12">
+              {t("title")}
+            </h3>
+          </div>
+        </div>
       </div>
     </Fragment>
   );

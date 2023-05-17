@@ -84,6 +84,12 @@
     "register_now": "Đăng ký ngay",
     "procedure": "Quy trình",
     "title": "Dịch vụ hải quan",
-    "policy": "Tham khảo thêm về chính sách và chính sách chiết khấu hấp dẫn nhất"
+    "short_name": "Hải quan",
+    "policy": "Tham khảo thêm về chính sách và chính sách chiết khấu hấp dẫn nhất",
+    "breadcrumbs": {
+      "home": "Trang chủ",
+      "service": "Dịch vụ",
+      "customs": "Hải quan"
+    }
   }
 }
