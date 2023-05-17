@@ -27,12 +27,11 @@ type IHomeContent = {
 export default async function Home() {
   const locale = useLocale();
 
-  const listHomePost = fetchHomePost(locale as ILocale);
-
   const [assetData, t] = await Promise.all([
     fetchAsset<IHomeContent>("home", locale as ILocale),
     getTranslations("home"),
   ]);
+  const listHomePost = fetchHomePost(locale as ILocale);
 
   return (
     <Fragment>
