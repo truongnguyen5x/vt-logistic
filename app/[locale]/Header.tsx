@@ -96,7 +96,7 @@ const Header: FC<HeaderProps> = ({ titles }) => {
       children: [
         {
           key: "insider_news",
-          path: "/news/insider-news",
+          path: "/news",
         },
         {
           key: "market_news",
