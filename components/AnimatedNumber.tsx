@@ -15,7 +15,9 @@ const AnimatedNumber = ({ n }: { n: number }) => {
   });
   return (
     <Fragment>
-      <animated.span>{number.to((n) => n.toFixed(0))}</animated.span>
+      <animated.span>
+        {number.to((n) => n.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, "."))}
+      </animated.span>
     </Fragment>
   );
 };

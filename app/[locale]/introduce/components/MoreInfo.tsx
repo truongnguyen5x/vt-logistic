@@ -29,7 +29,10 @@ const MoreInfo: FC<Props> = ({ data, className = "" }) => {
   return (
     <section className={`container mx-auto ${className}`}>
       <div className="flex items-center gap-[50px]">
-        <Link href={data.contact.link} className="relative cursor-pointer">
+        <Link
+          href={data.contact.link}
+          className="relative cursor-pointer animation"
+        >
           <div>
             <Image src={data.contact.image} alt="" width={740} height={480} />
             <div className="bg-gradient-overlay absolute top-0 left-0 w-full h-full"></div>
@@ -62,9 +65,18 @@ const MoreInfo: FC<Props> = ({ data, className = "" }) => {
             </div>
           </div>
         </Link>
-        <Link href={data.milestones.link} className="relative cursor-pointer">
+        <Link
+          href={data.milestones.link}
+          className="relative cursor-pointer animation"
+          data-animation-delay="0.4s"
+        >
           <div>
-            <Image src={data.milestones.image} alt="" width={740} height={480} />
+            <Image
+              src={data.milestones.image}
+              alt=""
+              width={740}
+              height={480}
+            />
             <div className="bg-gradient-overlay absolute top-0 left-0 w-full h-full"></div>
           </div>
           <div className="absolute bottom-6 z-10">

@@ -51,7 +51,7 @@ const FormLookup: FC<FormLookupProps> = ({ content, index }) => {
           </div>
           <button className="btn-red">
             {content.btn}
-            <Image src={SearchImg} alt="search" width={20} height={20} />{" "}
+            <Image src={SearchImg} alt="search" width={20} height={20} />
           </button>
         </div>
       </div>

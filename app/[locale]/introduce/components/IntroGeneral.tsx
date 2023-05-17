@@ -19,7 +19,7 @@ const IntroGeneral: FC<Props> = ({ data, className = "" }) => {
     <section className={`relative ${className}`}>
       <div className="flex items-center gap-[60px]">
         <div>
-          <div className="relative">
+          <div className="relative animation" data-animation-delay="0.4s">
             <Image
               src={data.image}
               alt=""
@@ -37,14 +37,20 @@ const IntroGeneral: FC<Props> = ({ data, className = "" }) => {
           </div>
         </div>
         <div>
-          <p className="section-name-left mb-6">{t("common")}</p>
+          <p className="section-name-left mb-6 animation">{t("common")}</p>
           {!!data.title && (
-            <h4 className="text-th-gray-400 font-semibold text-2xl mt-12">
+            <h4
+              className="text-th-gray-400 font-semibold text-2xl mt-12 animation"
+              data-animation-delay="0.3s"
+            >
               {data.title}
             </h4>
           )}
           {!!data.content && (
-            <div className="mt-6 max-w-[735px]">
+            <div
+              className="mt-6 max-w-[735px] animation"
+              data-animation-delay="0.4s"
+            >
               {data.content.split("\n").map((item, index) => (
                 <p
                   key={index}

@@ -26,13 +26,19 @@ const Reasons: FC<Props> = ({ className = "", data }) => {
       )}
       <div className="container mx-auto py-20">
         <div className="flex items-center justify-center">
-          <p className="section-name mb-6">{t("reason")}</p>
+          <p className="section-name mb-6 animation">{t("reason")}</p>
         </div>
-        <p className="mt-10 text-base font-medium text-th-gray-300 text-center">
+        <p
+          className="mt-10 text-base font-medium text-th-gray-300 text-center animation"
+          data-animation-delay="0.3s"
+        >
           {data.description}
         </p>
         {!!data.reasons.length && (
-          <div className="grid grid-cols-2 gap-x-[150px] gap-y-20 mt-[55px]">
+          <div
+            className="grid grid-cols-2 gap-x-[150px] gap-y-20 mt-[55px] animation"
+            data-animation-delay="0.4s"
+          >
             {data.reasons.map((item, index) => (
               <div key={index} className="flex items-start gap-8">
                 <Image src={item.image} alt="" width={50} height={50} />

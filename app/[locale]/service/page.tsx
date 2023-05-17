@@ -6,6 +6,7 @@ import { fetchAsset } from "@api/index";
 import { ILocale } from "@configs/i18n";
 import BreadCrumbs from "@components/Breadcrumbs";
 import ServiceOverview from "./components/Overview";
+import Transportation from "./components/Transportation";
 
 type IServiceAsset = {
   banner_img: string;
@@ -13,9 +14,12 @@ type IServiceAsset = {
   overview_img: string;
   features: Array<{
     img: string;
-    title: string;
+    number: number;
+    object: string;
     txt: string;
   }>;
+  service_transportation_des: string;
+  transportation_list_service: Array<{ txt: string; url: string; img: string }>;
 };
 
 const Service = async () => {
@@ -41,6 +45,12 @@ const Service = async () => {
         bgImg={serviceAsset.overview_img}
         txt={serviceAsset.my_service}
         features={serviceAsset.features}
+      />
+      <Transportation
+        title={t("transportation")}
+        more={t("more")}
+        description={serviceAsset.service_transportation_des}
+        listService={serviceAsset.transportation_list_service}
       />
     </Fragment>
   );
