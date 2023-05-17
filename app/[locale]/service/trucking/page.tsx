@@ -8,6 +8,7 @@ import BreadCrumbs from "@components/Breadcrumbs";
 import Image from "next/image";
 import styles from "./style.module.scss";
 import RightDarkImg from "@assets/images/icons/arrow_right_2_dark.svg";
+import MoreService from "@components/more-service";
 
 type IServiceTruckingAsset = {
   bg_img: string;
@@ -86,18 +87,27 @@ const ServiceTrucking = async () => {
                 </div>
               </div>
             ))}
-            <button className="btn-red mt-6">{t("create_order")}</button>
+            <button
+              className="btn-red mt-6 animation"
+              data-animation-delay="0.6s"
+            >
+              {t("create_order")}
+            </button>
           </div>
         </div>
       </div>
       <div className="bg-th-gray-250 py-28">
         <div className="container mx-auto flex">
           <div className="min-w-0">
-            <h3 className="section-name-left mb-11">
+            <h3 className="section-name-left mb-11 animation">
               {t("domestic_shipping")}
             </h3>
             {truckingAsset.internal.map((item, idx) => (
-              <div key={idx} className="flex items-start gap-3 my-6">
+              <div
+                key={idx}
+                className="flex items-start gap-3 my-6 animation"
+                data-animtion-delay={`${0.3 + 0.1 * idx}s`}
+              >
                 <Image
                   className="mt-2"
                   src={RightDarkImg}
@@ -113,7 +123,10 @@ const ServiceTrucking = async () => {
                 </div>
               </div>
             ))}
-            <div className="flex gap-6 mt-9">
+            <div
+              className="flex gap-6 mt-9 animation"
+              data-animtion-delay="0.7s"
+            >
               <button className="btn-red">{t("create_order")}</button>
               <button className="btn-gray-outlined">{t("pricing")}</button>
             </div>
@@ -127,6 +140,52 @@ const ServiceTrucking = async () => {
             />
           </div>
         </div>
+      </div>
+      <div className="container mx-auto flex py-28 gap-16">
+        <div className="self-center">
+          <Image
+            src={truckingAsset.international_img}
+            width={735}
+            height={400}
+            alt=""
+          />
+        </div>
+        <div className="min-w-0">
+          <h3 className="section-name-left mb-11 animation">
+            {t("international_shipping")}
+          </h3>
+          {truckingAsset.internaltional.map((item, idx) => (
+            <div
+              key={idx}
+              className="flex items-start gap-3 my-6 animation"
+              data-animtion-delay={`${0.3 + 0.1 * idx}s`}
+            >
+              <Image
+                className="mt-2"
+                src={RightDarkImg}
+                width={24}
+                height={24}
+                alt=""
+              />
+              <div>
+                <p className={styles.domesticItem}>{item.title}</p>
+                <p className="text-base text-th-gray-300 font-medium">
+                  {item.des}
+                </p>
+              </div>
+            </div>
+          ))}
+          <div className="flex gap-6 mt-9 animation" data-animtion-delay="0.7s">
+            <button className="btn-red">{t("create_order")}</button>
+            <button className="btn-gray-outlined">{t("pricing")}</button>
+          </div>
+        </div>
+      </div>
+      <div className="container mx-auto">
+        <h3 className="section-name mb-14 animation">
+          {t("maybe_you_are_interested")}
+        </h3>
+        <MoreService more={t("more")} services={truckingAsset.other_service} />
       </div>
     </Fragment>
   );

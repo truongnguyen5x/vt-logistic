@@ -66,11 +66,17 @@
     }
   },
   "trucking": {
+    "more": "Xem thêm",
     "title": "Dịch vụ vận tải đường bộ",
     "create_order": "Tạo đơn hàng",
     "pricing": "Tra cứu bảng giá",
     "domestic_shipping": "Vận chuyển nội địa",
     "international_shipping": "Vận chuyển quốc tế xuyên biên giới",
-    "maybe_you_are_interested": "Có thể bạn quan tâm"
+    "maybe_you_are_interested": "Có thể bạn quan tâm",
+    "breadcrumbs": {
+      "home": "Trang chủ",
+      "service": "Dịch vụ",
+      "trucking": "Dịch vụ vận tải đường bộ"
+    }
   }
 }

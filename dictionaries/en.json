@@ -66,6 +66,7 @@
     }
   },
   "trucking": {
+    "more": "Xem thêm",
     "title": "Dịch vụ vận tải đường bộ",
     "create_order": "Tạo đơn hàng",
     "pricing": "Tra cứu bảng giá",
