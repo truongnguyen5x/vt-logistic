@@ -6,7 +6,7 @@ import { fetchAsset } from "@api/index";
 import { ILocale } from "@configs/i18n";
 import BreadCrumbs from "@components/Breadcrumbs";
 import ServiceOverview from "./components/Overview";
-import Transportation from "./components/Transportation";
+import MoreService from "@components/more-service";
 
 type IServiceAsset = {
   banner_img: string;
@@ -46,12 +46,21 @@ const Service = async () => {
         txt={serviceAsset.my_service}
         features={serviceAsset.features}
       />
-      <Transportation
-        title={t("transportation")}
-        more={t("more")}
-        description={serviceAsset.service_transportation_des}
-        listService={serviceAsset.transportation_list_service}
-      />
+      <div className="container mx-auto">
+        <div className="section-name mb-9 mt-12 animation">
+          {t("transportation")}
+        </div>
+        <p
+          className="text-base text-th-gray-300 font-medium text-center whitespace-pre-line animation"
+          data-animation-delay="0.3s"
+        >
+          {serviceAsset.service_transportation_des}
+        </p>
+        <MoreService
+          services={serviceAsset.transportation_list_service}
+          more={t("more")}
+        />
+      </div>
     </Fragment>
   );
 };

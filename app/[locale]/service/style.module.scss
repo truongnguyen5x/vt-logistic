@@ -19,17 +19,7 @@
   @apply text-th-white font-bold my-1;
   font-size: 25px;
 }
-.serviceItem {
-  @apply relative shadow-xl;
-  padding-top: 135%;
-}
-.serviceItemImg {
-  @apply min-h-0 relative;
-  flex-basis: 81%;
-}
-.serviceItemTxt {
-  @apply p-11 text-2xl font-bold;
-}
+
 /*******************
  * END SERVICE GENERAL *
  *******************/

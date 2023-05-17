@@ -64,5 +64,13 @@
       "introduce": "Giới thiệu",
       "general_intro": "Giới thiệu chung"
     }
+  },
+  "trucking": {
+    "title": "Dịch vụ vận tải đường bộ",
+    "create_order": "Tạo đơn hàng",
+    "pricing": "Tra cứu bảng giá",
+    "domestic_shipping": "Vận chuyển nội địa",
+    "international_shipping": "Vận chuyển quốc tế xuyên biên giới",
+    "maybe_you_are_interested": "Có thể bạn quan tâm"
   }
 }
