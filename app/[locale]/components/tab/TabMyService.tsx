@@ -30,13 +30,13 @@ const TabMyService: FC<TabMyServiceProps> = ({
         <Image src={background} alt="" width={1530} height={417} />
         {contents.map((service, idx) => (
           <div key={idx} className={styles.serviceItem}>
-            <Link href="/contact" className={styles.serviceLink}>
+            <Link href={service.url} className={styles.serviceLink}>
               <Image src={service.img} alt="" width={60} height={60} />
               <p className={service.subs ? "mb-3" : ""}>{service.title}</p>
             </Link>
             {service.subs &&
               service.subs.map((sub, idx2) => (
-                <Link href="/contact" key={idx2} className={styles.serviceDes}>
+                <div key={idx2} className={styles.serviceDes}>
                   <Image
                     src={ArrowListImg}
                     alt="arrow"
@@ -45,7 +45,7 @@ const TabMyService: FC<TabMyServiceProps> = ({
                   />
 
                   <p>{sub}</p>
-                </Link>
+                </div>
               ))}
           </div>
         ))}

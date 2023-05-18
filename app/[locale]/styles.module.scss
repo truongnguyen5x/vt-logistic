@@ -5,11 +5,57 @@
  ****************/
 .sliderWp {
   height: 450px;
+  :global .slick-dots {
+    bottom: 3px !important;
+    li {
+      button {
+        &::before {
+          transition: width 0.7s;
+          @apply text-th-white;
+          opacity: 1 !important;
+          border-radius: 3px;
+          border: 1px solid var(--color-white);
+          content: "";
+          width: 18px;
+          height: 10px;
+          background-color: var(--color-white);
+        }
+      }
+      &:not(.slick-active) {
+        button {
+          &::before {
+            width: 10px;
+            background-color: transparent;
+          }
+        }
+      }
+    }
+  }
 }
 
 .banner {
   height: 450px;
   @apply object-cover;
+}
+.arrowRightSlider1 {
+  @apply z-10;
+  top: auto !important;
+  right: 50% !important;
+  bottom: 5px;
+  transform: translateX(79px) !important;
+  &::before {
+    @apply hidden;
+  }
+}
+.arrowLeftSlider1 {
+  @apply z-10;
+  top: auto !important;
+  left: 50% !important;
+  bottom: 5px;
+  transform: translateX(-79px) !important;
+  &::before {
+    @apply hidden;
+  }
 }
 /********************
  * END FIRST SLIDER *
@@ -71,11 +117,13 @@
 .arrowLeftSlider {
   width: 40px !important;
   left: -50px !important;
+  top: 35% !important;
 }
 
 .arrowRightSlider {
   width: 40px !important;
   right: -50px !important;
+  top: 35% !important;
 }
 /******************
  * END LIST ABOUT *
@@ -131,6 +179,9 @@
 .serviceItem {
   @apply flex flex-col items-center py-11 px-11 z-10;
   background-color: var(--color-black-400);
+  &:nth-child(2) {
+    background-color: rgba(0, 0, 0, 0.6);
+  }
 }
 .serviceLink {
   img {
@@ -152,7 +203,7 @@
     @apply text-th-white font-medium text-sm;
   }
   &:hover p {
-    @apply underline underline-offset-4;
+    // @apply underline underline-offset-4;
   }
 }
 /**************

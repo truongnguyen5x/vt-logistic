@@ -13,6 +13,7 @@ export type IServiceItem = {
   img: string;
   title: string;
   subs?: string[];
+  url: string;
 };
 
 export type ILookupContent = {
