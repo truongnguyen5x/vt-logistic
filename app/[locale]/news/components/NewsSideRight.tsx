@@ -1,17 +1,24 @@
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { FC, Fragment } from "react";
 import Search from "@assets/images/icons/search-status.svg";
 import { SideCard } from "./Cards";
 import { IPost } from "@type/post";
+import { fetchAsset } from "@api/index";
+import { ILocale } from "@configs/i18n";
 
-type Props = {
-  post: IPost[];
+type IDataHotNews = {
+  hot_news: IPost[];
 };
 
-const NewsSideRight: FC<Props> = ({ post }) => {
-  const t = useTranslations("news");
+const NewsSideRight = async () => {
+  const locale = useLocale();
+
+  const [hotNewsAsset, t] = await Promise.all([
+    fetchAsset<IDataHotNews>("hot_news", locale as ILocale),
+    getTranslations("news"),
+  ]);
 
   return (
     <div>
@@ -35,8 +42,8 @@ const NewsSideRight: FC<Props> = ({ post }) => {
         {t("hot_news")}
       </h3>
       <div className="flex flex-col gap-[50px]">
-        {!!post.length &&
-          post.map((item, index) => <SideCard key={index} post={item} />)}
+        {!!hotNewsAsset.hot_news.length &&
+          hotNewsAsset.hot_news.map((item, index) => <SideCard key={index} post={item} />)}
       </div>
       <div className="p-8 bg-th-gray-220 border border-th-gray-200 max-w-[490px] mt-[50px]">
         <h5 className="font-semibold text-xl text-th-gray-320 mb-3">
