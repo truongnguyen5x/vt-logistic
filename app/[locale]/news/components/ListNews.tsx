@@ -64,4 +64,4 @@ const ListNews = async ({ typeParams }: { typeParams: string }) => {
   );
 };
 
-export default ListNews;
+export default ListNews as unknown as FC<{ typeParams: string }>;
