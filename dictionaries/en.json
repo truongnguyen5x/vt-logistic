@@ -1,0 +1,155 @@
+{
+  "layout": {
+    "home": "Trang chủ",
+    "introduce": "Giới thiệu",
+    "service": "Dịch vụ",
+    "news": "Tin tức",
+    "recruitment": "Tuyển dụng",
+    "contact": "Liên hệ",
+    "about": "Giới thiệu về viettel logistics",
+    "connect_with_us": "Kết nối với chúng tôi",
+    "certified_by": "Chứng nhận bởi",
+    "introduce_general": "Giới thiệu chung",
+    "milestones": "Dấu mốc phát triển",
+    "info_contact": "Thông tin liên hệ",
+    "transportation": "Vận tải",
+    "trucking": "Vận tải đường bộ",
+    "rail_transportation": "Vận tải đường sắt",
+    "sea_transport": "Vận tải đường biển",
+    "air_freight": "Vận tải đường hàng không",
+    "customs": "Hải quan",
+    "warehouse": "Kho bãi",
+    "endpoint_delivery": "Giao hàng điểm cuối",
+    "packing": "Đóng gói & Chia chọn",
+    "insider_news": "Tin nội bộ",
+    "market_news": "Tin thị trường",
+    "specialized_news": "Kiến thức chuyên ngành",
+    "receive_info": "Nhận thông tin mới nhất từ Viettel Logistics",
+    "placeholder": "Nhập địa chỉ Email",
+    "register_txt": "Đăng ký"
+  },
+  "home": {
+    "about_us": "Về chúng tôi",
+    "partner": "Đối tác chiến lược",
+    "news_event": "Tin tức & Sự kiện",
+    "learn_more": "Tìm hiểu thêm",
+    "detail": "Chi tiết"
+  },
+  "introduce": {
+    "common": "Giới thiệu chung",
+    "mission": "Sứ mệnh",
+    "core_values": "Giá trị cốt lõi",
+    "read_more": "Đọc thêm",
+    "reason": "Tại sao chọn chúng tôi?",
+    "breadcrumbs": {
+      "home": "Trang chủ",
+      "introduce": "Giới thiệu"
+    }
+  },
+  "service": {
+    "title": "Dịch vụ",
+    "my_service": "Dịch vụ của chúng tôi",
+    "learn_more": "Tìm hiểu thêm Logistics Viettel",
+    "breadcrumbs": {
+      "home": "Trang chủ",
+      "service": "Dịch vụ"
+    },
+    "transportation": "Dịch vụ vận tải",
+    "more": "Xem thêm"
+  },
+  "milestones": {
+    "title": "Dấu mốc phát triển",
+    "breadcrumbs": {
+      "home": "Trang chủ",
+      "introduce": "Giới thiệu",
+      "general_intro": "Giới thiệu chung"
+    }
+  },
+  "trucking": {
+    "more": "Xem thêm",
+    "title": "Dịch vụ vận tải đường bộ",
+    "create_order": "Tạo đơn hàng",
+    "pricing": "Tra cứu bảng giá",
+    "domestic_shipping": "Vận chuyển nội địa",
+    "international_shipping": "Vận chuyển quốc tế xuyên biên giới",
+    "maybe_you_are_interested": "Có thể bạn quan tâm",
+    "breadcrumbs": {
+      "home": "Trang chủ",
+      "service": "Dịch vụ",
+      "trucking": "Dịch vụ vận tải đường bộ"
+    }
+  },
+  "customs": {
+    "pricing": "Bảng giá",
+    "register_now": "Đăng ký ngay",
+    "procedure": "Quy trình",
+    "title": "Dịch vụ hải quan",
+    "short_name": "Hải quan",
+    "policy": "Tham khảo thêm về chính sách và chính sách chiết khấu hấp dẫn nhất",
+    "breadcrumbs": {
+      "home": "Trang chủ",
+      "service": "Dịch vụ",
+      "customs": "Hải quan"
+    }
+  },
+  "endpoint_delivery": {
+    "title": "Giao hàng điểm cuối",
+    "heading": "Dịch vụ giao hàng điểm cuối",
+    "breadcrumbs": {
+      "home": "Trang chủ",
+      "service": "Dịch vụ"
+    },
+    "register_now": "Đăng ký ngay",
+    "policy": "Tham khảo thêm về chính sách và chính sách chiết khấu hấp dẫn nhất",
+    "pricing": "Bảng giá"
+  },
+  "packing": {
+    "title": "Đóng gói & chia chọn hàng hóa",
+    "heading": "Dịch vụ đóng gói & chia chọn hàng hóa",
+    "breadcrumbs": {
+      "home": "Trang chủ",
+      "service": "Dịch vụ"
+    },
+    "register_now": "Đăng ký ngay",
+    "policy": "Tham khảo thêm về chính sách và chính sách chiết khấu hấp dẫn nhất",
+    "pricing": "Bảng giá"
+  },
+  "news": {
+    "title": "Tin nội bộ",
+    "search": "Tìm kiếm",
+    "placeholder": "Nhập từ khóa",
+    "hot_news": "Tin nổi bật",
+    "contact": "Liên hệ",
+    "breadcrumbs": {
+      "home": "Trang chủ",
+      "news": "Tin tức"
+    },
+    "read_more": "Đọc thêm",
+    "help_title": "Chúng tôi có thể giúp gì?",
+    "help_content": "Bạn đang tìm kiếm thêm về giải pháp vận chuyển cho doanh nghiệp của bạn?"
+  },
+  "contact": {
+    "title": "Liên hệ",
+    "breadcrumbs": {
+      "home": "Trang chủ"
+    },
+    "hotline": "Hotline",
+    "email": "Email",
+    "contact_we": "Liên hệ với chúng tôi",
+    "form": {
+      "title": "Tiêu đề",
+      "placeholder_title": "Nhập tiêu đề",
+      "fullname": "Họ và tên",
+      "placeholder_fullname": "Nhập họ và tên",
+      "phone_number": "Số điện thoại",
+      "placeholder_phone_number": "Nhập số điện thoại",
+      "email": "Email",
+      "placeholder_email": "Nhập email",
+      "address": "Địa chỉ",
+      "placeholder_address": "Nhập địa chỉ",
+      "note": "Nội dung",
+      "placeholder_note": "Nội dung",
+      "button": "Gửi liên hệ"
+    }
+  }
+}
