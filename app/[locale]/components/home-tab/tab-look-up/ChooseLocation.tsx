@@ -1,5 +1,12 @@
 "use client";
-import { FC, Fragment, useState } from "react";
+import {
+  ChangeEvent,
+  Dispatch,
+  FC,
+  Fragment,
+  SetStateAction,
+  useState,
+} from "react";
 import { ILookupContent } from "..";
 import Image from "next/image";
 import styles from "@app/styles.module.scss";
@@ -9,6 +16,7 @@ import CustomSelect from "@components/custom-select";
 import SearchImg from "@assets/images/icons/search_light.svg";
 import { ICountry, IProvince } from "@type/location";
 import { SERVICE_TRANSPORT } from "@ultility/constant";
+import { ISTATUS } from "./FormLookup";
 
 interface ChooseLocationProps {
   content: ILookupContent;
@@ -20,6 +28,7 @@ interface ChooseLocationProps {
   index: number;
   listCountry: ICountry[];
   listProvince: IProvince[];
+  setStatus: Dispatch<SetStateAction<ISTATUS>>;
 }
 
 const ChooseLocation: FC<ChooseLocationProps> = ({
@@ -27,15 +36,38 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
   index,
   listCountry,
   listProvince,
+  setStatus,
 }) => {
-  const [status, setStatus] = useState<"NONE" | "UNAVAILABLE" | "AVAILABLE">(
-    "NONE"
-  );
+  const [from, setForm] = useState<string>();
+  const [to, setTo] = useState<string>();
 
-  const handleCheckService = () => {};
+  const handleCheckService = () => {
+    if (index == SERVICE_TRANSPORT.EXPRESS) {
+      if (
+        from == "russia" ||
+        from == "belarus" ||
+        to == "russia" ||
+        to == "belarus"
+      ) {
+        setStatus("UNAVAILABLE");
+      } else {
+        setStatus("AVAILABLE");
+      }
+    } else {
+      setStatus("AVAILABLE");
+    }
+  };
+
+  const onChangeForm = (e: ChangeEvent<HTMLSelectElement>) => {
+    setForm(e.target.value);
+  };
+
+  const onChangeTo = (e: ChangeEvent<HTMLSelectElement>) => {
+    setTo(e.target.value);
+  };
 
   return (
-    <div className={styles.lookUpBg}>
+    <Fragment>
       <Image
         className="absolute right-2 top-2"
         src={content.imgs[index]}
@@ -53,7 +85,7 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
             </div>
             <div className="flex-grow flex flex-col gap-4">
               <p className={styles.formTitle}>{content.from}</p>
-              <CustomSelect>
+              <CustomSelect value={from} onChange={onChangeForm}>
                 {index == SERVICE_TRANSPORT.TRANSPORT
                   ? listProvince.map((province, idx) => (
                       <option key={idx} value={province.id}>
@@ -68,7 +100,7 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
               </CustomSelect>
               <div className="mt-6" />
               <p className={styles.formTitle}>{content.to}</p>
-              <CustomSelect>
+              <CustomSelect value={to} onChange={onChangeTo}>
                 {index == SERVICE_TRANSPORT.TRANSPORT
                   ? listProvince.map((province, idx) => (
                       <option key={idx} value={province.id}>
@@ -89,7 +121,7 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
           </button>
         </div>
       </div>
-    </div>
+    </Fragment>
   );
 };
 

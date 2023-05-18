@@ -25,11 +25,7 @@ interface FormLookupProps {
   listProvince: IProvince[];
 }
 
-const STATUS = {
-  NONE: "NONE",
-  UNAVAILABLE: "UNAVAILABLE",
-  AVAILABLE: "AVAILABLE",
-};
+export type ISTATUS = "NONE" | "UNAVAILABLE" | "AVAILABLE";
 
 const FormLookup: FC<FormLookupProps> = ({
   content,
@@ -37,24 +33,24 @@ const FormLookup: FC<FormLookupProps> = ({
   listCountry,
   listProvince,
 }) => {
-  const [status, setStatus] = useState<"NONE" | "UNAVAILABLE" | "AVAILABLE">(
-    "NONE"
-  );
-
-  if (status == "UNAVAILABLE") {
-    return <ServiceUnavailable title={content.service_unavailable} />;
-  }
-  if (status == "AVAILABLE") {
-    return <ServiceAvailable content={content} />;
-  }
+  const [status, setStatus] = useState<ISTATUS>("NONE");
 
   return (
-    <ChooseLocation
-      listCountry={listCountry}
-      listProvince={listProvince}
-      content={content}
-      index={index}
-    />
+    <div className={styles.lookUpBg}>
+      {status == "UNAVAILABLE" && (
+        <ServiceUnavailable title={content.service_unavailable} />
+      )}
+      {status == "AVAILABLE" && <ServiceAvailable content={content} />}
+      {status == "NONE" && (
+        <ChooseLocation
+          listCountry={listCountry}
+          listProvince={listProvince}
+          content={content}
+          index={index}
+          setStatus={setStatus}
+        />
+      )}
+    </div>
   );
 };
 

@@ -1,10 +1,10 @@
 "use client";
 import { FC, Fragment, useEffect, useRef, useState } from "react";
-import { ILookupContent } from ".";
+import { ILookupContent } from "../";
 import clsx from "clsx";
 import styles from "@app/styles.module.scss";
 import Slider from "react-slick";
-import FormLookup from "./components/FormLookup";
+import FormLookup from "./FormLookup";
 import { fetchFromClient } from "@api/client";
 import { useLocale } from "next-intl";
 import { ILocale } from "@configs/i18n";
