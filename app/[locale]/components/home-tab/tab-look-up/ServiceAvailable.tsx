@@ -20,19 +20,24 @@ const ServiceAvailable: FC<ServiceAvailableProps> = ({ content }) => {
         <p className="text-xl font-medium text-th-gray-300 mt-4 whitespace-pre-line text-center mb-8">
           {content.service_available_des}
         </p>
-        {content.contacts.map((item, idx) => (
-          <div key={idx} className="flex gap-9 justify-start my-3 items-center">
-            <p className="w-40 text-2xl font-semibold text-th-gray-300">
-              {item.name}
-            </p>
-            <a href={`tel:${item.phone}`} className={styles.boxContact}>
-              <Image src={CallImg} width={24} height={24} alt="calling" />
-              <p className="text-th-gray-300 font-medium text-2xl">
-                {item.phone}
+        <div className="flex flex-col">
+          {content.contacts.map((item, idx) => (
+            <div
+              key={idx}
+              className="flex gap-4 justify-start my-3 items-center"
+            >
+              <p className="w-40 text-2xl font-semibold text-th-gray-300">
+                {item.name}
               </p>
-            </a>
-          </div>
-        ))}
+              <a href={`tel:${item.phone}`} className={styles.boxContact}>
+                <Image src={CallImg} width={24} height={24} alt="calling" />
+                <p className="text-th-gray-300 font-medium text-2xl">
+                  {item.phone}
+                </p>
+              </a>
+            </div>
+          ))}
+        </div>
       </div>
     </Fragment>
   );
