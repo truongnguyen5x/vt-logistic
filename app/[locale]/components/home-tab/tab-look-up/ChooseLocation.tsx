@@ -58,12 +58,12 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
     }
   };
 
-  const onChangeForm = (e: ChangeEvent<HTMLSelectElement>) => {
-    setForm(e.target.value);
+  const onChangeForm = (e: string) => {
+    setForm(e);
   };
 
-  const onChangeTo = (e: ChangeEvent<HTMLSelectElement>) => {
-    setTo(e.target.value);
+  const onChangeTo = (e: string) => {
+    setTo(e);
   };
 
   return (
@@ -85,34 +85,26 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
             </div>
             <div className="flex-grow flex flex-col gap-4">
               <p className={styles.formTitle}>{content.from}</p>
-              <CustomSelect value={from} onChange={onChangeForm}>
-                {index == SERVICE_TRANSPORT.TRANSPORT
-                  ? listProvince.map((province, idx) => (
-                      <option key={idx} value={province.id}>
-                        {province.name}
-                      </option>
-                    ))
-                  : listCountry.map((country, idx) => (
-                      <option key={idx} value={country.id}>
-                        {country.name}
-                      </option>
-                    ))}
-              </CustomSelect>
+              <CustomSelect
+                value={from}
+                onChange={onChangeForm}
+                options={
+                  index == SERVICE_TRANSPORT.TRANSPORT
+                    ? listProvince.map((i) => ({ value: i.id, label: i.name }))
+                    : listCountry.map((i) => ({ value: i.id, label: i.name }))
+                }
+              />
               <div className="mt-6" />
               <p className={styles.formTitle}>{content.to}</p>
-              <CustomSelect value={to} onChange={onChangeTo}>
-                {index == SERVICE_TRANSPORT.TRANSPORT
-                  ? listProvince.map((province, idx) => (
-                      <option key={idx} value={province.id}>
-                        {province.name}
-                      </option>
-                    ))
-                  : listCountry.map((country, idx) => (
-                      <option key={idx} value={country.id}>
-                        {country.name}
-                      </option>
-                    ))}
-              </CustomSelect>
+              <CustomSelect
+                value={to}
+                onChange={onChangeTo}
+                options={
+                  index == SERVICE_TRANSPORT.TRANSPORT
+                    ? listProvince.map((i) => ({ value: i.id, label: i.name }))
+                    : listCountry.map((i) => ({ value: i.id, label: i.name }))
+                }
+              />
             </div>
           </div>
           <button className="btn-red" onClick={handleCheckService}>
