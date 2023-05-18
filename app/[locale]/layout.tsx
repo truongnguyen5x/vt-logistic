@@ -11,6 +11,7 @@ import Loader from "./components/Loader";
 import { ILocale, i18n } from "@configs/i18n";
 import Footer from "./Footer";
 import Script from "next/script";
+import BackToTop from "./components/BackToTop";
 
 const SVNgilroy = localFont({
   src: [
@@ -86,6 +87,7 @@ export default function RootLayout({
         />
         {children}
         <Footer />
+        <BackToTop />
       </body>
       <Script src="/js/script.js" />
     </html>
