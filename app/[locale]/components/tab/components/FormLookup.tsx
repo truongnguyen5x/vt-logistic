@@ -1,3 +1,4 @@
+"use client";
 import { FC, Fragment } from "react";
 import { ILookupContent } from "..";
 import Image from "next/image";
@@ -6,6 +7,8 @@ import LocationImg from "@assets/images/icons/location.svg";
 import MapImg from "@assets/images/icons/map.svg";
 import CustomSelect from "@components/custom-select";
 import SearchImg from "@assets/images/icons/search_light.svg";
+import { ICountry, IProvince } from "@type/location";
+import { SERVICE_TRANSPORT } from "@ultility/constant";
 
 interface FormLookupProps {
   content: ILookupContent;
@@ -15,9 +18,16 @@ interface FormLookupProps {
    *  INDEX == 2: VẬN TẢI  *
    *************************/
   index: number;
+  listCountry: ICountry[];
+  listProvince: IProvince[];
 }
 
-const FormLookup: FC<FormLookupProps> = ({ content, index }) => {
+const FormLookup: FC<FormLookupProps> = ({
+  content,
+  index,
+  listCountry,
+  listProvince,
+}) => {
   return (
     <div className={styles.lookUpBg}>
       <Image
@@ -38,14 +48,32 @@ const FormLookup: FC<FormLookupProps> = ({ content, index }) => {
             <div className="flex-grow flex flex-col gap-4">
               <p className={styles.formTitle}>{content.from}</p>
               <CustomSelect>
-                <option value="hn">Hà Nội</option>
-                <option value="tphcm">TP. Hồ Chí Minh</option>
+                {index == SERVICE_TRANSPORT.TRANSPORT
+                  ? listProvince.map((province, idx) => (
+                      <option key={idx} value={province.id}>
+                        {province.name}
+                      </option>
+                    ))
+                  : listCountry.map((country, idx) => (
+                      <option key={idx} value={country.id}>
+                        {country.name}
+                      </option>
+                    ))}
               </CustomSelect>
               <div className="mt-6" />
               <p className={styles.formTitle}>{content.to}</p>
               <CustomSelect>
-                <option value="hn">Hà Nội</option>
-                <option value="tphcm">TP. Hồ Chí Minh</option>
+                {index == SERVICE_TRANSPORT.TRANSPORT
+                  ? listProvince.map((province, idx) => (
+                      <option key={idx} value={province.id}>
+                        {province.name}
+                      </option>
+                    ))
+                  : listCountry.map((country, idx) => (
+                      <option key={idx} value={country.id}>
+                        {country.name}
+                      </option>
+                    ))}
               </CustomSelect>
             </div>
           </div>
