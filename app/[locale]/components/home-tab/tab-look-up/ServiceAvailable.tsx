@@ -25,12 +25,12 @@ const ServiceAvailable: FC<ServiceAvailableProps> = ({ content }) => {
             <p className="w-40 text-2xl font-semibold text-th-gray-300">
               {item.name}
             </p>
-            <div className={styles.boxContact}>
+            <a href={`tel:${item.phone}`} className={styles.boxContact}>
               <Image src={CallImg} width={24} height={24} alt="calling" />
               <p className="text-th-gray-300 font-medium text-2xl">
                 {item.phone}
               </p>
-            </div>
+            </a>
           </div>
         ))}
       </div>
