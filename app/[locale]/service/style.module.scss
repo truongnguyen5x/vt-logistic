@@ -1,0 +1,25 @@
+@import "../../../assets/css/_variables.scss";
+@import "../../../assets/css/animate.scss";
+
+/*******************
+ * SERVICE GENERAL *
+ *******************/
+
+.overviewWp {
+  @apply relative flex items-end;
+  height: 880px;
+  & > img {
+    &:first-child {
+      @apply absolute w-full h-full object-cover;
+    }
+  }
+}
+
+.myServiceTitle {
+  @apply text-th-white font-bold my-1;
+  font-size: 25px;
+}
+
+/*******************
+ * END SERVICE GENERAL *
+ *******************/

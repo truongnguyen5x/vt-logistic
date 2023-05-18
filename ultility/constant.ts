@@ -1,0 +1,5 @@
+export const SERVICE_TRANSPORT = {
+  EXPRESS: 0,
+  FORWARDING: 1,
+  TRANSPORT: 2,
+};
