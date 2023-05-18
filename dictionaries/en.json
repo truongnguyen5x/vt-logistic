@@ -92,6 +92,28 @@
       "customs": "Hải quan"
     }
   },
+  "endpoint_delivery": {
+    "title": "Giao hàng điểm cuối",
+    "heading": "Dịch vụ giao hàng điểm cuối",
+    "breadcrumbs": {
+      "home": "Trang chủ",
+      "service": "Dịch vụ"
+    },
+    "register_now": "Đăng ký ngay",
+    "policy": "Tham khảo thêm về chính sách và chính sách chiết khấu hấp dẫn nhất",
+    "pricing": "Bảng giá"
+  },
+  "packing": {
+    "title": "Đóng gói & chia chọn hàng hóa",
+    "heading": "Dịch vụ đóng gói & chia chọn hàng hóa",
+    "breadcrumbs": {
+      "home": "Trang chủ",
+      "service": "Dịch vụ"
+    },
+    "register_now": "Đăng ký ngay",
+    "policy": "Tham khảo thêm về chính sách và chính sách chiết khấu hấp dẫn nhất",
+    "pricing": "Bảng giá"
+  },
   "news": {
     "title": "Tin nội bộ",
     "search": "Tìm kiếm",
