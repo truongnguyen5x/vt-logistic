@@ -287,6 +287,10 @@
 .postItem {
   @apply relative shadow-xl;
   padding-top: 87%;
+  transition: transform 0.2s;
+  &:hover {
+    transform: scale(1.02);
+  }
 }
 .postImg {
   @apply block min-h-0;

@@ -30,7 +30,7 @@ const ListPost = async ({
         <div className="col-span-6">
           <PostHome detailTxt={detail} size="LARGE" postData={listPost[0]} />
         </div>
-        <div className="col-span-6 grid grid-cols-2 gap-7">
+        <div className="col-span-6 grid grid-cols-2 gap-x-7 gap-y-6">
           <PostHome detailTxt={detail} postData={listPost[1]} />
           <PostHome detailTxt={detail} postData={listPost[2]} />
           <PostHome detailTxt={detail} postData={listPost[3]} />
