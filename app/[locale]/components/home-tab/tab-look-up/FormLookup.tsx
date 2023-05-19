@@ -5,7 +5,6 @@ import Image from "next/image";
 import styles from "@app/styles.module.scss";
 import LocationImg from "@assets/images/icons/location.svg";
 import MapImg from "@assets/images/icons/map.svg";
-import CustomSelect from "@components/custom-select";
 import SearchImg from "@assets/images/icons/search_light.svg";
 import { ICountry, IProvince } from "@type/location";
 import { SERVICE_TRANSPORT } from "@ultility/constant";

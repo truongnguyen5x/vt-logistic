@@ -6,7 +6,6 @@ import {
   useState,
 } from "react";
 import { FC } from "react";
-import styles from "@components/custom-select/style.module.scss";
 import Select, { SingleValue, components } from "react-select";
 import ArrowDownImg from "@assets/images/icons/arrow_down.svg";
 import Image from "next/image";
