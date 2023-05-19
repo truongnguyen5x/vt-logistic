@@ -2,21 +2,24 @@ import { Fragment } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-const LoadingSkeleton1 = () => {
+const LoadingSkeleton2 = () => {
   return (
     <Fragment>
-      <Skeleton height={300} />
+      <Skeleton height={400} />
       <div className="container mx-auto my-5">
-        <Skeleton height={50} width={500} />
+        <Skeleton height={80} />
       </div>
       <div className="container mx-auto my-5">
-        <Skeleton height={500} />
+        <Skeleton height={160} />
       </div>
       <div className="container mx-auto my-5">
-        <Skeleton height={500} />
+        <Skeleton height={160} />
+      </div>
+      <div className="container mx-auto my-5">
+        <Skeleton height={160} />
       </div>
     </Fragment>
   );
 };
 
-export default LoadingSkeleton1;
+export default LoadingSkeleton2;

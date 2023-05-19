@@ -7,6 +7,7 @@ import { ILocale } from "@configs/i18n";
 import BreadCrumbs from "@components/Breadcrumbs";
 import ServiceOverview from "./components/Overview";
 import MoreService from "@components/more-service";
+import "react-loading-skeleton/dist/skeleton.css";
 
 type IServiceAsset = {
   banner_img: string;
