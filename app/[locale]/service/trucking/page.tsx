@@ -150,7 +150,32 @@ const ServiceTrucking = async () => {
               className="flex gap-6 mt-9 animation"
               data-animtion-delay="0.7s"
             >
-              <button className="btn-red">{t("create_order")}</button>
+              <ResgisterPopup
+                textBtn={t("create_order")}
+                title={t("register_popup.title")}
+                description={t("register_popup.description")}
+                label={{
+                  fullname: t("register_popup.fullname"),
+                  phone_number: t("register_popup.phone_number"),
+                  email: t("register_popup.email"),
+                  service: t("register_popup.service"),
+                  from: t("register_popup.from"),
+                  to: t("register_popup.to"),
+                  weight: t("register_popup.weight"),
+                  note: t("register_popup.note"),
+                  button: t("register_popup.button"),
+                  required: t("register_popup.required"),
+                }}
+                placeholder={{
+                  fullname: t("register_popup.placeholder.fullname"),
+                  phone_number: t("register_popup.placeholder.phone_number"),
+                  email: t("register_popup.placeholder.email"),
+                  from: t("register_popup.placeholder.from"),
+                  to: t("register_popup.placeholder.to"),
+                  weight: t("register_popup.placeholder.weight"),
+                  note: t("register_popup.placeholder.note"),
+                }}
+              />
               <button className="btn-gray-outlined">{t("pricing")}</button>
             </div>
           </div>
@@ -199,7 +224,32 @@ const ServiceTrucking = async () => {
             </div>
           ))}
           <div className="flex gap-6 mt-9 animation" data-animtion-delay="0.7s">
-            <button className="btn-red">{t("create_order")}</button>
+            <ResgisterPopup
+              textBtn={t("create_order")}
+              title={t("register_popup.title")}
+              description={t("register_popup.description")}
+              label={{
+                fullname: t("register_popup.fullname"),
+                phone_number: t("register_popup.phone_number"),
+                email: t("register_popup.email"),
+                service: t("register_popup.service"),
+                from: t("register_popup.from"),
+                to: t("register_popup.to"),
+                weight: t("register_popup.weight"),
+                note: t("register_popup.note"),
+                button: t("register_popup.button"),
+                required: t("register_popup.required"),
+              }}
+              placeholder={{
+                fullname: t("register_popup.placeholder.fullname"),
+                phone_number: t("register_popup.placeholder.phone_number"),
+                email: t("register_popup.placeholder.email"),
+                from: t("register_popup.placeholder.from"),
+                to: t("register_popup.placeholder.to"),
+                weight: t("register_popup.placeholder.weight"),
+                note: t("register_popup.placeholder.note"),
+              }}
+            />
             <button className="btn-gray-outlined">{t("pricing")}</button>
           </div>
         </div>

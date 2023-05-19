@@ -127,6 +127,17 @@
     "policy": "Tham khảo thêm về chính sách và chính sách chiết khấu hấp dẫn nhất",
     "pricing": "Bảng giá"
   },
+  "warehouse": {
+    "title": "Kho bãi",
+    "heading": "Dịch vụ kho bãi",
+    "breadcrumbs": {
+      "home": "Trang chủ",
+      "service": "Dịch vụ"
+    },
+    "register_now": "Đăng ký ngay",
+    "policy": "Tham khảo thêm về chính sách và chính sách chiết khấu hấp dẫn nhất",
+    "pricing": "Bảng giá"
+  },
   "packing": {
     "title": "Đóng gói & chia chọn hàng hóa",
     "heading": "Dịch vụ đóng gói & chia chọn hàng hóa",

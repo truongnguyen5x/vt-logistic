@@ -84,7 +84,7 @@
       "description": "(Lưu ý: không để trống các trường thông tin có dấu *)",
       "fullname": "Họ tên*",
       "phone_number": "Số điện thoại*",
-      "email" :"Email",
+      "email": "Email",
       "service": "Dịch vụ*",
       "from": "Điểm đi*",
       "to": "Điểm đến*",
@@ -119,6 +119,17 @@
   "endpoint_delivery": {
     "title": "Giao hàng điểm cuối",
     "heading": "Dịch vụ giao hàng điểm cuối",
+    "breadcrumbs": {
+      "home": "Trang chủ",
+      "service": "Dịch vụ"
+    },
+    "register_now": "Đăng ký ngay",
+    "policy": "Tham khảo thêm về chính sách và chính sách chiết khấu hấp dẫn nhất",
+    "pricing": "Bảng giá"
+  },
+  "warehouse": {
+    "title": "Kho bãi",
+    "heading": "Dịch vụ kho bãi",
     "breadcrumbs": {
       "home": "Trang chủ",
       "service": "Dịch vụ"
