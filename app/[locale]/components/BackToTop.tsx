@@ -45,7 +45,7 @@ const BackToTop = ({ txt }: { txt: string }) => {
       </Link>
       <div
         className="fixed right-20 bottom-20 cursor-pointer flex flex-col gap-3 items-center overflow-hidden transition duration-5000"
-        style={{ opacity: showBtn ? 1 : 0 }}
+        style={{ visibility: showBtn ? 'visible' : 'hidden' }}
         onClick={handleBackToTop}
       >
         <Image src={BackTop} alt="" height={40} width={40} />
