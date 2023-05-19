@@ -1,7 +1,7 @@
 import { IPost } from "@type/post";
 import { useTranslations } from "next-intl";
 import { FC } from "react";
-import PaginationNews from "../../components/PaginationNews";
+import PaginationNews from "../../../components/PaginationNews";
 import { SideCard } from "./Cards";
 
 type Props = {
