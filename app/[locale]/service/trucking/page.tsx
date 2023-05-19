@@ -116,12 +116,6 @@ const ServiceTrucking = async () => {
                 }}
               />
             </div>
-            {/* <button
-              className="btn-red mt-6 animation"
-              data-animation-delay="0.6s"
-            >
-              {t("create_order")}
-            </button> */}
           </div>
         </div>
       </div>
