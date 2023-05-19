@@ -12,7 +12,7 @@ import Image from "next/image";
 import styles from "@app/styles.module.scss";
 import LocationImg from "@assets/images/icons/location.svg";
 import MapImg from "@assets/images/icons/map.svg";
-import CustomSelect from "@components/custom-select";
+import CustomAutocomplete from "@components/CustomAutocomplete";
 import SearchImg from "@assets/images/icons/search_light.svg";
 import { ICountry, IProvince } from "@type/location";
 import { SERVICE_TRANSPORT } from "@ultility/constant";
@@ -85,7 +85,7 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
             </div>
             <div className="flex-grow flex flex-col gap-4">
               <p className={styles.formTitle}>{content.from}</p>
-              <CustomSelect
+              <CustomAutocomplete
                 value={from}
                 onChange={onChangeForm}
                 options={
@@ -96,7 +96,7 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
               />
               <div className="mt-6" />
               <p className={styles.formTitle}>{content.to}</p>
-              <CustomSelect
+              <CustomAutocomplete
                 value={to}
                 onChange={onChangeTo}
                 options={

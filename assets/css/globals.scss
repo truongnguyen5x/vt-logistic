@@ -18,6 +18,7 @@ Version      : 1.7
 /*===================================*
 01. GENERAL STYLE
 *===================================*/
+@import "./_variables.scss";
 
 @tailwind base;
 @tailwind components;
@@ -409,31 +410,16 @@ a.footer-link {
   background-color: var(--color-gray-270);
 }
 .custom-select__control {
+  @apply border border-th-gray-200 pl-3 pr-2;
   width: 700px;
   height: 65px;
   border-radius: 0px !important;
-  border: 1px solid var(--color-gray-200);
   .custom-select__indicator-separator {
-    display: none;
+    @apply hidden;
   }
 }
 .custom-select__menu-list {
-  &::-webkit-scrollbar {
-    width: 7px;
-  }
-  /* Track */
-  &::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  /* Handle */
-  &::-webkit-scrollbar-thumb {
-    background: var(--color-gray-330);
-    border-radius: 5px;
-  }
-  /* Handle on hover */
-  &::-webkit-scrollbar-thumb:hover {
-    background: var(--color-gray-330);
-  }
+  @include vertical-scrollbar();
 }
 
 /********************

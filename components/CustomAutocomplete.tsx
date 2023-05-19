@@ -7,7 +7,9 @@ import {
 } from "react";
 import { FC } from "react";
 import styles from "@components/custom-select/style.module.scss";
-import Select, { SingleValue } from "react-select";
+import Select, { SingleValue, components } from "react-select";
+import ArrowDownImg from "@assets/images/icons/arrow_down.svg";
+import Image from "next/image";
 
 type IOption = {
   value: string;
@@ -19,6 +21,14 @@ type CustomSelectProps = {
   value?: string;
   onChange?: (newValue: string) => void;
   options: IOption[];
+};
+
+const DropdownIndicator = (props: any) => {
+  return (
+    <components.DropdownIndicator {...props}>
+      <Image src={ArrowDownImg} width={24} height={24} alt="" />
+    </components.DropdownIndicator>
+  );
 };
 
 const CustomSelect: FC<CustomSelectProps> = ({ options, value, onChange }) => {
@@ -36,6 +46,9 @@ const CustomSelect: FC<CustomSelectProps> = ({ options, value, onChange }) => {
       classNamePrefix={"custom-select"}
       value={_value}
       isSearchable
+      components={{
+        DropdownIndicator: DropdownIndicator,
+      }}
       isMulti={false}
       options={options}
       menuPortalTarget={document.querySelector("body")}
