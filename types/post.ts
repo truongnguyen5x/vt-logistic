@@ -5,9 +5,9 @@ export type IPost = {
   created_at: number;
   description: string;
   slug: string;
-  type: string;
 };
 
+// TODO: combine with IPost
 export type IDetailPost = {
   slug: string;
   type: string;
