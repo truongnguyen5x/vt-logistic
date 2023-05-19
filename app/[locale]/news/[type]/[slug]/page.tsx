@@ -41,10 +41,10 @@ const PostDetail = async (props: any) => {
         <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6 mb-20" />
         <div className="flex items-start gap-[100px]">
           <div>
-            <h5 className="text-th-gray-320 text-xl font-semibold">
+            <h5 className="text-th-gray-320 text-xl font-semibold animation">
               {data.title}
             </h5>
-            <div className="flex items-center gap-3 mb-5 mt-1">
+            <div className="flex items-center gap-3 mb-5 mt-1 animation">
               <Image src={Clock} alt="" width={14} height={14} />
               <div className="text-th-gray-300 text-[13px] leading-[22px]">
                 {format(new Date(data.created_at), "dd-MM-yyyy")}
@@ -52,13 +52,13 @@ const PostDetail = async (props: any) => {
             </div>
             {!!data.content && (
               <ReactMarkdown
-                className="text-lg text-black font-regular mb-3 list-decimal unreset"
+                className="text-lg text-black font-regular mb-3 list-decimal unreset animation"
                 remarkPlugins={[remarkGfm]}
               >
                 {data.content}
               </ReactMarkdown>
             )}
-            <div className="flex mb-2">
+            <div className="flex mb-2 animation">
               <div className="flex flex-1 items-center gap-3 ">
                 <Image src={Eye} alt="" width={20} height={20} />
                 <div className="text-th-gray-300 text-[16px] leading-[22px]">

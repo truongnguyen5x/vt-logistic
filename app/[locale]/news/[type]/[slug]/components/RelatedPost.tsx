@@ -13,10 +13,10 @@ const RelatedPost: FC<Props> = ({ post }) => {
 
   return (
     <div>
-      <h3 className="text-th-gray-400 text-4xl font-semibold mt-[50px] mb-6">
+      <h3 className="text-th-gray-400 text-4xl font-semibold mt-[50px] mb-6 animation">
         {t("related_post")}
       </h3>
-      <div className="flex gap-[50px]">
+      <div className="flex gap-[50px] animation">
         {!!post?.length &&
           post.map((item, index) => <SideCard key={index} post={item} />)}
       </div>
