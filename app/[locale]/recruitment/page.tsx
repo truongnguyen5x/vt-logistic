@@ -4,7 +4,6 @@ import { ILocale } from "@configs/i18n";
 import { IPost } from "@type/post";
 import { useLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
-import { FC } from "react";
 
 type INewsAsset = {
   news: {

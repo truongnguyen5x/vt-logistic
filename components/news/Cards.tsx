@@ -3,7 +3,6 @@ import Link from "next/link";
 import { FC } from "react";
 import Calendar from "@assets/images/icons/calendar.svg";
 import { format, getDate, getDaysInMonth, getMonth } from "date-fns";
-import { getTranslations } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import ArrowRight from "@assets/images/icons/arrow_right_red.svg";
 import Clock from "@assets/images/icons/clock.svg";
@@ -20,7 +19,7 @@ export const Card: FC<CardProps> = ({
   className = "",
   category = "internal_news",
 }) => {
-  const t = useTranslations("news");
+  const t = useTranslations("internal_news");
 
   return (
     <Link

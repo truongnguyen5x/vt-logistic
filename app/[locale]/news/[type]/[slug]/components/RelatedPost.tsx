@@ -9,7 +9,7 @@ type Props = {
 };
 
 const RelatedPost: FC<Props> = ({ post }) => {
-  const t = useTranslations("news");
+  const t = useTranslations("internal_news");
 
   return (
     <div>

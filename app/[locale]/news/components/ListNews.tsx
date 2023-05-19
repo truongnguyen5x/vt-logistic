@@ -1,13 +1,9 @@
 import { fetchAsset } from "@api/index";
-import Banner from "@components/Banner";
-import BreadCrumbs from "@components/Breadcrumbs";
 import { ILocale } from "@configs/i18n";
 import { useLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { FC, Fragment } from "react";
-import Pagination from "@components/pagination";
 import { IPost, IPostCategory } from "@type/post";
-import { Card } from "../../../../components/news/Cards";
 import ListNewsPage from "@components/news/ListPage";
 
 type INewsAsset = {
