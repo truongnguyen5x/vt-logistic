@@ -229,9 +229,11 @@ body {
   & > ul {
     @apply absolute bg-white text-th-gray-400 font-normal w-52 hidden shadow-lg py-1;
     li {
-      @apply px-4 py-2 relative z-10;
+      @apply relative z-10;
       transition: background-color 0.7s;
-
+      & > a {
+        @apply block w-52 px-4 py-2;
+      }
       &.menu-toggle {
         @apply pr-8;
         & > div {
