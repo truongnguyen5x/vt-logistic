@@ -256,6 +256,11 @@
 .formTitle {
   @apply text-th-gray-300 font-medium text-2xl;
 }
+.boxContact {
+  @apply flex p-5 gap-5 items-center bg-th-white border border-th-gray-200 shadow-md flex-grow;
+  font-stretch: condensed;
+  height: 60px;
+}
 /**************
  * END TAB LOOKUP *
  **************/
@@ -282,6 +287,10 @@
 .postItem {
   @apply relative shadow-xl;
   padding-top: 87%;
+  transition: transform 0.2s;
+  &:hover {
+    transform: scale(1.02);
+  }
 }
 .postImg {
   @apply block min-h-0;

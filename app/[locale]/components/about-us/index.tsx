@@ -1,7 +1,7 @@
 import { useTranslations } from "next-intl";
 import { FC } from "react";
 import styles from "./styles.module.scss";
-import SliderIntro from "./SliderIntro";
+import SliderIntro from "./Slider";
 
 export type IAbout = {
   is_plus: boolean;

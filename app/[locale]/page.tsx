@@ -5,9 +5,9 @@ import { getTranslations } from "next-intl/server";
 import { fetchAsset, fetchHomePost } from "@api/index";
 import { ILocale, i18n } from "@configs/i18n";
 import SliderHome from "./components/Slider";
-import AboutUs, { IAbout } from "./components/about";
+import AboutUs, { IAbout } from "./components/about-us";
 import Image from "next/image";
-import AboutInfoTab, { IAboutContent } from "./components/tab";
+import HomeTab, { IAboutContent } from "./components/home-tab";
 import Partner, { IPartner } from "./components/Partner";
 import ListPost from "./components/post";
 
@@ -50,7 +50,7 @@ export default async function Home() {
         </div>
       </section>
       <AboutUs content={assetData.abouts} />
-      <AboutInfoTab assets={assetData.abouts_content} />
+      <HomeTab assets={assetData.abouts_content} />
       <Partner title={t("partner")} assets={assetData.list_partner} />
       <Suspense fallback={<div>Loading...</div>}>
         <ListPost

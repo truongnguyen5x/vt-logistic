@@ -7,7 +7,7 @@ import RightImg from "@assets/images/icons/arrow_right_2.svg";
 import RightDarkImg from "@assets/images/icons/arrow_right_2_dark.svg";
 import TabMyService from "./TabMyService";
 import Slider from "react-slick";
-import TabLookup from "./TabLookup";
+import TabLookup from "./tab-look-up";
 
 export type IServiceItem = {
   img: string;
@@ -36,7 +36,7 @@ export type IAboutContent = {
   lookup_tab: ILookupContent;
 };
 
-const AboutInfoTab = ({ assets }: { assets: IAboutContent }) => {
+const HomeTab = ({ assets }: { assets: IAboutContent }) => {
   //TODO: 1
   const [activeTab, setActiveTab] = useState(1);
   const slickRef = useRef<Slider>(null);
@@ -104,4 +104,4 @@ const AboutInfoTab = ({ assets }: { assets: IAboutContent }) => {
   );
 };
 
-export default AboutInfoTab;
+export default HomeTab;
