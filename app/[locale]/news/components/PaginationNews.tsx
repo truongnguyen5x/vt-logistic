@@ -8,7 +8,7 @@ const PaginationNews = () => {
 
   return (
     <Pagination
-      className="mt-[50px]"
+      className="mt-[50px] animation"
       pageSize={3}
       onPageChange={(page) => setPage(page)}
       totalCount={99}

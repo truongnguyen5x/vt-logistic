@@ -22,10 +22,13 @@ const NewsSideRight = async () => {
 
   return (
     <div>
-      <h3 className="text-th-gray-320 text-4xl font-semibold mb-4">
+      <h3 className="text-th-gray-320 text-4xl font-semibold mb-4 animation">
         {t("search")}
       </h3>
-      <div className="relative h-14 w-full bg-th-gray-220 px-6 py-4">
+      <div
+        className="relative h-14 w-full bg-th-gray-220 px-6 py-4 animation"
+        data-animation-delay="0.3s"
+      >
         <input
           placeholder={t("placeholder")}
           className="pr-12 bg-th-gray-220 w-full focus-visible:outline-none h-full"
@@ -43,14 +46,18 @@ const NewsSideRight = async () => {
       </h3>
       <div className="flex flex-col gap-[50px]">
         {!!hotNewsAsset.hot_news.length &&
-          hotNewsAsset.hot_news.map((item, index) => <SideCard key={index} post={item} />)}
+          hotNewsAsset.hot_news.map((item, index) => (
+            <SideCard key={index} post={item} className="animation" />
+          ))}
       </div>
       <div className="p-8 bg-th-gray-220 border border-th-gray-200 max-w-[490px] mt-[50px]">
-        <h5 className="font-semibold text-xl text-th-gray-320 mb-3">
+        <h5 className="font-semibold text-xl text-th-gray-320 mb-3 animation">
           {t("help_title")}
         </h5>
-        <p className="text-base text-th-gray-300">{t("help_content")}</p>
-        <button className="mt-[50px] px-10 py-5 bg-th-red-500 text-white font-medium text-2xl rounded-[50px] leading-[18px]">
+        <p className="text-base text-th-gray-300 animation">
+          {t("help_content")}
+        </p>
+        <button className="animation mt-[50px] px-10 py-5 bg-th-red-500 text-white font-medium text-2xl rounded-[50px] leading-[18px]">
           {t("contact")}
         </button>
       </div>

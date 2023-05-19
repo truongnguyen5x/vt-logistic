@@ -52,7 +52,7 @@ const ListNews = async ({ typeParams }: { typeParams: string }) => {
           <div className="flex flex-col gap-[50px]">
             {!!newsAsset.news.items.length &&
               newsAsset.news.items.map((item, index) => (
-                <Card post={item} key={index} />
+                <Card post={item} key={index} className="animation" />
               ))}
           </div>
           {/* @ts-expect-error Server Component */}
