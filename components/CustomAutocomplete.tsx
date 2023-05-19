@@ -49,7 +49,6 @@ const CustomSelect: FC<CustomSelectProps> = ({ options, value, onChange }) => {
       components={{
         DropdownIndicator: DropdownIndicator,
       }}
-      isMulti={false}
       options={options}
       menuPortalTarget={document.querySelector("body")}
       onChange={(e) => e && onChange && onChange(e.value)}

@@ -42,6 +42,10 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
   const [to, setTo] = useState<string>();
 
   const handleCheckService = () => {
+    // console.log("click");
+    if (!from || !to) {
+      return;
+    }
     if (index == SERVICE_TRANSPORT.EXPRESS) {
       if (
         from == "russia" ||
@@ -107,7 +111,11 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
               />
             </div>
           </div>
-          <button className="btn-red" onClick={handleCheckService}>
+          <button
+            className="btn-red"
+            onClick={handleCheckService}
+            disabled={!from || !to}
+          >
             {content.btn}
             <Image src={SearchImg} alt="search" width={20} height={20} />
           </button>

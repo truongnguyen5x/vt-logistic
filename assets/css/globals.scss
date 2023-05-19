@@ -355,13 +355,18 @@ a.footer-link {
   // box-shadow: 0px 4px 4px rgba(111, 59, 59, 0.25);
   transition: all 0.5s;
   &:hover {
-    background-color: var(--color-red-600);
-    transform: scale(1.03);
+    &:not(:disabled) {
+      background-color: var(--color-red-600);
+      transform: scale(1.03);
+    }
   }
   img {
     display: inline !important;
     @apply ml-4;
     margin-bottom: 3px;
+  }
+  &:disabled {
+    @apply cursor-not-allowed;
   }
 }
 .btn-white-outline {
@@ -411,11 +416,15 @@ a.footer-link {
 }
 .custom-select__control {
   @apply border border-th-gray-200 pl-3 pr-2;
+  cursor: pointer !important;
   width: 700px;
   height: 65px;
   border-radius: 0px !important;
   .custom-select__indicator-separator {
     @apply hidden;
+  }
+  &.custom-select__control--is-focused {
+    // border-color: var(--color-red-500) !important;
   }
 }
 .custom-select__menu-list {
