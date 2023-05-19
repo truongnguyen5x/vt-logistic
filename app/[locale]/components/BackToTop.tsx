@@ -38,13 +38,13 @@ const BackToTop = ({ txt }: { txt: string }) => {
       <Link
         href="http://m.me/LogisticsViettel"
         target="_blank"
-        className="fixed right-[98px] bottom-20 transition duration-700"
+        className="z-20 fixed right-[98px] bottom-20 transition duration-700"
         style={{ transform: showBtn ? "translateY(-90px)" : "" }}
       >
         <Image src={Messenger} alt="" height={70} width={70} />
       </Link>
       <div
-        className="fixed right-20 bottom-20 cursor-pointer flex flex-col gap-3 items-center overflow-hidden transition duration-5000"
+        className="z-10 fixed right-20 bottom-20 cursor-pointer flex flex-col gap-3 items-center overflow-hidden transition duration-5000"
         style={{ opacity: showBtn ? 1 : 0 }}
         onClick={handleBackToTop}
       >
