@@ -65,4 +65,4 @@ const NewsSideRight = async () => {
   );
 };
 
-export default NewsSideRight;
+export default NewsSideRight as unknown as FC;

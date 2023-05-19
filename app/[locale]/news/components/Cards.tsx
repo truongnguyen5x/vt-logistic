@@ -18,7 +18,7 @@ export const Card: FC<CardProps> = ({ post, className = "" }) => {
   const t = useTranslations("news");
 
   return (
-    <Link href={"/news/" + post.slug} className={className}>
+    <Link href={`/news/${post.type}/${post.slug}`} className={className}>
       <Image src={post.img} alt="" width={940} height={360} />
       <div className="p-8 max-w-[940px] bg-white shadow-[0px_5px_20px_rgba(0,0,0,0.1)]">
         <div className="flex gap-8 items-start">
@@ -64,7 +64,7 @@ export const Card: FC<CardProps> = ({ post, className = "" }) => {
 
 export const SideCard: FC<CardProps> = ({ post, className }) => {
   return (
-    <Link href={"/news/" + post.slug} className={className}>
+    <Link href={`/news/${post.type}/${post.slug}`} className={className}>
       <Image src={post.img} alt="" width={490} height={240} />
       <div className="pt-6 px-8 pb-8 bg-th-gray-220 max-w-[490px]">
         <div className="flex items-center gap-3 mb-2">

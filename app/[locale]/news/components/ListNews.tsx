@@ -55,7 +55,6 @@ const ListNews = async ({ typeParams }: { typeParams: string }) => {
                 <Card post={item} key={index} className="animation" />
               ))}
           </div>
-          {/* @ts-expect-error Server Component */}
           <NewsSideRight />
         </div>
         <PaginationNews />
