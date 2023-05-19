@@ -11,6 +11,7 @@ const MapContact = () => {
       defaultZoom={12}
       minZoom={12}
       maxZoom={12}
+      boxClassname="animation"
     >
       <Marker width={50} anchor={[21.0313, 105.7785]} />
     </Map>
