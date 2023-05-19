@@ -124,9 +124,7 @@ const Header: FC<HeaderProps> = ({ titles }) => {
         <ul>
           {menus.map((i, idx) => (
             <li key={idx} className={i.children ? "menu-toggle" : ""}>
-              <Link className="text-th-gray-400 font-medium" href={i.path}>
-                {titles[i.key]}
-              </Link>
+              <Link href={i.path}>{titles[i.key]}</Link>
               {i.children && <div />}
               {renderThreeLevelMenu(i.children)}
             </li>

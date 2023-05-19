@@ -227,7 +227,7 @@ body {
       @apply relative z-10;
       transition: background-color 0.7s;
       & > a {
-        @apply block w-52 px-4 py-2;
+        @apply text-th-gray-400 font-medium block w-52 px-4 py-2;
       }
       &.menu-toggle {
         @apply pr-8;
@@ -240,7 +240,10 @@ body {
         @apply absolute bg-white text-th-gray-400 font-normal w-52 hidden shadow-lg py-1 -right-52 top-0;
       }
       &:hover {
-        @apply text-th-red-500 font-medium;
+        & > a {
+          @apply text-th-red-500 font-medium;
+        }
+
         background-color: var(--color-gray-100);
         & > ul {
           @apply block;
