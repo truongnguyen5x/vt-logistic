@@ -16,6 +16,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import NewsSideRight from "@components/news/NewsSideRight";
 import RelatedPost from "./components/RelatedPost";
+import styles from "./style.module.scss";
 
 const PostDetail = async (props: any) => {
   const locale = useLocale();
@@ -52,7 +53,10 @@ const PostDetail = async (props: any) => {
             </div>
             {!!data.content && (
               <ReactMarkdown
-                className="text-lg text-black font-regular mb-3 list-decimal unreset animation"
+                className={[
+                  "text-lg text-black font-regular mb-3 list-decimal animation",
+                  styles.unreset,
+                ].join(" ")}
                 remarkPlugins={[remarkGfm]}
               >
                 {data.content}

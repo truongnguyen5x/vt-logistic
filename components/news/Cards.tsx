@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { FC } from "react";
 import Calendar from "@assets/images/icons/calendar.svg";
 import { format, getDate, getDaysInMonth, getMonth } from "date-fns";
@@ -7,6 +6,7 @@ import { useTranslations } from "next-intl";
 import ArrowRight from "@assets/images/icons/arrow_right_red.svg";
 import Clock from "@assets/images/icons/clock.svg";
 import { IPost, IPostCategory } from "@type/post";
+import Link from "next-intl/link";
 
 type CardProps = {
   post: IPost;
