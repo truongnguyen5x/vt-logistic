@@ -1,6 +1,6 @@
 import "server-only";
 import { ILocale } from "@configs/i18n";
-import { IDetailPost, IPost } from "@type/post";
+import { IPost } from "@type/post";
 
 export const fetchAsset = async <T = unknown>(
   page: string,
@@ -23,7 +23,7 @@ export const fetchHomePost = async (locale: ILocale) => {
 };
 
 export const fetchDetailPost = async (locale: ILocale) => {
-  const res: IDetailPost = await fetch(
+  const res: IPost = await fetch(
     `${process.env.API_URL}/post_detail/${locale}.json`,
     {
       cache: process.env.NODE_ENV == "development" ? "no-store" : "default",

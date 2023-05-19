@@ -3,22 +3,22 @@ import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { FC, Fragment } from "react";
 import Search from "@assets/images/icons/search-status.svg";
-import { SideCard } from "./Cards";
-import { IPost } from "@type/post";
+import { IPost, IPostCategory } from "@type/post";
 import { fetchAsset } from "@api/index";
 import { ILocale } from "@configs/i18n";
+import { SideCard } from "./Cards";
 
 type IDataHotNews = {
   hot_news: IPost[];
 };
 
-const NewsSideRight = async () => {
-  const locale = useLocale();
+type Props = {
+  category: IPostCategory;
+  data: IDataHotNews;
+};
 
-  const [hotNewsAsset, t] = await Promise.all([
-    fetchAsset<IDataHotNews>("hot_news", locale as ILocale),
-    getTranslations("news"),
-  ]);
+const NewsSideRight: FC<Props> = ({ category, data }) => {
+  const t = useTranslations(category);
 
   return (
     <div>
@@ -45,9 +45,14 @@ const NewsSideRight = async () => {
         {t("hot_news")}
       </h3>
       <div className="flex flex-col gap-[50px]">
-        {!!hotNewsAsset.hot_news.length &&
-          hotNewsAsset.hot_news.map((item, index) => (
-            <SideCard key={index} post={item} className="animation" />
+        {!!data.hot_news.length &&
+          data.hot_news.map((item, index) => (
+            <SideCard
+              key={index}
+              post={item}
+              className="animation"
+              category={category}
+            />
           ))}
       </div>
       <div className="p-8 bg-th-gray-220 border border-th-gray-200 max-w-[490px] mt-[50px]">
@@ -65,4 +70,4 @@ const NewsSideRight = async () => {
   );
 };
 
-export default NewsSideRight as unknown as FC;
+export default NewsSideRight;

@@ -7,18 +7,28 @@ import { getTranslations } from "next-intl/server";
 import { useTranslations } from "next-intl";
 import ArrowRight from "@assets/images/icons/arrow_right_red.svg";
 import Clock from "@assets/images/icons/clock.svg";
-import { IPost } from "@type/post";
+import { IPost, IPostCategory } from "@type/post";
 
 type CardProps = {
   post: IPost;
   className?: string;
+  category?: IPostCategory;
 };
 
-export const Card: FC<CardProps> = ({ post, className = "" }) => {
+export const Card: FC<CardProps> = ({
+  post,
+  className = "",
+  category = "internal_news",
+}) => {
   const t = useTranslations("news");
 
   return (
-    <Link href={`/news/${post.type}/${post.slug}`} className={className}>
+    <Link
+      href={`${
+        category === "recruitment" ? "/recruitment/" : `/news/${post.category}/`
+      }${post.slug}`}
+      className={className}
+    >
       <Image src={post.img} alt="" width={940} height={360} />
       <div className="p-8 max-w-[940px] bg-white shadow-[0px_5px_20px_rgba(0,0,0,0.1)]">
         <div className="flex gap-8 items-start">
@@ -62,9 +72,18 @@ export const Card: FC<CardProps> = ({ post, className = "" }) => {
   );
 };
 
-export const SideCard: FC<CardProps> = ({ post, className }) => {
+export const SideCard: FC<CardProps> = ({
+  post,
+  className,
+  category = "internal_news",
+}) => {
   return (
-    <Link href={`/news/${post.type}/${post.slug}`} className={className}>
+    <Link
+      href={`${
+        category === "recruitment" ? "/recruitment/" : `/news/${post.category}/`
+      }${post.slug}`}
+      className={className}
+    >
       <Image src={post.img} alt="" width={490} height={240} />
       <div className="pt-6 px-8 pb-8 bg-th-gray-220 max-w-[490px]">
         <div className="flex items-center gap-3 mb-2">

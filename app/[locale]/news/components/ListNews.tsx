@@ -6,10 +6,9 @@ import { useLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { FC, Fragment } from "react";
 import Pagination from "@components/pagination";
-import { IPost } from "@type/post";
-import { Card } from "./Cards";
-import NewsSideRight from "./NewsSideRight";
-import PaginationNews from "./PaginationNews";
+import { IPost, IPostCategory } from "@type/post";
+import { Card } from "../../../../components/news/Cards";
+import ListNewsPage from "@components/news/ListPage";
 
 type INewsAsset = {
   news: {
@@ -19,22 +18,24 @@ type INewsAsset = {
   };
 };
 
+type IDataHotNews = {
+  hot_news: IPost[];
+};
+
 const ListNews = async ({ typeParams }: { typeParams: string }) => {
-  let type = "";
+  let category: IPostCategory = "internal_news";
 
   if (!!typeParams && typeParams === "market-news") {
-    type = "market_news";
+    category = "market_news";
   } else if (!!typeParams && typeParams === "specialized-news") {
-    type = "specialized_news";
-  } else {
-    type = "news";
+    category = "specialized_news";
   }
-
   const locale = useLocale();
 
-  const [newsAsset, t] = await Promise.all([
-    fetchAsset<INewsAsset>(type, locale as ILocale),
-    getTranslations(type),
+  const [newsAsset, hotNews, t] = await Promise.all([
+    fetchAsset<INewsAsset>(category, locale as ILocale),
+    fetchAsset<IDataHotNews>("hot_news", locale as ILocale),
+    getTranslations(category),
   ]);
 
   const breadcrumbs = [
@@ -44,22 +45,14 @@ const ListNews = async ({ typeParams }: { typeParams: string }) => {
   ];
 
   return (
-    <Fragment>
-      <Banner image={newsAsset.news.banner} title={t("title")} />
-      <div className="container mx-auto mb-32">
-        <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6 mb-20" />
-        <div className="flex items-start gap-[100px]">
-          <div className="flex flex-col gap-[50px]">
-            {!!newsAsset.news.items.length &&
-              newsAsset.news.items.map((item, index) => (
-                <Card post={item} key={index} className="animation" />
-              ))}
-          </div>
-          <NewsSideRight />
-        </div>
-        <PaginationNews />
-      </div>
-    </Fragment>
+    <ListNewsPage
+      category={category}
+      banner={newsAsset.news.banner}
+      title={t("title")}
+      breadcrumbs={breadcrumbs}
+      data={newsAsset.news.items}
+      sideData={hotNews}
+    />
   );
 };
 

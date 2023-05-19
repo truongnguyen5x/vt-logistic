@@ -14,15 +14,16 @@ import Image from "next/image";
 import { Fragment } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import NewsSideRight from "../../components/NewsSideRight";
+import NewsSideRight from "@components/news/NewsSideRight";
 import RelatedPost from "./components/RelatedPost";
 
 const PostDetail = async (props: any) => {
   const locale = useLocale();
 
-  const [data, t] = await Promise.all([
+  const [data, dataHotNews, t] = await Promise.all([
     fetchDetailPost(locale as ILocale),
-    getTranslations("news"),
+    fetchAsset<{ hot_news: IPost[] }>("hot_news", locale as ILocale),
+    getTranslations("internal_news"),
   ]);
 
   const breadcrumbs = [
@@ -78,7 +79,7 @@ const PostDetail = async (props: any) => {
             </div>
             <RelatedPost post={data.relatedPost} />
           </div>
-          <NewsSideRight />
+          <NewsSideRight data={dataHotNews} category={"internal_news"} />
         </div>
       </div>
     </Fragment>
