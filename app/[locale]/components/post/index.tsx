@@ -4,6 +4,8 @@ import React, { FC } from "react";
 import PostHome from "./Post";
 import RightImg from "@assets/images/icons/arrow_right_2.svg";
 import Image from "next/image";
+import { useRouter } from "next-intl/client";
+import Link from "next-intl/link";
 interface ListPostProps {
   title: string;
   learn_more: string;
@@ -41,10 +43,12 @@ const ListPost = async ({
         className="mt-12 text-center mb-24 animation"
         data-animation-delay="0.6s"
       >
-        <button className="btn-red" onClick={handleClickMore}>
-          {learn_more}
-          <Image src={RightImg} width={28} height={28} alt="" />
-        </button>
+        <Link href="/news">
+          <button className="btn-red" onClick={handleClickMore}>
+            {learn_more}
+            <Image src={RightImg} width={28} height={28} alt="" />
+          </button>
+        </Link>
       </div>
     </div>
   );
