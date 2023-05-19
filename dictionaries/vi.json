@@ -78,6 +78,29 @@
       "home": "Trang chủ",
       "service": "Dịch vụ",
       "trucking": "Dịch vụ vận tải đường bộ"
+    },
+    "register_popup": {
+      "title": "VUI LÒNG ĐIỀN CÁC THÔNG TIN DƯỚI ĐÂY ĐỂ VIETTEL LOGISTICS HỖ TRỢ KHÁCH HÀNG TỐT NHẤT",
+      "description": "(Lưu ý: không để trống các trường thông tin có dấu *)",
+      "fullname": "Họ tên*",
+      "phone_number": "Số điện thoại*",
+      "email": "Email",
+      "service": "Dịch vụ*",
+      "from": "Điểm đi*",
+      "to": "Điểm đến*",
+      "weight": "Trọng lượng (Tính theo Kilogam)*",
+      "note": "Ghi chú loại hàng hóa và các yêu cầu khác",
+      "button": "GỬI THÔNG TIN",
+      "required": "(Vui lòng điền đủ các trường thông tin có dấu * để hoàn tất việc tạo đơn)",
+      "placeholder": {
+        "fullname": "VD: Nguyễn Văn A",
+        "phone_number": "VD: 0123456789",
+        "email": "VD: example@gmail.com",
+        "from": "VD: QL32, P.Minh Khai, Hà Nội",
+        "to": "VD: Hà Nội, Đà Nẵng, Cần Thơ",
+        "weight": "VD: 1000 tấn",
+        "note": "VD: Hàng dễ vỡ, thời gian giao hàng gấp,..."
+      }
     }
   },
   "customs": {
