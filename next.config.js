@@ -20,6 +20,12 @@ const nextConfig = {
         port: "",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "truong-dev-demo.cloud",
+        port: "3001",
+        pathname: "/**",
+      },
     ],
   },
 };
