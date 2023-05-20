@@ -9,12 +9,6 @@ const nextConfig = {
         pathname: "/**",
       },
       {
-        protocol: "http",
-        hostname: "142.93.105.14",
-        port: "3001",
-        pathname: "/**",
-      },
-      {
         protocol: "https",
         hostname: "vt-logistic-asset.vercel.app",
         port: "",
