@@ -2,6 +2,8 @@ import { FC } from "react";
 import styles from "./style.module.scss";
 import Image from "next/image";
 import RightImg from "@assets/images/icons/arrow_right_2.svg";
+import { useRouter } from "next-intl/client";
+import Link from "next-intl/link";
 
 interface MoreServiceProps {
   services: Array<{ txt: string; url: string; img: string }>;
@@ -26,10 +28,12 @@ const MoreService: FC<MoreServiceProps> = ({ services, more }) => {
                 height={520}
                 alt=""
               />
-              <button className="btn-red absolute -bottom-7 right-0">
-                {more}
-                <Image src={RightImg} alt="next" width={20} height={20} />
-              </button>
+              <Link href={service.url}>
+                <button className="btn-red absolute -bottom-7 right-0">
+                  {more}
+                  <Image src={RightImg} alt="next" width={20} height={20} />
+                </button>
+              </Link>
             </div>
             <div className={styles.serviceItemTxt}>
               <p>{service.txt}</p>
