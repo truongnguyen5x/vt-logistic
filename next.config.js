@@ -26,6 +26,18 @@ const nextConfig = {
         port: "3001",
         pathname: "/**",
       },
+      {
+        protocol: "http",
+        hostname: "truong-dev-demo.cloud",
+        port: "3001",
+        pathname: "/**",
+      },
+      {
+        protocol: "http",
+        hostname: "178.128.59.133",
+        port: "3001",
+        pathname: "/**",
+      },
     ],
   },
 };
