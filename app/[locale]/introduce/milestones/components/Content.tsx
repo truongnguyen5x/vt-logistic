@@ -64,7 +64,7 @@ const Content: FC<Props> = ({ assets }) => {
                 item.timeline === selected.timeline
                   ? "text-4xl text-th-red-500 font-semibold after:h-8 after:w-8 after:bg-th-red-500 after:-left-[125px] after:top-0"
                   : "font-medium text-[25px] text-th-gray-330 after:h-4 after:w-4 after:bg-th-gray-330 after:-left-[117px] after:top-2"
-              } animation mb-[50px] last:mb-0
+              } animation mb-10 last:mb-0 h-10
             relative min-w-[85px] cursor-pointer text-end after:content-[''] after:absolute after:rounded-full transition-all`}
               data-animation-delay={`${0.3 + 0.1 * index}s`}
               onClick={() => onSelect(item)}
