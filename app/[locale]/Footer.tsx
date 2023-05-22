@@ -76,7 +76,7 @@ const Footer = async () => {
             <p className="footer-title">{t("receive_info")}</p>
           </div>
           <div className="footer-input-register">
-            <input placeholder={t("placeholder")} type="text" />
+            <input placeholder={t("placeholder")} type="text" id="js-register-input" />
             <button>{t("register_txt")}</button>
           </div>
         </div>
