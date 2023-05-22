@@ -38,6 +38,7 @@ const BackToTop = ({ txt }: { txt: string }) => {
       <Link
         href="http://m.me/LogisticsViettel"
         target="_blank"
+        title="Contact us via Messenger"
         className="z-20 fixed right-[98px] bottom-20 transition duration-700"
         style={{ transform: showBtn ? "translateY(-90px)" : "" }}
       >

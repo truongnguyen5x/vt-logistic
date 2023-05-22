@@ -27,7 +27,9 @@
     "receive_info": "Nhận thông tin mới nhất từ Viettel Logistics",
     "placeholder": "Nhập địa chỉ Email",
     "register_txt": "Đăng ký",
-    "back_to_head": "Về đầu trang"
+    "back_to_head": "Về đầu trang",
+    "email_validate": "Địa chỉ email của bạn không đúng",
+    "register_success": "Đăng ký email thành công"
   },
   "home": {
     "about_us": "Về chúng tôi",

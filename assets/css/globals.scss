@@ -277,16 +277,32 @@ body {
   font-size: 28px;
 }
 .footer-input-register {
-  @apply flex;
+  @apply flex relative;
   width: 634px;
   height: 50px;
   input {
     @apply flex-grow rounded-l-full pl-7 outline-none;
+    transition: all 0.5s;
   }
   button {
+    &:disabled {
+      @apply cursor-not-allowed;
+    }
     @apply w-32 rounded-r-full text-th-white text-xl font-semibold;
     background-color: var(--color-gray-320);
     padding-bottom: 2px;
+  }
+
+  &.footer-email-error {
+    input {
+      padding-bottom: 14px;
+    }
+    p {
+      @apply absolute text-th-red-500 pointer-events-none font-medium;
+      font-size: 13px;
+      bottom: 3px;
+      left: 28px;
+    }
   }
 }
 .footer-col {
@@ -315,6 +331,7 @@ a.footer-link {
     margin-top: 5px;
   }
 }
+
 /**********
  * END FOOTER *
  **********/

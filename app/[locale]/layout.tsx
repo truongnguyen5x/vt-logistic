@@ -12,6 +12,7 @@ import { ILocale, i18n } from "@configs/i18n";
 import Footer from "./Footer";
 import Script from "next/script";
 import BackToTop from "./components/BackToTop";
+import toast, { Toaster } from "react-hot-toast";
 
 const SVNgilroy = localFont({
   src: [
@@ -88,6 +89,7 @@ export default function RootLayout({
         {children}
         <Footer />
         <BackToTop txt={t("back_to_head")} />
+        <Toaster position="top-right" reverseOrder={false} />
       </body>
       <Script src="/js/script.js" />
     </html>

@@ -10,6 +10,7 @@ import LogoImg from "@assets/images/logos/logo_light.svg";
 import BCTimg from "@assets/images/logos/bo_cong_thuong.png";
 import VtImg from "@assets/images/logos/viettel.png";
 import { getTranslations } from "next-intl/server";
+import ButtonRegisterFooter from "@components/btn-register/BtnRegisterFooter";
 
 type ILink = {
   txt: string;
@@ -75,10 +76,12 @@ const Footer = async () => {
             <Image src={SmsImg} width={50} height={50} alt="" />
             <p className="footer-title">{t("receive_info")}</p>
           </div>
-          <div className="footer-input-register">
-            <input placeholder={t("placeholder")} type="text" id="js-register-input" />
-            <button>{t("register_txt")}</button>
-          </div>
+          <ButtonRegisterFooter
+            successTxt={t("register_success")}
+            errorTxt={t("email_validate")}
+            placeholder={t("placeholder")}
+            btn={t("register_txt")}
+          />
         </div>
       </div>
       <div className="container mx-auto py-16 ">
