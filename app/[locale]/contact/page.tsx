@@ -75,7 +75,7 @@ const Contact = async () => {
           </div>
         )}
       </div>
-      <div className="mt-[100px] flex gap-20 items-center justify-end max-2xl:ml-8">
+      <div className="mt-[100px] flex gap-20 items-start justify-end max-2xl:ml-8">
         <div>
           <h4 className="animation section-name-left mb-11">
             {t("contact_we")}
@@ -139,7 +139,7 @@ const Contact = async () => {
               placeholder={t("form.placeholder_note")}
             />
           </div>
-          <button className="animation bg-th-red-500 text-white text-2xl font-medium text-center w-full rounded-[50px] py-5">
+          <button className="animation bg-th-red-500 text-white text-2xl font-medium text-center w-full rounded-[50px] py-5 mb-32">
             {t("form.button")}
           </button>
         </div>
