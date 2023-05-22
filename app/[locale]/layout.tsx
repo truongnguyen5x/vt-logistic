@@ -17,22 +17,22 @@ import toast, { Toaster } from "react-hot-toast";
 const SVNgilroy = localFont({
   src: [
     {
-      path: "../../assets/fonts/SVN-Gilroy Medium.otf",
+      path: "../../assets/fonts/SVN-Gilroy Medium.ttf",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../../assets/fonts/SVN-Gilroy Regular.otf",
+      path: "../../assets/fonts/SVN-Gilroy.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../../assets/fonts/SVN-Gilroy SemiBold.otf",
+      path: "../../assets/fonts/SVN-Gilroy SemiBold.ttf",
       weight: "600",
       style: "normal",
     },
     {
-      path: "../../assets/fonts/SVN-Gilroy Bold.otf",
+      path: "../../assets/fonts/SVN-Gilroy Bold.ttf",
       weight: "700",
       style: "normal",
     },

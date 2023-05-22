@@ -269,12 +269,15 @@
  * LIST PARTNER *
  ****************/
 .partnerItem {
-  @apply flex justify-center items-center border-th-gray-200 shadow-lg p-3;
+  @apply flex justify-center items-center border-th-gray-200 shadow-lg p-3 m-3 cursor-pointer;
   border-width: 1px;
   display: flex !important;
   width: 253px !important;
   height: 165px;
   img {
+  }
+  &:hover {
+    @apply border border-th-red-500;
   }
 }
 /****************
@@ -346,7 +349,7 @@
   }
 }
 .postLinkLarge {
-  @apply text-th-red-500 font-medium absolute bottom-3 right-4;
+  @apply text-th-red-500 font-medium absolute bottom-8 right-8;
   font-size: 15px;
   img {
     @apply inline;
