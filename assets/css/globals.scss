@@ -310,7 +310,7 @@ body {
   font-size: 21px;
 }
 .footer-link {
-  @apply text-sm text-th-gray-400 block;
+  @apply text-sm text-th-gray-400 block flex;
   img {
     @apply inline mr-2;
     margin-bottom: 2px;

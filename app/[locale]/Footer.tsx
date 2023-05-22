@@ -61,10 +61,10 @@ const Footer = async () => {
       }
     }
     return (
-      <p className="footer-link my-3">
+      <div className="footer-link my-3">
         {asset?.img && <Image src={asset.img} width={22} height={22} alt="" />}
-        {asset.txt}
-      </p>
+        <p>{asset.txt}</p>
+      </div>
     );
   };
 
