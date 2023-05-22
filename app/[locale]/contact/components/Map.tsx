@@ -4,7 +4,7 @@ import { Map, Marker } from "pigeon-maps";
 
 const MapContact = () => {
   return (
-    <div className="absolute right-0 top-0">
+    <div className="absolute right-0 top-0 md:w-[600px]">
       <Map
         height={659}
         width={960}
