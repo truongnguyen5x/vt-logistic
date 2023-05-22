@@ -20,6 +20,8 @@ type CustomSelectProps = {
   value?: string;
   onChange?: (newValue: string) => void;
   options: IOption[];
+  classNamePrefix?: string;
+  ref?: any
 };
 
 const DropdownIndicator = (props: any) => {
@@ -30,7 +32,12 @@ const DropdownIndicator = (props: any) => {
   );
 };
 
-const CustomSelect: FC<CustomSelectProps> = ({ options, value, onChange }) => {
+const CustomSelect: FC<CustomSelectProps> = ({
+  options,
+  value,
+  onChange,
+  classNamePrefix = "custom-select",
+}) => {
   const [_value, setValue] = useState<IOption | undefined>(undefined);
 
   useEffect(() => {
@@ -42,7 +49,7 @@ const CustomSelect: FC<CustomSelectProps> = ({ options, value, onChange }) => {
 
   return (
     <Select
-      classNamePrefix={"custom-select"}
+      classNamePrefix={classNamePrefix}
       value={_value}
       isSearchable
       components={{
@@ -50,6 +57,7 @@ const CustomSelect: FC<CustomSelectProps> = ({ options, value, onChange }) => {
       }}
       options={options}
       menuPortalTarget={document.querySelector("body")}
+      styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
       onChange={(e) => e && onChange && onChange(e.value)}
     />
   );

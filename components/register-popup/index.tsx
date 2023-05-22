@@ -2,7 +2,16 @@
 
 import Image from "next/image";
 import { FC, useEffect, useRef, useState } from "react";
-import BgPopup from "@assets/images/bg_popup.jpg";
+import BgPopup from "@assets/images/bg_popup.png";
+import CustomAutocomplete from "@components/CustomAutocomplete";
+import { ICountry, IProvince } from "@type/location";
+import { fetchFromClient } from "@api/client";
+import { useParams } from "next/navigation";
+import { ILocale } from "@configs/i18n";
+import { SERVICE_TRANSPORT } from "@ultility/constant";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { Controller, useForm } from "react-hook-form";
 
 type Props = {
   textBtn?: string;
@@ -31,6 +40,15 @@ type Props = {
   };
 };
 
+const schema = yup.object({
+  fullName: yup.string().required("Vui lòng nhập"),
+  phoneNumber: yup.string().required("Vui lòng nhập"),
+  email: yup.string().email("Vui lòng nhập email"),
+  service: yup.string().required("Vui lòng nhập"),
+  from: yup.string().required("Vui lòng nhập"),
+  to: yup.string().required("Vui lòng nhập"),
+});
+
 const ResgisterPopup: FC<Props> = ({
   textBtn = "",
   label,
@@ -38,7 +56,36 @@ const ResgisterPopup: FC<Props> = ({
   title,
   description,
 }) => {
+  const params = useParams();
+
   const [open, setOpen] = useState<boolean>(false);
+
+  const [listCountry, setListCountry] = useState<ICountry[]>([]);
+  const [listProvince, setListProvince] = useState<IProvince[]>([]);
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+    setValue,
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+
+  useEffect(() => {
+    fetchFromClient<ICountry[]>("country", params.locale as ILocale).then(
+      (res) => {
+        setListCountry(res);
+      }
+    );
+    fetchFromClient<IProvince[]>("province", params.locale as ILocale).then(
+      (res) => {
+        setListProvince(res);
+      }
+    );
+  }, []);
+
   const ref = useRef(null);
 
   const handleOpenPopup = () => {
@@ -51,7 +98,11 @@ const ResgisterPopup: FC<Props> = ({
     document.body.style.overflowY = "auto";
   };
 
-  useOutsideClose(ref, handleClose);
+  // useOutsideClose(ref, handleClose);
+
+  const onSubmit = (data: any) => {
+    console.log(data);
+  };
 
   return (
     <div>
@@ -66,13 +117,15 @@ const ResgisterPopup: FC<Props> = ({
         <div className="fixed inset-0 z-10 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
           <div className="flex flex-col items-center justify-center 2xl:h-full mx-auto">
             <div
-              className="relative py-[50px] w-auto 2xl:w-4/5 shadow-lg rounded-md bg-white"
+              className="relative py-16 px-44 shadow-lg rounded-md bg-white"
               ref={ref}
             >
               <Image
                 src={BgPopup}
                 alt=""
-                className="absolute top-0 left-0 w-full h-full"
+                width={900}
+                height={593}
+                className="absolute top-44 left-16"
               />
               <button
                 onClick={handleClose}
@@ -85,93 +138,218 @@ const ResgisterPopup: FC<Props> = ({
                   ></path>
                 </svg>
               </button>
-              <div className="relative bg-white py-[50px] px-20 max-w-6xl mx-auto rounded-lg">
+              <div className="relative max-w-6xl">
                 <h3 className="text-xl text-th-red-500 text-center font-bold max-w-[500px] mx-auto">
                   {title}
                 </h3>
                 <p className="mt-4 text-th-gray-400 text-base text-center">
                   {description}
                 </p>
-                <div className="mt-8">
-                  <div className="grid grid-cols-2 gap-y-6 gap-x-8">
+                <form onSubmit={handleSubmit(onSubmit)} className="mt-8">
+                  <div className="grid grid-cols-2 gap-8">
                     <div>
-                      <div className="text-th-gray-320 text-sm font-semibold mb-1.5">
+                      <label className="text-th-gray-320 text-sm font-semibold mb-1.5 relative after:absolute after:-right-2 after:content-['*'] after:text-th-red-500">
                         {label.fullname}
-                      </div>
-                      <input
-                        className="bg-th-gray-220 h-14 focus-visible:outline-none px-6 py-4 w-full"
-                        placeholder={placeholder.fullname}
+                      </label>
+                      <Controller
+                        name="fullName"
+                        control={control}
+                        render={({ field }) => (
+                          <input
+                            className={`bg-th-gray-220 h-14 focus-visible:outline-none px-6 py-4 w-full ${
+                              !!errors.fullName?.message
+                                ? "border border-th-red-500"
+                                : ""
+                            }`}
+                            placeholder={placeholder.fullname}
+                            {...field}
+                          />
+                        )}
                       />
+                      {!!errors.fullName && !!errors.fullName?.message && (
+                        <p className="text-sm text-th-red-500 mt-1">
+                          {errors.fullName?.message.toString()}
+                        </p>
+                      )}
                     </div>
                     <div>
-                      <div className="text-th-gray-320 text-sm font-semibold mb-1.5">
+                      <label className="text-th-gray-320 text-sm font-semibold mb-1.5 relative after:absolute after:-right-2 after:content-['*'] after:text-th-red-500">
                         {label.phone_number}
-                      </div>
-                      <input
-                        className="bg-th-gray-220 h-14 focus-visible:outline-none px-6 py-4 w-full"
-                        placeholder={placeholder.phone_number}
+                      </label>
+                      <Controller
+                        name="phoneNumber"
+                        control={control}
+                        render={({ field }) => (
+                          <input
+                            className={`bg-th-gray-220 h-14 focus-visible:outline-none px-6 py-4 w-full ${
+                              !!errors.phoneNumber?.message
+                                ? "border border-th-red-500"
+                                : ""
+                            }`}
+                            placeholder={placeholder.phone_number}
+                            {...field}
+                          />
+                        )}
                       />
+                      {!!errors.phoneNumber &&
+                        !!errors.phoneNumber?.message && (
+                          <p className="text-sm text-th-red-500 mt-1">
+                            {errors.phoneNumber?.message.toString()}
+                          </p>
+                        )}
                     </div>
                     <div>
-                      <div className="text-th-gray-320 text-sm font-semibold mb-1.5">
+                      <label className="text-th-gray-320 text-sm font-semibold mb-1.5">
                         {label.email}
-                      </div>
-                      <input
-                        className="bg-th-gray-220 h-14 focus-visible:outline-none px-6 py-4 w-full"
-                        placeholder={placeholder.email}
+                      </label>
+                      <Controller
+                        name="email"
+                        control={control}
+                        render={({ field }) => (
+                          <input
+                            className={`bg-th-gray-220 h-14 focus-visible:outline-none px-6 py-4 w-full ${
+                              !!errors.email?.message
+                                ? "border border-th-red-500"
+                                : ""
+                            }`}
+                            placeholder={placeholder.email}
+                            {...field}
+                          />
+                        )}
                       />
+                      {!!errors.email && !!errors.email?.message && (
+                        <p className="text-sm text-th-red-500 mt-1">
+                          {errors.email?.message.toString()}
+                        </p>
+                      )}
                     </div>
                     <div>
-                      <div className="text-th-gray-320 text-sm font-semibold mb-1.5">
+                      <label className="text-th-gray-320 text-sm font-semibold mb-1.5 relative after:absolute after:-right-2 after:content-['*'] after:text-th-red-500">
                         {label.service}
-                      </div>
-                      <input className="bg-th-gray-220 h-14 focus-visible:outline-none px-6 py-4 w-full" />
+                      </label>
+                      <CustomAutocomplete
+                        classNamePrefix={
+                          !!errors.service?.message
+                            ? "custom-select-register-error"
+                            : "custom-select-register"
+                        }
+                        value={getValues("service")}
+                        onChange={(e) =>
+                          setValue("service", e, {
+                            shouldValidate: true,
+                            shouldDirty: true,
+                          })
+                        }
+                        options={[
+                          { value: "0", label: "Express" },
+                          { value: "1", label: "Fowarding" },
+                          { value: "2", label: "Vận tải" },
+                        ]}
+                      />
+                      {!!errors.service && !!errors.service?.message && (
+                        <p className="text-sm text-th-red-500 mt-1">
+                          {errors.service?.message.toString()}
+                        </p>
+                      )}
                     </div>
                     <div>
-                      <div className="text-th-gray-320 text-sm font-semibold mb-1.5">
+                      <label className="text-th-gray-320 text-sm font-semibold mb-1.5 relative after:absolute after:-right-2 after:content-['*'] after:text-th-red-500">
                         {label.from}
-                      </div>
-                      <input
-                        className="bg-th-gray-220 h-14 focus-visible:outline-none px-6 py-4 w-full"
-                        placeholder={placeholder.from}
+                      </label>
+                      <CustomAutocomplete
+                        classNamePrefix={
+                          !!errors.from?.message
+                            ? "custom-select-register-error"
+                            : "custom-select-register"
+                        }
+                        value={getValues("from")}
+                        onChange={(e) =>
+                          setValue("from", e, {
+                            shouldValidate: true,
+                            shouldDirty: true,
+                          })
+                        }
+                        options={
+                          Number(getValues("service")) ==
+                          SERVICE_TRANSPORT.TRANSPORT
+                            ? listProvince.map((i) => ({
+                                value: i.id,
+                                label: i.name,
+                              }))
+                            : listCountry.map((i) => ({
+                                value: i.id,
+                                label: i.name,
+                              }))
+                        }
                       />
+                      {!!errors.from && !!errors.from?.message && (
+                        <p className="text-sm text-th-red-500 mt-1">
+                          {errors.from?.message.toString()}
+                        </p>
+                      )}
                     </div>
                     <div>
-                      <div className="text-th-gray-320 text-sm font-semibold mb-1.5">
+                      <label className="text-th-gray-320 text-sm font-semibold mb-1.5 relative after:absolute after:-right-2 after:content-['*'] after:text-th-red-500">
                         {label.to}
-                      </div>
-                      <input
-                        className="bg-th-gray-220 h-14 focus-visible:outline-none px-6 py-4 w-full"
-                        placeholder={placeholder.to}
+                      </label>
+                      <CustomAutocomplete
+                        classNamePrefix={
+                          !!errors.to?.message
+                            ? "custom-select-register-error"
+                            : "custom-select-register"
+                        }
+                        value={getValues("to")}
+                        onChange={(e) =>
+                          setValue("to", e, {
+                            shouldValidate: true,
+                            shouldDirty: true,
+                          })
+                        }
+                        options={
+                          Number(getValues("service")) ==
+                          SERVICE_TRANSPORT.TRANSPORT
+                            ? listProvince.map((i) => ({
+                                value: i.id,
+                                label: i.name,
+                              }))
+                            : listCountry.map((i) => ({
+                                value: i.id,
+                                label: i.name,
+                              }))
+                        }
                       />
+                      {!!errors.to && !!errors.to?.message && (
+                        <p className="text-sm text-th-red-500 mt-1">
+                          {errors.to?.message.toString()}
+                        </p>
+                      )}
                     </div>
                   </div>
 
-                  <div className="mt-6">
-                    <div className="text-th-gray-320 text-sm font-semibold mb-1.5">
-                      {label.weight}
-                    </div>
-                    <input
-                      className="bg-th-gray-220 h-14 focus-visible:outline-none px-6 py-4 w-full"
-                      placeholder={placeholder.weight}
-                    />
-                  </div>
-                  <div className="mt-6">
-                    <div className="text-th-gray-320 text-sm font-semibold mb-1.5">
+                  <div className="mt-8">
+                    <label className="text-th-gray-320 text-sm font-semibold mb-1.5">
                       {label.note}
-                    </div>
-                    <input
-                      className="bg-th-gray-220 h-14 focus-visible:outline-none px-6 py-4 w-full"
-                      placeholder={placeholder.note}
+                    </label>
+                    <Controller
+                      name="note"
+                      control={control}
+                      render={({ field }) => (
+                        <textarea
+                          className="bg-th-gray-220 focus-visible:outline-none px-6 py-4 w-full"
+                          rows={4}
+                          placeholder={placeholder.note}
+                          {...field}
+                        />
+                      )}
                     />
                   </div>
-                  <button className="btn-red mt-6 flex justify-center items-center mx-auto">
+                  <button
+                    type="submit"
+                    className="btn-red mt-8 flex justify-center items-center mx-auto"
+                  >
                     {label.button}
                   </button>
-                  <p className="text-center text-th-red-500 mt-6 text-base">
-                    {label.required}
-                  </p>
-                </div>
+                </form>
               </div>
             </div>
           </div>
@@ -191,6 +369,26 @@ function useOutsideClose(ref: any, onClose: () => void) {
     function handleClickOutside(event: any) {
       if (ref.current && !ref.current.contains(event.target)) {
         onClose();
+      }
+      if (
+        !!document.getElementsByClassName("custom-select-register__menu").length
+      ) {
+        let popElement = document.getElementsByClassName(
+          "custom-select-register__menu  "
+        );
+        let isClickInside;
+        for (let i = 0; i < popElement.length; i++) {
+          isClickInside = popElement[i].contains(event.target);
+          if (isClickInside) {
+            break;
+            //alert("Outside of" + popElement[i].id);
+            //the click was outside the popElement, do something
+          }
+        }
+        if (!isClickInside) {
+          onClose();
+          return;
+        }
       }
     }
     // Bind the event listener

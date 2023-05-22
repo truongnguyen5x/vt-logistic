@@ -445,6 +445,33 @@ a.footer-link {
   @include vertical-scrollbar();
 }
 
+.custom-select-register__control, .custom-select-register-error__control {
+  cursor: pointer !important;
+  width: 328px;
+  height: 56px;
+  background-color: var(--color-gray-220) !important;
+  border: none !important;
+  border-radius: 0px !important;
+
+  .custom-select-register__value-container, .custom-select-register-error__value-container {
+    padding: 16px 24px !important;
+  }
+
+  .custom-select-register__indicator-separator, .custom-select-register-error__indicator-separator {
+    @apply hidden;
+  }
+  &.custom-select-register__control--is-focused, &.custom-select-register-error__control--is-focused {
+    // border-color: var(--color-red-500) !important;
+  }
+}
+.custom-select-register__menu-list, .custom-select-register-error__menu-list {
+  @include vertical-scrollbar();
+}
+
+.custom-select-register-error__control {
+  border: 1px solid var(--color-red-500) !important
+}
+
 /********************
  * END COMMON COMPONENT *
  ********************/
