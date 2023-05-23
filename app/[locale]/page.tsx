@@ -10,6 +10,7 @@ import Image from "next/image";
 import HomeTab, { IAboutContent } from "./components/home-tab";
 import Partner, { IPartner } from "./components/Partner";
 import ListPost from "./components/post";
+import { getHome } from "@api/graphql-client";
 
 type IHomeContent = {
   banner: string[];
@@ -26,6 +27,8 @@ type IHomeContent = {
 
 export default async function Home() {
   const locale = useLocale();
+
+  // await getHome();
 
   const [assetData, t] = await Promise.all([
     fetchAsset<IHomeContent>("home", locale as ILocale),
