@@ -8,16 +8,11 @@ import Link from "next-intl/link";
 import { useRouter } from "next-intl/client";
 
 interface TabMyServiceProps {
-  background: string;
   contents: IServiceItem[];
   allService: string;
 }
 
-const TabMyService: FC<TabMyServiceProps> = ({
-  background,
-  contents,
-  allService,
-}) => {
+const TabMyService: FC<TabMyServiceProps> = ({ contents, allService }) => {
   const router = useRouter();
 
   const handleClickAllService = () => {
@@ -27,7 +22,7 @@ const TabMyService: FC<TabMyServiceProps> = ({
   return (
     <div className="container mx-auto">
       <div className={styles.bgMyService}>
-        <Image src={background} alt="" width={1530} height={417} />
+        <Image src={contents[0].bg_img} alt="" width={1530} height={417} />
         {contents.map((service, idx) => (
           <div key={idx} className={styles.serviceItem}>
             <Link href={service.url} className={styles.serviceLink}>

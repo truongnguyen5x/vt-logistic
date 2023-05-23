@@ -14,6 +14,7 @@ export type IServiceItem = {
   title: string;
   subs?: string[];
   url: string;
+  bg_img: string;
 };
 
 export type ILookupContent = {
@@ -31,7 +32,6 @@ export type ILookupContent = {
 export type IAboutContent = {
   tabs: Array<{ title: string; img: string }>;
   service_tab: IServiceItem[];
-  service_bg: string;
   all_service: string;
   lookup_tab: ILookupContent;
 };
@@ -94,7 +94,6 @@ const HomeTab = ({ assets }: { assets: IAboutContent }) => {
         >
           <TabLookup content={assets.lookup_tab} />
           <TabMyService
-            background={assets.service_bg}
             contents={assets.service_tab}
             allService={assets.all_service}
           />

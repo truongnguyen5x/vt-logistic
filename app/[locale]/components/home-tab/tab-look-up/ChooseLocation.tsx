@@ -72,13 +72,10 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
 
   return (
     <Fragment>
-      <Image
-        className="absolute right-2 top-2"
-        src={content.imgs[index]}
-        alt=""
-        width={685}
-        height={423}
-      />
+      <div className={styles.formBg}>
+        <Image src={content.imgs[index]} alt="" width={719} height={339} />
+      </div>
+
       <div className="container mx-auto flex justify-start p-12">
         <div className="flex flex-col gap-2">
           <div className="flex gap-7 mb-9">
