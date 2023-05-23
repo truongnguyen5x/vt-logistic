@@ -1,9 +1,3 @@
-/*=========================================================
-Author       : Bestwebcreator.
-Template Name: Cryptocash – ICO, Cryptocurrency Website & ICO Landing Page HTML + Dashboard Template
-Version      : 1.7
-==============================================================*/
-
 /*=============================================================
     CSS INDEX
     =============================
@@ -18,6 +12,7 @@ Version      : 1.7
 /*===================================*
 01. GENERAL STYLE
 *===================================*/
+@import "./_variables.scss";
 
 @tailwind base;
 @tailwind components;
@@ -229,9 +224,11 @@ body {
   & > ul {
     @apply absolute bg-white text-th-gray-400 font-normal w-52 hidden shadow-lg py-1;
     li {
-      @apply px-4 py-2 relative z-10;
+      @apply relative z-10;
       transition: background-color 0.7s;
-
+      & > a {
+        @apply text-th-gray-400 font-medium block w-52 px-4 py-2;
+      }
       &.menu-toggle {
         @apply pr-8;
         & > div {
@@ -243,7 +240,10 @@ body {
         @apply absolute bg-white text-th-gray-400 font-normal w-52 hidden shadow-lg py-1 -right-52 top-0;
       }
       &:hover {
-        @apply text-th-red-500 font-medium;
+        & > a {
+          @apply text-th-red-500 font-medium;
+        }
+
         background-color: var(--color-gray-100);
         & > ul {
           @apply block;
@@ -277,15 +277,32 @@ body {
   font-size: 28px;
 }
 .footer-input-register {
-  @apply flex;
+  @apply flex relative;
   width: 634px;
   height: 50px;
   input {
-    @apply flex-grow rounded-l-full pl-7;
+    @apply flex-grow rounded-l-full pl-7 outline-none;
+    transition: all 0.5s;
   }
   button {
+    &:disabled {
+      @apply cursor-not-allowed;
+    }
     @apply w-32 rounded-r-full text-th-white text-xl font-semibold;
     background-color: var(--color-gray-320);
+    padding-bottom: 2px;
+  }
+
+  &.footer-email-error {
+    input {
+      padding-bottom: 14px;
+    }
+    p {
+      @apply absolute text-th-red-500 pointer-events-none font-medium;
+      font-size: 13px;
+      bottom: 3px;
+      left: 28px;
+    }
   }
 }
 .footer-col {
@@ -293,7 +310,7 @@ body {
   font-size: 21px;
 }
 .footer-link {
-  @apply text-sm text-th-gray-400 block;
+  @apply text-sm text-th-gray-400 block flex;
   img {
     @apply inline mr-2;
     margin-bottom: 2px;
@@ -314,6 +331,7 @@ a.footer-link {
     margin-top: 5px;
   }
 }
+
 /**********
  * END FOOTER *
  **********/
@@ -346,15 +364,23 @@ a.footer-link {
 .btn-red {
   @apply w-64 text-th-white font-medium text-2xl rounded-full bg-th-red-500 shadow-xl;
   height: 60px;
+  line-height: 28px;
+  transition: transform 0.2s; /* Animation */
   // box-shadow: 0px 4px 4px rgba(111, 59, 59, 0.25);
   transition: all 0.5s;
   &:hover {
-    background-color: var(--color-red-600);
+    &:not(:disabled) {
+      background-color: var(--color-red-600);
+      transform: scale(1.03);
+    }
   }
   img {
     display: inline !important;
     @apply ml-4;
-    margin-bottom: 2px;
+    margin-bottom: 3px;
+  }
+  &:disabled {
+    @apply cursor-not-allowed;
   }
 }
 .btn-white-outline {
@@ -402,6 +428,23 @@ a.footer-link {
   height: 1px;
   background-color: var(--color-gray-270);
 }
+.custom-select__control {
+  @apply border border-th-gray-200 pl-3 pr-2;
+  cursor: pointer !important;
+  width: 700px;
+  height: 65px;
+  border-radius: 0px !important;
+  .custom-select__indicator-separator {
+    @apply hidden;
+  }
+  &.custom-select__control--is-focused {
+    // border-color: var(--color-red-500) !important;
+  }
+}
+.custom-select__menu-list {
+  @include vertical-scrollbar();
+}
+
 /********************
  * END COMMON COMPONENT *
  ********************/

@@ -9,6 +9,7 @@ import Image from "next/image";
 import styles from "./style.module.scss";
 import RightDarkImg from "@assets/images/icons/arrow_right_2_dark.svg";
 import HexagonImg from "@assets/images/hexagon.svg";
+import ButtonRegister from "@components/btn-register";
 
 type IEndpointDeliveryAsset = {
   bg_img: string;
@@ -103,9 +104,7 @@ const EndpointDelivery = async () => {
           <p className="animation z-10 text-th-white font-medium text-base">
             {t("policy")}
           </p>
-          <button className="animation btn-red z-10">
-            {t("register_now")}
-          </button>
+          <ButtonRegister text={t("register_now")} />
         </div>
       </div>
     </Fragment>

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import Link from "next/link";
+import Link from "next-intl/link";
 
 import RightArrowImg from "@assets/images/icons/arrow_right.svg";
 import Image from "next/image";

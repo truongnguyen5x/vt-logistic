@@ -177,15 +177,20 @@
   }
 }
 .serviceItem {
-  @apply flex flex-col items-center py-11 px-11 z-10;
+  @apply flex flex-col items-center py-11 px-11 z-10 transition-all;
   background-color: var(--color-black-400);
-  &:nth-child(2) {
+  &:hover {
     background-color: rgba(0, 0, 0, 0.6);
+    .serviceLink {
+      img {
+        transform: scale(1.4);
+      }
+    }
   }
 }
 .serviceLink {
   img {
-    @apply mx-auto;
+    @apply mx-auto transition-all;
   }
   p {
     @apply text-th-white text-2xl font-semibold mt-8;
@@ -256,6 +261,16 @@
 .formTitle {
   @apply text-th-gray-300 font-medium text-2xl;
 }
+.formBg {
+  @apply absolute right-14 top-14 p-3 shadow-lg bg-th-white;
+  width: 709px;
+  height: 348px;
+}
+.boxContact {
+  @apply flex p-5 gap-5 items-center bg-th-white border border-th-gray-200 shadow-md flex-grow;
+  font-stretch: condensed;
+  height: 60px;
+}
 /**************
  * END TAB LOOKUP *
  **************/
@@ -264,12 +279,15 @@
  * LIST PARTNER *
  ****************/
 .partnerItem {
-  @apply flex justify-center items-center border-th-gray-200 shadow-lg p-3;
+  @apply flex justify-center items-center border-th-gray-200 shadow-lg p-3 m-3 cursor-pointer;
   border-width: 1px;
   display: flex !important;
   width: 253px !important;
   height: 165px;
   img {
+  }
+  &:hover {
+    @apply border border-th-red-500;
   }
 }
 /****************
@@ -282,6 +300,10 @@
 .postItem {
   @apply relative shadow-xl;
   padding-top: 87%;
+  transition: transform 0.2s;
+  &:hover {
+    transform: scale(1.02);
+  }
 }
 .postImg {
   @apply block min-h-0;
@@ -337,7 +359,7 @@
   }
 }
 .postLinkLarge {
-  @apply text-th-red-500 font-medium absolute bottom-3 right-4;
+  @apply text-th-red-500 font-medium absolute bottom-8 right-8;
   font-size: 15px;
   img {
     @apply inline;

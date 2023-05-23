@@ -22,7 +22,13 @@ const Mission: FC<Props> = ({ assets, className = "" }) => {
     <section className={className}>
       <div className="relative">
         <div className="w-full h-full absolute">
-          <Image src={assets.image} alt="" width={1920} height={500} />
+          <Image
+            className="w-full h-full object-cover"
+            src={assets.image}
+            alt=""
+            width={1920}
+            height={500}
+          />
         </div>
         <div className="container mx-auto relative -bottom-[363px] bg-white pt-20 px-20 pb-12 shadow-[0px_5px_20px_rgba(0,0,0,0.1)] animation">
           <div className="flex items-center justify-center">

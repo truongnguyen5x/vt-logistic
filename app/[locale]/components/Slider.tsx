@@ -44,6 +44,7 @@ const SliderHome: FC<Props> = ({ images }) => {
       <Slider
         dots
         infinite
+        className="animation"
         speed={500}
         slidesToShow={1}
         slidesToScroll={1}

@@ -57,7 +57,7 @@ const PostHome: FC<PostHomeProps> = ({
       </div>
       <Link
         className={size == "NORMAL" ? styles.postLink : styles.postLinkLarge}
-        href={"/news/" + postData.slug}
+        href={`/news/${postData.category}/${postData.slug}`}
       >
         {detailTxt}
 
