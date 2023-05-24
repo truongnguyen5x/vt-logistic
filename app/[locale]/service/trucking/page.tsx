@@ -147,8 +147,7 @@ const ServiceTrucking = async () => {
               </div>
             ))}
             <div
-              className="flex gap-6 mt-9 animation"
-              data-animtion-delay="0.7s"
+              className="flex gap-6 mt-9"
             >
               <ResgisterPopup
                 textBtn={t("create_order")}
@@ -176,7 +175,7 @@ const ServiceTrucking = async () => {
                   note: t("register_popup.placeholder.note"),
                 }}
               />
-              <button className="btn-gray-outlined">{t("pricing")}</button>
+              <button className="btn-gray-outlined animation" data-animtion-delay="0.6s">{t("pricing")}</button>
             </div>
           </div>
           <div className="self-center">
@@ -223,7 +222,7 @@ const ServiceTrucking = async () => {
               </div>
             </div>
           ))}
-          <div className="flex gap-6 mt-9 animation" data-animtion-delay="0.7s">
+          <div className="flex gap-6 mt-9">
             <ResgisterPopup
               textBtn={t("create_order")}
               title={t("register_popup.title")}
@@ -250,7 +249,7 @@ const ServiceTrucking = async () => {
                 note: t("register_popup.placeholder.note"),
               }}
             />
-            <button className="btn-gray-outlined">{t("pricing")}</button>
+            <button className="btn-gray-outlined animation" data-animtion-delay="0.6s">{t("pricing")}</button>
           </div>
         </div>
       </div>
