@@ -98,7 +98,7 @@ const ResgisterPopup: FC<Props> = ({
     document.body.style.overflowY = "auto";
   };
 
-  // useOutsideClose(ref, handleClose);
+  useOutsideClose(ref, handleClose);
 
   const onSubmit = (data: any) => {
     console.log(data);
@@ -114,7 +114,7 @@ const ResgisterPopup: FC<Props> = ({
         {textBtn}
       </button>
       {open && (
-        <div className="fixed inset-0 z-10 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
+        <div className="fixed inset-0 z-[9999] bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
           <div className="flex flex-col items-center justify-center 2xl:h-full mx-auto">
             <div
               className="relative py-16 px-44 shadow-lg rounded-md bg-white"
@@ -234,12 +234,20 @@ const ResgisterPopup: FC<Props> = ({
                             : "custom-select-register"
                         }
                         value={getValues("service")}
-                        onChange={(e) =>
+                        onChange={(e) => {
                           setValue("service", e, {
                             shouldValidate: true,
                             shouldDirty: true,
-                          })
-                        }
+                          });
+                          setValue("from", null, {
+                            shouldValidate: true,
+                            shouldDirty: true,
+                          });
+                          setValue("to", null, {
+                            shouldValidate: true,
+                            shouldDirty: true,
+                          });
+                        }}
                         options={[
                           { value: "0", label: "Express" },
                           { value: "1", label: "Fowarding" },
@@ -363,34 +371,13 @@ export default ResgisterPopup;
 
 function useOutsideClose(ref: any, onClose: () => void) {
   useEffect(() => {
-    /**
-     * Alert if clicked on outside of element
-     */
     function handleClickOutside(event: any) {
       if (ref.current && !ref.current.contains(event.target)) {
+        console.log(1);
         onClose();
       }
-      if (
-        !!document.getElementsByClassName("custom-select-register__menu").length
-      ) {
-        let popElement = document.getElementsByClassName(
-          "custom-select-register__menu  "
-        );
-        let isClickInside;
-        for (let i = 0; i < popElement.length; i++) {
-          isClickInside = popElement[i].contains(event.target);
-          if (isClickInside) {
-            break;
-            //alert("Outside of" + popElement[i].id);
-            //the click was outside the popElement, do something
-          }
-        }
-        if (!isClickInside) {
-          onClose();
-          return;
-        }
-      }
     }
+
     // Bind the event listener
     document.addEventListener("click", handleClickOutside);
     return () => {

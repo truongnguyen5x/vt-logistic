@@ -16,12 +16,10 @@ type IOption = {
 };
 
 type CustomSelectProps = {
-  children?: ReactNode;
   value?: string;
   onChange?: (newValue: string) => void;
   options: IOption[];
   classNamePrefix?: string;
-  ref?: any
 };
 
 const DropdownIndicator = (props: any) => {
@@ -29,6 +27,18 @@ const DropdownIndicator = (props: any) => {
     <components.DropdownIndicator {...props}>
       <Image src={ArrowDownImg} width={24} height={24} alt="" />
     </components.DropdownIndicator>
+  );
+};
+
+const MenuCustom = (props: any) => {
+  return (
+    <components.Menu {...props} innerProps={{
+      ...props.innerProps,
+      onClick: e => {
+        e.preventDefault();
+        e.stopPropagation();        
+      }
+    }} />
   );
 };
 
@@ -46,7 +56,7 @@ const CustomSelect: FC<CustomSelectProps> = ({
       setValue(temp);
     }
   }, [value, options]);
-
+  
   return (
     <Select
       classNamePrefix={classNamePrefix}
@@ -54,6 +64,7 @@ const CustomSelect: FC<CustomSelectProps> = ({
       isSearchable
       components={{
         DropdownIndicator: DropdownIndicator,
+        Menu: MenuCustom,
       }}
       options={options}
       menuPortalTarget={document.querySelector("body")}
