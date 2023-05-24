@@ -12,8 +12,8 @@ import ServiceUnavailable from "./ServiceUnvailable";
 import ServiceAvailable from "./ServiceAvailable";
 import ChooseLocation from "./ChooseLocation";
 import {
-  ComponentHomeLookupHomeLookup,
-  ComponentServiceContactServiceContact,
+  ComponentHomeHomeLookup,
+  ComponentHomeServiceContact,
   Maybe,
 } from "@generated/graphql";
 
@@ -26,8 +26,8 @@ interface FormLookupProps {
   index: number;
   listCountry: ICountry[];
   listProvince: IProvince[];
-  contacts?: Maybe<Array<Maybe<ComponentServiceContactServiceContact>>>;
-  lookup?: Maybe<ComponentHomeLookupHomeLookup>;
+  contacts?: Maybe<Array<Maybe<ComponentHomeServiceContact>>>;
+  lookup?: Maybe<ComponentHomeHomeLookup>;
 }
 
 export type ISTATUS = "NONE" | "UNAVAILABLE" | "AVAILABLE";

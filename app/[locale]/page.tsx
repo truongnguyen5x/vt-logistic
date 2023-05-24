@@ -14,12 +14,12 @@ import { gql } from "@generated/gql";
 import { NextIntlClientProvider } from "next-intl";
 import { getClient, getHomeQueryString } from "@api/graphql-client";
 import {
-  ComponentHomeAboutAbout,
-  ComponentHomeLookupHomeLookup,
-  ComponentHomePartnerHomePartner,
-  ComponentHomeServiceHomeService,
-  ComponentHomeTabHomeTab,
-  ComponentServiceContactServiceContact,
+  ComponentHomeAbout,
+  ComponentHomeHomeLookup,
+  ComponentHomeHomePartner,
+  ComponentHomeHomeService,
+  ComponentHomeHomeTab,
+  ComponentHomeServiceContact,
   Maybe,
   UploadFileRelationResponseCollection,
 } from "@generated/graphql";
@@ -82,7 +82,7 @@ export default async function Home() {
         <AboutUs
           content={
             assetData?.attributes?.abouts as Maybe<
-              Array<Maybe<ComponentHomeAboutAbout>>
+              Array<Maybe<ComponentHomeAbout>>
             >
           }
         />
@@ -91,22 +91,22 @@ export default async function Home() {
         <HomeTab
           tabs={
             assetData?.attributes?.home_tabs as Maybe<
-              Array<Maybe<ComponentHomeTabHomeTab>>
+              Array<Maybe<ComponentHomeHomeTab>>
             >
           }
           services={
             assetData?.attributes?.services as Maybe<
-              Array<Maybe<ComponentHomeServiceHomeService>>
+              Array<Maybe<ComponentHomeHomeService>>
             >
           }
           lookups={
             assetData?.attributes?.lookups as Maybe<
-              Array<Maybe<ComponentHomeLookupHomeLookup>>
+              Array<Maybe<ComponentHomeHomeLookup>>
             >
           }
           contacts={
             assetData?.attributes?.contacts as Maybe<
-              Array<Maybe<ComponentServiceContactServiceContact>>
+              Array<Maybe<ComponentHomeServiceContact>>
             >
           }
         />
@@ -115,7 +115,7 @@ export default async function Home() {
         title={t("partner")}
         assets={
           assetData?.attributes?.partners as Maybe<
-            Array<Maybe<ComponentHomePartnerHomePartner>>
+            Array<Maybe<ComponentHomeHomePartner>>
           >
         }
       />

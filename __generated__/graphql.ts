@@ -46,28 +46,103 @@ export type BooleanFilterInput = {
   startsWith?: InputMaybe<Scalars['Boolean']>;
 };
 
-export type ComponentFeatureHomeFeature = {
-  __typename?: 'ComponentFeatureHomeFeature';
-  icon?: Maybe<UploadFileEntityResponse>;
+export type ComponentFooterFooterColumn = {
+  __typename?: 'ComponentFooterFooterColumn';
   id: Scalars['ID'];
+  links?: Maybe<Array<Maybe<ComponentFooterFooterLink>>>;
   title?: Maybe<Scalars['String']>;
 };
 
-export type ComponentFeatureHomeFeatureFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentFeatureHomeFeatureFiltersInput>>>;
-  not?: InputMaybe<ComponentFeatureHomeFeatureFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<ComponentFeatureHomeFeatureFiltersInput>>>;
+
+export type ComponentFooterFooterColumnLinksArgs = {
+  filters?: InputMaybe<ComponentFooterFooterLinkFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type ComponentFooterFooterColumnFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentFooterFooterColumnFiltersInput>>>;
+  links?: InputMaybe<ComponentFooterFooterLinkFiltersInput>;
+  not?: InputMaybe<ComponentFooterFooterColumnFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentFooterFooterColumnFiltersInput>>>;
   title?: InputMaybe<StringFilterInput>;
 };
 
-export type ComponentFeatureHomeFeatureInput = {
-  icon?: InputMaybe<Scalars['ID']>;
+export type ComponentFooterFooterColumnInput = {
   id?: InputMaybe<Scalars['ID']>;
+  links?: InputMaybe<Array<InputMaybe<ComponentFooterFooterLinkInput>>>;
   title?: InputMaybe<Scalars['String']>;
 };
 
-export type ComponentHomeAboutAbout = {
-  __typename?: 'ComponentHomeAboutAbout';
+export type ComponentFooterFooterInfo = {
+  __typename?: 'ComponentFooterFooterInfo';
+  id: Scalars['ID'];
+  title?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+export type ComponentFooterFooterInfoFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentFooterFooterInfoFiltersInput>>>;
+  not?: InputMaybe<ComponentFooterFooterInfoFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentFooterFooterInfoFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
+  url?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentFooterFooterInfoInput = {
+  id?: InputMaybe<Scalars['ID']>;
+  title?: InputMaybe<Scalars['String']>;
+  url?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentFooterFooterLink = {
+  __typename?: 'ComponentFooterFooterLink';
+  icon?: Maybe<UploadFileEntityResponse>;
+  id: Scalars['ID'];
+  is_external_link?: Maybe<Scalars['Boolean']>;
+  title?: Maybe<Scalars['String']>;
+  url?: Maybe<Scalars['String']>;
+};
+
+export type ComponentFooterFooterLinkFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentFooterFooterLinkFiltersInput>>>;
+  is_external_link?: InputMaybe<BooleanFilterInput>;
+  not?: InputMaybe<ComponentFooterFooterLinkFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentFooterFooterLinkFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
+  url?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentFooterFooterLinkInput = {
+  icon?: InputMaybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
+  is_external_link?: InputMaybe<Scalars['Boolean']>;
+  title?: InputMaybe<Scalars['String']>;
+  url?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentFooterSocialLink = {
+  __typename?: 'ComponentFooterSocialLink';
+  icon?: Maybe<UploadFileEntityResponse>;
+  id: Scalars['ID'];
+  url?: Maybe<Scalars['String']>;
+};
+
+export type ComponentFooterSocialLinkFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentFooterSocialLinkFiltersInput>>>;
+  not?: InputMaybe<ComponentFooterSocialLinkFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentFooterSocialLinkFiltersInput>>>;
+  url?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentFooterSocialLinkInput = {
+  icon?: InputMaybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
+  url?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentHomeAbout = {
+  __typename?: 'ComponentHomeAbout';
   detail?: Maybe<Scalars['String']>;
   heading?: Maybe<Scalars['Int']>;
   id: Scalars['ID'];
@@ -75,17 +150,17 @@ export type ComponentHomeAboutAbout = {
   subject?: Maybe<Scalars['String']>;
 };
 
-export type ComponentHomeAboutAboutFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentHomeAboutAboutFiltersInput>>>;
+export type ComponentHomeAboutFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentHomeAboutFiltersInput>>>;
   detail?: InputMaybe<StringFilterInput>;
   heading?: InputMaybe<IntFilterInput>;
   is_plus?: InputMaybe<BooleanFilterInput>;
-  not?: InputMaybe<ComponentHomeAboutAboutFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<ComponentHomeAboutAboutFiltersInput>>>;
+  not?: InputMaybe<ComponentHomeAboutFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentHomeAboutFiltersInput>>>;
   subject?: InputMaybe<StringFilterInput>;
 };
 
-export type ComponentHomeAboutAboutInput = {
+export type ComponentHomeAboutInput = {
   detail?: InputMaybe<Scalars['String']>;
   heading?: InputMaybe<Scalars['Int']>;
   id?: InputMaybe<Scalars['ID']>;
@@ -93,138 +168,158 @@ export type ComponentHomeAboutAboutInput = {
   subject?: InputMaybe<Scalars['String']>;
 };
 
-export type ComponentHomeLookupHomeLookup = {
-  __typename?: 'ComponentHomeLookupHomeLookup';
+export type ComponentHomeFeature = {
+  __typename?: 'ComponentHomeFeature';
+  icon?: Maybe<UploadFileEntityResponse>;
+  id: Scalars['ID'];
+  title?: Maybe<Scalars['String']>;
+};
+
+export type ComponentHomeFeatureFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentHomeFeatureFiltersInput>>>;
+  not?: InputMaybe<ComponentHomeFeatureFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentHomeFeatureFiltersInput>>>;
+  title?: InputMaybe<StringFilterInput>;
+};
+
+export type ComponentHomeFeatureInput = {
+  icon?: InputMaybe<Scalars['ID']>;
+  id?: InputMaybe<Scalars['ID']>;
+  title?: InputMaybe<Scalars['String']>;
+};
+
+export type ComponentHomeHomeLookup = {
+  __typename?: 'ComponentHomeHomeLookup';
   background?: Maybe<UploadFileEntityResponse>;
   id: Scalars['ID'];
   title?: Maybe<Scalars['String']>;
 };
 
-export type ComponentHomeLookupHomeLookupFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentHomeLookupHomeLookupFiltersInput>>>;
-  not?: InputMaybe<ComponentHomeLookupHomeLookupFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<ComponentHomeLookupHomeLookupFiltersInput>>>;
+export type ComponentHomeHomeLookupFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentHomeHomeLookupFiltersInput>>>;
+  not?: InputMaybe<ComponentHomeHomeLookupFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentHomeHomeLookupFiltersInput>>>;
   title?: InputMaybe<StringFilterInput>;
 };
 
-export type ComponentHomeLookupHomeLookupInput = {
+export type ComponentHomeHomeLookupInput = {
   background?: InputMaybe<Scalars['ID']>;
   id?: InputMaybe<Scalars['ID']>;
   title?: InputMaybe<Scalars['String']>;
 };
 
-export type ComponentHomePartnerHomePartner = {
-  __typename?: 'ComponentHomePartnerHomePartner';
+export type ComponentHomeHomePartner = {
+  __typename?: 'ComponentHomeHomePartner';
   id: Scalars['ID'];
   image?: Maybe<UploadFileEntityResponse>;
   url?: Maybe<Scalars['String']>;
 };
 
-export type ComponentHomePartnerHomePartnerFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentHomePartnerHomePartnerFiltersInput>>>;
-  not?: InputMaybe<ComponentHomePartnerHomePartnerFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<ComponentHomePartnerHomePartnerFiltersInput>>>;
+export type ComponentHomeHomePartnerFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentHomeHomePartnerFiltersInput>>>;
+  not?: InputMaybe<ComponentHomeHomePartnerFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentHomeHomePartnerFiltersInput>>>;
   url?: InputMaybe<StringFilterInput>;
 };
 
-export type ComponentHomePartnerHomePartnerInput = {
+export type ComponentHomeHomePartnerInput = {
   id?: InputMaybe<Scalars['ID']>;
   image?: InputMaybe<Scalars['ID']>;
   url?: InputMaybe<Scalars['String']>;
 };
 
-export type ComponentHomeServiceHomeService = {
-  __typename?: 'ComponentHomeServiceHomeService';
+export type ComponentHomeHomeService = {
+  __typename?: 'ComponentHomeHomeService';
   background?: Maybe<UploadFileEntityResponse>;
   icon?: Maybe<UploadFileEntityResponse>;
   id: Scalars['ID'];
-  subs?: Maybe<Array<Maybe<ComponentHomeSubServiceHomeSubService>>>;
+  subs?: Maybe<Array<Maybe<ComponentHomeHomeSubService>>>;
   title?: Maybe<Scalars['String']>;
   url?: Maybe<Scalars['String']>;
 };
 
 
-export type ComponentHomeServiceHomeServiceSubsArgs = {
-  filters?: InputMaybe<ComponentHomeSubServiceHomeSubServiceFiltersInput>;
+export type ComponentHomeHomeServiceSubsArgs = {
+  filters?: InputMaybe<ComponentHomeHomeSubServiceFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
-export type ComponentHomeServiceHomeServiceFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentHomeServiceHomeServiceFiltersInput>>>;
-  not?: InputMaybe<ComponentHomeServiceHomeServiceFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<ComponentHomeServiceHomeServiceFiltersInput>>>;
-  subs?: InputMaybe<ComponentHomeSubServiceHomeSubServiceFiltersInput>;
+export type ComponentHomeHomeServiceFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentHomeHomeServiceFiltersInput>>>;
+  not?: InputMaybe<ComponentHomeHomeServiceFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentHomeHomeServiceFiltersInput>>>;
+  subs?: InputMaybe<ComponentHomeHomeSubServiceFiltersInput>;
   title?: InputMaybe<StringFilterInput>;
   url?: InputMaybe<StringFilterInput>;
 };
 
-export type ComponentHomeServiceHomeServiceInput = {
+export type ComponentHomeHomeServiceInput = {
   background?: InputMaybe<Scalars['ID']>;
   icon?: InputMaybe<Scalars['ID']>;
   id?: InputMaybe<Scalars['ID']>;
-  subs?: InputMaybe<Array<InputMaybe<ComponentHomeSubServiceHomeSubServiceInput>>>;
+  subs?: InputMaybe<Array<InputMaybe<ComponentHomeHomeSubServiceInput>>>;
   title?: InputMaybe<Scalars['String']>;
   url?: InputMaybe<Scalars['String']>;
 };
 
-export type ComponentHomeSubServiceHomeSubService = {
-  __typename?: 'ComponentHomeSubServiceHomeSubService';
+export type ComponentHomeHomeSubService = {
+  __typename?: 'ComponentHomeHomeSubService';
   id: Scalars['ID'];
   title?: Maybe<Scalars['String']>;
   url?: Maybe<Scalars['String']>;
 };
 
-export type ComponentHomeSubServiceHomeSubServiceFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentHomeSubServiceHomeSubServiceFiltersInput>>>;
-  not?: InputMaybe<ComponentHomeSubServiceHomeSubServiceFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<ComponentHomeSubServiceHomeSubServiceFiltersInput>>>;
+export type ComponentHomeHomeSubServiceFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentHomeHomeSubServiceFiltersInput>>>;
+  not?: InputMaybe<ComponentHomeHomeSubServiceFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentHomeHomeSubServiceFiltersInput>>>;
   title?: InputMaybe<StringFilterInput>;
   url?: InputMaybe<StringFilterInput>;
 };
 
-export type ComponentHomeSubServiceHomeSubServiceInput = {
+export type ComponentHomeHomeSubServiceInput = {
   id?: InputMaybe<Scalars['ID']>;
   title?: InputMaybe<Scalars['String']>;
   url?: InputMaybe<Scalars['String']>;
 };
 
-export type ComponentHomeTabHomeTab = {
-  __typename?: 'ComponentHomeTabHomeTab';
+export type ComponentHomeHomeTab = {
+  __typename?: 'ComponentHomeHomeTab';
   id: Scalars['ID'];
   image?: Maybe<UploadFileEntityResponse>;
   title?: Maybe<Scalars['String']>;
 };
 
-export type ComponentHomeTabHomeTabFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentHomeTabHomeTabFiltersInput>>>;
-  not?: InputMaybe<ComponentHomeTabHomeTabFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<ComponentHomeTabHomeTabFiltersInput>>>;
+export type ComponentHomeHomeTabFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentHomeHomeTabFiltersInput>>>;
+  not?: InputMaybe<ComponentHomeHomeTabFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentHomeHomeTabFiltersInput>>>;
   title?: InputMaybe<StringFilterInput>;
 };
 
-export type ComponentHomeTabHomeTabInput = {
+export type ComponentHomeHomeTabInput = {
   id?: InputMaybe<Scalars['ID']>;
   image?: InputMaybe<Scalars['ID']>;
   title?: InputMaybe<Scalars['String']>;
 };
 
-export type ComponentServiceContactServiceContact = {
-  __typename?: 'ComponentServiceContactServiceContact';
+export type ComponentHomeServiceContact = {
+  __typename?: 'ComponentHomeServiceContact';
   id: Scalars['ID'];
   name?: Maybe<Scalars['String']>;
   phone?: Maybe<Scalars['String']>;
 };
 
-export type ComponentServiceContactServiceContactFiltersInput = {
-  and?: InputMaybe<Array<InputMaybe<ComponentServiceContactServiceContactFiltersInput>>>;
+export type ComponentHomeServiceContactFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<ComponentHomeServiceContactFiltersInput>>>;
   name?: InputMaybe<StringFilterInput>;
-  not?: InputMaybe<ComponentServiceContactServiceContactFiltersInput>;
-  or?: InputMaybe<Array<InputMaybe<ComponentServiceContactServiceContactFiltersInput>>>;
+  not?: InputMaybe<ComponentHomeServiceContactFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<ComponentHomeServiceContactFiltersInput>>>;
   phone?: InputMaybe<StringFilterInput>;
 };
 
-export type ComponentServiceContactServiceContactInput = {
+export type ComponentHomeServiceContactInput = {
   id?: InputMaybe<Scalars['ID']>;
   name?: InputMaybe<Scalars['String']>;
   phone?: InputMaybe<Scalars['String']>;
@@ -399,30 +494,98 @@ export type FloatFilterInput = {
   startsWith?: InputMaybe<Scalars['Float']>;
 };
 
-export type GenericMorph = ComponentFeatureHomeFeature | ComponentHomeAboutAbout | ComponentHomeLookupHomeLookup | ComponentHomePartnerHomePartner | ComponentHomeServiceHomeService | ComponentHomeSubServiceHomeSubService | ComponentHomeTabHomeTab | ComponentServiceContactServiceContact | ComponentSharedMetaSocial | ComponentSharedSeo | Home | I18NLocale | NavigationAudience | NavigationNavigation | NavigationNavigationItem | NavigationNavigationsItemsRelated | News | Service | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
+export type Footer = {
+  __typename?: 'Footer';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  infos?: Maybe<Array<Maybe<ComponentFooterFooterInfo>>>;
+  links?: Maybe<Array<Maybe<ComponentFooterFooterColumn>>>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  socials?: Maybe<Array<Maybe<ComponentFooterSocialLink>>>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+
+export type FooterInfosArgs = {
+  filters?: InputMaybe<ComponentFooterFooterInfoFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type FooterLinksArgs = {
+  filters?: InputMaybe<ComponentFooterFooterColumnFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+
+export type FooterSocialsArgs = {
+  filters?: InputMaybe<ComponentFooterSocialLinkFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+};
+
+export type FooterEntity = {
+  __typename?: 'FooterEntity';
+  attributes?: Maybe<Footer>;
+  id?: Maybe<Scalars['ID']>;
+};
+
+export type FooterEntityResponse = {
+  __typename?: 'FooterEntityResponse';
+  data?: Maybe<FooterEntity>;
+};
+
+export type FooterEntityResponseCollection = {
+  __typename?: 'FooterEntityResponseCollection';
+  data: Array<FooterEntity>;
+  meta: ResponseCollectionMeta;
+};
+
+export type FooterFiltersInput = {
+  and?: InputMaybe<Array<InputMaybe<FooterFiltersInput>>>;
+  createdAt?: InputMaybe<DateTimeFilterInput>;
+  id?: InputMaybe<IdFilterInput>;
+  infos?: InputMaybe<ComponentFooterFooterInfoFiltersInput>;
+  links?: InputMaybe<ComponentFooterFooterColumnFiltersInput>;
+  not?: InputMaybe<FooterFiltersInput>;
+  or?: InputMaybe<Array<InputMaybe<FooterFiltersInput>>>;
+  publishedAt?: InputMaybe<DateTimeFilterInput>;
+  socials?: InputMaybe<ComponentFooterSocialLinkFiltersInput>;
+  updatedAt?: InputMaybe<DateTimeFilterInput>;
+};
+
+export type FooterInput = {
+  infos?: InputMaybe<Array<InputMaybe<ComponentFooterFooterInfoInput>>>;
+  links?: InputMaybe<Array<InputMaybe<ComponentFooterFooterColumnInput>>>;
+  publishedAt?: InputMaybe<Scalars['DateTime']>;
+  socials?: InputMaybe<Array<InputMaybe<ComponentFooterSocialLinkInput>>>;
+};
+
+export type GenericMorph = ComponentFooterFooterColumn | ComponentFooterFooterInfo | ComponentFooterFooterLink | ComponentFooterSocialLink | ComponentHomeAbout | ComponentHomeFeature | ComponentHomeHomeLookup | ComponentHomeHomePartner | ComponentHomeHomeService | ComponentHomeHomeSubService | ComponentHomeHomeTab | ComponentHomeServiceContact | ComponentSharedMetaSocial | ComponentSharedSeo | Footer | Home | I18NLocale | NavigationAudience | NavigationNavigation | NavigationNavigationItem | NavigationNavigationsItemsRelated | News | Service | UploadFile | UploadFolder | UsersPermissionsPermission | UsersPermissionsRole | UsersPermissionsUser;
 
 export type Home = {
   __typename?: 'Home';
   Code?: Maybe<Enum_Home_Code>;
   SEO?: Maybe<ComponentSharedSeo>;
-  abouts?: Maybe<Array<Maybe<ComponentHomeAboutAbout>>>;
+  abouts?: Maybe<Array<Maybe<ComponentHomeAbout>>>;
   banners?: Maybe<UploadFileRelationResponseCollection>;
-  contacts?: Maybe<Array<Maybe<ComponentServiceContactServiceContact>>>;
+  contacts?: Maybe<Array<Maybe<ComponentHomeServiceContact>>>;
   createdAt?: Maybe<Scalars['DateTime']>;
-  features?: Maybe<Array<Maybe<ComponentFeatureHomeFeature>>>;
-  home_tabs?: Maybe<Array<Maybe<ComponentHomeTabHomeTab>>>;
+  features?: Maybe<Array<Maybe<ComponentHomeFeature>>>;
+  home_tabs?: Maybe<Array<Maybe<ComponentHomeHomeTab>>>;
   locale?: Maybe<Scalars['String']>;
   localizations?: Maybe<HomeRelationResponseCollection>;
-  lookups?: Maybe<Array<Maybe<ComponentHomeLookupHomeLookup>>>;
-  partners?: Maybe<Array<Maybe<ComponentHomePartnerHomePartner>>>;
+  lookups?: Maybe<Array<Maybe<ComponentHomeHomeLookup>>>;
+  partners?: Maybe<Array<Maybe<ComponentHomeHomePartner>>>;
   publishedAt?: Maybe<Scalars['DateTime']>;
-  services?: Maybe<Array<Maybe<ComponentHomeServiceHomeService>>>;
+  services?: Maybe<Array<Maybe<ComponentHomeHomeService>>>;
   updatedAt?: Maybe<Scalars['DateTime']>;
 };
 
 
 export type HomeAboutsArgs = {
-  filters?: InputMaybe<ComponentHomeAboutAboutFiltersInput>;
+  filters?: InputMaybe<ComponentHomeAboutFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
@@ -436,21 +599,21 @@ export type HomeBannersArgs = {
 
 
 export type HomeContactsArgs = {
-  filters?: InputMaybe<ComponentServiceContactServiceContactFiltersInput>;
+  filters?: InputMaybe<ComponentHomeServiceContactFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 export type HomeFeaturesArgs = {
-  filters?: InputMaybe<ComponentFeatureHomeFeatureFiltersInput>;
+  filters?: InputMaybe<ComponentHomeFeatureFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 export type HomeHome_TabsArgs = {
-  filters?: InputMaybe<ComponentHomeTabHomeTabFiltersInput>;
+  filters?: InputMaybe<ComponentHomeHomeTabFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
@@ -465,21 +628,21 @@ export type HomeLocalizationsArgs = {
 
 
 export type HomeLookupsArgs = {
-  filters?: InputMaybe<ComponentHomeLookupHomeLookupFiltersInput>;
+  filters?: InputMaybe<ComponentHomeHomeLookupFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 export type HomePartnersArgs = {
-  filters?: InputMaybe<ComponentHomePartnerHomePartnerFiltersInput>;
+  filters?: InputMaybe<ComponentHomeHomePartnerFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
 export type HomeServicesArgs = {
-  filters?: InputMaybe<ComponentHomeServiceHomeServiceFiltersInput>;
+  filters?: InputMaybe<ComponentHomeHomeServiceFiltersInput>;
   pagination?: InputMaybe<PaginationArg>;
   sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
@@ -504,36 +667,36 @@ export type HomeEntityResponseCollection = {
 export type HomeFiltersInput = {
   Code?: InputMaybe<StringFilterInput>;
   SEO?: InputMaybe<ComponentSharedSeoFiltersInput>;
-  abouts?: InputMaybe<ComponentHomeAboutAboutFiltersInput>;
+  abouts?: InputMaybe<ComponentHomeAboutFiltersInput>;
   and?: InputMaybe<Array<InputMaybe<HomeFiltersInput>>>;
-  contacts?: InputMaybe<ComponentServiceContactServiceContactFiltersInput>;
+  contacts?: InputMaybe<ComponentHomeServiceContactFiltersInput>;
   createdAt?: InputMaybe<DateTimeFilterInput>;
-  features?: InputMaybe<ComponentFeatureHomeFeatureFiltersInput>;
-  home_tabs?: InputMaybe<ComponentHomeTabHomeTabFiltersInput>;
+  features?: InputMaybe<ComponentHomeFeatureFiltersInput>;
+  home_tabs?: InputMaybe<ComponentHomeHomeTabFiltersInput>;
   id?: InputMaybe<IdFilterInput>;
   locale?: InputMaybe<StringFilterInput>;
   localizations?: InputMaybe<HomeFiltersInput>;
-  lookups?: InputMaybe<ComponentHomeLookupHomeLookupFiltersInput>;
+  lookups?: InputMaybe<ComponentHomeHomeLookupFiltersInput>;
   not?: InputMaybe<HomeFiltersInput>;
   or?: InputMaybe<Array<InputMaybe<HomeFiltersInput>>>;
-  partners?: InputMaybe<ComponentHomePartnerHomePartnerFiltersInput>;
+  partners?: InputMaybe<ComponentHomeHomePartnerFiltersInput>;
   publishedAt?: InputMaybe<DateTimeFilterInput>;
-  services?: InputMaybe<ComponentHomeServiceHomeServiceFiltersInput>;
+  services?: InputMaybe<ComponentHomeHomeServiceFiltersInput>;
   updatedAt?: InputMaybe<DateTimeFilterInput>;
 };
 
 export type HomeInput = {
   Code?: InputMaybe<Enum_Home_Code>;
   SEO?: InputMaybe<ComponentSharedSeoInput>;
-  abouts?: InputMaybe<Array<InputMaybe<ComponentHomeAboutAboutInput>>>;
+  abouts?: InputMaybe<Array<InputMaybe<ComponentHomeAboutInput>>>;
   banners?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  contacts?: InputMaybe<Array<InputMaybe<ComponentServiceContactServiceContactInput>>>;
-  features?: InputMaybe<Array<InputMaybe<ComponentFeatureHomeFeatureInput>>>;
-  home_tabs?: InputMaybe<Array<InputMaybe<ComponentHomeTabHomeTabInput>>>;
-  lookups?: InputMaybe<Array<InputMaybe<ComponentHomeLookupHomeLookupInput>>>;
-  partners?: InputMaybe<Array<InputMaybe<ComponentHomePartnerHomePartnerInput>>>;
+  contacts?: InputMaybe<Array<InputMaybe<ComponentHomeServiceContactInput>>>;
+  features?: InputMaybe<Array<InputMaybe<ComponentHomeFeatureInput>>>;
+  home_tabs?: InputMaybe<Array<InputMaybe<ComponentHomeHomeTabInput>>>;
+  lookups?: InputMaybe<Array<InputMaybe<ComponentHomeHomeLookupInput>>>;
+  partners?: InputMaybe<Array<InputMaybe<ComponentHomeHomePartnerInput>>>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
-  services?: InputMaybe<Array<InputMaybe<ComponentHomeServiceHomeServiceInput>>>;
+  services?: InputMaybe<Array<InputMaybe<ComponentHomeHomeServiceInput>>>;
 };
 
 export type HomeRelationResponseCollection = {
@@ -653,6 +816,7 @@ export type Mutation = {
   __typename?: 'Mutation';
   /** Change user password. Confirm with the current password. */
   changePassword?: Maybe<UsersPermissionsLoginPayload>;
+  createFooter?: Maybe<FooterEntityResponse>;
   createHome?: Maybe<HomeEntityResponse>;
   createHomeLocalization?: Maybe<HomeEntityResponse>;
   createNavigationAudience?: Maybe<NavigationAudienceEntityResponse>;
@@ -668,6 +832,7 @@ export type Mutation = {
   createUsersPermissionsRole?: Maybe<UsersPermissionsCreateRolePayload>;
   /** Create a new user */
   createUsersPermissionsUser: UsersPermissionsUserEntityResponse;
+  deleteFooter?: Maybe<FooterEntityResponse>;
   deleteHome?: Maybe<HomeEntityResponse>;
   deleteNavigationAudience?: Maybe<NavigationAudienceEntityResponse>;
   deleteNavigationNavigation?: Maybe<NavigationNavigationEntityResponse>;
@@ -693,6 +858,7 @@ export type Mutation = {
   /** Reset user password. Confirm with a code (resetToken from forgotPassword) */
   resetPassword?: Maybe<UsersPermissionsLoginPayload>;
   updateFileInfo: UploadFileEntityResponse;
+  updateFooter?: Maybe<FooterEntityResponse>;
   updateHome?: Maybe<HomeEntityResponse>;
   updateNavigationAudience?: Maybe<NavigationAudienceEntityResponse>;
   updateNavigationNavigation?: Maybe<NavigationNavigationEntityResponse>;
@@ -714,6 +880,11 @@ export type MutationChangePasswordArgs = {
   currentPassword: Scalars['String'];
   password: Scalars['String'];
   passwordConfirmation: Scalars['String'];
+};
+
+
+export type MutationCreateFooterArgs = {
+  data: FooterInput;
 };
 
 
@@ -785,6 +956,11 @@ export type MutationCreateUsersPermissionsRoleArgs = {
 
 export type MutationCreateUsersPermissionsUserArgs = {
   data: UsersPermissionsUserInput;
+};
+
+
+export type MutationDeleteFooterArgs = {
+  id: Scalars['ID'];
 };
 
 
@@ -888,6 +1064,12 @@ export type MutationResetPasswordArgs = {
 export type MutationUpdateFileInfoArgs = {
   id: Scalars['ID'];
   info?: InputMaybe<FileInfoInput>;
+};
+
+
+export type MutationUpdateFooterArgs = {
+  data: FooterInput;
+  id: Scalars['ID'];
 };
 
 
@@ -1346,6 +1528,8 @@ export enum PublicationState {
 
 export type Query = {
   __typename?: 'Query';
+  footer?: Maybe<FooterEntityResponse>;
+  footers?: Maybe<FooterEntityResponseCollection>;
   home?: Maybe<HomeEntityResponse>;
   homes?: Maybe<HomeEntityResponseCollection>;
   i18NLocale?: Maybe<I18NLocaleEntityResponse>;
@@ -1371,6 +1555,19 @@ export type Query = {
   usersPermissionsRoles?: Maybe<UsersPermissionsRoleEntityResponseCollection>;
   usersPermissionsUser?: Maybe<UsersPermissionsUserEntityResponse>;
   usersPermissionsUsers?: Maybe<UsersPermissionsUserEntityResponseCollection>;
+};
+
+
+export type QueryFooterArgs = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
+
+export type QueryFootersArgs = {
+  filters?: InputMaybe<FooterFiltersInput>;
+  pagination?: InputMaybe<PaginationArg>;
+  publicationState?: InputMaybe<PublicationState>;
+  sort?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
 };
 
 
@@ -1974,7 +2171,7 @@ export type GetHomeQueryVariables = Exact<{
 }>;
 
 
-export type GetHomeQuery = { __typename?: 'Query', homes?: { __typename?: 'HomeEntityResponseCollection', data: Array<{ __typename?: 'HomeEntity', attributes?: { __typename?: 'Home', banners?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null } | null }> } | null, abouts?: Array<{ __typename?: 'ComponentHomeAboutAbout', is_plus?: boolean | null, heading?: number | null, subject?: string | null, detail?: string | null } | null> | null, features?: Array<{ __typename?: 'ComponentFeatureHomeFeature', title?: string | null, icon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null } | null } | null } | null } | null> | null, home_tabs?: Array<{ __typename?: 'ComponentHomeTabHomeTab', title?: string | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null } | null } | null } | null } | null> | null, services?: Array<{ __typename?: 'ComponentHomeServiceHomeService', title?: string | null, url?: string | null, icon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null } | null } | null } | null, background?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null } | null } | null } | null, subs?: Array<{ __typename?: 'ComponentHomeSubServiceHomeSubService', title?: string | null, url?: string | null } | null> | null } | null> | null, lookups?: Array<{ __typename?: 'ComponentHomeLookupHomeLookup', title?: string | null, background?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null } | null } | null } | null } | null> | null, contacts?: Array<{ __typename?: 'ComponentServiceContactServiceContact', name?: string | null, phone?: string | null } | null> | null, partners?: Array<{ __typename?: 'ComponentHomePartnerHomePartner', image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null } | null } | null } | null } | null> | null } | null }> } | null };
+export type GetHomeQuery = { __typename?: 'Query', homes?: { __typename?: 'HomeEntityResponseCollection', data: Array<{ __typename?: 'HomeEntity', attributes?: { __typename?: 'Home', banners?: { __typename?: 'UploadFileRelationResponseCollection', data: Array<{ __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null } | null }> } | null, abouts?: Array<{ __typename?: 'ComponentHomeAbout', is_plus?: boolean | null, heading?: number | null, subject?: string | null, detail?: string | null } | null> | null, features?: Array<{ __typename?: 'ComponentHomeFeature', title?: string | null, icon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null } | null } | null } | null } | null> | null, home_tabs?: Array<{ __typename?: 'ComponentHomeHomeTab', title?: string | null, image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null } | null } | null } | null } | null> | null, services?: Array<{ __typename?: 'ComponentHomeHomeService', title?: string | null, url?: string | null, icon?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null } | null } | null } | null, background?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null } | null } | null } | null, subs?: Array<{ __typename?: 'ComponentHomeHomeSubService', title?: string | null, url?: string | null } | null> | null } | null> | null, lookups?: Array<{ __typename?: 'ComponentHomeHomeLookup', title?: string | null, background?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null } | null } | null } | null } | null> | null, contacts?: Array<{ __typename?: 'ComponentHomeServiceContact', name?: string | null, phone?: string | null } | null> | null, partners?: Array<{ __typename?: 'ComponentHomeHomePartner', image?: { __typename?: 'UploadFileEntityResponse', data?: { __typename?: 'UploadFileEntity', attributes?: { __typename?: 'UploadFile', url: string, previewUrl?: string | null } | null } | null } | null } | null> | null } | null }> } | null };
 
 
 export const GetHomeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetHome"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"I18NLocaleCode"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"homes"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locale"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"banners"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"previewUrl"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"abouts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"is_plus"}},{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"subject"}},{"kind":"Field","name":{"kind":"Name","value":"detail"}}]}},{"kind":"Field","name":{"kind":"Name","value":"features"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"previewUrl"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}},{"kind":"Field","name":{"kind":"Name","value":"home_tabs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"previewUrl"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}}]}},{"kind":"Field","name":{"kind":"Name","value":"services"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"icon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"previewUrl"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"background"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"previewUrl"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"subs"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"lookups"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"background"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"previewUrl"}}]}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"contacts"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"phone"}}]}},{"kind":"Field","name":{"kind":"Name","value":"partners"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"image"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"data"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"attributes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"}},{"kind":"Field","name":{"kind":"Name","value":"previewUrl"}}]}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetHomeQuery, GetHomeQueryVariables>;

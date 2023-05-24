@@ -9,10 +9,10 @@ import LeftArrowImg from "@assets/images/icons/arrow_left.svg";
 import RightArrowImg from "@assets/images/icons/arrow_right.svg";
 import Image from "next/image";
 import AnimatedNumber from "@components/AnimatedNumber";
-import { ComponentHomeAboutAbout, Maybe } from "@generated/graphql";
+import { ComponentHomeAbout, Maybe } from "@generated/graphql";
 
 interface Props {
-  content?: Maybe<Array<Maybe<ComponentHomeAboutAbout>>>;
+  content?: Maybe<Array<Maybe<ComponentHomeAbout>>>;
 }
 function SampleNextArrow(props: any) {
   const { className, style, onClick } = props;

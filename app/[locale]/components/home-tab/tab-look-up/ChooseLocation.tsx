@@ -17,12 +17,12 @@ import SearchImg from "@assets/images/icons/search_light.svg";
 import { ICountry, IProvince } from "@type/location";
 import { SERVICE_TRANSPORT } from "@ultility/constant";
 import { ISTATUS } from "./FormLookup";
-import { ComponentHomeLookupHomeLookup, Maybe } from "@generated/graphql";
+import { ComponentHomeHomeLookup, Maybe } from "@generated/graphql";
 import { getPrefixImageUrl } from "@ultility/index";
 import { useTranslations } from "next-intl";
 
 interface ChooseLocationProps {
-  lookup?: Maybe<ComponentHomeLookupHomeLookup>;
+  lookup?: Maybe<ComponentHomeHomeLookup>;
   /*************************
    *  INDEX == 0: EXPRESS  *
    * INDEX == 1: FOWARDING *

@@ -5,12 +5,12 @@ import { FC } from "react";
 import RightImg from "@assets/images/icons/arrow_right_2.svg";
 import Link from "next-intl/link";
 import { useRouter } from "next-intl/client";
-import { ComponentHomeServiceHomeService, Maybe } from "@generated/graphql";
+import { ComponentHomeHomeService, Maybe } from "@generated/graphql";
 import { getPrefixImageUrl } from "@ultility/index";
 import { useTranslations } from "next-intl";
 
 interface TabMyServiceProps {
-  services?: Maybe<Array<Maybe<ComponentHomeServiceHomeService>>>;
+  services?: Maybe<Array<Maybe<ComponentHomeHomeService>>>;
 }
 
 const TabMyService: FC<TabMyServiceProps> = ({ services }) => {

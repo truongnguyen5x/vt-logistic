@@ -10,19 +10,19 @@ import Slider from "react-slick";
 import TabLookup from "./tab-look-up";
 
 import {
-  ComponentHomeLookupHomeLookup,
-  ComponentHomeServiceHomeService,
-  ComponentHomeTabHomeTab,
-  ComponentServiceContactServiceContact,
+  ComponentHomeHomeLookup,
+  ComponentHomeHomeService,
+  ComponentHomeHomeTab,
+  ComponentHomeServiceContact,
   Maybe,
 } from "@generated/graphql";
 import { getPrefixImageUrl } from "@ultility/index";
 
 interface HomeTabProps {
-  tabs?: Maybe<Array<Maybe<ComponentHomeTabHomeTab>>>;
-  services?: Maybe<Array<Maybe<ComponentHomeServiceHomeService>>>;
-  lookups?: Maybe<Array<Maybe<ComponentHomeLookupHomeLookup>>>;
-  contacts?: Maybe<Array<Maybe<ComponentServiceContactServiceContact>>>;
+  tabs?: Maybe<Array<Maybe<ComponentHomeHomeTab>>>;
+  services?: Maybe<Array<Maybe<ComponentHomeHomeService>>>;
+  lookups?: Maybe<Array<Maybe<ComponentHomeHomeLookup>>>;
+  contacts?: Maybe<Array<Maybe<ComponentHomeServiceContact>>>;
 }
 
 const HomeTab: FC<HomeTabProps> = ({ tabs, contacts, lookups, services }) => {

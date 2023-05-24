@@ -3,14 +3,11 @@ import CheckImg from "@assets/images/icons/check.svg";
 import Image from "next/image";
 import CallImg from "@assets/images/icons/calling.svg";
 import styles from "@app/styles.module.scss";
-import {
-  ComponentServiceContactServiceContact,
-  Maybe,
-} from "@generated/graphql";
+import { ComponentHomeServiceContact, Maybe } from "@generated/graphql";
 import { useTranslations } from "next-intl";
 
 interface ServiceAvailableProps {
-  contacts?: Maybe<Array<Maybe<ComponentServiceContactServiceContact>>>;
+  contacts?: Maybe<Array<Maybe<ComponentHomeServiceContact>>>;
 }
 
 const ServiceAvailable: FC<ServiceAvailableProps> = ({ contacts }) => {

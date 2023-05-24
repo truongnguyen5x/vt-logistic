@@ -12,14 +12,14 @@ import { useRouter } from "next/router";
 import { useParams } from "next/navigation";
 import { ICountry, IProvince } from "@type/location";
 import {
-  ComponentHomeLookupHomeLookup,
-  ComponentServiceContactServiceContact,
+  ComponentHomeHomeLookup,
+  ComponentHomeServiceContact,
   Maybe,
 } from "@generated/graphql";
 
 interface TabLookupProps {
-  lookups?: Maybe<Array<Maybe<ComponentHomeLookupHomeLookup>>>;
-  contacts?: Maybe<Array<Maybe<ComponentServiceContactServiceContact>>>;
+  lookups?: Maybe<Array<Maybe<ComponentHomeHomeLookup>>>;
+  contacts?: Maybe<Array<Maybe<ComponentHomeServiceContact>>>;
 }
 
 const TabLookup: FC<TabLookupProps> = ({ lookups, contacts }) => {
