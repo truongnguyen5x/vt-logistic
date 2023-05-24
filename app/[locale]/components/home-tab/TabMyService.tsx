@@ -34,7 +34,7 @@ const TabMyService: FC<TabMyServiceProps> = ({ services }) => {
         />
         {services?.map((service, idx) => (
           <div key={idx} className={styles.serviceItem}>
-            <Link href={service?.url || ""} className={styles.serviceLink}>
+            <Link href={service?.url || "#"} className={styles.serviceLink}>
               <Image
                 src={getPrefixImageUrl(service?.icon?.data?.attributes?.url)}
                 alt=""

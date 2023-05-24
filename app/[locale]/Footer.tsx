@@ -54,7 +54,7 @@ const Footer = async () => {
         );
       } else {
         return (
-          <Link href={asset.url} className="footer-link my-3">
+          <a href={asset.url} className="footer-link my-3">
             {asset?.icon?.data && (
               <Image
                 src={getPrefixImageUrl(asset.icon.data?.attributes?.url)}
@@ -64,7 +64,7 @@ const Footer = async () => {
               />
             )}
             {asset.title}
-          </Link>
+          </a>
         );
       }
     }
@@ -126,7 +126,7 @@ const Footer = async () => {
               <a
                 key={idx1}
                 target="_blank"
-                href={i?.url || ""}
+                href={i?.url || "#"}
                 className="footer-link my-2"
               >
                 {i?.title}
@@ -137,7 +137,7 @@ const Footer = async () => {
             <p className="footer-col">{t("connect_with_us")}</p>
             <div className="flex justify-start gap-7 mt-9">
               {footerAsset?.attributes?.socials?.map((i, idx2) => (
-                <a key={idx2} target="_blank" href={i?.url || ""}>
+                <a key={idx2} target="_blank" href={i?.url || "#"}>
                   <Image
                     src={getPrefixImageUrl(i?.icon?.data?.attributes?.url)}
                     alt=""
