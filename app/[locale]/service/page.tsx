@@ -8,6 +8,17 @@ import BreadCrumbs from "@components/Breadcrumbs";
 import ServiceOverview from "./components/Overview";
 import MoreService from "@components/more-service";
 import "react-loading-skeleton/dist/skeleton.css";
+import { getClient } from "@api/graphql-client";
+import { gql } from "@generated/gql";
+import { getServiceQueryString } from "@api/service.graghql";
+import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
+import {
+  ComponentServiceFeature,
+  ComponentServiceTransportation,
+  Maybe,
+  UploadFileEntityResponse,
+  UploadFileRelationResponseCollection,
+} from "@generated/graphql";
 
 type IServiceAsset = {
   banner_img: string;
@@ -23,12 +34,23 @@ type IServiceAsset = {
   transportation_list_service: Array<{ txt: string; url: string; img: string }>;
 };
 
+const getServiceAsset = async (locale: ILocale) => {
+  const { data } = await getClient().query({
+    query: gql(getServiceQueryString),
+    variables: { locale: getLanguageForApi(locale) },
+  });
+
+  // get last element
+  return data.services?.data[data?.services?.data?.length - 1];
+};
+
 const Service = async () => {
   const locale = useLocale();
 
   const [serviceAsset, t] = await Promise.all([
-    fetchAsset<IServiceAsset>("service", locale as ILocale),
+    getServiceAsset(locale as ILocale),
     getTranslations("service"),
+    import(`../../../dictionaries/${locale}.json`),
   ]);
 
   const breadcrumbs = [
@@ -38,14 +60,21 @@ const Service = async () => {
 
   return (
     <Fragment>
-      <Banner image={serviceAsset.banner_img} title={t("title")} />
+      <Banner
+        image={getPrefixImageUrl(
+          serviceAsset?.attributes?.banner?.data?.attributes?.url
+        )}
+        title={t("title")}
+      />
       <div className="container mx-auto">
         <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6 mb-10" />
       </div>
       <ServiceOverview
-        bgImg={serviceAsset.overview_img}
-        txt={serviceAsset.my_service}
-        features={serviceAsset.features}
+        bgImg={getPrefixImageUrl(serviceAsset?.attributes?.bg_service?.data?.attributes?.url)}
+        txt={serviceAsset?.attributes?.description || ""}
+        features={
+          serviceAsset?.attributes?.features as Maybe<ComponentServiceFeature[]>
+        }
       />
       <div className="container mx-auto">
         <div className="section-name mb-9 mt-12 animation">
@@ -55,10 +84,14 @@ const Service = async () => {
           className="text-base text-th-gray-300 font-medium text-center whitespace-pre-line animation"
           data-animation-delay="0.3s"
         >
-          {serviceAsset.service_transportation_des}
+          {serviceAsset?.attributes?.description_service}
         </p>
         <MoreService
-          services={serviceAsset.transportation_list_service}
+          services={
+            serviceAsset?.attributes?.transportations as Maybe<
+              ComponentServiceTransportation[]
+            >
+          }
           more={t("more")}
         />
       </div>
