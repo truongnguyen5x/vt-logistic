@@ -23,32 +23,32 @@ import {
   Maybe,
   UploadFileRelationResponseCollection,
 } from "@generated/graphql";
-import { getPrefixImageUrl } from "@ultility/index";
+import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
 
 // TODO: generateStaticParams what for?
 // export async function generateStaticParams() {
 //   return i18n.locales.map((i: ILocale) => ({ locale: i }));
 // }
 
-const getHomeAsset = async () => {
+const getHomeAsset = async (locale: ILocale) => {
   const { data } = await getClient().query({
     query: gql(getHomeQueryString),
-    variables: { locale: "vi-VN" },
+    variables: { locale: getLanguageForApi(locale) },
   });
-  return data.homes?.data[0];
+
+  // get last element
+  return data.homes?.data[data?.homes?.data?.length - 1];
 };
 
 export default async function Home() {
   const locale = useLocale();
 
   const [assetData, t, message] = await Promise.all([
-    getHomeAsset(),
+    getHomeAsset(locale as ILocale),
     getTranslations("home"),
     import(`../../dictionaries/${locale}.json`),
   ]);
   const listHomePost = fetchHomePost(locale as ILocale);
-
-  await import(`../../dictionaries/${locale}.json`);
 
   return (
     <Fragment>
