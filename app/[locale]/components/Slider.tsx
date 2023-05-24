@@ -7,9 +7,14 @@ import { FC } from "react";
 import Image from "next/image";
 import LeftArrowImg from "@assets/images/icons/arrow_left_3.svg";
 import RightArrowImg from "@assets/images/icons/arrow_right_3.svg";
+import {
+  Maybe,
+  UploadFileRelationResponseCollection,
+} from "@generated/graphql";
+import { getPrefixImageUrl } from "@ultility/index";
 
 interface Props {
-  images: string[];
+  images?: UploadFileRelationResponseCollection | null;
 }
 
 function SampleNextArrow(props: any) {
@@ -51,16 +56,17 @@ const SliderHome: FC<Props> = ({ images }) => {
         nextArrow={<SampleNextArrow />}
         prevArrow={<SamplePrevArrow />}
       >
-        {images.map((i, idx) => (
-          <Image
-            src={i}
-            key={idx}
-            className={styles.banner}
-            alt=""
-            width={1920}
-            height={450}
-          />
-        ))}
+        {!!images &&
+          images.data.map((i, idx) => (
+            <Image
+              src={getPrefixImageUrl(i?.attributes?.url)}
+              key={idx}
+              className={styles.banner}
+              alt=""
+              width={1920}
+              height={450}
+            />
+          ))}
       </Slider>
     </section>
   );

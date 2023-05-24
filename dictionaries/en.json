@@ -36,7 +36,14 @@
     "partner": "Đối tác chiến lược",
     "news_event": "Tin tức & Sự kiện",
     "learn_more": "Tìm hiểu thêm",
-    "detail": "Chi tiết"
+    "detail": "Chi tiết",
+    "all_service": "Tất cả dịch vụ",
+    "from": "Điểm gửi",
+    "to": "Điểm nhận",
+    "lookup": "Tra cứu",
+    "service_unavailable": "DỊCH VỤ KHÔNG KHẢ DỤNG",
+    "service_available": "Dịch vụ khả dụng",
+    "service_available_des": "Để biết thêm chi tiết về hành trình & Giá cước vận chuyển\n khách hàng vui lòng liên hệ"
   },
   "introduce": {
     "common": "Giới thiệu chung",

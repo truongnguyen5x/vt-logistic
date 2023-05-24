@@ -1,5 +1,5 @@
 "use client";
-import { Fragment, useRef, useState } from "react";
+import { FC, Fragment, useRef, useState } from "react";
 import clsx from "clsx";
 import Image from "next/image";
 import styles from "@app/styles.module.scss";
@@ -9,34 +9,23 @@ import TabMyService from "./TabMyService";
 import Slider from "react-slick";
 import TabLookup from "./tab-look-up";
 
-export type IServiceItem = {
-  img: string;
-  title: string;
-  subs?: string[];
-  url: string;
-  bg_img: string;
-};
+import {
+  ComponentHomeLookupHomeLookup,
+  ComponentHomeServiceHomeService,
+  ComponentHomeTabHomeTab,
+  ComponentServiceContactServiceContact,
+  Maybe,
+} from "@generated/graphql";
+import { getPrefixImageUrl } from "@ultility/index";
 
-export type ILookupContent = {
-  title: string[];
-  imgs: string[];
-  from: string;
-  to: string;
-  service_available: string;
-  service_available_des: string;
-  service_unavailable: string;
-  contacts: Array<{ name: string; phone: string }>;
-  btn: string;
-};
+interface HomeTabProps {
+  tabs?: Maybe<Array<Maybe<ComponentHomeTabHomeTab>>>;
+  services?: Maybe<Array<Maybe<ComponentHomeServiceHomeService>>>;
+  lookups?: Maybe<Array<Maybe<ComponentHomeLookupHomeLookup>>>;
+  contacts?: Maybe<Array<Maybe<ComponentServiceContactServiceContact>>>;
+}
 
-export type IAboutContent = {
-  tabs: Array<{ title: string; img: string }>;
-  service_tab: IServiceItem[];
-  all_service: string;
-  lookup_tab: ILookupContent;
-};
-
-const HomeTab = ({ assets }: { assets: IAboutContent }) => {
+const HomeTab: FC<HomeTabProps> = ({ tabs, contacts, lookups, services }) => {
   //TODO: 1
   const [activeTab, setActiveTab] = useState(1);
   const slickRef = useRef<Slider>(null);
@@ -51,7 +40,7 @@ const HomeTab = ({ assets }: { assets: IAboutContent }) => {
   return (
     <Fragment>
       <div className="flex justify-center gap-4 mt-20 mb-20 animation">
-        {assets.tabs.map((i, idx) => (
+        {tabs?.map((i, idx) => (
           <div
             key={idx}
             onClick={() => handleChangeTab(idx)}
@@ -65,7 +54,7 @@ const HomeTab = ({ assets }: { assets: IAboutContent }) => {
           >
             <div>
               <p>
-                {i.title}
+                {i?.title}
                 <Image
                   src={activeTab == idx ? RightImg : RightDarkImg}
                   width={28}
@@ -74,7 +63,12 @@ const HomeTab = ({ assets }: { assets: IAboutContent }) => {
                 />
               </p>
             </div>
-            <Image src={i.img} alt="lookup" width={56} height={56} />
+            <Image
+              src={getPrefixImageUrl(i?.image?.data?.attributes?.url)}
+              alt="lookup"
+              width={56}
+              height={56}
+            />
           </div>
         ))}
       </div>
@@ -92,11 +86,8 @@ const HomeTab = ({ assets }: { assets: IAboutContent }) => {
           speed={500}
           className="custom-slider"
         >
-          <TabLookup content={assets.lookup_tab} />
-          <TabMyService
-            contents={assets.service_tab}
-            allService={assets.all_service}
-          />
+          <TabLookup lookups={lookups} contacts={contacts} />
+          <TabMyService services={services} />
         </Slider>
       </div>
     </Fragment>

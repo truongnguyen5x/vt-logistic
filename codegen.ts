@@ -1,8 +1,8 @@
 import { CodegenConfig } from "@graphql-codegen/cli";
 
 const config: CodegenConfig = {
-  schema: "http://localhost:3001/schema",
-  documents: ["app/**/*.ts"],
+  schema: "https://vtl-cms.grandsways.com/graphql",
+  documents: ["app/**/*.tsx", "api/**/*.ts"],
   generates: {
     "./__generated__/": {
       preset: "client",

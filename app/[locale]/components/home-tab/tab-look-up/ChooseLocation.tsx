@@ -7,7 +7,7 @@ import {
   SetStateAction,
   useState,
 } from "react";
-import { ILookupContent } from "..";
+
 import Image from "next/image";
 import styles from "@app/styles.module.scss";
 import LocationImg from "@assets/images/icons/location.svg";
@@ -17,9 +17,12 @@ import SearchImg from "@assets/images/icons/search_light.svg";
 import { ICountry, IProvince } from "@type/location";
 import { SERVICE_TRANSPORT } from "@ultility/constant";
 import { ISTATUS } from "./FormLookup";
+import { ComponentHomeLookupHomeLookup, Maybe } from "@generated/graphql";
+import { getPrefixImageUrl } from "@ultility/index";
+import { useTranslations } from "next-intl";
 
 interface ChooseLocationProps {
-  content: ILookupContent;
+  lookup?: Maybe<ComponentHomeLookupHomeLookup>;
   /*************************
    *  INDEX == 0: EXPRESS  *
    * INDEX == 1: FOWARDING *
@@ -32,12 +35,13 @@ interface ChooseLocationProps {
 }
 
 const ChooseLocation: FC<ChooseLocationProps> = ({
-  content,
   index,
   listCountry,
   listProvince,
   setStatus,
+  lookup,
 }) => {
+  const t = useTranslations("home");
   const [from, setForm] = useState<string>();
   const [to, setTo] = useState<string>();
 
@@ -73,7 +77,12 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
   return (
     <Fragment>
       <div className={styles.formBg}>
-        <Image src={content.imgs[index]} alt="" width={719} height={339} />
+        <Image
+          src={getPrefixImageUrl(lookup?.background?.data?.attributes?.url)}
+          alt=""
+          width={719}
+          height={339}
+        />
       </div>
 
       <div className="container mx-auto flex justify-start p-12">
@@ -85,7 +94,7 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
               <Image alt="location" src={MapImg} width={38} height={38} />
             </div>
             <div className="flex-grow flex flex-col gap-4">
-              <p className={styles.formTitle}>{content.from}</p>
+              <p className={styles.formTitle}>{t("from")}</p>
               <CustomAutocomplete
                 value={from}
                 onChange={onChangeForm}
@@ -96,7 +105,7 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
                 }
               />
               <div className="mt-6" />
-              <p className={styles.formTitle}>{content.to}</p>
+              <p className={styles.formTitle}>{t("to")}</p>
               <CustomAutocomplete
                 value={to}
                 onChange={onChangeTo}
@@ -113,7 +122,7 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
             onClick={handleCheckService}
             disabled={!from || !to}
           >
-            {content.btn}
+            {t("lookup")}
             <Image src={SearchImg} alt="search" width={20} height={20} />
           </button>
         </div>

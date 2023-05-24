@@ -5,12 +5,11 @@ import styles from "@app/styles.module.scss";
 import Image from "next/image";
 import LeftArrowImg from "@assets/images/icons/arrow_left.svg";
 import RightArrowImg from "@assets/images/icons/arrow_right.svg";
+import { ComponentHomePartnerHomePartner, Maybe } from "@generated/graphql";
+import { getPrefixImageUrl } from "@ultility/index";
 
-export type IPartner = {
-  imgs: string[];
-};
 interface PartnerProps {
-  assets: IPartner;
+  assets?: Maybe<Array<Maybe<ComponentHomePartnerHomePartner>>>;
   title: string;
 }
 
@@ -57,11 +56,17 @@ const Partner: FC<PartnerProps> = ({ assets, title }) => {
             nextArrow={<SampleNextArrow />}
             prevArrow={<SamplePrevArrow />}
           >
-            {assets.imgs.map((i, idx) => (
-              <div key={idx} className={styles.partnerItem}>
-                <Image alt="" src={i} width={253} height={165} />
-              </div>
-            ))}
+            {!!assets &&
+              assets.map((i, idx) => (
+                <div key={idx} className={styles.partnerItem}>
+                  <Image
+                    alt=""
+                    src={getPrefixImageUrl(i?.image?.data?.attributes?.url)}
+                    width={253}
+                    height={165}
+                  />
+                </div>
+              ))}
           </Slider>
         </div>
       </div>

@@ -1,6 +1,6 @@
 "use client";
 import { FC, Fragment, useState } from "react";
-import { ILookupContent } from "..";
+
 import Image from "next/image";
 import styles from "@app/styles.module.scss";
 import LocationImg from "@assets/images/icons/location.svg";
@@ -11,9 +11,13 @@ import { SERVICE_TRANSPORT } from "@ultility/constant";
 import ServiceUnavailable from "./ServiceUnvailable";
 import ServiceAvailable from "./ServiceAvailable";
 import ChooseLocation from "./ChooseLocation";
+import {
+  ComponentHomeLookupHomeLookup,
+  ComponentServiceContactServiceContact,
+  Maybe,
+} from "@generated/graphql";
 
 interface FormLookupProps {
-  content: ILookupContent;
   /*************************
    *  INDEX == 0: EXPRESS  *
    * INDEX == 1: FOWARDING *
@@ -22,31 +26,32 @@ interface FormLookupProps {
   index: number;
   listCountry: ICountry[];
   listProvince: IProvince[];
+  contacts?: Maybe<Array<Maybe<ComponentServiceContactServiceContact>>>;
+  lookup?: Maybe<ComponentHomeLookupHomeLookup>;
 }
 
 export type ISTATUS = "NONE" | "UNAVAILABLE" | "AVAILABLE";
 
 const FormLookup: FC<FormLookupProps> = ({
-  content,
   index,
   listCountry,
   listProvince,
+  contacts,
+  lookup,
 }) => {
   const [status, setStatus] = useState<ISTATUS>("NONE");
 
   return (
     <div className={styles.lookUpBg}>
-      {status == "UNAVAILABLE" && (
-        <ServiceUnavailable title={content.service_unavailable} />
-      )}
-      {status == "AVAILABLE" && <ServiceAvailable content={content} />}
+      {status == "UNAVAILABLE" && <ServiceUnavailable />}
+      {status == "AVAILABLE" && <ServiceAvailable contacts={contacts} />}
       {status == "NONE" && (
         <ChooseLocation
           listCountry={listCountry}
           listProvince={listProvince}
-          content={content}
           index={index}
           setStatus={setStatus}
+          lookup={lookup}
         />
       )}
     </div>

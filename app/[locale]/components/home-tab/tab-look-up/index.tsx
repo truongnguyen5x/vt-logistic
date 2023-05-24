@@ -1,6 +1,6 @@
 "use client";
 import { FC, Fragment, useEffect, useRef, useState } from "react";
-import { ILookupContent } from "../";
+
 import clsx from "clsx";
 import styles from "@app/styles.module.scss";
 import Slider from "react-slick";
@@ -11,12 +11,18 @@ import { ILocale } from "@configs/i18n";
 import { useRouter } from "next/router";
 import { useParams } from "next/navigation";
 import { ICountry, IProvince } from "@type/location";
+import {
+  ComponentHomeLookupHomeLookup,
+  ComponentServiceContactServiceContact,
+  Maybe,
+} from "@generated/graphql";
 
 interface TabLookupProps {
-  content: ILookupContent;
+  lookups?: Maybe<Array<Maybe<ComponentHomeLookupHomeLookup>>>;
+  contacts?: Maybe<Array<Maybe<ComponentServiceContactServiceContact>>>;
 }
 
-const TabLookup: FC<TabLookupProps> = ({ content }) => {
+const TabLookup: FC<TabLookupProps> = ({ lookups, contacts }) => {
   const params = useParams();
   const slickRef = useRef<Slider>(null);
 
@@ -55,7 +61,7 @@ const TabLookup: FC<TabLookupProps> = ({ content }) => {
             onClick={() => handleChangeTab(i)}
             key={i}
           >
-            {content.title[i]}
+            {lookups?.[i]?.title}
           </div>
         ))}
       </div>
@@ -75,20 +81,23 @@ const TabLookup: FC<TabLookupProps> = ({ content }) => {
         <FormLookup
           listCountry={listCountry}
           listProvince={listProvince}
-          content={content}
+          lookup={lookups?.[0]}
+          contacts={contacts}
           index={0}
         />
         <FormLookup
           listCountry={listCountry}
           listProvince={listProvince}
-          content={content}
           index={1}
+          lookup={lookups?.[1]}
+          contacts={contacts}
         />
         <FormLookup
           listCountry={listCountry}
           listProvince={listProvince}
-          content={content}
           index={2}
+          lookup={lookups?.[2]}
+          contacts={contacts}
         />
       </Slider>
     </Fragment>

@@ -1,7 +1,7 @@
 import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 import { registerApolloClient } from "@apollo/experimental-nextjs-app-support/rsc";
 
-import { gql } from "@apollo/client";
+// import { gql } from "@generated/gql"
 
 export const { getClient } = registerApolloClient(() => {
   return new ApolloClient({
@@ -12,9 +12,9 @@ export const { getClient } = registerApolloClient(() => {
   });
 });
 
-const query = gql`
-  query GetHome($id: ID) {
-    home(id: $id) {
+export const getHomeQueryString = /* GraphQL */ `
+  query GetHome($locale: I18NLocaleCode) {
+    homes(locale: $locale) {
       data {
         attributes {
           banners {
@@ -108,7 +108,7 @@ const query = gql`
   }
 `;
 // variables
-export const getHome = async () => {
-  const { data } = await getClient().query({ query, variables: { id: 3 } });
-  console.log(data);
-};
+// export const getHome = async () => {
+//   const { data } = await getClient().query({ query, variables: { id: 3 } });
+//   console.log(data);
+// };
