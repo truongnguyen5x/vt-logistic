@@ -5,11 +5,11 @@ import styles from "@app/styles.module.scss";
 import Image from "next/image";
 import LeftArrowImg from "@assets/images/icons/arrow_left.svg";
 import RightArrowImg from "@assets/images/icons/arrow_right.svg";
-import { ComponentHomePartnerHomePartner, Maybe } from "@generated/graphql";
+import { ComponentHomeHomePartner, Maybe } from "@generated/graphql";
 import { getPrefixImageUrl } from "@ultility/index";
 
 interface PartnerProps {
-  assets?: Maybe<Array<Maybe<ComponentHomePartnerHomePartner>>>;
+  assets?: Maybe<Array<Maybe<ComponentHomeHomePartner>>>;
   title: string;
 }
 

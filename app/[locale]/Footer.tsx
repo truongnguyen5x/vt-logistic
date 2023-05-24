@@ -11,59 +11,74 @@ import BCTimg from "@assets/images/logos/bo_cong_thuong.png";
 import VtImg from "@assets/images/logos/viettel.png";
 import { getTranslations } from "next-intl/server";
 import ButtonRegisterFooter from "@components/btn-register/BtnRegisterFooter";
+import { getClient, getFooterQueryString } from "@api/graphql-client";
+import { gql } from "@generated/gql";
+import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
+import { ComponentFooterFooterLink, Maybe } from "@generated/graphql";
 
-type ILink = {
-  txt: string;
-  img?: string;
-  external?: boolean;
-  href?: string;
-};
-export type IFooter = {
-  title: string;
-  placeholder: string;
-  register_txt: string;
-  links: Array<{
-    title: string;
-    urls: ILink[];
-  }>;
-  links2: Array<{ txt: string; url: string }>;
-  socials: Array<{ img: string; url: string }>;
-  copyright: string;
+const getHomeAsset = async (locale: ILocale) => {
+  const { data } = await getClient().query({
+    query: gql(getFooterQueryString),
+    variables: { locale: getLanguageForApi(locale) },
+  });
+
+  // get last element
+  return data.footers?.data[data?.footers?.data?.length - 1];
 };
 
 const Footer = async () => {
   const locale = useLocale();
   const [footerAsset, t] = await Promise.all([
-    fetchAsset<IFooter>("footer", locale as ILocale),
+    getHomeAsset(locale as ILocale),
     getTranslations("layout"),
   ]);
 
-  const renderLinkItem = (asset: ILink) => {
-    if (asset?.href) {
-      if (asset.external) {
+  const renderLinkItem = (
+    asset: Maybe<ComponentFooterFooterLink>,
+    idx: number
+  ) => {
+    if (asset?.url) {
+      if (asset.is_external_link) {
         return (
-          <a href={asset.href} target="_blank" className="footer-link my-3">
-            {asset?.img && (
-              <Image src={asset.img} width={22} height={22} alt="" />
+          <a href={asset.url} target="_blank" className="footer-link my-3">
+            {asset?.icon?.data && (
+              <Image
+                src={getPrefixImageUrl(asset.icon.data?.attributes?.url)}
+                width={22}
+                height={22}
+                alt=""
+              />
             )}
-            {asset.txt}
+            {asset.title}
           </a>
         );
       } else {
         return (
-          <Link href={asset.href} className="footer-link my-3">
-            {asset?.img && (
-              <Image src={asset.img} width={22} height={22} alt="" />
+          <Link href={asset.url} className="footer-link my-3">
+            {asset?.icon?.data && (
+              <Image
+                src={getPrefixImageUrl(asset.icon.data?.attributes?.url)}
+                width={22}
+                height={22}
+                alt=""
+              />
             )}
-            {asset.txt}
+            {asset.title}
           </Link>
         );
       }
     }
     return (
       <div className="footer-link my-3">
-        {asset?.img && <Image src={asset.img} width={22} height={22} alt="" />}
-        <p>{asset.txt}</p>
+        {asset?.icon?.data && (
+          <Image
+            src={getPrefixImageUrl(asset.icon.data?.attributes?.url)}
+            width={22}
+            height={22}
+            alt=""
+          />
+        )}
+        <p>{asset?.title}</p>
       </div>
     );
   };
@@ -89,12 +104,15 @@ const Footer = async () => {
           className="grid grid-cols-5 gap-3 mb-7 animation"
           data-animation-delay="0.3s"
         >
-          {footerAsset.links.map((item, idx) => (
-            <div key={idx}>
-              <p className="footer-col">{item.title}</p>
-              {item.urls.map(renderLinkItem)}
-            </div>
-          ))}
+          {!!footerAsset &&
+            footerAsset?.attributes?.links?.map((item, idx) => (
+              <div key={idx}>
+                <p className="footer-col">{item?.title}</p>
+                {item?.links?.map((i, idx) =>
+                  renderLinkItem(i as Maybe<ComponentFooterFooterLink>, idx)
+                )}
+              </div>
+            ))}
         </div>
         <div className="custom-horizontal-divider"></div>
         <div
@@ -104,23 +122,28 @@ const Footer = async () => {
           <div className="col-span-2">
             <Image src={LogoImg} width={154} height={55} alt="logo" />
             <p className="footer-col mt-7">{t("about")}</p>
-            {footerAsset.links2.map((i, idx1) => (
+            {footerAsset?.attributes?.infos?.map((i, idx1) => (
               <a
                 key={idx1}
                 target="_blank"
-                href={i.url}
+                href={i?.url || ""}
                 className="footer-link my-2"
               >
-                {i.txt}
+                {i?.title}
               </a>
             ))}
           </div>
           <div>
             <p className="footer-col">{t("connect_with_us")}</p>
             <div className="flex justify-start gap-7 mt-9">
-              {footerAsset.socials.map((i, idx2) => (
-                <a key={idx2} target="_blank" href={i.url}>
-                  <Image src={i.img} alt="" width={45} height={45} />
+              {footerAsset?.attributes?.socials?.map((i, idx2) => (
+                <a key={idx2} target="_blank" href={i?.url || ""}>
+                  <Image
+                    src={getPrefixImageUrl(i?.icon?.data?.attributes?.url)}
+                    alt=""
+                    width={45}
+                    height={45}
+                  />
                 </a>
               ))}
             </div>
@@ -140,7 +163,7 @@ const Footer = async () => {
         </div>
       </div>
       <div className="footer-copyright">
-        <p>{footerAsset.copyright}</p>
+        <p>{t("copyright")}</p>
       </div>
     </Fragment>
   );

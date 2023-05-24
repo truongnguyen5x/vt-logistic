@@ -32,13 +32,16 @@ const DropdownIndicator = (props: any) => {
 
 const MenuCustom = (props: any) => {
   return (
-    <components.Menu {...props} innerProps={{
-      ...props.innerProps,
-      onClick: e => {
-        e.preventDefault();
-        e.stopPropagation();        
-      }
-    }} />
+    <components.Menu
+      {...props}
+      innerProps={{
+        ...props.innerProps,
+        onClick: (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        },
+      }}
+    />
   );
 };
 
@@ -56,7 +59,7 @@ const CustomSelect: FC<CustomSelectProps> = ({
       setValue(temp);
     }
   }, [value, options]);
-  
+
   return (
     <Select
       classNamePrefix={classNamePrefix}

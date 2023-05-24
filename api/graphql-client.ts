@@ -107,8 +107,42 @@ export const getHomeQueryString = /* GraphQL */ `
     }
   }
 `;
-// variables
-// export const getHome = async () => {
-//   const { data } = await getClient().query({ query, variables: { id: 3 } });
-//   console.log(data);
-// };
+export const getFooterQueryString = /* GraphQL */ `
+  query GetFooter($locale: I18NLocaleCode) {
+    footers(locale: $locale) {
+      data {
+        attributes {
+          links {
+            title
+            links {
+              icon {
+                data {
+                  attributes {
+                    url
+                  }
+                }
+              }
+              title
+              url
+              is_external_link
+            }
+          }
+          infos {
+            title
+            url
+          }
+          socials {
+            icon {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
+            url
+          }
+        }
+      }
+    }
+  }
+`;
