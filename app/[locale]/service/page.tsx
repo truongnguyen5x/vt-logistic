@@ -15,9 +15,7 @@ import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
 import {
   ComponentServiceFeature,
   ComponentServiceTransportation,
-  Maybe,
-  UploadFileEntityResponse,
-  UploadFileRelationResponseCollection,
+  Maybe
 } from "@generated/graphql";
 
 const getServiceAsset = async (locale: ILocale) => {

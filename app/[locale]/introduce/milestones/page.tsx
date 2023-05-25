@@ -7,26 +7,27 @@ import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import { FC, useState } from "react";
 import Content from "./components/Content";
+import { getClient } from "@api/graphql-client";
+import { gql } from "@generated/gql";
+import { getMilestoneQueryString } from "@api/milestone.graghql";
+import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
+import { ComponentIntroduceMilestones, Maybe } from "@generated/graphql";
 
-type IMilestones = {
-  milestones: {
-    banner: string;
-    bg_image?: string;
-    image: string;
-    icon_content: string;
-    contents: Array<{
-      timeline: number;
-      datetime: string | null;
-      content: string;
-    }>;
-  };
+const getMilestoneAsset = async (locale: ILocale) => {
+  const { data } = await getClient().query({
+    query: gql(getMilestoneQueryString),
+    variables: { locale: getLanguageForApi(locale) },
+  });
+
+  // get last element
+  return data.milestones?.data[data?.milestones?.data?.length - 1];
 };
 
 const Milestones = async () => {
   const locale = useLocale();
 
   const [assets, t] = await Promise.all([
-    fetchAsset<IMilestones>("introduce", locale as ILocale),
+    getMilestoneAsset(locale as ILocale),
     getTranslations("milestones"),
   ]);
 
@@ -39,19 +40,19 @@ const Milestones = async () => {
 
   return (
     <section>
-      <Banner image={assets.milestones.banner} title={t("title")} />
+      <Banner image={getPrefixImageUrl(assets?.attributes?.banner?.data?.attributes?.url)} title={t("title")} />
       <div className="container mx-auto">
         <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6" />
         <div className="relative">
-          {!!assets.milestones.bg_image && (
+          {!!assets?.attributes?.bg_image?.data?.attributes?.url && (
             <Image
-              src={assets.milestones.bg_image}
+              src={getPrefixImageUrl(assets?.attributes?.bg_image?.data?.attributes?.url)}
               alt=""
               width={1570}
               height={1035}
             />
           )}
-          <Content assets={assets.milestones} />
+          <Content assets={assets?.attributes?.milestones as Maybe<ComponentIntroduceMilestones[]>} />
         </div>
       </div>
     </section>
