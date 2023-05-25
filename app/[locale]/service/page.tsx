@@ -20,20 +20,6 @@ import {
   UploadFileRelationResponseCollection,
 } from "@generated/graphql";
 
-type IServiceAsset = {
-  banner_img: string;
-  my_service: string;
-  overview_img: string;
-  features: Array<{
-    img: string;
-    number: number;
-    object: string;
-    txt: string;
-  }>;
-  service_transportation_des: string;
-  transportation_list_service: Array<{ txt: string; url: string; img: string }>;
-};
-
 const getServiceAsset = async (locale: ILocale) => {
   const { data } = await getClient().query({
     query: gql(getServiceQueryString),
@@ -56,6 +42,8 @@ const Service = async () => {
     { title: t("breadcrumbs.home"), link: "#" },
     { title: t("breadcrumbs.service"), link: "/service", active: true },
   ];
+
+  console.log(serviceAsset?.attributes?.transportations);
 
   return (
     <Fragment>
