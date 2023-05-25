@@ -4,11 +4,11 @@ import Image from "next/image";
 import RightImg from "@assets/images/icons/arrow_right_2.svg";
 import { useRouter } from "next-intl/client";
 import Link from "next-intl/link";
-import { ComponentServiceTransportation } from "@generated/graphql";
+import { ComponentServiceTransportation, ComponentTruckingOtherService } from "@generated/graphql";
 import { getPrefixImageUrl } from "@ultility/index";
 
 interface MoreServiceProps {
-  services: Array<ComponentServiceTransportation> | null;
+  services: Array<ComponentServiceTransportation> | ComponentTruckingOtherService[] | null;
   more: string;
 }
 

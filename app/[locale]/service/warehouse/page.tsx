@@ -10,20 +10,25 @@ import styles from "./style.module.scss";
 import RightDarkImg from "@assets/images/icons/arrow_right_2_dark.svg";
 import HexagonImg from "@assets/images/hexagon.svg";
 import ButtonRegister from "@components/btn-register";
+import { getClient } from "@api/graphql-client";
+import { gql } from "@generated/gql";
+import { getWarehouseQueryString } from "@api/warehouse.graghql";
+import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
 
-type IWarehouseAsset = {
-  bg_img: string;
-  description: string;
-  intro_img: string;
-  intro_sub_img: string;
-  features: string[];
-  price_img: string;
+const getWarehouseAsset = async (locale: ILocale) => {
+  const { data } = await getClient().query({
+    query: gql(getWarehouseQueryString),
+    variables: { locale: getLanguageForApi(locale) },
+  });
+
+  // get last element
+  return data.warehouses?.data[data?.warehouses?.data?.length - 1];
 };
 
 const Warehouse = async () => {
   const locale = useLocale();
   const [warehouseAsset, t] = await Promise.all([
-    fetchAsset<IWarehouseAsset>("warehouse", locale as ILocale),
+    getWarehouseAsset(locale as ILocale),
     getTranslations("warehouse"),
   ]);
 
@@ -39,21 +44,32 @@ const Warehouse = async () => {
 
   return (
     <Fragment>
-      <Banner image={warehouseAsset.bg_img} title={t("title")} />
+      <Banner
+        image={getPrefixImageUrl(
+          warehouseAsset?.attributes?.banner?.data?.attributes?.url
+        )}
+        title={t("title")}
+      />
       <div className="container mx-auto">
         <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6 mb-10" />
         <div className="flex gap-24 mt-14 mb-28">
           <div className="basis-1/2">
             <div className="relative animation" data-animation-delay="0.4s">
               <Image
-                src={warehouseAsset.intro_img}
+                src={getPrefixImageUrl(
+                  warehouseAsset?.attributes?.infomation?.info_img?.data
+                    ?.attributes?.url
+                )}
                 alt=""
                 width={700}
                 height={480}
                 className="rounded-lg"
               />
               <Image
-                src={warehouseAsset.intro_sub_img}
+                src={getPrefixImageUrl(
+                  warehouseAsset?.attributes?.infomation?.info_sub_img?.data
+                    ?.attributes?.url
+                )}
                 alt=""
                 width={310}
                 height={300}
@@ -69,24 +85,27 @@ const Warehouse = async () => {
               className="text-th-gray-300 font-medium text-base whitespace-pre-line animation mb-8"
               data-animation-delay="0.3s"
             >
-              {warehouseAsset.description}
+              {warehouseAsset?.attributes?.infomation?.description}
             </p>
-            {warehouseAsset.features.map((txt, idx) => (
-              <p
-                key={idx}
-                className="text-th-gray-500 font-medium text-base my-2 animation"
-                data-animtion-delay={`${0.3 + 0.1 * idx}s`}
-              >
-                <Image
-                  className="inline mr-3 mb-[2px]"
-                  src={RightDarkImg}
-                  width={24}
-                  height={24}
-                  alt=""
-                />
-                {txt}
-              </p>
-            ))}
+            {!!warehouseAsset?.attributes?.infomation?.advantage?.length &&
+              warehouseAsset?.attributes?.infomation?.advantage.map(
+                (txt, idx) => (
+                  <p
+                    key={idx}
+                    className="text-th-gray-500 font-medium text-base my-2 animation"
+                    data-animtion-delay={`${0.3 + 0.1 * idx}s`}
+                  >
+                    <Image
+                      className="inline mr-3 mb-[2px]"
+                      src={RightDarkImg}
+                      width={24}
+                      height={24}
+                      alt=""
+                    />
+                    {txt?.title}
+                  </p>
+                )
+              )}
           </div>
         </div>
       </div>
@@ -95,7 +114,9 @@ const Warehouse = async () => {
         <div className={[styles.learnMore, "animation"].join(" ")}>
           <Image
             className="w-full h-full object-cover absolute right-0 left-0 top-0 bottom-0"
-            src={warehouseAsset.price_img}
+            src={getPrefixImageUrl(
+              warehouseAsset?.attributes?.bg_price?.data?.attributes?.url
+            )}
             width={1530}
             height={480}
             alt="office"
