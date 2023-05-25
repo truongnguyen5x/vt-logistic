@@ -7,8 +7,11 @@ import VnFlagImg from "@assets/images/flag/vn.png";
 import Link from "next/link";
 import ProfileImg from "@assets/images/icons/profile.svg";
 import { useRouter, useSelectedLayoutSegment } from "next/navigation";
-import { FC } from "react";
+import { FC, Fragment } from "react";
 import clsx from "clsx";
+import MenuImg from "@assets/images/icons/menu.svg";
+import LogoWhiteImg from "@assets/images/logos/logo_white.svg";
+import BackgroundMobileImg from "@assets/images/background/background_mobile.png";
 
 interface HeaderProps {
   titles: any;
@@ -153,40 +156,69 @@ const Header: FC<HeaderProps> = ({ titles }) => {
   };
 
   return (
-    <div className="container mx-auto h-[74px] flex justify-between items-center">
-      <Link href="/" className="animation">
-        <Image src={LogoImg} alt="logo" />
-      </Link>
-      <nav>
-        <ul className="grid grid-cols-6 gap-2">
-          {listTab.map((i, idx) => (
-            <li
-              key={idx}
-              className={clsx("nav-btn animation", {
-                "nav-btn-selected": "/" + (segment || "") == i.path,
-              })}
-              data-animtion-delay={`${0.3 + 0.1 * idx}s`}
-              // style={{
-              //   animationDelay: `${1.1 + 0.1 * idx}s`,
-              // }}
-            >
-              <Link
-                className="w-44 block text-center h-[74px] leading-[74px] transition-colors hover:text-th-red-500 text-th-gray-400 font-medium"
-                href={i.path}
+    <Fragment>
+      <div className="container mx-auto h-[74px] flex justify-between items-center gap-3 relative nav-wp">
+        <Link href="/" className="animation p-7 nav-icon">
+          <Image src={LogoImg} alt="logo" />
+        </Link>
+        <nav className="flex-grow nav-header">
+          <ul className="grid grid-cols-6 gap-2">
+            {listTab.map((i, idx) => (
+              <li
+                key={idx}
+                className={clsx("nav-btn animation", {
+                  "nav-btn-selected": "/" + (segment || "") == i.path,
+                })}
+                data-animtion-delay={`${0.3 + 0.1 * idx}s`}
+                // style={{
+                //   animationDelay: `${1.1 + 0.1 * idx}s`,
+                // }}
               >
-                {titles[i.key]}
-              </Link>
-              {renderSecondLevelMenu(i.children)}
-            </li>
-          ))}
-        </ul>
-      </nav>
-      <div className="flex gap-7 animation" data-animation-delay="0.8s">
-        <Image src={SearchImg} alt="search-icon" />
-        <Image src={VnFlagImg} alt="flag" />
-        <Image src={ProfileImg} alt="profile" />
+                <Link
+                  className="flex justify-center items-center text-center h-[74px] transition-colors hover:text-th-red-500 text-th-gray-400 font-medium"
+                  href={i.path}
+                >
+                  {titles[i.key]}
+                </Link>
+                {renderSecondLevelMenu(i.children)}
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div
+          className="flex gap-7 animation pr-7 nav-action"
+          data-animation-delay="0.8s"
+        >
+          <Image
+            width={30}
+            height={30}
+            src={SearchImg}
+            alt="search-icon"
+            className="min-w-[30px]"
+          />
+          <Image
+            width={30}
+            height={30}
+            src={VnFlagImg}
+            alt="flag"
+            className="min-w-[30px]"
+          />
+          <Image
+            width={30}
+            height={30}
+            src={ProfileImg}
+            alt="profile"
+            className="min-w-[30px]"
+          />
+        </div>
       </div>
-    </div>
+      <div className="nav-mobile hidden bg-th-red-500 relative">
+        <button className="nav-btn-menu">
+          <Image src={MenuImg} alt="menu" />
+        </button>
+        <Image src={BackgroundMobileImg} width={375} height={344} alt="" />
+      </div>
+    </Fragment>
   );
 };
 

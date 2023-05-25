@@ -88,7 +88,7 @@ export default function RootLayout({
           }}
         />
         {children}
-        <Footer />
+        {/* <Footer /> */}
         <BackToTop txt={t("back_to_head")} />
         <Toaster position="top-right" reverseOrder={false} />
       </body>

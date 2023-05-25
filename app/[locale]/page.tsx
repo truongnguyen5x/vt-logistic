@@ -52,7 +52,7 @@ export default async function Home() {
 
   return (
     <Fragment>
-      <SliderHome
+      {/* <SliderHome
         images={
           assetData?.attributes
             ?.banners as Maybe<UploadFileRelationResponseCollection>
@@ -126,7 +126,7 @@ export default async function Home() {
           learn_more={t("learn_more")}
           promise={listHomePost}
         />
-      </Suspense>
+      </Suspense> */}
     </Fragment>
   );
 }

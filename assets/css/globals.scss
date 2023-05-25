@@ -200,7 +200,9 @@ body {
 /**********
  * 03. HEADER *
  **********/
-
+.nav-header {
+  @apply mx-12;
+}
 .nav-btn {
   @apply relative z-10;
   transition: color 2s;
@@ -261,6 +263,15 @@ body {
   &::before {
     @apply w-20;
   }
+}
+.nav-mobile {
+  & > img {
+    @apply absolute;
+    width: 100vw;
+  }
+}
+.nav-btn-menu {
+  @apply absolute z-10 top-4 left-4;
 }
 /**************
  * END HEADER *
@@ -445,7 +456,8 @@ a.footer-link {
   @include vertical-scrollbar();
 }
 
-.custom-select-register__control, .custom-select-register-error__control {
+.custom-select-register__control,
+.custom-select-register-error__control {
   cursor: pointer !important;
   width: 328px;
   height: 56px;
@@ -453,25 +465,118 @@ a.footer-link {
   border: none !important;
   border-radius: 0px !important;
 
-  .custom-select-register__value-container, .custom-select-register-error__value-container {
+  .custom-select-register__value-container,
+  .custom-select-register-error__value-container {
     padding: 16px 24px !important;
   }
 
-  .custom-select-register__indicator-separator, .custom-select-register-error__indicator-separator {
+  .custom-select-register__indicator-separator,
+  .custom-select-register-error__indicator-separator {
     @apply hidden;
   }
-  &.custom-select-register__control--is-focused, &.custom-select-register-error__control--is-focused {
+  &.custom-select-register__control--is-focused,
+  &.custom-select-register-error__control--is-focused {
     // border-color: var(--color-red-500) !important;
   }
 }
-.custom-select-register__menu-list, .custom-select-register-error__menu-list {
+.custom-select-register__menu-list,
+.custom-select-register-error__menu-list {
   @include vertical-scrollbar();
 }
 
 .custom-select-register-error__control {
-  border: 1px solid var(--color-red-500) !important
+  border: 1px solid var(--color-red-500) !important;
 }
 
 /********************
  * END COMMON COMPONENT *
  ********************/
+
+/* -------------------------------------------------
+  min-width: 1200px
+---------------------------------------------------*/
+@media (min-width: 1200px) {
+}
+
+/* -------------------------------------------------
+      min-width: 991px and max-width: 1199px
+    ---------------------------------------------------*/
+@media only screen and (min-width: 991px) and (max-width: 1199px) {
+}
+/* -------------------------------------------------
+      min-width: 991px and max-width: 1199px
+    ---------------------------------------------------*/
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+}
+/* -------------------------------------------------
+      max-width: 1600px
+    ---------------------------------------------------*/
+@media only screen and (max-width: 1600px) {
+}
+/* -------------------------------------------------
+      max-width: 1440px
+    ---------------------------------------------------*/
+@media only screen and (max-width: 1440px) {
+}
+/* -------------------------------------------------
+      max-width: 1199px
+    ---------------------------------------------------*/
+@media only screen and (max-width: 1199px) {
+}
+/* -------------------------------------------------
+      min-width: 991px
+    ---------------------------------------------------*/
+@media only screen and (min-width: 991px) {
+}
+/* -------------------------------------------------
+      max-width: 991px
+    ---------------------------------------------------*/
+@media only screen and (max-width: 991px) {
+  .nav-header {
+    @apply mx-0;
+  }
+  .nav-btn {
+    &::before {
+      &:hover {
+        @apply w-10;
+        // height: 5px;
+      }
+    }
+  }
+  .nav-btn-selected {
+    &::before {
+      @apply w-10;
+    }
+  }
+}
+/* -------------------------------------------------
+      max-width: 767px
+    ---------------------------------------------------*/
+@media only screen and (max-width: 767px) {
+  .nav-wp {
+    @apply hidden;
+  }
+  .nav-mobile {
+    @apply flex;
+  }
+}
+/* -------------------------------------------------
+      max-width: 640px
+    ---------------------------------------------------*/
+@media only screen and (max-width: 640px) {
+}
+/* -------------------------------------------------
+      max-width: 580px
+    ---------------------------------------------------*/
+@media only screen and (max-width: 580px) {
+}
+/* -------------------------------------------------
+      max-width: 480px
+    ---------------------------------------------------*/
+@media only screen and (max-width: 480px) {
+}
+/* -------------------------------------------------
+      max-width: 380px
+    ---------------------------------------------------*/
+@media only screen and (max-width: 380px) {
+}
