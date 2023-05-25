@@ -212,11 +212,14 @@ const Header: FC<HeaderProps> = ({ titles }) => {
           />
         </div>
       </div>
-      <div className="nav-mobile hidden bg-th-red-500 relative">
+      <div className="nav-mobile hidden bg-th-red-500 relative justify-center">
         <button className="nav-btn-menu">
           <Image src={MenuImg} alt="menu" />
         </button>
         <Image src={BackgroundMobileImg} width={375} height={344} alt="" />
+        <Link href="/" className="z-20 mt-6">
+          <Image src={LogoWhiteImg} alt="logo" />
+        </Link>
       </div>
     </Fragment>
   );
