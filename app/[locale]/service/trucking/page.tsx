@@ -10,24 +10,26 @@ import styles from "./style.module.scss";
 import RightDarkImg from "@assets/images/icons/arrow_right_2_dark.svg";
 import MoreService from "@components/more-service";
 import ResgisterPopup from "@components/register-popup";
+import { getClient } from "@api/graphql-client";
+import { gql } from "@generated/gql";
+import { getTruckingQueryString } from "@api/trucking.graghql";
+import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
+import { ComponentTruckingOtherService, Maybe } from "@generated/graphql";
 
-type IServiceTruckingAsset = {
-  bg_img: string;
-  description: string;
-  intro_img: string;
-  intro_sub_img: string;
-  intros: Array<{ img: string; title: string; txt: string }>;
-  internal: Array<{ title: string; des: string }>;
-  internal_img: string;
-  internaltional: Array<{ title: string; des: string }>;
-  international_img: string;
-  other_service: Array<{ txt: string; url: string; img: string }>;
+const getTruckingAsset = async (locale: ILocale) => {
+  const { data } = await getClient().query({
+    query: gql(getTruckingQueryString),
+    variables: { locale: getLanguageForApi(locale) },
+  });
+
+  // get last element
+  return data.truckings?.data[data?.truckings?.data?.length - 1];
 };
 
 const ServiceTrucking = async () => {
   const locale = useLocale();
   const [truckingAsset, t] = await Promise.all([
-    fetchAsset<IServiceTruckingAsset>("trucking", locale as ILocale),
+    getTruckingAsset(locale as ILocale),
     getTranslations("trucking"),
   ]);
 
@@ -43,7 +45,12 @@ const ServiceTrucking = async () => {
 
   return (
     <Fragment>
-      <Banner image={truckingAsset.bg_img} title={t("title")} />
+      <Banner
+        image={getPrefixImageUrl(
+          truckingAsset?.attributes?.banner?.data?.attributes?.url
+        )}
+        title={t("title")}
+      />
       <div className="container mx-auto">
         <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6 mb-10" />
         <h3 className="section-name mb-10 animation">{t("title")}</h3>
@@ -51,20 +58,25 @@ const ServiceTrucking = async () => {
           className="text-th-gray-300 font-medium text-base whitespace-pre-line text-center animation"
           data-animation-delay="0.3s"
         >
-          {truckingAsset.description}
+          {truckingAsset?.attributes?.description}
         </p>
         <div className="flex gap-24 mt-14 mb-28">
           <div>
             <div className="relative animation" data-animation-delay="0.4s">
               <Image
-                src={truckingAsset.intro_img}
+                src={getPrefixImageUrl(
+                  truckingAsset?.attributes?.intro_img?.data?.attributes?.url
+                )}
                 alt=""
                 width={700}
                 height={480}
                 className="rounded-lg"
               />
               <Image
-                src={truckingAsset.intro_sub_img}
+                src={getPrefixImageUrl(
+                  truckingAsset?.attributes?.sub_intro_img?.data?.attributes
+                    ?.url
+                )}
                 alt=""
                 width={310}
                 height={300}
@@ -73,21 +85,27 @@ const ServiceTrucking = async () => {
             </div>
           </div>
           <div className="flex flex-col gap-3">
-            {truckingAsset.intros.map((intro, idx) => (
-              <div
-                key={idx}
-                className="flex animation gap-3 items-start"
-                data-animation-delay={`${0.3 + 0.1 * idx}s`}
-              >
-                <Image src={intro.img} width={64} height={64} alt="" />
-                <div>
-                  <p className={styles.introItem}>{intro.title}</p>
-                  <p className="text-base text-th-gray-300 font-medium">
-                    {intro.txt}
-                  </p>
+            {!!truckingAsset?.attributes?.intro_features?.length &&
+              truckingAsset?.attributes?.intro_features.map((intro, idx) => (
+                <div
+                  key={idx}
+                  className="flex animation gap-3 items-start"
+                  data-animation-delay={`${0.3 + 0.1 * idx}s`}
+                >
+                  <Image
+                    src={getPrefixImageUrl(intro?.icon?.data?.attributes?.url)}
+                    width={64}
+                    height={64}
+                    alt=""
+                  />
+                  <div>
+                    <p className={styles.introItem}>{intro?.title}</p>
+                    <p className="text-base text-th-gray-300 font-medium">
+                      {intro?.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
             <div className="mt-6">
               <ResgisterPopup
                 textBtn={t("create_order")}
@@ -125,30 +143,29 @@ const ServiceTrucking = async () => {
             <h3 className="section-name-left mb-11 animation">
               {t("domestic_shipping")}
             </h3>
-            {truckingAsset.internal.map((item, idx) => (
-              <div
-                key={idx}
-                className="flex items-start gap-3 my-6 animation"
-                data-animtion-delay={`${0.3 + 0.1 * idx}s`}
-              >
-                <Image
-                  className="mt-2"
-                  src={RightDarkImg}
-                  width={24}
-                  height={24}
-                  alt=""
-                />
-                <div className="mr-10">
-                  <p className={styles.domesticItem}>{item.title}</p>
-                  <p className="text-base text-th-gray-300 font-medium">
-                    {item.des}
-                  </p>
+            {!!truckingAsset?.attributes?.internal_features?.length &&
+              truckingAsset?.attributes?.internal_features.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-start gap-3 my-6 animation"
+                  data-animtion-delay={`${0.3 + 0.1 * idx}s`}
+                >
+                  <Image
+                    className="mt-2"
+                    src={RightDarkImg}
+                    width={24}
+                    height={24}
+                    alt=""
+                  />
+                  <div className="mr-10">
+                    <p className={styles.domesticItem}>{item?.title}</p>
+                    <p className="text-base text-th-gray-300 font-medium">
+                      {item?.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
-            <div
-              className="flex gap-6 mt-9"
-            >
+              ))}
+            <div className="flex gap-6 mt-9">
               <ResgisterPopup
                 textBtn={t("create_order")}
                 title={t("register_popup.title")}
@@ -175,12 +192,19 @@ const ServiceTrucking = async () => {
                   note: t("register_popup.placeholder.note"),
                 }}
               />
-              <button className="btn-gray-outlined animation" data-animtion-delay="0.6s">{t("pricing")}</button>
+              <button
+                className="btn-gray-outlined animation"
+                data-animtion-delay="0.6s"
+              >
+                {t("pricing")}
+              </button>
             </div>
           </div>
           <div className="self-center">
             <Image
-              src={truckingAsset.internal_img}
+              src={getPrefixImageUrl(
+                truckingAsset?.attributes?.internal_img?.data?.attributes?.url
+              )}
               width={735}
               height={400}
               alt=""
@@ -191,7 +215,10 @@ const ServiceTrucking = async () => {
       <div className="container mx-auto flex py-28 gap-16">
         <div className="self-center">
           <Image
-            src={truckingAsset.international_img}
+            src={getPrefixImageUrl(
+              truckingAsset?.attributes?.international_img?.data?.attributes
+                ?.url
+            )}
             width={735}
             height={400}
             alt=""
@@ -201,27 +228,30 @@ const ServiceTrucking = async () => {
           <h3 className="section-name-left mb-11 animation">
             {t("international_shipping")}
           </h3>
-          {truckingAsset.internaltional.map((item, idx) => (
-            <div
-              key={idx}
-              className="flex items-start gap-3 my-6 animation"
-              data-animtion-delay={`${0.3 + 0.1 * idx}s`}
-            >
-              <Image
-                className="mt-2"
-                src={RightDarkImg}
-                width={24}
-                height={24}
-                alt=""
-              />
-              <div>
-                <p className={styles.domesticItem}>{item.title}</p>
-                <p className="text-base text-th-gray-300 font-medium">
-                  {item.des}
-                </p>
-              </div>
-            </div>
-          ))}
+          {!!truckingAsset?.attributes?.international_features?.length &&
+            truckingAsset?.attributes?.international_features.map(
+              (item, idx) => (
+                <div
+                  key={idx}
+                  className="flex items-start gap-3 my-6 animation"
+                  data-animtion-delay={`${0.3 + 0.1 * idx}s`}
+                >
+                  <Image
+                    className="mt-2"
+                    src={RightDarkImg}
+                    width={24}
+                    height={24}
+                    alt=""
+                  />
+                  <div>
+                    <p className={styles.domesticItem}>{item?.title}</p>
+                    <p className="text-base text-th-gray-300 font-medium">
+                      {item?.description}
+                    </p>
+                  </div>
+                </div>
+              )
+            )}
           <div className="flex gap-6 mt-9">
             <ResgisterPopup
               textBtn={t("create_order")}
@@ -249,7 +279,12 @@ const ServiceTrucking = async () => {
                 note: t("register_popup.placeholder.note"),
               }}
             />
-            <button className="btn-gray-outlined animation" data-animtion-delay="0.6s">{t("pricing")}</button>
+            <button
+              className="btn-gray-outlined animation"
+              data-animtion-delay="0.6s"
+            >
+              {t("pricing")}
+            </button>
           </div>
         </div>
       </div>
@@ -257,7 +292,14 @@ const ServiceTrucking = async () => {
         <h3 className="section-name mb-14 animation">
           {t("maybe_you_are_interested")}
         </h3>
-        <MoreService more={t("more")} services={truckingAsset.other_service} />
+        <MoreService
+          more={t("more")}
+          services={
+            truckingAsset?.attributes?.other as Maybe<
+              ComponentTruckingOtherService[]
+            >
+          }
+        />
       </div>
     </Fragment>
   );
