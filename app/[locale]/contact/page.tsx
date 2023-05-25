@@ -8,28 +8,27 @@ import Banner from "@components/Banner";
 import BreadCrumbs from "@components/Breadcrumbs";
 import Image from "next/image";
 import MapContact from "./components/Map";
+import { getClient } from "@api/graphql-client";
+import { gql } from "@generated/gql";
+import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
+import { getContactQueryString } from "@api/contact.graghql";
 
-type IContact = {
-  image: string;
-  title: string;
-  description: string;
-  role: string;
-  hotline?: string;
-  email?: string;
+const getContactAsset = async (locale: ILocale) => {
+  const { data } = await getClient().query({
+    query: gql(getContactQueryString),
+    variables: { locale: getLanguageForApi(locale) },
+  });
+
+  // get last element
+  return data.contacts?.data[data?.contacts?.data?.length - 1];
 };
 
-type IDataContact = {
-  contact: {
-    banner: string;
-    contacts: IContact[];
-  };
-};
 
 const Contact = async () => {
   const locale = useLocale();
 
   const [contactAsset, t] = await Promise.all([
-    fetchAsset<IDataContact>("contact", locale as ILocale),
+    getContactAsset(locale as ILocale),
     getTranslations("contact"),
   ]);
 
@@ -40,36 +39,36 @@ const Contact = async () => {
 
   return (
     <Fragment>
-      <Banner image={contactAsset.contact.banner} title={t("title")} />
+      <Banner image={getPrefixImageUrl(contactAsset?.attributes?.banner?.data?.attributes?.url)} title={t("title")} />
       <div className="container mx-auto">
         <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6 mb-20" />
-        {!!contactAsset.contact.contacts.length && (
+        {!!contactAsset?.attributes?.contacts?.length && (
           <div className="flex gap-20">
-            {contactAsset.contact.contacts.map((item, index) => (
+            {contactAsset.attributes.contacts.map((item, index) => (
               <div key={index} className="flex flex-col">
                 <Image
-                  src={item.image}
+                  src={getPrefixImageUrl(item?.icon?.data?.attributes?.url)}
                   alt=""
                   className="animation"
                   height={64}
                   width={64}
                 />
                 <h5 className="animation text-th-gray-500 font-bold text-[25px] leading-[26px] mt-[22px] mb-3">
-                  {item.title}
+                  {item?.title}
                 </h5>
                 <p className="animation text-th-gray-300 text-base flex-1 font-medium max-w-[456px]">
-                  {item.description}
+                  {item?.description}
                 </p>
                 <div className="animation h-[3px] w-[120px] bg-th-red-500 my-3"></div>
                 <div className="animation text-th-gray-300 font-medium text-base mb-[6px]">
-                  {item.role}
+                  {item?.role}
                 </div>
                 <div className="animation text-th-gray-300 font-medium text-base mb-[6px]">{`${t(
                   "hotline"
-                )}: ${item.hotline || ""}`}</div>
+                )}: ${item?.hotline || ""}`}</div>
                 <div className="animation text-th-gray-300 font-medium text-base">{`${t(
                   "email"
-                )}: ${item.email || ""}`}</div>
+                )}: ${item?.email || ""}`}</div>
               </div>
             ))}
           </div>

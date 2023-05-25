@@ -4,10 +4,8 @@ import { Map, Marker } from "pigeon-maps";
 
 const MapContact = () => {
   return (
-    <div className="absolute right-0 top-0 md:w-[600px]">
+    <div className="absolute right-0 top-0 w-[600px] 2xl:w-[960px] h-[659px]">
       <Map
-        height={659}
-        width={960}
         defaultCenter={[21.0313, 105.7785]}
         defaultZoom={12}
         minZoom={12}
