@@ -7,11 +7,12 @@ import VnFlagImg from "@assets/images/flag/vn.png";
 import Link from "next/link";
 import ProfileImg from "@assets/images/icons/profile.svg";
 import { useRouter, useSelectedLayoutSegment } from "next/navigation";
-import { FC, Fragment } from "react";
+import { FC, Fragment, useState } from "react";
 import clsx from "clsx";
 import MenuImg from "@assets/images/icons/menu.svg";
 import LogoWhiteImg from "@assets/images/logos/logo_white.svg";
 import BackgroundMobileImg from "@assets/images/background/background_mobile.png";
+import CloseImg from "@assets/images/icons/close.svg";
 
 interface HeaderProps {
   titles: any;
@@ -25,6 +26,9 @@ type IMenu = {
 
 const Header: FC<HeaderProps> = ({ titles }) => {
   const segment = useSelectedLayoutSegment();
+  const [openNav, setOpenNav] = useState(false);
+  const [menuOpened1, setMenuOpened1] = useState<string | undefined>();
+  const [menuOpened2, setMenuOpened2] = useState<string | undefined>();
 
   const listTab: IMenu[] = [
     {
@@ -124,12 +128,17 @@ const Header: FC<HeaderProps> = ({ titles }) => {
   const renderSecondLevelMenu = (menus?: IMenu[]) => {
     if (menus && menus.length) {
       return (
-        <ul>
+        <ul className="second-nav">
           {menus.map((i, idx) => (
-            <li key={idx} className={i.children ? "menu-toggle" : ""}>
-              <Link href={i.path}>{titles[i.key]}</Link>
+            <li
+              key={idx}
+              className={clsx("second-nav-item", { "menu-toggle": i.children })}
+            >
+              <Link className="second-nav-link" href={i.path}>
+                {titles[i.key]}
+              </Link>
               {i.children && <div />}
-              {renderThreeLevelMenu(i.children)}
+              {/* {renderThreeLevelMenu(i.children)} */}
             </li>
           ))}
         </ul>
@@ -155,72 +164,65 @@ const Header: FC<HeaderProps> = ({ titles }) => {
     return null;
   };
 
+  const handleOpenNavbar = () => {
+    setOpenNav(!openNav);
+  };
+
   return (
     <Fragment>
-      <div className="container mx-auto h-[74px] flex justify-between items-center gap-3 relative nav-wp">
-        <Link href="/" className="animation p-7 nav-icon">
-          <Image src={LogoImg} alt="logo" />
-        </Link>
-        <nav className="flex-grow nav-header">
-          <ul className="grid grid-cols-6 gap-2">
-            {listTab.map((i, idx) => (
-              <li
-                key={idx}
-                className={clsx("nav-btn animation", {
-                  "nav-btn-selected": "/" + (segment || "") == i.path,
-                })}
-                data-animtion-delay={`${0.3 + 0.1 * idx}s`}
-                // style={{
-                //   animationDelay: `${1.1 + 0.1 * idx}s`,
-                // }}
-              >
-                <Link
-                  className="flex justify-center items-center text-center h-[74px] transition-colors hover:text-th-red-500 text-th-gray-400 font-medium"
-                  href={i.path}
-                >
-                  {titles[i.key]}
-                </Link>
-                {renderSecondLevelMenu(i.children)}
-              </li>
-            ))}
-          </ul>
-        </nav>
-        <div
-          className="flex gap-7 animation pr-7 nav-action"
-          data-animation-delay="0.8s"
-        >
-          <Image
-            width={30}
-            height={30}
-            src={SearchImg}
-            alt="search-icon"
-            className="min-w-[30px]"
-          />
-          <Image
-            width={30}
-            height={30}
-            src={VnFlagImg}
-            alt="flag"
-            className="min-w-[30px]"
-          />
-          <Image
-            width={30}
-            height={30}
-            src={ProfileImg}
-            alt="profile"
-            className="min-w-[30px]"
-          />
+      <header className={clsx("header-wrap", { show: openNav })}>
+        <div className="container mx-auto">
+          <nav className="navbar">
+            <button className="navbar-toggler" onClick={handleOpenNavbar}>
+              <Image src={MenuImg} alt="menu" />
+            </button>
+            <Link href="/" className="animation navbar-brand">
+              <Image src={LogoImg} alt="logo" />
+              <Image src={LogoWhiteImg} alt="logo" />
+            </Link>
+            <div className={clsx("navbar-collapse", { show: openNav })}>
+              <ul className="navbar-nav">
+                {listTab.map((i, idx) => (
+                  <li
+                    key={idx}
+                    className={clsx("first-nav-item animation", {
+                      "nav-selected": "/" + (segment || "") == i.path,
+                      "menu-toggle": i.children,
+                    })}
+                    data-animtion-delay={`${0.3 + 0.1 * idx}s`}
+                    // style={{
+                    //   animationDelay: `${1.1 + 0.1 * idx}s`,
+                    // }}
+                  >
+                    <Link href={i.path} className="first-nav-link">
+                      {titles[i.key]}
+                    </Link>
+
+                    {renderSecondLevelMenu(i.children)}
+                  </li>
+                ))}
+              </ul>
+              <div className="animation nav-btn" data-animation-delay="0.8s">
+                <Image
+                  width={30}
+                  height={30}
+                  src={SearchImg}
+                  alt="search-icon"
+                />
+                <Image width={30} height={30} src={VnFlagImg} alt="flag" />
+                <Image width={30} height={30} src={ProfileImg} alt="profile" />
+              </div>
+            </div>
+          </nav>
         </div>
-      </div>
-      <div className="nav-mobile hidden bg-th-red-500 relative justify-center">
-        <button className="nav-btn-menu">
-          <Image src={MenuImg} alt="menu" />
-        </button>
-        <Image src={BackgroundMobileImg} width={375} height={344} alt="" />
-        <Link href="/" className="z-20 mt-6">
-          <Image src={LogoWhiteImg} alt="logo" />
-        </Link>
-      </div>
+      </header>
+      <Image
+        className="nav-mobile-bg"
+        src={BackgroundMobileImg}
+        width={375}
+        height={344}
+        alt=""
+      />
     </Fragment>
   );
 };

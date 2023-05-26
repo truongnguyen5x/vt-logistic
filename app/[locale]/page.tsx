@@ -43,8 +43,12 @@ const getHomeAsset = async (locale: ILocale) => {
 export default async function Home() {
   const locale = useLocale();
 
-  const [assetData, t, message] = await Promise.all([
-    getHomeAsset(locale as ILocale),
+  // const [assetData, t, message] = await Promise.all([
+  //   getHomeAsset(locale as ILocale),
+  //   getTranslations("home"),
+  //   import(`../../dictionaries/${locale}.json`),
+  // ]);
+  const [t, message] = await Promise.all([
     getTranslations("home"),
     import(`../../dictionaries/${locale}.json`),
   ]);
