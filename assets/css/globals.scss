@@ -224,21 +224,16 @@ body {
 .navbar-nav {
   @apply flex gap-2 mx-auto;
 }
-.first-nav-item {
-  @apply relative z-10 transition-all px-5;
+
+.first-nav-link {
+  @apply relative flex justify-center items-center text-center transition-colors text-th-gray-400 font-medium px-5;
+  height: 74px;
   &::before {
     content: "";
     transition: width 0.2s;
     @apply absolute w-0 bg-th-red-500 bottom-0 border-t rounded-t-[20px] left-0 right-0 mx-auto;
     height: 5px;
-    &:hover {
-      @apply w-20;
-    }
   }
-}
-.first-nav-link {
-  @apply flex justify-center items-center text-center transition-colors text-th-gray-400 font-medium;
-  height: 74px;
 }
 .second-nav {
   @apply absolute bg-white text-th-gray-400 font-normal w-52 hidden shadow-lg py-1;
@@ -251,18 +246,6 @@ body {
     & > div {
       @apply absolute right-4 text-xl bottom-4 w-2 h-2 border-th-gray-300 border-t-2 border-r-2;
       transform: rotate(45deg);
-    }
-  }
-  &:hover {
-    .second-nav-link {
-      @apply text-th-red-500 font-medium;
-    }
-    background-color: var(--color-gray-100);
-    & > ul {
-      @apply block;
-    }
-    & > div {
-      @apply border-th-red-500;
     }
   }
 }
@@ -629,11 +612,17 @@ a.footer-link {
       min-width: 767px
     ---------------------------------------------------*/
 @media only screen and (min-width: 767px) {
+  .navbar-collapse {
+    display: flex !important;
+  }
   .first-nav-item {
     &:hover {
       @apply text-th-red-500;
       .second-nav {
         @apply block;
+      }
+      .first-nav-link::before {
+        @apply w-20;
       }
     }
     &.nav-selected {
@@ -648,8 +637,19 @@ a.footer-link {
       @apply text-th-red-500;
     }
   }
-  .navbar-collapse {
-    display: flex !important;
+  .second-nav-item {
+    &:hover {
+      .second-nav-link {
+        @apply text-th-red-500 font-medium;
+      }
+      background-color: var(--color-gray-100);
+      // & > ul {
+      //   @apply block;
+      // }
+      & > div {
+        @apply border-th-red-500;
+      }
+    }
   }
 }
 
@@ -684,13 +684,16 @@ a.footer-link {
     }
   }
   .navbar-nav {
-    @apply flex-col;
+    @apply flex-col mt-4;
   }
   .first-nav-item {
     &.nav-selected {
-      &::before {
-        @apply bg-th-white h-1 rounded-none w-20;
+      & > .first-nav-link {
+        &::before {
+          @apply bg-th-white h-1 rounded-none w-20;
+        }
       }
+
       .second-nav {
         @apply block static;
       }
