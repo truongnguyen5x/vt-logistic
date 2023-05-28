@@ -7,12 +7,13 @@ import VnFlagImg from "@assets/images/flag/vn.png";
 import Link from "next/link";
 import ProfileImg from "@assets/images/icons/profile.svg";
 import { useRouter, useSelectedLayoutSegment } from "next/navigation";
-import { FC, Fragment, useState } from "react";
+import { FC, Fragment, useEffect, useState } from "react";
 import clsx from "clsx";
 import MenuImg from "@assets/images/icons/menu.svg";
 import LogoWhiteImg from "@assets/images/logos/logo_white.svg";
 import BackgroundMobileImg from "@assets/images/background/background_mobile.png";
 import CloseImg from "@assets/images/icons/close.svg";
+import { usePathname } from "next-intl/client";
 
 interface HeaderProps {
   titles: any;
@@ -27,8 +28,29 @@ type IMenu = {
 const Header: FC<HeaderProps> = ({ titles }) => {
   const segment = useSelectedLayoutSegment();
   const [openNav, setOpenNav] = useState(false);
-  const [menuOpened1, setMenuOpened1] = useState<string | undefined>();
-  const [menuOpened2, setMenuOpened2] = useState<string | undefined>();
+  const [menuOpened, setMenuOpened] = useState<string | undefined>();
+
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setMenuOpened(pathname);
+  }, [pathname]);
+
+  const isShow = (path: string) => {
+    if (path == "/") {
+      return pathname == "/";
+    } else {
+      return pathname?.includes(path);
+    }
+  };
+
+  const isToggle = (path: string) => {
+    if (path == "/") {
+      return menuOpened == "/";
+    } else {
+      return menuOpened?.includes(path);
+    }
+  };
 
   const listTab: IMenu[] = [
     {
@@ -132,12 +154,22 @@ const Header: FC<HeaderProps> = ({ titles }) => {
           {menus.map((i, idx) => (
             <li
               key={idx}
-              className={clsx("second-nav-item", { "menu-toggle": i.children })}
+              className={clsx("second-nav-item", {
+                "mobile-selected": i.path == pathname,
+                "mobile-toggle": isToggle(i.path),
+                toggleable: i.children,
+              })}
             >
-              <Link className="second-nav-link" href={i.path}>
-                {titles[i.key]}
-              </Link>
-              {i.children && <div />}
+              {i.children ? (
+                <div className="second-nav-link cursor-pointer">
+                  {titles[i.key]} <div />
+                </div>
+              ) : (
+                <Link className="second-nav-link" href={i.path}>
+                  {titles[i.key]}
+                </Link>
+              )}
+
               {/* {renderThreeLevelMenu(i.children)} */}
             </li>
           ))}
@@ -186,18 +218,32 @@ const Header: FC<HeaderProps> = ({ titles }) => {
                   <li
                     key={idx}
                     className={clsx("first-nav-item animation", {
-                      "nav-selected": "/" + (segment || "") == i.path,
-                      "menu-toggle": i.children,
+                      "desktop-selected": "/" + (segment || "") == i.path,
+                      "mobile-selected": i.path == pathname,
+                      "mobile-toggle": isToggle(i.path),
+                      toggleable: i.children,
                     })}
                     data-animtion-delay={`${0.3 + 0.1 * idx}s`}
                     // style={{
                     //   animationDelay: `${1.1 + 0.1 * idx}s`,
                     // }}
                   >
-                    <Link href={i.path} className="first-nav-link">
-                      {titles[i.key]}
-                    </Link>
-
+                    {i.children ? (
+                      <div
+                        className="first-nav-link cursor-pointer"
+                        onClick={() => setMenuOpened(i.path)}
+                      >
+                        {titles[i.key]} <div></div>
+                      </div>
+                    ) : (
+                      <Link
+                        href={i.path}
+                        className="first-nav-link"
+                        onClick={() => setMenuOpened(i.path)}
+                      >
+                        {titles[i.key]}
+                      </Link>
+                    )}
                     {renderSecondLevelMenu(i.children)}
                   </li>
                 ))}
@@ -223,6 +269,7 @@ const Header: FC<HeaderProps> = ({ titles }) => {
         height={344}
         alt=""
       />
+      <div className="header-after"></div>
     </Fragment>
   );
 };
