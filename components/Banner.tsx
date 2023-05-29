@@ -27,7 +27,7 @@ const Banner: FC<IBanner> = ({ image, title }) => {
       {title && (
         <div className="absolute left-32 top-20 2xl:left-64">
           <div className="bg-th-red-500 h-[5px] w-10 mb-8"></div>
-          <h1 className="text-6xl text-white font-semibold">{title}</h1>
+          <h1 className="text-6xl leading-[72px] text-white font-semibold max-w-[859px] whitespace-break-spaces">{title}</h1>
         </div>
       )}
     </section>

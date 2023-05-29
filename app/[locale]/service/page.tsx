@@ -41,8 +41,6 @@ const Service = async () => {
     { title: t("breadcrumbs.service"), link: "/service", active: true },
   ];
 
-  console.log(serviceAsset?.attributes?.transportations);
-
   return (
     <Fragment>
       <Banner

@@ -168,7 +168,11 @@
     "contact": "Liên hệ",
     "breadcrumbs": {
       "home": "Trang chủ",
-      "news": "Tin tức"
+      "news": "Tin tức",
+      "internal_news": "Tin nội bộ",
+      "market_news": "Tin thị trường",
+      "specialized_news": "Kiến thức chuyên ngành",
+      "recruitment": "Tuyển dụng"
     },
     "read_more": "Đọc thêm",
     "help_title": "Chúng tôi có thể giúp gì?",
