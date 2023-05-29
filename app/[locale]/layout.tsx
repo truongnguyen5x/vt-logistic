@@ -85,10 +85,11 @@ export default function RootLayout({
             insider_news: t("insider_news"),
             market_news: t("market_news"),
             specialized_news: t("specialized_news"),
+            service_common: t("service_common"),
           }}
         />
         {children}
-        {/* <Footer /> */}
+        <Footer />
         <BackToTop txt={t("back_to_head")} />
         <Toaster position="top-right" reverseOrder={false} />
       </body>

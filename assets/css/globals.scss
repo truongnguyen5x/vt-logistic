@@ -227,21 +227,8 @@ body {
 .navbar-nav {
   @apply flex gap-2 mx-auto;
 }
-.first-nav-item {
-  &:hover {
-    .first-nav-link {
-      &::before {
-        @apply w-20;
-      }
-    }
-  }
-  &.desktop-selected {
-    .first-nav-link {
-      &::before {
-        @apply w-20;
-      }
-    }
-  }
+.third-nav {
+  @apply hidden;
 }
 .first-nav-link {
   @apply relative flex justify-center items-center text-center transition-colors text-th-gray-400 font-medium px-5;
@@ -253,15 +240,6 @@ body {
 .second-nav-item {
   @apply relative z-10;
   transition: background-color 0.7s;
-  &.toggleable {
-    @apply pr-8;
-    & > .second-nav-link {
-      & > div {
-        @apply absolute right-4 text-xl bottom-4 w-2 h-2 border-th-gray-300 border-t-2 border-r-2;
-        transform: rotate(45deg);
-      }
-    }
-  }
 }
 .second-nav-link {
   @apply text-th-gray-400 font-medium block w-52 px-4 py-2;
@@ -273,7 +251,6 @@ body {
     height: 30px;
   }
 }
-
 /**************
  * END HEADER *
  **************/
@@ -497,12 +474,57 @@ a.footer-link {
   min-width: 1200px
 ---------------------------------------------------*/
 @media (min-width: 1200px) {
+  .first-nav-item {
+    &:hover {
+      .first-nav-link {
+        &::before {
+          @apply w-20;
+        }
+      }
+    }
+    &.desktop-selected {
+      .first-nav-link {
+        &::before {
+          @apply w-20;
+        }
+      }
+    }
+  }
 }
 
 /* -------------------------------------------------
       min-width: 991px and max-width: 1199px
     ---------------------------------------------------*/
 @media only screen and (min-width: 991px) and (max-width: 1199px) {
+  .first-nav-link {
+    height: 64px;
+  }
+  .first-nav-item {
+    &:hover {
+      .first-nav-link {
+        &::before {
+          @apply w-14;
+        }
+      }
+    }
+    &.desktop-selected {
+      .first-nav-link {
+        &::before {
+          @apply w-14;
+        }
+      }
+    }
+  }
+  .nav-btn {
+    @apply gap-3;
+    & > img {
+      height: 24px;
+      width: 24px;
+    }
+  }
+  .header-after {
+    height: 64px;
+  }
 }
 /* -------------------------------------------------
       min-width: 991px and max-width: 1199px
@@ -523,32 +545,6 @@ a.footer-link {
       max-width: 1199px
     ---------------------------------------------------*/
 @media only screen and (max-width: 1199px) {
-  .first-nav-item {
-    &:hover {
-      .first-nav-link {
-        &::before {
-          @apply w-14;
-        }
-      }
-    }
-    &.desktop-selected {
-      .first-nav-link {
-        &::before {
-          @apply w-14;
-        }
-      }
-    }
-  }
-  .first-nav-link {
-    height: 64px;
-  }
-  .nav-btn {
-    @apply gap-3;
-    & > img {
-      height: 24px;
-      width: 24px;
-    }
-  }
 }
 
 /* -------------------------------------------------
@@ -581,6 +577,14 @@ a.footer-link {
     }
   }
   .second-nav-item {
+    &.toggleable {
+      & > .second-nav-link {
+        & > div {
+          @apply absolute right-4 text-xl bottom-4 w-2 h-2 border-th-gray-300 border-t-2 border-r-2;
+          transform: rotate(45deg);
+        }
+      }
+    }
     &:hover {
       .second-nav-link {
         @apply text-th-red-500 font-medium;
@@ -589,6 +593,19 @@ a.footer-link {
         }
       }
       background-color: var(--color-gray-100);
+      .third-nav {
+        @apply block absolute top-1;
+        right: -220px;
+      }
+    }
+  }
+  .third-nav {
+    @apply bg-th-white shadow-md;
+    a {
+      @apply flex py-2 px-3;
+      &:hover {
+        @apply text-th-red-500;
+      }
     }
   }
 }
@@ -638,18 +655,6 @@ a.footer-link {
     }
   }
   .first-nav-item {
-    .first-nav-link {
-      &::before {
-        @apply w-0;
-      }
-    }
-    &:hover {
-      .first-nav-link {
-        &::before {
-          @apply w-0;
-        }
-      }
-    }
     &.mobile-selected:not(.toggleable) {
       & > .first-nav-link {
         &::before {
@@ -674,12 +679,53 @@ a.footer-link {
   }
 
   .second-nav-link {
-    @apply text-th-white w-auto flex justify-center;
+    @apply text-th-white w-auto flex justify-center items-center;
     &::before {
       content: "";
       transition: width 0.2s;
       @apply absolute w-0 bg-th-white bottom-0  left-0 right-0 mx-auto;
       height: 4px;
+    }
+  }
+
+  .second-nav-item {
+    &.mobile-selected:not(.toggleable) {
+      & > .second-nav-link {
+        &::before {
+          @apply w-20;
+        }
+      }
+    }
+    &.toggleable {
+      & > .second-nav-link {
+        & > div {
+          @apply h-2 w-2 border-th-white border-t-2 border-l-2;
+          transform: rotate(-135deg) translate(-4px, 5px);
+        }
+      }
+    }
+    &.mobile-toggle {
+      .third-nav {
+        @apply block;
+      }
+    }
+  }
+
+  .third-nav {
+    @apply bg-th-gray-200;
+    a {
+      @apply flex justify-center py-2 relative;
+      &::before {
+        content: "";
+        transition: width 0.2s;
+        @apply absolute w-0 bg-th-gray-400 bottom-0  left-0 right-0 mx-auto;
+        height: 4px;
+      }
+      &.mobile-selected {
+        &::before {
+          @apply w-20;
+        }
+      }
     }
   }
 

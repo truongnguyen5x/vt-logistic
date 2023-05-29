@@ -43,20 +43,17 @@ const getHomeAsset = async (locale: ILocale) => {
 export default async function Home() {
   const locale = useLocale();
 
-  // const [assetData, t, message] = await Promise.all([
-  //   getHomeAsset(locale as ILocale),
-  //   getTranslations("home"),
-  //   import(`../../dictionaries/${locale}.json`),
-  // ]);
-  const [t, message] = await Promise.all([
+  const [assetData, t, message] = await Promise.all([
+    getHomeAsset(locale as ILocale),
     getTranslations("home"),
     import(`../../dictionaries/${locale}.json`),
   ]);
+
   const listHomePost = fetchHomePost(locale as ILocale);
 
   return (
     <Fragment>
-      {/* <SliderHome
+      <SliderHome
         images={
           assetData?.attributes
             ?.banners as Maybe<UploadFileRelationResponseCollection>
@@ -130,7 +127,7 @@ export default async function Home() {
           learn_more={t("learn_more")}
           promise={listHomePost}
         />
-      </Suspense> */}
+      </Suspense>
     </Fragment>
   );
 }

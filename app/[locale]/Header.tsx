@@ -29,26 +29,28 @@ const Header: FC<HeaderProps> = ({ titles }) => {
   const segment = useSelectedLayoutSegment();
   const [openNav, setOpenNav] = useState(false);
   const [menuOpened, setMenuOpened] = useState<string | undefined>();
+  const [menuOpened2, setMenuOpened2] = useState<string | undefined>();
 
   const pathname = usePathname();
 
   useEffect(() => {
     setMenuOpened(pathname);
+    setMenuOpened2(pathname);
   }, [pathname]);
-
-  const isShow = (path: string) => {
-    if (path == "/") {
-      return pathname == "/";
-    } else {
-      return pathname?.includes(path);
-    }
-  };
 
   const isToggle = (path: string) => {
     if (path == "/") {
       return menuOpened == "/";
     } else {
       return menuOpened?.includes(path);
+    }
+  };
+
+  const isToggle2 = (path: string) => {
+    if (path == "/") {
+      return menuOpened2 == "/";
+    } else {
+      return menuOpened2?.includes(path);
     }
   };
 
@@ -80,23 +82,27 @@ const Header: FC<HeaderProps> = ({ titles }) => {
       key: "service",
       children: [
         {
+          path: "/service",
+          key: "service_common",
+        },
+        {
           path: "/service/transportation",
           key: "transportation",
           children: [
             {
-              path: "/service/trucking",
+              path: "/service/transportation/trucking",
               key: "trucking",
             },
             {
-              path: "/service/rail-transportation",
+              path: "/service/transportation/rail-transportation",
               key: "rail_transportation",
             },
             {
-              path: "/service/sea-transport",
+              path: "/service/transportation/sea-transport",
               key: "sea_transport",
             },
             {
-              path: "/service/air-freight",
+              path: "/service/transportation/air-freight",
               key: "air_freight",
             },
           ],
@@ -156,21 +162,25 @@ const Header: FC<HeaderProps> = ({ titles }) => {
               key={idx}
               className={clsx("second-nav-item", {
                 "mobile-selected": i.path == pathname,
-                "mobile-toggle": isToggle(i.path),
+                "mobile-toggle": isToggle2(i.path),
                 toggleable: i.children,
               })}
             >
               {i.children ? (
-                <div className="second-nav-link cursor-pointer">
-                  {titles[i.key]} <div />
-                </div>
+                <Fragment>
+                  <div
+                    className="second-nav-link cursor-pointer"
+                    onClick={() => handleOpenMenu2(i.path)}
+                  >
+                    {titles[i.key]} <div />
+                  </div>
+                  {renderThreeLevelMenu(i.children)}
+                </Fragment>
               ) : (
                 <Link className="second-nav-link" href={i.path}>
                   {titles[i.key]}
                 </Link>
               )}
-
-              {/* {renderThreeLevelMenu(i.children)} */}
             </li>
           ))}
         </ul>
@@ -182,10 +192,15 @@ const Header: FC<HeaderProps> = ({ titles }) => {
   const renderThreeLevelMenu = (menus?: IMenu[]) => {
     if (menus && menus.length) {
       return (
-        <ul>
+        <ul className="third-nav">
           {menus.map((i, idx) => (
             <li key={idx}>
-              <Link className="text-th-gray-400 font-medium" href={i.path}>
+              <Link
+                className={clsx("text-th-gray-400 font-medium", {
+                  "mobile-selected": i.path == pathname,
+                })}
+                href={i.path}
+              >
                 {titles[i.key]}
               </Link>
             </li>
@@ -198,6 +213,21 @@ const Header: FC<HeaderProps> = ({ titles }) => {
 
   const handleOpenNavbar = () => {
     setOpenNav(!openNav);
+  };
+
+  const handleOpenMenu = (path: string) => {
+    if (menuOpened == path) {
+      setMenuOpened("");
+    } else {
+      setMenuOpened(path);
+    }
+  };
+  const handleOpenMenu2 = (path: string) => {
+    if (menuOpened2 == path) {
+      setMenuOpened2("");
+    } else {
+      setMenuOpened2(path);
+    }
   };
 
   return (
@@ -231,16 +261,12 @@ const Header: FC<HeaderProps> = ({ titles }) => {
                     {i.children ? (
                       <div
                         className="first-nav-link cursor-pointer"
-                        onClick={() => setMenuOpened(i.path)}
+                        onClick={() => handleOpenMenu(i.path)}
                       >
                         {titles[i.key]} <div></div>
                       </div>
                     ) : (
-                      <Link
-                        href={i.path}
-                        className="first-nav-link"
-                        onClick={() => setMenuOpened(i.path)}
-                      >
+                      <Link href={i.path} className="first-nav-link">
                         {titles[i.key]}
                       </Link>
                     )}
