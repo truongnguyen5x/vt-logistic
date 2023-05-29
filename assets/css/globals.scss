@@ -624,6 +624,7 @@ a.footer-link {
   }
   .nav-mobile-bg {
     @apply block absolute top-0 w-full;
+    max-height: 500px;
   }
   .navbar-toggler {
     @apply block z-10;
