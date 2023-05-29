@@ -45,7 +45,8 @@
     "lookup": "Tra cứu",
     "service_unavailable": "DỊCH VỤ KHÔNG KHẢ DỤNG",
     "service_available": "Dịch vụ khả dụng",
-    "service_available_des": "Để biết thêm chi tiết về hành trình & Giá cước vận chuyển\n khách hàng vui lòng liên hệ"
+    "service_available_des": "Để biết thêm chi tiết về hành trình & Giá cước vận chuyển\n khách hàng vui lòng liên hệ",
+    "select": "Chọn..."
   },
   "introduce": {
     "common": "Giới thiệu chung",

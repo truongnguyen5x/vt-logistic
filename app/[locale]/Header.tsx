@@ -236,7 +236,7 @@ const Header: FC<HeaderProps> = ({ titles }) => {
   return (
     <Fragment>
       <header className={clsx("header-wrap", { show: openNav })}>
-        <button className="navbar-toggler" onClick={handleOpenNavbar}>
+        <button className="navbar-toggler animation" onClick={handleOpenNavbar}>
           <Image src={MenuImg} alt="menu" />
         </button>
         <div className="container mx-auto">

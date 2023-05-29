@@ -69,7 +69,7 @@ export default function RootLayout({
             service: t("service"),
             news: t("news"),
             contact: t("contact"),
-            recruitment: t("recruitment"),
+            recruitment: t("re cruitment"),
             introduce_general: t("introduce_general"),
             milestones: t("milestones"),
             info_contact: t("info_contact"),
@@ -89,7 +89,7 @@ export default function RootLayout({
           }}
         />
         {children}
-        {/* <Footer /> */}
+        <Footer />
         <BackToTop txt={t("back_to_head")} />
         <Toaster position="top-right" reverseOrder={false} />
       </body>

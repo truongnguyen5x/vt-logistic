@@ -68,11 +68,11 @@
   //height: 80px;
   border-bottom: 1px solid var(--color-gray-100);
   :global .slick-prev {
-    left: 0px;
+    // left: 0px;
     top: 25%;
   }
   :global .slick-next {
-    right: 0px;
+    // right: 0px;
     top: 25%;
   }
 }
@@ -84,6 +84,7 @@
   }
   p {
     @apply whitespace-pre-line text-sm font-semibold;
+    @include text-clip(2);
   }
 }
 /********************
@@ -93,34 +94,33 @@
 /**************
  * LIST ABOUT *
  **************/
-.aboutItem {
-  @apply relative;
-  & > p {
-    @apply absolute text-transparent -top-2;
-    font-size: 110px;
-    -webkit-text-stroke: 1px var(--color-gray-310);
-    line-height: 110px;
-  }
-}
-.aboutItem1 {
-  // @apply flex flex-col items-center;
 
+.aboutItem {
+  // @apply flex flex-col items-center;
   @apply ml-10;
   & > p {
     @apply inline-block w-80 text-th-gray-300 font-medium;
+    @include text-clip(2);
   }
 }
 .aboutItemHead {
-  p {
-    &:first-child {
-      @apply text-th-red-500 font-semibold inline mr-3;
-      font-size: 64px;
-    }
+  @apply flex items-end mb-6 mt-5;
+  & > div {
+    @apply text-th-red-500 font-semibold mr-3 inline;
+    font-size: 64px;
+    line-height: 68px;
   }
+  & > p {
+    @apply text-th-red-500 font-semibold mr-3 text-2xl inline;
+    @include text-clip(2);
+  }
+}
+.floatTxt {
   p {
-    &:nth-child(2) {
-      @apply text-th-red-500 font-semibold inline mr-3 text-2xl;
-    }
+    @apply absolute text-transparent -top-6 -left-10;
+    font-size: 110px;
+    -webkit-text-stroke: 1px var(--color-gray-310);
+    line-height: 110px;
   }
 }
 .arrowLeftSlider {
@@ -146,9 +146,10 @@
   height: 125px;
   border-width: 1px;
   padding: 31px;
-  @apply border-th-gray-200 cursor-pointer text-2xl font-semibold gap-4;
+  @apply border-th-gray-200 cursor-pointer text-2xl font-semibold gap-4 relative;
   p {
     @apply whitespace-pre-line text-th-gray-300;
+    @include text-clip(2);
   }
   & > div {
     @apply relative;
@@ -177,17 +178,20 @@
  * MY SERVICE *
  **************/
 .bgMyService {
-  @apply relative grid grid-cols-5;
+  @apply relative;
   height: 417px;
-  gap: 5px;
   & > img {
-    @apply w-full absolute top-0 left-0;
+    @apply w-full absolute top-0 left-0 object-cover;
     height: 417px;
   }
 }
 
 .serviceItem {
+  padding: 0 2px;
+}
+.serviceItemInner {
   @apply flex flex-col items-center py-11 px-11 z-10 transition-all;
+  height: 417px;
   background-color: var(--color-black-400);
   &:hover {
     background-color: rgba(0, 0, 0, 0.6);
@@ -204,6 +208,7 @@
   }
   p {
     @apply text-th-white text-2xl font-semibold mt-8;
+    @include text-clip(2);
   }
   &:hover p {
     @apply underline underline-offset-8;
@@ -216,6 +221,7 @@
   }
   p {
     @apply text-th-white font-medium text-sm;
+    @include text-clip(2);
   }
   &:hover p {
     // @apply underline underline-offset-4;
@@ -254,7 +260,7 @@
 }
 .lookUpBg {
   @apply relative;
-  height: 477px;
+  // height: 477px;
   background-color: var(--color-gray-250);
   border-top: 1px solid var(--color-gray-100);
   border-bottom: 1px solid var(--color-gray-100);
@@ -275,11 +281,25 @@
   @apply absolute right-14 top-14 p-3 shadow-lg bg-th-white;
   width: 709px;
   height: 348px;
+  img {
+    @apply object-cover;
+    width: 719px;
+    height: 323px;
+  }
+}
+.formBgMobile {
+  @apply p-3 shadow-lg bg-th-white;
+  img {
+    @apply w-full h-full object-cover;
+  }
 }
 .boxContact {
   @apply flex p-5 gap-5 items-center bg-th-white border border-th-gray-200 shadow-md flex-grow;
   font-stretch: condensed;
   height: 60px;
+}
+.formBgMobile {
+  display: none !important;
 }
 /**************
  * END TAB LOOKUP *
@@ -288,6 +308,7 @@
 /****************
  * LIST PARTNER *
  ****************/
+
 .partnerItem {
   @apply flex justify-center items-center border-th-gray-200 shadow-lg p-3 m-3 cursor-pointer;
   border-width: 1px;
@@ -400,11 +421,31 @@
       max-width: 1600px
     ---------------------------------------------------*/
 @media only screen and (max-width: 1600px) {
+  /***********
+ * LOOK UP *
+ ***********/
+  .formBg {
+    @apply right-10;
+    width: 600px;
+  }
+  /***********
+ * LOOK UP *
+ ***********/
 }
 /* -------------------------------------------------
       max-width: 1440px
     ---------------------------------------------------*/
 @media only screen and (max-width: 1440px) {
+  /***********
+ * LOOK UP *
+ ***********/
+  .formBg {
+    @apply right-5;
+    width: 500px;
+  }
+  /***********
+* LOOK UP *
+***********/
 }
 /* -------------------------------------------------
       max-width: 1199px
@@ -437,11 +478,11 @@
  ***********/
   .feature {
     :global .slick-prev {
-      left: 10px;
+      left: 0px;
       top: 20%;
     }
     :global .slick-next {
-      right: 10px;
+      right: 0px;
       top: 20%;
     }
   }
@@ -454,6 +495,115 @@
   /***********
  * END FEATURE *
  ***********/
+  /**************
+ * LIST ABOUT *
+ **************/
+  .aboutUs {
+    @apply mb-28;
+    :global .slick-dots {
+      @apply -bottom-16;
+      li {
+        button:before {
+          font-size: 14px;
+        }
+      }
+      li.slick-active {
+        button:before {
+          @apply text-th-red-500;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+  /**************
+ * LIST ABOUT *
+ **************/
+  /***************
+ * ABOUT > TAB *
+ ***************/
+  .tabWp {
+    @apply px-5 py-6 w-72 h-28;
+    p {
+      @apply text-lg;
+    }
+    & > div > p > img {
+      @apply w-5;
+    }
+    & > img {
+      @apply w-10;
+    }
+  }
+
+  /*******************
+ * END ABOUT > TAB *
+ *******************/
+
+  /**************
+ * MY SERVICE *
+ **************/
+  .bgMyService {
+    @apply mx-4 mb-12;
+    :global .slick-dots {
+      @apply -bottom-7;
+      li {
+        button:before {
+          font-size: 14px;
+        }
+      }
+      li.slick-active {
+        button:before {
+          @apply text-th-red-500;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+  /**************
+ * MY SERVICE *
+ **************/
+
+  /**************
+ * TAB LOOKUP *
+ **************/
+  .tabHeaderLookup {
+    @apply text-lg;
+  }
+  .formBgMobile {
+    @apply mx-4;
+    display: block !important;
+  }
+  .formBg {
+    display: none;
+  }
+  .formTitle {
+    @apply text-xl;
+  }
+  /**************
+ * TAB LOOKUP *
+ **************/
+  /****************
+ * LIST PARTNER *
+ ****************/
+  .partnerWp {
+    @apply mb-16;
+    :global .slick-dots {
+      @apply -bottom-8;
+      li {
+        button:before {
+          font-size: 14px;
+        }
+      }
+      li.slick-active {
+        button:before {
+          @apply text-th-red-500;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+  /****************
+ * LIST PARTNER *
+ ****************/
 }
 /* -------------------------------------------------
       max-width: 767px
@@ -492,11 +642,9 @@
  ***********/
   .feature {
     :global .slick-prev {
-      left: 0px;
       top: 15%;
     }
     :global .slick-next {
-      right: 0px;
       top: 15%;
     }
   }
@@ -512,6 +660,53 @@
   /***********
 * END FEATURE *
 ***********/
+
+  /**************
+ * LIST ABOUT *
+ **************/
+  .aboutItem {
+    & > p {
+      @apply text-center;
+    }
+  }
+  .aboutItemHead {
+    @apply justify-center;
+  }
+  /**************
+ * LIST ABOUT *
+ **************/
+  /***************
+ * ABOUT > TAB *
+ ***************/
+  .tabWp {
+    @apply px-3 py-5 h-20;
+    p {
+      @apply text-sm;
+    }
+    & > div > p > img {
+      @apply w-5;
+    }
+    & > img {
+      @apply absolute w-6 right-3 top-3;
+    }
+  }
+
+  /*******************
+* END ABOUT > TAB *
+*******************/
+
+  /***********
+ * LOOK UP *
+ ***********/
+  .tabHeaderLookup {
+    @apply text-base;
+  }
+  .formTitle {
+    @apply text-base;
+  }
+  /***********
+ * LOOK UP *
+ ***********/
 }
 /* -------------------------------------------------
       max-width: 380px

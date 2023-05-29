@@ -85,8 +85,8 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
         />
       </div>
 
-      <div className="container mx-auto flex justify-start p-12">
-        <div className="flex flex-col gap-2">
+      <div className="container mx-auto flex justify-start lg:p-12 flex-col lg:flex-row gap-10 my-10">
+        <div className="flex mx-4 lg:mx-0 flex-col gap-2">
           <div className="flex gap-7 mb-9">
             <div className={styles.formIconWp}>
               <Image alt="location" src={LocationImg} width={38} height={38} />
@@ -97,6 +97,7 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
               <p className={styles.formTitle}>{t("from")}</p>
               <CustomAutocomplete
                 value={from}
+                placeholder={t("select")}
                 onChange={onChangeForm}
                 options={
                   index == SERVICE_TRANSPORT.TRANSPORT
@@ -108,6 +109,7 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
               <p className={styles.formTitle}>{t("to")}</p>
               <CustomAutocomplete
                 value={to}
+                placeholder={t("select")}
                 onChange={onChangeTo}
                 options={
                   index == SERVICE_TRANSPORT.TRANSPORT
@@ -118,13 +120,21 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
             </div>
           </div>
           <button
-            className="btn-red"
+            className="btn-red mx-auto lg:mx-0"
             onClick={handleCheckService}
             disabled={!from || !to}
           >
             {t("lookup")}
             <Image src={SearchImg} alt="search" width={20} height={20} />
           </button>
+        </div>
+        <div className={styles.formBgMobile}>
+          <Image
+            src={getPrefixImageUrl(lookup?.background?.data?.attributes?.url)}
+            alt=""
+            width={719}
+            height={339}
+          />
         </div>
       </div>
     </Fragment>

@@ -44,7 +44,7 @@ const SliderFeature: FC<SliderFeatureProps> = ({ contents }) => {
           infinite
           className="animation"
           speed={500}
-          slidesToShow={isDesktop ? 4 : 2}
+          slidesToShow={isDesktop ? 4 : isTablet ? 3 : 2}
           slidesToScroll={1}
           nextArrow={<SampleNextArrow />}
           prevArrow={<SamplePrevArrow />}

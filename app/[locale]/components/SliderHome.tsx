@@ -55,6 +55,7 @@ const SliderHome: FC<Props> = ({ images }) => {
         className="animation"
         speed={500}
         slidesToShow={1}
+        autoplay
         slidesToScroll={1}
         nextArrow={<SampleNextArrow />}
         prevArrow={<SamplePrevArrow />}

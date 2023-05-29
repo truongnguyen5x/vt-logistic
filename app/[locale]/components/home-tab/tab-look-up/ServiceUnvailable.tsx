@@ -8,7 +8,7 @@ const ServiceUnavailable = () => {
   const t = useTranslations("home");
   return (
     <Fragment>
-      <div className="h-full flex flex-col justify-center items-center gap-5">
+      <div className="flex flex-col justify-center items-center gap-5 h-[447px]">
         <Image src={ExitImg} width={80} height={80} alt="exit" />
         <p className="text-th-gray-300 font-semibold text-2xl">
           {t("service_unavailable")}

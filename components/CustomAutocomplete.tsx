@@ -1,3 +1,4 @@
+"use client";
 import {
   ChangeEvent,
   ChangeEventHandler,
@@ -20,6 +21,7 @@ type CustomSelectProps = {
   onChange?: (newValue: string) => void;
   options: IOption[];
   classNamePrefix?: string;
+  placeholder?: string;
 };
 
 const DropdownIndicator = (props: any) => {
@@ -49,6 +51,7 @@ const CustomSelect: FC<CustomSelectProps> = ({
   options,
   value,
   onChange,
+  placeholder,
   classNamePrefix = "custom-select",
 }) => {
   const [_value, setValue] = useState<IOption | undefined>(undefined);
@@ -65,6 +68,7 @@ const CustomSelect: FC<CustomSelectProps> = ({
       classNamePrefix={classNamePrefix}
       value={_value}
       isSearchable
+      placeholder={placeholder}
       components={{
         DropdownIndicator: DropdownIndicator,
         Menu: MenuCustom,

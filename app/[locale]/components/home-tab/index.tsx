@@ -28,18 +28,14 @@ interface HomeTabProps {
 const HomeTab: FC<HomeTabProps> = ({ tabs, contacts, lookups, services }) => {
   //TODO: 1
   const [activeTab, setActiveTab] = useState(1);
-  const slickRef = useRef<Slider>(null);
 
   const handleChangeTab = (index: number) => {
     setActiveTab(index);
-    slickRef.current?.slickGoTo(index);
   };
-  const onSliderChange = (index: number) => {
-    setActiveTab(index);
-  };
+
   return (
     <Fragment>
-      <div className="flex justify-center gap-4 mt-20 mb-20 animation">
+      <div className="flex justify-center gap-4 mt-20 mb-10 sx:mb-20 animation mx-4 sm:mx-0">
         {tabs?.map((i, idx) => (
           <div
             key={idx}
@@ -73,22 +69,8 @@ const HomeTab: FC<HomeTabProps> = ({ tabs, contacts, lookups, services }) => {
         ))}
       </div>
       <div className="animation" data-animation-delay="0.4s">
-        <Slider
-          ref={slickRef}
-          arrows={false}
-          //TODO: 1
-          initialSlide={1}
-          draggable={false}
-          afterChange={onSliderChange}
-          slidesToShow={1}
-          slidesToScroll={1}
-          dots={false}
-          speed={500}
-          className="custom-slider"
-        >
-          <TabLookup lookups={lookups} contacts={contacts} />
-          <TabMyService services={services} />
-        </Slider>
+        {activeTab == 0 && <TabLookup lookups={lookups} contacts={contacts} />}
+        {activeTab == 1 && <TabMyService services={services} />}
       </div>
     </Fragment>
   );

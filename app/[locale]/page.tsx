@@ -68,9 +68,9 @@ export default async function Home() {
           >
         }
       />
-      {/*    <section className="container mx-auto pt-20">
+      <section className="container mx-auto pt-12 md:pt-20">
         <p className="animation section-name mb-6">{t("about_us")}</p>
-        <div className="mt-16" />
+        <div className="mt-10 lg:mt-16" />
         <AboutUs
           content={
             assetData?.attributes?.abouts as Maybe<
@@ -111,7 +111,7 @@ export default async function Home() {
           >
         }
       />
-      <Suspense fallback={<div>Loading...</div>}>
+      {/* <Suspense fallback={<div>Loading...</div>}>
         <ListPost
           title={t("news_event")}
           detail={t("detail")}
