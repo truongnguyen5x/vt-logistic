@@ -29,7 +29,7 @@
       "@components/*": ["components/*"],
       "@app/*": ["app/[locale]/*"],
       "@generated/*": ["__generated__/*"],
-
+      "@hooks/*": ["hooks/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

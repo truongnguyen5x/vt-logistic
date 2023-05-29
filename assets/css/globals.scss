@@ -203,11 +203,9 @@ body {
 .header-wrap {
   @apply absolute top-0 left-0 right-0 z-20 bg-th-white;
 }
+
 .header-after {
   height: 74px;
-}
-.nav-mobile-bg {
-  @apply hidden;
 }
 .navbar {
   @apply flex items-center relative;
@@ -219,7 +217,7 @@ body {
   }
 }
 .navbar-toggler {
-  @apply absolute left-0 top-0 hidden p-4;
+  @apply absolute left-0 top-3 hidden p-4;
 }
 .navbar-collapse {
   @apply flex-grow hidden;
@@ -246,6 +244,20 @@ body {
 }
 .nav-btn {
   @apply pr-7 flex gap-7 items-center;
+}
+.search-header {
+  & > img {
+    width: 30px;
+    height: 30px;
+  }
+}
+.profile-header {
+  & > img {
+    width: 30px;
+    height: 30px;
+  }
+}
+.locale-header {
   & > img {
     width: 30px;
     height: 30px;
@@ -517,6 +529,20 @@ a.footer-link {
   }
   .nav-btn {
     @apply gap-3;
+  }
+  .search-header {
+    & > img {
+      height: 24px;
+      width: 24px;
+    }
+  }
+  .profile-header {
+    & > img {
+      height: 24px;
+      width: 24px;
+    }
+  }
+  .locale-header {
     & > img {
       height: 24px;
       width: 24px;
@@ -553,6 +579,9 @@ a.footer-link {
 @media only screen and (min-width: 991px) {
   .navbar-collapse {
     display: flex !important;
+  }
+  .nav-mobile-bg {
+    @apply hidden;
   }
   .first-nav-item {
     &:hover {
@@ -608,11 +637,24 @@ a.footer-link {
       }
     }
   }
+  .search-header {
+    & > img:nth-child(2) {
+      @apply hidden;
+    }
+  }
+  .profile-header {
+    & > img:nth-child(2) {
+      @apply hidden;
+    }
+  }
 }
 /* -------------------------------------------------
       max-width: 991px
     ---------------------------------------------------*/
 @media only screen and (max-width: 991px) {
+  /**********
+ * HEADER *
+ **********/
   .header-wrap {
     @apply bg-transparent;
   }
@@ -624,12 +666,13 @@ a.footer-link {
   }
   .nav-mobile-bg {
     @apply block absolute top-0 w-full;
-    max-height: 500px;
+    height: 450px;
   }
   .navbar-toggler {
     @apply block z-10;
   }
   .navbar-brand {
+    @apply mt-3 mb-3;
     & > img:first-child {
       @apply hidden;
     }
@@ -732,7 +775,37 @@ a.footer-link {
 
   .nav-btn {
     @apply pr-0 mt-4 mb-4;
+    & > img {
+      height: 24px;
+      width: 24px;
+    }
   }
+  .search-header {
+    & > img {
+      width: 20px;
+    }
+    & > img:nth-child(1) {
+      @apply hidden;
+    }
+    & > img:nth-child(2) {
+      @apply block;
+    }
+  }
+  .profile-header {
+    & > img {
+      width: 20px;
+    }
+    & > img:nth-child(1) {
+      @apply hidden;
+    }
+    & > img:nth-child(2) {
+      @apply block;
+    }
+  }
+
+  /**********
+  * END HEADER *
+  **********/
 }
 /* -------------------------------------------------
       min-width: 767px
@@ -759,6 +832,9 @@ a.footer-link {
       max-width: 480px
     ---------------------------------------------------*/
 @media only screen and (max-width: 480px) {
+  .nav-mobile-bg {
+    @apply h-72;
+  }
 }
 /* -------------------------------------------------
       max-width: 380px

@@ -14,6 +14,9 @@ import LogoWhiteImg from "@assets/images/logos/logo_white.svg";
 import BackgroundMobileImg from "@assets/images/background/background_mobile.png";
 import CloseImg from "@assets/images/icons/close.svg";
 import { usePathname } from "next-intl/client";
+import SearchHeader from "./components/Search";
+import ProfileHeader from "./components/Profile";
+import SelectLocale from "./components/SelectLocale";
 
 interface HeaderProps {
   titles: any;
@@ -233,11 +236,11 @@ const Header: FC<HeaderProps> = ({ titles }) => {
   return (
     <Fragment>
       <header className={clsx("header-wrap", { show: openNav })}>
+        <button className="navbar-toggler" onClick={handleOpenNavbar}>
+          <Image src={MenuImg} alt="menu" />
+        </button>
         <div className="container mx-auto">
           <nav className="navbar">
-            <button className="navbar-toggler" onClick={handleOpenNavbar}>
-              <Image src={MenuImg} alt="menu" />
-            </button>
             <Link href="/" className="animation navbar-brand">
               <Image src={LogoImg} alt="logo" />
               <Image src={LogoWhiteImg} alt="logo" />
@@ -275,14 +278,9 @@ const Header: FC<HeaderProps> = ({ titles }) => {
                 ))}
               </ul>
               <div className="animation nav-btn" data-animation-delay="0.8s">
-                <Image
-                  width={30}
-                  height={30}
-                  src={SearchImg}
-                  alt="search-icon"
-                />
-                <Image width={30} height={30} src={VnFlagImg} alt="flag" />
-                <Image width={30} height={30} src={ProfileImg} alt="profile" />
+                <SearchHeader />
+                <SelectLocale />
+                <ProfileHeader />
               </div>
             </div>
           </nav>

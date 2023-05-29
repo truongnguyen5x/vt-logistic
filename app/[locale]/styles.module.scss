@@ -67,9 +67,18 @@
 .feature {
   //height: 80px;
   border-bottom: 1px solid var(--color-gray-100);
+  :global .slick-prev {
+    left: 0px;
+    top: 25%;
+  }
+  :global .slick-next {
+    right: 0px;
+    top: 25%;
+  }
 }
 .featureItem {
-  @apply flex items-center gap-7;
+  @apply items-center gap-7 justify-center py-3;
+  display: flex !important;
   img {
     height: 50px;
   }
@@ -370,3 +379,142 @@
 /******************
  * END HOME LIST POST *
  ******************/
+
+/* -------------------------------------------------
+  min-width: 1200px
+---------------------------------------------------*/
+@media (min-width: 1200px) {
+}
+
+/* -------------------------------------------------
+      min-width: 991px and max-width: 1199px
+    ---------------------------------------------------*/
+@media only screen and (min-width: 991px) and (max-width: 1199px) {
+}
+/* -------------------------------------------------
+      min-width: 991px and max-width: 1199px
+    ---------------------------------------------------*/
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+}
+/* -------------------------------------------------
+      max-width: 1600px
+    ---------------------------------------------------*/
+@media only screen and (max-width: 1600px) {
+}
+/* -------------------------------------------------
+      max-width: 1440px
+    ---------------------------------------------------*/
+@media only screen and (max-width: 1440px) {
+}
+/* -------------------------------------------------
+      max-width: 1199px
+    ---------------------------------------------------*/
+@media only screen and (max-width: 1199px) {
+}
+/* -------------------------------------------------
+      min-width: 991px
+    ---------------------------------------------------*/
+@media only screen and (min-width: 991px) {
+}
+/* -------------------------------------------------
+      max-width: 991px
+    ---------------------------------------------------*/
+@media only screen and (max-width: 991px) {
+  /****************
+ * FIRST SLIDER *
+ ****************/
+  .sliderWp {
+    @apply mx-6 mt-7 rounded-lg overflow-hidden h-96;
+  }
+  .banner {
+    @apply object-cover h-96;
+  }
+  /****************
+* END FIRST SLIDER *
+****************/
+  /***********
+ * FEATURE *
+ ***********/
+  .feature {
+    :global .slick-prev {
+      left: 10px;
+      top: 20%;
+    }
+    :global .slick-next {
+      right: 10px;
+      top: 20%;
+    }
+  }
+  .featureItem {
+    @apply gap-4;
+    img {
+      @apply h-10 w-10;
+    }
+  }
+  /***********
+ * END FEATURE *
+ ***********/
+}
+/* -------------------------------------------------
+      max-width: 767px
+    ---------------------------------------------------*/
+@media only screen and (max-width: 767px) {
+}
+/* -------------------------------------------------
+      max-width: 640px
+    ---------------------------------------------------*/
+@media only screen and (max-width: 640px) {
+}
+/* -------------------------------------------------
+      max-width: 580px
+    ---------------------------------------------------*/
+@media only screen and (max-width: 580px) {
+}
+/* -------------------------------------------------
+      max-width: 480px
+    ---------------------------------------------------*/
+@media only screen and (max-width: 480px) {
+  /****************
+ * FIRST SLIDER *
+ ****************/
+  .sliderWp {
+    @apply mx-4 mt-7 rounded-lg overflow-hidden h-60;
+  }
+  .banner {
+    @apply object-cover h-60;
+  }
+  /****************
+* END FIRST SLIDER *
+****************/
+
+  /***********
+ * FEATURE *
+ ***********/
+  .feature {
+    :global .slick-prev {
+      left: 0px;
+      top: 15%;
+    }
+    :global .slick-next {
+      right: 0px;
+      top: 15%;
+    }
+  }
+  .featureItem {
+    @apply gap-4 border-r border-th-gray-100;
+    img {
+      @apply h-6 w-6;
+    }
+    p {
+      @apply text-xs;
+    }
+  }
+  /***********
+* END FEATURE *
+***********/
+}
+/* -------------------------------------------------
+      max-width: 380px
+    ---------------------------------------------------*/
+@media only screen and (max-width: 380px) {
+}

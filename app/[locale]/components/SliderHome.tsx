@@ -12,6 +12,7 @@ import {
   UploadFileRelationResponseCollection,
 } from "@generated/graphql";
 import { getPrefixImageUrl } from "@ultility/index";
+import useWindowSize from "@hooks/use-window-size";
 
 interface Props {
   images?: UploadFileRelationResponseCollection | null;
@@ -44,11 +45,13 @@ function SamplePrevArrow(props: any) {
 }
 
 const SliderHome: FC<Props> = ({ images }) => {
+  const { isDesktop } = useWindowSize();
   return (
     <section className={styles.sliderWp}>
       <Slider
-        dots
+        dots={isDesktop}
         infinite
+        arrows={isDesktop}
         className="animation"
         speed={500}
         slidesToShow={1}

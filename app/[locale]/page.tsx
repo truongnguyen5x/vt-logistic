@@ -4,7 +4,7 @@ import { useLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { fetchAsset, fetchHomePost } from "@api/index";
 import { ILocale, i18n } from "@configs/i18n";
-import SliderHome from "./components/Slider";
+import SliderHome from "./components/SliderHome";
 import AboutUs from "./components/AboutUs";
 import Image from "next/image";
 import HomeTab from "./components/home-tab";
@@ -15,6 +15,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getClient, getHomeQueryString } from "@api/graphql-client";
 import {
   ComponentHomeAbout,
+  ComponentHomeFeature,
   ComponentHomeHomeLookup,
   ComponentHomeHomePartner,
   ComponentHomeHomeService,
@@ -24,6 +25,7 @@ import {
   UploadFileRelationResponseCollection,
 } from "@generated/graphql";
 import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
+import SliderFeature from "./components/SliderFeature";
 
 // TODO: generateStaticParams what for?
 // export async function generateStaticParams() {
@@ -59,25 +61,14 @@ export default async function Home() {
             ?.banners as Maybe<UploadFileRelationResponseCollection>
         }
       />
-      <section className={[styles.feature].join(" ")}>
-        <div className="container mx-auto flex  items-center justify-between my-4">
-          {assetData?.attributes?.features?.map((i, index: number) => (
-            <div
-              key={index}
-              className={[styles.featureItem, "animation"].join(" ")}
-            >
-              <Image
-                src={getPrefixImageUrl(i?.icon?.data?.attributes?.url)}
-                alt=""
-                width={50}
-                height={50}
-              />
-              <p>{i?.title}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-      <section className="container mx-auto pt-20">
+      <SliderFeature
+        contents={
+          assetData?.attributes?.features as Maybe<
+            Array<Maybe<ComponentHomeFeature>>
+          >
+        }
+      />
+      {/*    <section className="container mx-auto pt-20">
         <p className="animation section-name mb-6">{t("about_us")}</p>
         <div className="mt-16" />
         <AboutUs
@@ -127,7 +118,7 @@ export default async function Home() {
           learn_more={t("learn_more")}
           promise={listHomePost}
         />
-      </Suspense>
+      </Suspense> */}
     </Fragment>
   );
 }
