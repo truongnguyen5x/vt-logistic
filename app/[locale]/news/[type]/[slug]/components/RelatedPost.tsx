@@ -3,9 +3,10 @@ import { useTranslations } from "next-intl";
 import { FC } from "react";
 import PaginationNews from "@components/news/PaginationNews";
 import { SideCard } from "@components/news/Cards";
+import { NewsEntity } from "@generated/graphql";
 
 type Props = {
-  post: IPost[];
+  post: NewsEntity[] | null;
 };
 
 const RelatedPost: FC<Props> = ({ post }) => {
@@ -20,7 +21,7 @@ const RelatedPost: FC<Props> = ({ post }) => {
         {!!post?.length &&
           post.map((item, index) => <SideCard key={index} post={item} />)}
       </div>
-      <PaginationNews />
+      {/* <PaginationNews totalCount={} /> */}
     </div>
   );
 };

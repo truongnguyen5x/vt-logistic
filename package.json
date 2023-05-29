@@ -19,9 +19,11 @@
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
     "clsx": "^1.2.1",
+    "cross-fetch": "^3.1.6",
     "date-fns": "^2.30.0",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
+    "js-cookie": "^3.0.5",
     "next": "13.4.1",
     "next-intl": "^2.15.0-beta.1",
     "pigeon-maps": "^0.21.3",
@@ -46,6 +48,7 @@
   "devDependencies": {
     "@graphql-codegen/cli": "^3.3.1",
     "@graphql-codegen/client-preset": "^3.0.1",
+    "@types/js-cookie": "^3.0.3",
     "@types/react-slick": "^0.23.10",
     "sass": "^1.62.1"
   }

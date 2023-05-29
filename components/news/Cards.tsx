@@ -7,9 +7,11 @@ import ArrowRight from "@assets/images/icons/arrow_right_red.svg";
 import Clock from "@assets/images/icons/clock.svg";
 import { IPost, IPostCategory } from "@type/post";
 import Link from "next-intl/link";
+import { NewsEntity } from "@generated/graphql";
+import { getPrefixImageUrl } from "@ultility/index";
 
 type CardProps = {
-  post: IPost;
+  post: NewsEntity;
   className?: string;
   category?: IPostCategory;
 };
@@ -20,15 +22,15 @@ export const Card: FC<CardProps> = ({
   category = "internal_news",
 }) => {
   const t = useTranslations("internal_news");
-
+  
   return (
     <Link
       href={`${
-        category === "recruitment" ? "/recruitment/" : `/news/${post.category}/`
-      }${post.slug}`}
+        category === "recruitment" ? "/recruitment/" : `/news/${category}/`
+      }${post.attributes?.slug}`}
       className={className}
     >
-      <Image src={post.img} alt="" width={940} height={360} />
+      <Image src={getPrefixImageUrl(post.attributes?.featured_image?.data?.attributes?.url)} alt="" width={940} height={360} />
       <div className="p-8 max-w-[940px] bg-white shadow-[0px_5px_20px_rgba(0,0,0,0.1)]">
         <div className="flex gap-8 items-start">
           <div className="min-w-[60px]">
@@ -40,22 +42,22 @@ export const Card: FC<CardProps> = ({
               className="mx-auto"
             />
             <div className="text-center mt-2 text-4xl text-th-gray-320 font-bold">
-              {getDate(new Date(post.created_at)).toLocaleString("en-US", {
+              {getDate(new Date(post.attributes?.updatedAt)).toLocaleString("en-US", {
                 minimumIntegerDigits: 2,
                 useGrouping: false,
               })}
             </div>
             <div className="text-center font-medium text-base text-th-gray-300">{`Tháng ${
-              getMonth(new Date(post.created_at)) + 1
+              getMonth(new Date(post.attributes?.updatedAt)) + 1
             }`}</div>
           </div>
           <div className="pl-8 border-l border-th-gray-330 max-w-[782px]">
             <h4 className="break-words text-th-gray-320 text-[25px] leading-8 font-semibold">
-              {post.title}
+              {post.attributes?.title}
             </h4>
-            {!!post.description && (
+            {!!post.attributes?.content && (
               <p className="break-words mt-4 text-th-gray-300 text-base">
-                {post.description}
+                {post.attributes?.preview_content}
               </p>
             )}
           </div>
@@ -79,19 +81,19 @@ export const SideCard: FC<CardProps> = ({
   return (
     <Link
       href={`${
-        category === "recruitment" ? "/recruitment/" : `/news/${post.category}/`
-      }${post.slug}`}
+        category === "recruitment" ? "/recruitment/" : `/news/${category}/`
+      }${post.attributes?.slug}`}
       className={className}
     >
-      <Image src={post.img} alt="" width={490} height={240} />
+      <Image src={getPrefixImageUrl(post.attributes?.featured_image?.data?.attributes?.url)} alt="" width={490} height={240} />
       <div className="pt-6 px-8 pb-8 bg-th-gray-220 max-w-[490px]">
         <div className="flex items-center gap-3 mb-2">
           <Image src={Clock} alt="" width={14} height={14} />
           <div className="text-th-gray-300 text-[13px] leading-[22px]">
-            {format(new Date(post.created_at), "dd-MM-yyyy")}
+            {format(new Date(post.attributes?.updatedAt), "dd-MM-yyyy")}
           </div>
         </div>
-        <h5 className="text-th-gray-320 text-xl font-semibold">{post.title}</h5>
+        <h5 className="text-th-gray-320 text-xl font-semibold">{post.attributes?.title}</h5>
       </div>
     </Link>
   );
