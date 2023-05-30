@@ -10,7 +10,12 @@ import SearchImg from "@assets/images/icons/search_light.svg";
 import { ILocation } from "@type/location";
 import { SERVICE_TRANSPORT } from "@ultility/constant";
 import { ISTATUS } from "./FormLookup";
-import { ComponentHomeHomeLookup, Maybe } from "@generated/graphql";
+import {
+  ComponentHomeHomeLookup,
+  Country,
+  Maybe,
+  Province,
+} from "@generated/graphql";
 import { getPrefixImageUrl } from "@ultility/index";
 import { useTranslations } from "next-intl";
 
@@ -92,14 +97,18 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
                 onChange={onChangeForm}
                 options={
                   index == SERVICE_TRANSPORT.TRANSPORT
-                    ? listProvince.map((province) => ({
-                        value: province.name || "",
-                        label: province.fullname || "",
-                      }))
-                    : listCountry.map((country) => ({
-                        value: country.name || "",
-                        label: country.fullname || "",
-                      }))
+                    ? listProvince?.map(
+                        (province: Maybe<Province> | undefined) => ({
+                          value: province?.name || "",
+                          label: province?.fullname || "",
+                        })
+                      )
+                    : listCountry?.map(
+                        (country: Maybe<Country> | undefined) => ({
+                          value: country?.name || "",
+                          label: country?.fullname || "",
+                        })
+                      )
                 }
               />
               <div className="mt-6" />
@@ -110,14 +119,18 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
                 onChange={onChangeTo}
                 options={
                   index == SERVICE_TRANSPORT.TRANSPORT
-                    ? listProvince.map((province) => ({
-                        value: province.name || "",
-                        label: province.fullname || "",
-                      }))
-                    : listCountry.map((country) => ({
-                        value: country.name || "",
-                        label: country.fullname || "",
-                      }))
+                    ? listProvince?.map(
+                        (province: Maybe<Province> | undefined) => ({
+                          value: province?.name || "",
+                          label: province?.fullname || "",
+                        })
+                      )
+                    : listCountry?.map(
+                        (country: Maybe<Country> | undefined) => ({
+                          value: country?.name || "",
+                          label: country?.fullname || "",
+                        })
+                      )
                 }
               />
             </div>

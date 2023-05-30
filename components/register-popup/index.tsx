@@ -19,7 +19,13 @@ import { getLanguageForApi } from "@ultility/index";
 import { getCountryQueryString, getProvinceQueryString } from "@api/location";
 import { gql } from "@generated/gql";
 import { ApolloWrapper, makeClient, makeSuspenseCache } from "@api/client";
-import { CountryEntity, ProvinceEntity } from "@generated/graphql";
+import {
+  Country,
+  CountryEntity,
+  Maybe,
+  Province,
+  ProvinceEntity,
+} from "@generated/graphql";
 
 type Props = {
   textBtn?: string;
@@ -284,14 +290,18 @@ const ResgisterPopup: FC<Props> = ({
                         options={
                           Number(getValues("service")) ==
                           SERVICE_TRANSPORT.TRANSPORT
-                            ? listProvince?.map((i) => ({
-                                value: i?.name || "",
-                                label: i?.fullname || "",
-                              }))
-                            : listCountry?.map((i) => ({
-                                value: i?.name || "",
-                                label: i?.fullname || "",
-                              }))
+                            ? listProvince?.map(
+                                (province: Maybe<Province> | undefined) => ({
+                                  value: province?.name || "",
+                                  label: province?.fullname || "",
+                                })
+                              )
+                            : listCountry?.map(
+                                (country: Maybe<Country> | undefined) => ({
+                                  value: country?.name || "",
+                                  label: country?.fullname || "",
+                                })
+                              )
                         }
                       />
                       {!!errors.from && !!errors.from?.message && (
@@ -320,14 +330,18 @@ const ResgisterPopup: FC<Props> = ({
                         options={
                           Number(getValues("service")) ==
                           SERVICE_TRANSPORT.TRANSPORT
-                            ? listProvince?.map((i) => ({
-                                value: i?.name || "",
-                                label: i?.fullname || "",
-                              }))
-                            : listCountry?.map((i) => ({
-                                value: i?.name || "",
-                                label: i?.fullname || "",
-                              }))
+                            ? listProvince?.map(
+                                (province: Maybe<Province> | undefined) => ({
+                                  value: province?.name || "",
+                                  label: province?.fullname || "",
+                                })
+                              )
+                            : listCountry?.map(
+                                (country: Maybe<Country> | undefined) => ({
+                                  value: country?.name || "",
+                                  label: country?.fullname || "",
+                                })
+                              )
                         }
                       />
                       {!!errors.to && !!errors.to?.message && (
