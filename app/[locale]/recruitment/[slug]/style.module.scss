@@ -10,6 +10,7 @@
 
   p {
     margin: 1em 0;
+    white-space: break-spaces;
   }
 
   blockquote,
@@ -303,5 +304,9 @@
 
   iframe {
     border: 2px inset;
+  }
+
+  a {
+    word-break: break-all;
   }
 }

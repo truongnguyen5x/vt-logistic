@@ -1,20 +1,16 @@
-import { fetchAsset, fetchDetailPost } from "@api/index";
+import { Fragment } from "react";
+import { format } from "date-fns";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import Clock from "@assets/images/icons/clock.svg";
-import Dislike from "@assets/images/icons/dislike.svg";
 import Eye from "@assets/images/icons/eye.svg";
-import Like from "@assets/images/icons/like.svg";
 import Banner from "@components/Banner";
 import BreadCrumbs from "@components/Breadcrumbs";
 import { ILocale } from "@configs/i18n";
-import { IPost } from "@type/post";
-import { format } from "date-fns";
 import { useLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
-import { Fragment } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import NewsSideRight from "@components/news/NewsSideRight";
+import NewsSideRight, { HelpCard } from "@components/news/NewsSideRight";
 import RelatedPost from "./components/RelatedPost";
 import styles from "./style.module.scss";
 import { Filter, Pagination } from "@app/news/components/ListNews";
@@ -24,6 +20,7 @@ import { getNewQueryString, mutationPageView } from "@api/new.graghql";
 import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
 import { Maybe, NewsEntity, NewsInput } from "@generated/graphql";
 import ReactPost from "./components/ReactPost";
+import SliderNew from "@components/news/SliderNew";
 
 const getNewAsset = async (
   locale: ILocale,
@@ -64,18 +61,18 @@ const PostDetail = async (props: any) => {
       locale as ILocale,
       {
         slug: decodeURIComponent(props?.params?.slug),
-        type: 'recruitment',
+        type: "recruitment",
       },
       { page: 1 }
     ),
     getNewAsset(
       locale as ILocale,
-      { type: 'recruitment', is_hot: true },
+      { type: "recruitment", is_hot: true },
       { page: 1 }
     ),
     getTranslations("internal_news"),
   ]);
-  
+
   const breadcrumbs = [
     { title: t("breadcrumbs.home"), link: "#" },
     { title: t("breadcrumbs.news"), link: "#" },
@@ -103,10 +100,10 @@ const PostDetail = async (props: any) => {
         )}
         title={t("breadcrumbs.recruitment")}
       />
-      <div className="container mx-auto mb-32">
-        <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6 mb-20" />
-        <div className="flex items-start gap-[100px]">
-          <div className="max-w-[940px]">
+      <div className="container px-4 md:px-6 2xl:px-0 mx-auto md:mt-40 lg:mt-0 mb-10 lg:mb-32">
+        <BreadCrumbs breadcrumbs={breadcrumbs} className="my-6 xl:mb-20" />
+        <div className="flex items-start lg:gap-10 2xl:gap-[100px] flex-col lg:flex-row">
+          <div className="max-w-[940px] w-full">
             <h5 className="text-th-gray-400 text-4xl font-semibold animation">
               {dataNew?.attributes?.title}
             </h5>
@@ -132,11 +129,12 @@ const PostDetail = async (props: any) => {
                 {dataNew.attributes?.content}
               </ReactMarkdown>
             )}
-            <div className="flex mb-2 animation">
-              <div className="flex flex-1 items-center gap-3 ">
+            <div className="flex justify-between mb-2 animation">
+              <div className="flex lg:flex-1 items-center gap-3 ">
                 <Image src={Eye} alt="" width={20} height={20} />
                 <div className="text-th-gray-300 text-[16px] leading-[22px]">
-                  {dataNew?.attributes?.page_view} {t("readed")}
+                  {dataNew?.attributes?.page_view}
+                  <span className="max-lg:hidden">{t("readed")}</span>
                 </div>
               </div>
               <div className="flex items-center gap-4">
@@ -149,14 +147,35 @@ const PostDetail = async (props: any) => {
                 </div>
               </div>
             </div>
-            <RelatedPost
-              post={dataNew?.attributes?.news?.data as Maybe<NewsEntity[]>}
+            <div className="max-lg:hidden">
+              {!!dataNew?.attributes?.news?.data.length && (
+                <RelatedPost
+                  post={dataNew?.attributes?.news?.data as Maybe<NewsEntity[]>}
+                />
+              )}
+            </div>
+          </div>
+          <div className="max-lg:hidden">
+            <NewsSideRight
+              data={{ hot_news: dataHotNews?.data as Maybe<NewsEntity[]> }}
+              category={"recruitment"}
             />
           </div>
-          <NewsSideRight
-            data={{ hot_news: dataHotNews?.data as Maybe<NewsEntity[]> }}
-            category={"recruitment"}
-          />
+          <div className="w-full lg:hidden">
+            {!!dataNew?.attributes?.news?.data.length && (
+              <SliderNew
+                title="Bài viết liên quan"
+                data={dataNew?.attributes?.news?.data as Maybe<NewsEntity[]>}
+                category="recruitment"
+              />
+            )}
+            <SliderNew
+              title="Tin nổi bật"
+              data={dataHotNews?.data as Maybe<NewsEntity[]>}
+              category="recruitment"
+            />
+            <HelpCard category="recruitment" />
+          </div>
         </div>
       </div>
     </Fragment>

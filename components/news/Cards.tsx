@@ -95,15 +95,17 @@ export const SideCard: FC<CardProps> = ({
       }${post.attributes?.slug}`}
       className={className}
     >
-      <Image
-        src={getPrefixImageUrl(
-          post.attributes?.featured_image?.data?.attributes?.url
-        )}
-        alt=""
-        width={490}
-        height={240}
-      />
-      <div className="pt-6 px-8 pb-8 bg-th-gray-220 max-w-[490px]">
+      <div className="md:mx-2 lg:mx-0">
+        <Image
+          src={getPrefixImageUrl(
+            post.attributes?.featured_image?.data?.attributes?.url
+          )}
+          alt=""
+          width={490}
+          height={240}
+        />
+      </div>
+      <div className="p-6 md:mx-2 lg:mx-0 md:pt-6 md:px-8 md:pb-8 bg-th-gray-220 max-w-[490px]">
         <div className="flex items-center gap-3 mb-2">
           <Image src={Clock} alt="" width={14} height={14} />
           <div className="text-th-gray-300 text-[13px] leading-[22px]">

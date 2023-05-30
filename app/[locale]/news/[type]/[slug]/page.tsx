@@ -10,7 +10,7 @@ import Image from "next/image";
 import { Fragment } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import NewsSideRight from "@components/news/NewsSideRight";
+import NewsSideRight, { HelpCard } from "@components/news/NewsSideRight";
 import RelatedPost from "./components/RelatedPost";
 import styles from "./style.module.scss";
 import { Filter, Pagination } from "@app/news/components/ListNews";
@@ -21,6 +21,7 @@ import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
 import { Maybe, News, NewsEntity } from "@generated/graphql";
 import { NewsInput } from "@generated/graphql";
 import ReactPost from "./components/ReactPost";
+import SliderNew from "@components/news/SliderNew";
 
 const getNewAsset = async (
   locale: ILocale,
@@ -98,11 +99,11 @@ const PostDetail = async (props: any) => {
         image={getPrefixImageUrl(
           dataNew?.attributes?.featured_image?.data?.attributes?.url
         )}
-        title={dataNew?.attributes?.title}
+        title={t(`breadcrumbs.${props?.params?.type}`)}
       />
-      <div className="container mx-auto mb-32">
-        <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6 mb-20" />
-        <div className="flex items-start gap-[100px]">
+      <div className="container px-4 md:px-6 2xl:px-0 mx-auto md:mt-40 lg:mt-0 mb-10 lg:mb-32">
+        <BreadCrumbs breadcrumbs={breadcrumbs} className="my-6 xl:mb-20" />
+        <div className="flex items-start lg:gap-10 2xl:gap-[100px] flex-col lg:flex-row">
           <div className="max-w-[940px]">
             <h5 className="text-th-gray-400 text-4xl font-semibold animation">
               {dataNew?.attributes?.title}
@@ -133,7 +134,8 @@ const PostDetail = async (props: any) => {
               <div className="flex flex-1 items-center gap-3 ">
                 <Image src={Eye} alt="" width={20} height={20} />
                 <div className="text-th-gray-300 text-[16px] leading-[22px]">
-                  {dataNew?.attributes?.page_view} {t("readed")}
+                  {dataNew?.attributes?.page_view}{" "}
+                  <span className="max-lg:hidden">{t("readed")}</span>
                 </div>
               </div>
               <div className="flex items-center gap-4">
@@ -146,14 +148,35 @@ const PostDetail = async (props: any) => {
                 </div>
               </div>
             </div>
-            <RelatedPost
-              post={dataNew?.attributes?.news?.data as Maybe<NewsEntity[]>}
+            <div className="max-lg:hidden">
+              {!!dataNew?.attributes?.news?.data.length && (
+                <RelatedPost
+                  post={dataNew?.attributes?.news?.data as Maybe<NewsEntity[]>}
+                />
+              )}
+            </div>
+          </div>
+          <div className="max-lg:hidden">
+            <NewsSideRight
+              data={{ hot_news: dataHotNews?.data as Maybe<NewsEntity[]> }}
+              category={props?.params?.type}
             />
           </div>
-          <NewsSideRight
-            data={{ hot_news: dataHotNews?.data as Maybe<NewsEntity[]> }}
-            category={props?.params?.type}
-          />
+          <div className="w-full lg:hidden">
+            {!!dataNew?.attributes?.news?.data.length && (
+              <SliderNew
+                title="Bài viết liên quan"
+                data={dataNew?.attributes?.news?.data as Maybe<NewsEntity[]>}
+                category={props?.params?.type}
+              />
+            )}
+            <SliderNew
+              title="Tin nổi bật"
+              data={dataHotNews?.data as Maybe<NewsEntity[]>}
+              category={props?.params?.type}
+            />
+            <HelpCard category={props?.params?.type} />
+          </div>
         </div>
       </div>
     </Fragment>
