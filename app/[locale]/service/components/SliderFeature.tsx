@@ -9,7 +9,7 @@ import Slider from "react-slick";
 import styles from "@app/service/style.module.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-  
+
 type Props = {
   features: Array<ComponentServiceFeature> | null;
 };
@@ -22,12 +22,15 @@ const SliderFeature: FC<Props> = ({ features }) => {
       slidesToShow={2}
       slidesToScroll={1}
       arrows={false}
-      className="animation custom-slider min-w-[343px] max-w-[720px] mx-auto md:!hidden"
+      className="animation slider-selectable min-w-[343px] max-w-[720px] mx-auto md:!hidden"
     >
       {!!features &&
         !!features.length &&
         features.map((feature, idx) => (
-          <div key={idx} className="flex flex-col items-center justify-center animation">
+          <div
+            key={idx}
+            className="flex flex-col items-center justify-center animation"
+          >
             {!!feature.icon && !!feature.icon.data?.attributes?.url && (
               <Image
                 src={getPrefixImageUrl(feature.icon.data?.attributes?.url)}

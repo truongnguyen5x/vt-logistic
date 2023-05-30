@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { FC } from "react";
 import styles from "./style.module.scss";
@@ -14,6 +14,7 @@ import { getPrefixImageUrl } from "@ultility/index";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import useWindowSize from "@hooks/use-window-size";
 
 interface MoreServiceProps {
   services:
@@ -24,6 +25,7 @@ interface MoreServiceProps {
 }
 
 const MoreService: FC<MoreServiceProps> = ({ services, more }) => {
+  const { isDesktop, isTablet } = useWindowSize();
   const content = (
     service:
       | ComponentServiceTransportation
@@ -63,26 +65,21 @@ const MoreService: FC<MoreServiceProps> = ({ services, more }) => {
     );
   };
   return (
-    <>
-      <div className="grid grid-cols-3 mt-14 gap-12 mb-24 max-md:hidden">
-        {!!services &&
-          !!services.length &&
-          services.map((service, idx) => content(service, idx))}
-      </div>
+    <div className="mt-14 mb-24">
       <Slider
         infinite
         speed={500}
-        slidesToShow={1}
+        slidesToShow={isDesktop ? 3 : isTablet ? 2 : 1}
         slidesToScroll={1}
-        autoplay
+        // autoplay
         arrows={false}
-        className="animation custom-slider mx-[25px] mt-6 md:!hidden"
+        className="animation slider-selectable mt-6"
       >
         {!!services &&
           !!services.length &&
           services.map((service, idx) => content(service, idx))}
       </Slider>
-    </>
+    </div>
   );
 };
 
