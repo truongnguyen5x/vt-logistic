@@ -15,6 +15,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useWindowSize from "@hooks/use-window-size";
+import clsx from "clsx";
 
 interface MoreServiceProps {
   services:
@@ -71,9 +72,9 @@ const MoreService: FC<MoreServiceProps> = ({ services, more }) => {
         speed={500}
         slidesToShow={isDesktop ? 3 : isTablet ? 2 : 1}
         slidesToScroll={1}
-        // autoplay
+        autoplay
         arrows={false}
-        className="animation slider-selectable mt-6"
+        className={clsx("animation slider-selectable mt-6", styles.slider)}
       >
         {!!services &&
           !!services.length &&

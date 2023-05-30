@@ -9,3 +9,13 @@
 .serviceItemTxt {
   @apply p-11 text-2xl font-bold max-lg:p-6 max-lg:text-base;
 }
+.slider {
+  :global .slick-list {
+    @apply -mx-4;
+  }
+  :global .slick-slide {
+    & > div {
+      @apply mx-4;
+    }
+  }
+}
