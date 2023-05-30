@@ -1,7 +1,5 @@
-import { IPost } from "@type/post";
 import { useTranslations } from "next-intl";
 import { FC } from "react";
-import PaginationNews from "@components/news/PaginationNews";
 import { SideCard } from "@components/news/Cards";
 import { NewsEntity } from "@generated/graphql";
 
@@ -19,7 +17,9 @@ const RelatedPost: FC<Props> = ({ post }) => {
       </h3>
       <div className="flex gap-[50px] animation">
         {!!post?.length &&
-          post.map((item, index) => <SideCard key={index} post={item} category="recruitment" />)}
+          post.map((item, index) => (
+            <SideCard key={index} post={item} category="recruitment" />
+          ))}
       </div>
       {/* <PaginationNews totalCount={} /> */}
     </div>
