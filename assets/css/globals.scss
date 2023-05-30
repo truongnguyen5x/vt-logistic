@@ -191,7 +191,7 @@ body {
 }
 
 #loader-wrapper .loader-section {
-  background-color: var(--color-red-500);
+  @apply bg-th-red-500;
 }
 /************************
  * END PRELOADER DESIGN *
@@ -204,59 +204,73 @@ body {
   @apply absolute top-0 left-0 right-0 z-20 bg-th-white;
 }
 
-.header-after {
+.header-space {
   height: 74px;
 }
+
 .navbar {
   @apply flex items-center relative;
 }
+
 .navbar-brand {
   @apply h-full px-7 flex items-center;
   & > img:nth-child(2) {
     @apply hidden;
   }
 }
+
 .navbar-toggler {
   @apply absolute left-0 top-3 hidden p-4;
 }
+
 .navbar-collapse {
   @apply flex-grow hidden;
 }
+
 .navbar-nav {
   @apply flex gap-2 mx-auto;
 }
+
 .third-nav {
   @apply hidden;
 }
+
 .first-nav-link {
   @apply relative flex justify-center items-center text-center transition-colors text-th-gray-400 font-medium px-5;
   height: 74px;
 }
+
 .second-nav {
   @apply absolute bg-white text-th-gray-400 font-normal w-52 hidden shadow-lg py-1;
 }
+
 .second-nav-item {
   @apply relative z-10;
   transition: background-color 0.7s;
 }
+
 .second-nav-link {
   @apply text-th-gray-400 font-medium block w-52 px-4 py-2;
 }
-.nav-btn {
+
+.nav-action {
   @apply pr-7 flex gap-7 items-center;
 }
+
 .search-header {
   & > img {
     width: 30px;
     height: 30px;
   }
 }
+
 .profile-header {
   & > img {
     width: 30px;
     height: 30px;
   }
 }
+
 .locale-header {
   @apply relative cursor-pointer flex items-center justify-center;
   & > img {
@@ -265,6 +279,7 @@ body {
     height: 30px;
   }
 }
+
 .locale-dropdown {
   @apply hidden absolute w-36 bg-th-white shadow-md top-12 -left-2;
   li {
@@ -287,17 +302,20 @@ body {
 /**************
  * END HEADER *
  **************/
-/**********
+
+/**************
  * 04. FOOTER *
- **********/
-.footer-form-register {
+ *************/
+.footer-section {
   @apply bg-th-red-500;
   height: 120px;
 }
+
 .footer-title {
   @apply text-th-white font-semibold;
   font-size: 28px;
 }
+
 .footer-input-register {
   @apply flex relative;
   width: 634px;
@@ -314,7 +332,6 @@ body {
     background-color: var(--color-gray-320);
     padding-bottom: 2px;
   }
-
   &.footer-email-error {
     input {
       padding-bottom: 14px;
@@ -327,22 +344,26 @@ body {
     }
   }
 }
-.footer-col {
+
+.footer-item {
   @apply text-th-gray-400 font-semibold mb-4 uppercase;
   font-size: 21px;
 }
+
 .footer-link {
-  @apply text-sm text-th-gray-400 block flex;
+  @apply text-sm text-th-gray-400 flex;
   img {
     @apply inline mr-2;
     margin-bottom: 2px;
   }
 }
+
 a.footer-link {
   &:hover {
     text-decoration: underline;
   }
 }
+
 .footer-copyright {
   @apply bg-th-red-500;
   padding-top: 1px;
@@ -353,14 +374,13 @@ a.footer-link {
     margin-top: 5px;
   }
 }
-
-/**********
+/*************
  * END FOOTER *
- **********/
+ *************/
 
-/********************
+/************************
  * 05. COMMON COMPONENT *
- ********************/
+ ***********************/
 .section-name {
   @apply text-center font-semibold text-4xl relative;
   &:after {
@@ -370,6 +390,7 @@ a.footer-link {
     height: 3px;
   }
 }
+
 .section-name-left {
   @apply text-left font-semibold text-4xl relative;
   &:after {
@@ -379,16 +400,17 @@ a.footer-link {
     height: 3px;
   }
 }
+
 .section-name-light-left {
   @extend .section-name-left;
   @apply text-th-white;
 }
+
 .btn-red {
   @apply w-64 text-th-white font-medium text-2xl rounded-full bg-th-red-500 shadow-xl;
   height: 60px;
   line-height: 28px;
-  transition: transform 0.2s; /* Animation */
-  // box-shadow: 0px 4px 4px rgba(111, 59, 59, 0.25);
+  transition: transform 0.2s;
   transition: all 0.5s;
   &:hover {
     &:not(:disabled) {
@@ -397,19 +419,19 @@ a.footer-link {
     }
   }
   img {
-    display: inline !important;
     @apply ml-4;
+    display: inline !important;
     margin-bottom: 3px;
   }
   &:disabled {
     @apply cursor-not-allowed;
   }
 }
+
 .btn-white-outline {
   @apply relative text-th-white font-medium text-2xl rounded-full bg-transparent shadow-xl border-th-white border-2;
   height: 60px;
   width: 425px;
-  // box-shadow: 0px 4px 4px rgba(111, 59, 59, 0.25);
   transition: all 0.5s;
   &:hover {
     // background-color: var(--color-red-600);
@@ -420,36 +442,35 @@ a.footer-link {
     margin-bottom: 2px;
   }
 }
-.btn-gray-outlined {
-  @apply px-7 relative font-medium text-2xl rounded-full bg-th-white shadow-xl border-2;
-  height: 60px;
-  color: var(--color-gray-320);
-  border-color: var(--color-gray-320);
 
-  // box-shadow: 0px 4px 4px rgba(111, 59, 59, 0.25);
+.btn-gray-outlined {
+  @apply px-7 relative font-medium text-2xl rounded-full bg-th-white shadow-xl border-2 text-th-gray-320 border-th-gray-320;
+  height: 60px;
   transition: all 0.5s;
   &:hover {
     background-color: var(--color-gray-100);
   }
   img {
-    display: inline !important;
     @apply ml-4;
+    display: inline !important;
     margin-bottom: 2px;
   }
 }
 
-.custom-slider {
+.slider-selectable {
   -webkit-user-select: text !important;
   -khtml-user-select: text !important;
   -moz-user-select: text !important;
   -ms-user-select: text !important;
   user-select: text !important;
 }
+
 .custom-horizontal-divider {
   @apply w-full;
   height: 1px;
   background-color: var(--color-gray-270);
 }
+
 .custom-select__control {
   @apply border border-th-gray-200 pl-3 pr-2;
   cursor: pointer !important;
@@ -460,9 +481,9 @@ a.footer-link {
     @apply hidden;
   }
   &.custom-select__control--is-focused {
-    // border-color: var(--color-red-500) !important;
   }
 }
+
 .custom-select__menu-list {
   @include vertical-scrollbar();
 }
@@ -475,19 +496,16 @@ a.footer-link {
   background-color: var(--color-gray-220) !important;
   border: none !important;
   border-radius: 0px !important;
-
   .custom-select-register__value-container,
   .custom-select-register-error__value-container {
     padding: 16px 24px !important;
   }
-
   .custom-select-register__indicator-separator,
   .custom-select-register-error__indicator-separator {
     @apply hidden;
   }
   &.custom-select-register__control--is-focused,
   &.custom-select-register-error__control--is-focused {
-    // border-color: var(--color-red-500) !important;
   }
 }
 .custom-select-register__menu-list,
@@ -498,7 +516,6 @@ a.footer-link {
 .custom-select-register-error__control {
   border: 1px solid var(--color-red-500) !important;
 }
-
 /********************
  * END COMMON COMPONENT *
  ********************/
@@ -507,9 +524,9 @@ a.footer-link {
   min-width: 1200px
 ---------------------------------------------------*/
 @media (min-width: 1200px) {
-  /**********
- * HEADER *
- **********/
+  /**************************
+  * HEADER min-width: 1200px*
+  **************************/
   .first-nav-item {
     &:hover {
       .first-nav-link {
@@ -526,20 +543,20 @@ a.footer-link {
       }
     }
   }
-  /**********
- * HEADER *
- **********/
+  /**************************
+  * HEADER min-width: 1200px*
+  **************************/
 }
 
 /* -------------------------------------------------
       min-width: 991px and max-width: 1199px
     ---------------------------------------------------*/
 @media only screen and (min-width: 991px) and (max-width: 1199px) {
-  /**********
- * HEADER *
- **********/
+  /**********************************
+  * HEADER 991px and max-width: 1199px*
+  ***********************************/
   .first-nav-link {
-    height: 64px;
+    @apply h-16;
   }
   .first-nav-item {
     &:hover {
@@ -557,33 +574,35 @@ a.footer-link {
       }
     }
   }
-  .nav-btn {
+
+  .nav-action {
     @apply gap-3;
   }
+
   .search-header {
     & > img {
-      height: 24px;
-      width: 24px;
+      @apply h-6 w-6;
     }
   }
+
   .profile-header {
     & > img {
-      height: 24px;
-      width: 24px;
+      @apply h-6 w-6;
     }
   }
+
   .locale-header {
     & > img {
-      height: 24px;
-      width: 24px;
+      @apply h-6 w-6;
     }
   }
-  .header-after {
-    height: 64px;
+
+  .header-space {
+    @apply h-16;
   }
-  /**********
- * HEADER *
- **********/
+  /**********************************
+  * HEADER 991px and max-width: 1199px*
+  ***********************************/
 }
 /* -------------------------------------------------
       min-width: 991px and max-width: 1199px
@@ -599,15 +618,15 @@ a.footer-link {
       max-width: 1440px
     ---------------------------------------------------*/
 @media only screen and (max-width: 1440px) {
-  /*****************
- *  HOME > LOOK UP *
- ******************/
+  /*************************************
+  *  COMMON COMPONENT max-width: 1440px *
+  *************************************/
   .custom-select__control {
     width: 500px;
   }
-  /*****************
- *  HOME > LOOK UP *
- ******************/
+  /*************************************
+  *  COMMON COMPONENT max-width: 1440px *
+  *************************************/
 }
 /* -------------------------------------------------
       max-width: 1199px
@@ -619,18 +638,21 @@ a.footer-link {
       min-width: 991px
     ---------------------------------------------------*/
 @media only screen and (min-width: 991px) {
-  /**********
- * HEADER *
- **********/
+  /************************
+  * HEADER min-width: 991px*
+  **************************/
   .navbar-brand {
     @apply mt-5;
   }
+
   .navbar-collapse {
     display: flex !important;
   }
+
   .nav-mobile-bg {
     @apply hidden;
   }
+
   .first-nav-item {
     &:hover {
       @apply text-th-red-500;
@@ -642,6 +664,7 @@ a.footer-link {
       @apply text-th-red-500 font-semibold;
     }
   }
+
   .first-nav-link {
     &::before {
       @apply absolute w-0 bg-th-red-500 bottom-0 border-t rounded-t-[20px] left-0 right-0 mx-auto;
@@ -653,6 +676,7 @@ a.footer-link {
       @apply text-th-red-500;
     }
   }
+
   .second-nav-item {
     &.toggleable {
       & > .second-nav-link {
@@ -663,19 +687,20 @@ a.footer-link {
       }
     }
     &:hover {
+      @apply bg-th-gray-100;
       .second-nav-link {
         @apply text-th-red-500 font-medium;
         & > div {
           @apply border-th-red-500;
         }
       }
-      background-color: var(--color-gray-100);
       .third-nav {
         @apply block absolute top-1;
         right: -220px;
       }
     }
   }
+
   .third-nav {
     @apply bg-th-white shadow-md;
     a {
@@ -685,16 +710,19 @@ a.footer-link {
       }
     }
   }
+
   .search-header {
     & > img:nth-child(2) {
       @apply hidden;
     }
   }
+
   .profile-header {
     & > img:nth-child(2) {
       @apply hidden;
     }
   }
+
   .locale-header {
     &:hover {
       .locale-dropdown {
@@ -702,34 +730,38 @@ a.footer-link {
       }
     }
   }
-
-  /**********
- * HEADER *
- **********/
+  /************************
+  * HEADER min-width: 991px*
+  **************************/
 }
 /* -------------------------------------------------
       max-width: 991px
     ---------------------------------------------------*/
 @media only screen and (max-width: 991px) {
-  /**********
- * HEADER *
- **********/
+  /************************
+  * HEADER max-width: 991px*
+  **************************/
   .header-wrap {
     @apply bg-transparent;
   }
+
   .header-wrap.show {
     @apply bg-th-red-500;
   }
+
   .navbar {
     @apply justify-center flex-wrap;
   }
+
   .nav-mobile-bg {
     @apply block absolute top-0 w-full;
     height: 450px;
   }
+
   .navbar-toggler {
     @apply block z-10;
   }
+
   .navbar-brand {
     @apply mt-5 mb-3;
     & > img:first-child {
@@ -739,15 +771,18 @@ a.footer-link {
       @apply block z-10;
     }
   }
+
   .navbar-collapse {
     @apply w-full flex-col items-center;
     &.show {
       @apply flex;
     }
   }
+
   .navbar-nav {
     @apply flex-col mt-4 w-full;
   }
+
   .first-nav-link {
     @apply h-10 text-th-white uppercase;
     &::before {
@@ -757,6 +792,7 @@ a.footer-link {
       transition: width 0.2s;
     }
   }
+
   .first-nav-item {
     &.mobile-selected:not(.toggleable) {
       & > .first-nav-link {
@@ -770,7 +806,6 @@ a.footer-link {
         @apply block static w-full bg-th-red-500;
       }
     }
-
     &.toggleable {
       & > .first-nav-link {
         & > div {
@@ -784,10 +819,9 @@ a.footer-link {
   .second-nav-link {
     @apply text-th-white w-auto flex justify-center items-center;
     &::before {
+      @apply absolute w-0 bg-th-white bottom-0  left-0 right-0 mx-auto h-1;
       content: "";
       transition: width 0.2s;
-      @apply absolute w-0 bg-th-white bottom-0  left-0 right-0 mx-auto;
-      height: 4px;
     }
   }
 
@@ -819,10 +853,9 @@ a.footer-link {
     a {
       @apply flex justify-center py-2 relative;
       &::before {
+        @apply absolute w-0 bg-th-gray-400 bottom-0  left-0 right-0 mx-auto h-1;
         content: "";
         transition: width 0.2s;
-        @apply absolute w-0 bg-th-gray-400 bottom-0  left-0 right-0 mx-auto;
-        height: 4px;
       }
       &.mobile-selected {
         &::before {
@@ -832,17 +865,13 @@ a.footer-link {
     }
   }
 
-  .nav-btn {
+  .nav-action {
     @apply pr-0 mt-4 mb-4 flex flex-col gap-2 w-full;
-    & > img {
-      height: 24px;
-      width: 24px;
-    }
   }
+
   .search-header {
     & > img {
-      width: 20px;
-      height: 20px;
+      @apply h-5 w-5;
     }
     & > img:nth-child(1) {
       @apply hidden;
@@ -851,10 +880,10 @@ a.footer-link {
       @apply block;
     }
   }
+
   .profile-header {
     & > img {
-      width: 20px;
-      height: 20px;
+      @apply h-5 w-5;
     }
     & > img:nth-child(1) {
       @apply hidden;
@@ -863,11 +892,11 @@ a.footer-link {
       @apply block;
     }
   }
+
   .locale-header {
     @apply w-full flex-wrap;
     & > img {
-      width: 20px;
-      height: 20px;
+      @apply h-5 w-5;
     }
     & > div {
       @apply h-2 w-2 border-th-white border-t-2 border-l-2;
@@ -877,6 +906,7 @@ a.footer-link {
       @apply flex justify-center;
     }
   }
+
   .locale-dropdown {
     &.show {
       @apply block static w-full;
@@ -887,48 +917,45 @@ a.footer-link {
       }
     }
   }
+  /************************
+  * HEADER max-width: 991px*
+  **************************/
 
-  /**********
-  * END HEADER *
-  **********/
-
-  /********************
- * COMMON COMPONENT *
- ********************/
+  /**********************************
+  * COMMON COMPONENT max-width: 991px*
+  ***********************************/
   .section-name {
     @apply text-3xl;
   }
+
   .btn-red {
     height: 50px;
   }
-  /********************
- * COMMON COMPONENT *
- ********************/
 
-  /*****************
- *  HOME > LOOK UP *
- ******************/
   .custom-select__control {
     width: 100%;
     height: 50px;
   }
-  /*****************
-*  HOME > LOOK UP *
-******************/
-  /**********
- * FOOTER *
- **********/
-  .footer-form-register {
+  /**********************************
+  * COMMON COMPONENT max-width: 991px*
+  ***********************************/
+
+  /**********************************
+  * FOOTER     max-width: 991px*
+  ***********************************/
+  .footer-section {
     @apply px-4 bg-transparent;
     height: 300px;
   }
-  .footer-form-register-inner {
+
+  .footer-inner {
     @apply bg-th-red-500;
     border-top-right-radius: 80px;
     border-bottom-left-radius: 80px;
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
   }
+
   .footer-input-register {
     width: 634px;
     & > button {
@@ -951,9 +978,9 @@ a.footer-link {
       }
     }
   }
-  /**********
- * FOOTER *
- **********/
+  /**********************************
+  * FOOTER     max-width: 991px*
+  ***********************************/
 }
 /* -------------------------------------------------
       min-width: 767px
@@ -980,42 +1007,36 @@ a.footer-link {
       max-width: 480px
     ---------------------------------------------------*/
 @media only screen and (max-width: 480px) {
-  /**********
- * HEADER *
- **********/
+  /*************************
+  * HEADER max-width: 480px*
+  **************************/
   .nav-mobile-bg {
     @apply h-72;
   }
-  /**********
- * HEADER *
- **********/
+  /*************************
+  * HEADER max-width: 480px*
+  **************************/
 
-  /********************
- * COMMON COMPONENT *
- ********************/
+  /*****************************************
+  * COMMON COMPONENT HEADER max-width: 480px*
+  *****************************************/
   .section-name {
     @apply text-2xl;
     &::after {
       @apply -bottom-3;
     }
   }
-  /********************
-* COMMON COMPONENT *
-********************/
-
-  /*****************
- *  HOME > LOOK UP *
- ******************/
   .custom-select__control {
     width: 100%;
     height: 40px;
   }
-  /*****************
-*  HOME > LOOK UP *
-******************/
-  /**********
- * FOOTER *
- **********/
+  /*****************************************
+  * COMMON COMPONENT HEADER max-width: 480px*
+  *****************************************/
+
+  /*************************
+  * FOOTER max-width: 480px*
+  *************************/
   .footer-input-register {
     width: calc(100% - 32px);
     input {
@@ -1030,12 +1051,13 @@ a.footer-link {
       }
     }
   }
+
   .footer-title {
     @apply text-center text-xl;
   }
-  /**********
- * FOOTER *
- **********/
+  /*************************
+  * FOOTER max-width: 480px*
+  *************************/
 }
 /* -------------------------------------------------
       max-width: 380px

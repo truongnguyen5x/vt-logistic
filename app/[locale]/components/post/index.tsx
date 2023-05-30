@@ -1,5 +1,4 @@
 "use client";
-import { IPost } from "@type/post";
 import React, { FC } from "react";
 import PostHome from "./Post";
 import RightImg from "@assets/images/icons/arrow_right_2.svg";
@@ -63,8 +62,8 @@ const ListPost = async ({
           // autoplay
           slidesToScroll={1}
         >
-          {listPost?.map((i, idx) => (
-            <PostHome key={idx} detailTxt={detail} postData={i} />
+          {listPost?.map((post, idx) => (
+            <PostHome key={idx} detailTxt={detail} postData={post} />
           ))}
         </Slider>
       </div>
@@ -76,7 +75,7 @@ const ListPost = async ({
       <p className="section-name mb-6 animation">{title}</p>
       {renderContent()}
       <div
-        className="mt-12 text-center mb-24 animation"
+        className="mt-0 lg:mt-12 text-center mb-16 lg:mb-24 animation"
         data-animation-delay="0.6s"
       >
         <Link href="/news">

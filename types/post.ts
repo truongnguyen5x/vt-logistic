@@ -1,3 +1,4 @@
+//TODO remove
 export type IPost = {
   img: string;
   category: IPostCategory;

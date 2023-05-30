@@ -16,12 +16,6 @@ const nextConfig = {
       },
       {
         protocol: "https",
-        hostname: "truong-dev-demo.cloud",
-        port: "9000",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
         hostname: "vtl-cms.grandsways.com",
         port: "",
         pathname: "/**",

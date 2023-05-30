@@ -8,11 +8,11 @@ import { notFound } from "next/navigation";
 import Header from "@components/Header";
 import localFont from "next/font/local";
 import Loader from "@components/Loader";
-import { ILocale, i18n } from "@configs/i18n";
+import { ILocale } from "@configs/i18n";
 import Footer from "@components/Footer";
 import Script from "next/script";
 import BackToTop from "@components/BackToTop";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 
 const SVNgilroy = localFont({
   src: [

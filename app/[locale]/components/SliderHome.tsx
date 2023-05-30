@@ -22,7 +22,7 @@ function SampleNextArrow(props: any) {
   const { className, style, onClick } = props;
   return (
     <div
-      className={[className, styles.arrowRightSlider1].join(" ")}
+      className={[className, styles.arrowRightSliderHome].join(" ")}
       style={style}
       onClick={onClick}
     >
@@ -35,7 +35,7 @@ function SamplePrevArrow(props: any) {
   const { className, style, onClick } = props;
   return (
     <div
-      className={[className, styles.arrowLeftSlider1].join(" ")}
+      className={[className, styles.arrowLeftSliderHome].join(" ")}
       style={style}
       onClick={onClick}
     >
@@ -47,7 +47,7 @@ function SamplePrevArrow(props: any) {
 const SliderHome: FC<Props> = ({ images }) => {
   const { isDesktop } = useWindowSize();
   return (
-    <section className={styles.sliderWp}>
+    <section className={styles.sliderHomeSection}>
       <Slider
         dots={isDesktop}
         infinite
@@ -65,7 +65,7 @@ const SliderHome: FC<Props> = ({ images }) => {
             <Image
               src={getPrefixImageUrl(i?.attributes?.url)}
               key={idx}
-              className={styles.banner}
+              className={styles.sliderHomeItem}
               alt=""
               width={1920}
               height={450}

@@ -12,6 +12,7 @@ interface ServiceAvailableProps {
 
 const ServiceAvailable: FC<ServiceAvailableProps> = ({ contacts }) => {
   const t = useTranslations("home");
+
   return (
     <Fragment>
       <div className="flex flex-col items-center mt-8 mb-8 mx-4 lg:mx-0">
@@ -24,16 +25,19 @@ const ServiceAvailable: FC<ServiceAvailableProps> = ({ contacts }) => {
         </p>
         <table>
           <tbody>
-            {contacts?.map((item, idx) => (
+            {contacts?.map((contact, idx) => (
               <tr key={idx}>
                 <td className="text-2xl font-semibold text-th-gray-300">
-                  {item?.name}
+                  {contact?.name}
                 </td>
                 <td className="py-2 pl-2">
-                  <a href={`tel:${item?.phone}`} className={styles.boxContact}>
+                  <a
+                    href={`tel:${contact?.phone}`}
+                    className={styles.formContact}
+                  >
                     <Image src={CallImg} width={24} height={24} alt="calling" />
                     <p className="text-th-gray-300 font-medium text-2xl">
-                      {item?.phone}
+                      {contact?.phone}
                     </p>
                   </a>
                 </td>

@@ -84,8 +84,8 @@ const Footer = async () => {
 
   return (
     <Fragment>
-      <div className="footer-form-register animation">
-        <div className="footer-form-register-inner container mx-auto flex flex-col lg:flex-row justify-center lg:justify-between items-center h-full gap-8 lg:gap-0">
+      <div className="footer-section animation">
+        <div className="footer-inner container mx-auto flex flex-col lg:flex-row justify-center lg:justify-between items-center h-full gap-8 lg:gap-0">
           <div className="flex flex-col lg:flex-row items-center lg:gap-12">
             <Image src={SmsImg} width={50} height={50} alt="" />
             <p className="footer-title">{t("receive_info")}</p>
@@ -107,7 +107,7 @@ const Footer = async () => {
             height={55}
             alt="logo"
           />
-          <p className="footer-col mt-7 text-center">{t("about")}</p>
+          <p className="footer-item mt-7 text-center">{t("about")}</p>
           {footerAsset?.attributes?.infos?.map((i, idx1) => (
             <a
               key={idx1}
@@ -120,7 +120,7 @@ const Footer = async () => {
           ))}
         </div>
         <div
-          className="grid  grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 mb-7 animation"
+          className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 mb-7 animation"
           data-animation-delay="0.3s"
         >
           {!!footerAsset &&
@@ -129,7 +129,7 @@ const Footer = async () => {
                 key={idx}
                 className="mx-4 md:mx-0 border-b border-th-gray-280 md:border-b-0 pb-2"
               >
-                <p className="footer-col">{item?.title}</p>
+                <p className="footer-item">{item?.title}</p>
                 {item?.links?.map((i, idx) =>
                   renderLinkItem(i as Maybe<ComponentFooterFooterLink>, idx)
                 )}
@@ -143,7 +143,7 @@ const Footer = async () => {
         >
           <div className="hidden md:block md:col-span-1 lg:col-span-2 mx-4 md:mx-0">
             <Image src={LogoImg} width={154} height={55} alt="logo" />
-            <p className="footer-col mt-7">{t("about")}</p>
+            <p className="footer-item mt-7">{t("about")}</p>
             {footerAsset?.attributes?.infos?.map((i, idx1) => (
               <a
                 key={idx1}
@@ -156,7 +156,7 @@ const Footer = async () => {
             ))}
           </div>
           <div className="mx-4 md:mx-0 border-b border-th-gray-280 md:border-b-0 pb-10">
-            <p className="footer-col">{t("connect_with_us")}</p>
+            <p className="footer-item">{t("connect_with_us")}</p>
             <div className="flex justify-start gap-7 mt-9">
               {footerAsset?.attributes?.socials?.map((i, idx2) => (
                 <a key={idx2} target="_blank" href={i?.url || "#"}>
@@ -172,7 +172,7 @@ const Footer = async () => {
           </div>
           <div className="lg:hidden"></div>
           <div className="col-span-1 lg:col-span-2 mx-4 md:mx-0">
-            <p className="footer-col">{t("certified_by")}</p>
+            <p className="footer-item">{t("certified_by")}</p>
             <div className="flex justify-start gap-12 mt-9">
               <Image
                 src={BCTimg}

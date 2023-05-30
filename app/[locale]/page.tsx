@@ -24,13 +24,14 @@ import {
   NewsEntity,
   UploadFileRelationResponseCollection,
 } from "@generated/graphql";
-import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
+import { getLanguageForApi } from "@ultility/index";
 import SliderFeature from "./components/SliderFeature";
-import { ApolloNextAppProvider } from "@apollo/experimental-nextjs-app-support/ssr";
-import { makeClient, makeSuspenseCache } from "@api/client";
 import { getNewQueryString } from "@api/new.graghql";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 // TODO: generateStaticParams what for?
+
 // export async function generateStaticParams() {
 //   return i18n.locales.map((i: ILocale) => ({ locale: i }));
 // }
@@ -45,7 +46,7 @@ const getHomeAsset = async (locale: ILocale) => {
   return data.homes?.data[data?.homes?.data?.length - 1];
 };
 
-const getNewAsset = async (locale: ILocale) => {
+const getListPostHome = async (locale: ILocale) => {
   const { data } = await getClient().query({
     query: gql(getNewQueryString),
     variables: {
@@ -54,8 +55,6 @@ const getNewAsset = async (locale: ILocale) => {
       pagination: { page: 1, pageSize: 5 },
     },
   });
-
-  // get last element
   return data.newss?.data;
 };
 
@@ -68,7 +67,7 @@ export default async function Home() {
     import(`../../dictionaries/${locale}.json`),
   ]);
 
-  const listHomePost = getNewAsset(locale as ILocale);
+  const listHomePost = getListPostHome(locale as ILocale);
 
   return (
     <Fragment>
@@ -79,7 +78,7 @@ export default async function Home() {
         }
       />
       <SliderFeature
-        contents={
+        features={
           assetData?.attributes?.features as Maybe<
             Array<Maybe<ComponentHomeFeature>>
           >
@@ -89,7 +88,7 @@ export default async function Home() {
         <p className="animation section-name mb-6">{t("about_us")}</p>
         <div className="mt-10 lg:mt-16" />
         <AboutUs
-          content={
+          abouts={
             assetData?.attributes?.abouts as Maybe<
               Array<Maybe<ComponentHomeAbout>>
             >
@@ -124,13 +123,19 @@ export default async function Home() {
 
       <Partner
         title={t("partner")}
-        assets={
+        partners={
           assetData?.attributes?.partners as Maybe<
             Array<Maybe<ComponentHomeHomePartner>>
           >
         }
       />
-      <Suspense fallback={<div className="text-center">Loading...</div>}>
+      <Suspense
+        fallback={
+          <div className="container mx-auto my-10">
+            <Skeleton height={300} />
+          </div>
+        }
+      >
         <ListPost
           title={t("news_event")}
           detail={t("detail")}

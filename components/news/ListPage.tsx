@@ -1,7 +1,7 @@
 import Banner from "@components/Banner";
 import BreadCrumbs from "@components/Breadcrumbs";
 import { FC, Fragment } from "react";
-import { IPost, IPostCategory } from "@type/post";
+import { IPostCategory } from "@type/post";
 import PaginationNews from "./PaginationNews";
 import NewsSideRight from "./NewsSideRight";
 import { Card } from "./Cards";
@@ -20,7 +20,7 @@ type Props = {
     hot_news: NewsEntity[] | null;
   };
   data: NewsEntity[] | null;
-  totalCount: number
+  totalCount: number;
 };
 
 const ListNewsPage: FC<Props> = ({
@@ -30,7 +30,7 @@ const ListNewsPage: FC<Props> = ({
   category,
   sideData,
   data,
-  totalCount
+  totalCount,
 }) => {
   return (
     <Fragment>
@@ -39,15 +39,16 @@ const ListNewsPage: FC<Props> = ({
         <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6 mb-20" />
         <div className="flex items-start justify-between gap-[100px]">
           <div className="flex flex-col gap-[50px]">
-            {!!data?.length ?
-              data.map((item, index) => (
-                <Card
-                  post={item}
-                  key={index}
-                  className="animation"
-                  category={category}
-                />
-              )) : 'No data'}
+            {!!data?.length
+              ? data.map((item, index) => (
+                  <Card
+                    post={item}
+                    key={index}
+                    className="animation"
+                    category={category}
+                  />
+                ))
+              : "No data"}
           </div>
           <NewsSideRight category={category} data={sideData} />
         </div>

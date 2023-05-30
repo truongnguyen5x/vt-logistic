@@ -1,12 +1,11 @@
 "use client";
-import { FC, Fragment, useRef, useState } from "react";
+import { FC, Fragment, useState } from "react";
 import clsx from "clsx";
 import Image from "next/image";
 import styles from "@app/styles.module.scss";
 import RightImg from "@assets/images/icons/arrow_right_2.svg";
 import RightDarkImg from "@assets/images/icons/arrow_right_2_dark.svg";
 import TabMyService from "./TabMyService";
-import Slider from "react-slick";
 import TabLookup from "./tab-look-up";
 
 import {
@@ -27,7 +26,6 @@ interface HomeTabProps {
 }
 
 const HomeTab: FC<HomeTabProps> = ({ tabs, contacts, lookups, services }) => {
-  //TODO: 1
   const [activeTab, setActiveTab] = useState(1);
 
   const handleChangeTab = (index: number) => {
@@ -37,21 +35,21 @@ const HomeTab: FC<HomeTabProps> = ({ tabs, contacts, lookups, services }) => {
   return (
     <Fragment>
       <div className="flex justify-center gap-4 mt-20 mb-10 sx:mb-20 animation mx-4 sm:mx-0">
-        {tabs?.map((i, idx) => (
+        {tabs?.map((tab, idx) => (
           <div
             key={idx}
             onClick={() => handleChangeTab(idx)}
             className={clsx(
               " flex items-center justify-between",
-              styles.tabWp,
+              styles.homeTabSection,
               {
-                [styles.selectedTab]: activeTab == idx,
+                [styles.homeTabSelected]: activeTab == idx,
               }
             )}
           >
             <div>
               <p>
-                {i?.title}
+                {tab?.title}
                 <Image
                   src={activeTab == idx ? RightImg : RightDarkImg}
                   width={28}
@@ -61,7 +59,7 @@ const HomeTab: FC<HomeTabProps> = ({ tabs, contacts, lookups, services }) => {
               </p>
             </div>
             <Image
-              src={getPrefixImageUrl(i?.image?.data?.attributes?.url)}
+              src={getPrefixImageUrl(tab?.image?.data?.attributes?.url)}
               alt="lookup"
               width={56}
               height={56}

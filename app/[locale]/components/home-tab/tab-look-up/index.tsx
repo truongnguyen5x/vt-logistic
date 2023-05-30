@@ -15,7 +15,6 @@ import {
   ComponentHomeServiceContact,
   Maybe,
 } from "@generated/graphql";
-import { getClient } from "@api/graphql-client";
 import { getCountryQueryString, getProvinceQueryString } from "@api/location";
 import { gql } from "@generated/gql";
 import { getLanguageForApi } from "@ultility/index";
@@ -46,6 +45,7 @@ const TabLookup: FC<TabLookupProps> = ({ lookups, contacts }) => {
     setActiveTab(idx);
     slickRef.current?.slickGoTo(idx);
   };
+
   const onSliderChange = (index: number) => {
     setActiveTab(index);
   };
@@ -54,8 +54,8 @@ const TabLookup: FC<TabLookupProps> = ({ lookups, contacts }) => {
       <div className="container mx-auto flex">
         {[0, 1, 2].map((i) => (
           <div
-            className={clsx(styles.tabHeaderLookup, {
-              [styles.tabSelectLookup]: activeTab == i,
+            className={clsx(styles.lookupHeader, {
+              [styles.lookupHeaderSelected]: activeTab == i,
             })}
             onClick={() => handleChangeTab(i)}
             key={i}
@@ -68,7 +68,7 @@ const TabLookup: FC<TabLookupProps> = ({ lookups, contacts }) => {
       <Slider
         ref={slickRef}
         arrows={false}
-        className="custom-slider"
+        className="slider-selectable"
         initialSlide={0}
         draggable={false}
         afterChange={onSliderChange}

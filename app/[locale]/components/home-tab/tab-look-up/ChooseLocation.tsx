@@ -1,12 +1,5 @@
 "use client";
-import {
-  ChangeEvent,
-  Dispatch,
-  FC,
-  Fragment,
-  SetStateAction,
-  useState,
-} from "react";
+import { Dispatch, FC, Fragment, SetStateAction, useState } from "react";
 
 import Image from "next/image";
 import styles from "@app/styles.module.scss";
@@ -46,7 +39,6 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
   const [to, setTo] = useState<string>();
 
   const handleCheckService = () => {
-    // console.log("click");
     if (!from || !to) {
       return;
     }
@@ -76,7 +68,7 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
 
   return (
     <Fragment>
-      <div className={styles.formBg}>
+      <div className={styles.formBackground}>
         <Image
           src={getPrefixImageUrl(lookup?.background?.data?.attributes?.url)}
           alt=""
@@ -84,11 +76,10 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
           height={339}
         />
       </div>
-
       <div className="container mx-auto flex justify-start lg:p-12 flex-col lg:flex-row gap-10 my-10">
         <div className="flex mx-4 lg:mx-0 flex-col gap-2">
           <div className="flex gap-7 mb-9">
-            <div className={styles.formIconWp}>
+            <div className={styles.formIconWrapper}>
               <Image alt="location" src={LocationImg} width={38} height={38} />
               <div></div>
               <Image alt="location" src={MapImg} width={38} height={38} />
@@ -101,13 +92,13 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
                 onChange={onChangeForm}
                 options={
                   index == SERVICE_TRANSPORT.TRANSPORT
-                    ? listProvince.map((i) => ({
-                        value: i.name || "",
-                        label: i.fullname || "",
+                    ? listProvince.map((province) => ({
+                        value: province.name || "",
+                        label: province.fullname || "",
                       }))
-                    : listCountry.map((i) => ({
-                        value: i.name || "",
-                        label: i.fullname || "",
+                    : listCountry.map((country) => ({
+                        value: country.name || "",
+                        label: country.fullname || "",
                       }))
                 }
               />
@@ -119,13 +110,13 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
                 onChange={onChangeTo}
                 options={
                   index == SERVICE_TRANSPORT.TRANSPORT
-                    ? listProvince.map((i) => ({
-                        value: i.name || "",
-                        label: i.fullname || "",
+                    ? listProvince.map((province) => ({
+                        value: province.name || "",
+                        label: province.fullname || "",
                       }))
-                    : listCountry.map((i) => ({
-                        value: i.name || "",
-                        label: i.fullname || "",
+                    : listCountry.map((country) => ({
+                        value: country.name || "",
+                        label: country.fullname || "",
                       }))
                 }
               />
@@ -140,7 +131,7 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
             <Image src={SearchImg} alt="search" width={20} height={20} />
           </button>
         </div>
-        <div className={styles.formBgMobile}>
+        <div className={styles.formBackgroundMobile}>
           <Image
             src={getPrefixImageUrl(lookup?.background?.data?.attributes?.url)}
             alt=""

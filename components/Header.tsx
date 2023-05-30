@@ -33,29 +33,29 @@ type IMenu = {
 const Header: FC<HeaderProps> = ({ titles, locale }) => {
   const segment = useSelectedLayoutSegment();
   const [openNav, setOpenNav] = useState(false);
-  const [menuOpened, setMenuOpened] = useState<string | undefined>();
-  const [menuOpened2, setMenuOpened2] = useState<string | undefined>();
+  const [menu1stOpen, setMenu1stOpen] = useState<string | undefined>();
+  const [menu2ndOpen, setMenu2ndOpen] = useState<string | undefined>();
 
-  const pathname = usePathname();
+  const pathName = usePathname();
 
   useEffect(() => {
-    setMenuOpened(pathname);
-    setMenuOpened2(pathname);
-  }, [pathname]);
+    setMenu1stOpen(pathName);
+    setMenu2ndOpen(pathName);
+  }, [pathName]);
 
   const isToggle = (path: string) => {
     if (path == "/") {
-      return menuOpened == "/";
+      return menu1stOpen == "/";
     } else {
-      return menuOpened?.includes(path);
+      return menu1stOpen?.includes(path);
     }
   };
 
   const isToggle2 = (path: string) => {
     if (path == "/") {
-      return menuOpened2 == "/";
+      return menu2ndOpen == "/";
     } else {
-      return menuOpened2?.includes(path);
+      return menu2ndOpen?.includes(path);
     }
   };
 
@@ -166,7 +166,7 @@ const Header: FC<HeaderProps> = ({ titles, locale }) => {
             <li
               key={idx}
               className={clsx("second-nav-item", {
-                "mobile-selected": i.path == pathname,
+                "mobile-selected": i.path == pathName,
                 "mobile-toggle": isToggle2(i.path),
                 toggleable: i.children,
               })}
@@ -202,7 +202,7 @@ const Header: FC<HeaderProps> = ({ titles, locale }) => {
             <li key={idx}>
               <Link
                 className={clsx("text-th-gray-400 font-medium", {
-                  "mobile-selected": i.path == pathname,
+                  "mobile-selected": i.path == pathName,
                 })}
                 href={i.path}
               >
@@ -221,17 +221,17 @@ const Header: FC<HeaderProps> = ({ titles, locale }) => {
   };
 
   const handleOpenMenu = (path: string) => {
-    if (menuOpened == path) {
-      setMenuOpened("");
+    if (menu1stOpen == path) {
+      setMenu1stOpen("");
     } else {
-      setMenuOpened(path);
+      setMenu1stOpen(path);
     }
   };
   const handleOpenMenu2 = (path: string) => {
-    if (menuOpened2 == path) {
-      setMenuOpened2("");
+    if (menu2ndOpen == path) {
+      setMenu2ndOpen("");
     } else {
-      setMenuOpened2(path);
+      setMenu2ndOpen(path);
     }
   };
 
@@ -254,14 +254,11 @@ const Header: FC<HeaderProps> = ({ titles, locale }) => {
                     key={idx}
                     className={clsx("first-nav-item animation", {
                       "desktop-selected": "/" + (segment || "") == i.path,
-                      "mobile-selected": i.path == pathname,
+                      "mobile-selected": i.path == pathName,
                       "mobile-toggle": isToggle(i.path),
                       toggleable: i.children,
                     })}
                     data-animtion-delay={`${0.3 + 0.1 * idx}s`}
-                    // style={{
-                    //   animationDelay: `${1.1 + 0.1 * idx}s`,
-                    // }}
                   >
                     {i.children ? (
                       <div
@@ -279,7 +276,7 @@ const Header: FC<HeaderProps> = ({ titles, locale }) => {
                   </li>
                 ))}
               </ul>
-              <div className="animation nav-btn" data-animation-delay="0.8s">
+              <div className="animation nav-action" data-animation-delay="0.8s">
                 <SearchHeader />
                 <SelectLocale locale={locale} />
                 <ProfileHeader />
@@ -295,7 +292,7 @@ const Header: FC<HeaderProps> = ({ titles, locale }) => {
         height={344}
         alt=""
       />
-      <div className="header-after"></div>
+      <div className="header-space"></div>
     </Fragment>
   );
 };

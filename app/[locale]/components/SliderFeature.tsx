@@ -12,13 +12,13 @@ import RightArrowImg from "@assets/images/icons/arrow_right.svg";
 import useWindowSize from "@hooks/use-window-size";
 
 interface SliderFeatureProps {
-  contents?: Maybe<Array<Maybe<ComponentHomeFeature>>>;
+  features?: Maybe<Array<Maybe<ComponentHomeFeature>>>;
 }
 
 function SampleNextArrow(props: any) {
   const { className, style, onClick } = props;
   return (
-    <div className={[className].join(" ")} style={style} onClick={onClick}>
+    <div className={className} style={style} onClick={onClick}>
       <Image src={RightArrowImg} alt="" />
     </div>
   );
@@ -27,17 +27,17 @@ function SampleNextArrow(props: any) {
 function SamplePrevArrow(props: any) {
   const { className, style, onClick } = props;
   return (
-    <div className={[className].join(" ")} style={style} onClick={onClick}>
+    <div className={className} style={style} onClick={onClick}>
       <Image src={LeftArrowImg} alt="" />
     </div>
   );
 }
 
-const SliderFeature: FC<SliderFeatureProps> = ({ contents }) => {
-  const { width, isTablet, isMobile, isDesktop } = useWindowSize();
+const SliderFeature: FC<SliderFeatureProps> = ({ features }) => {
+  const { isTablet, isDesktop } = useWindowSize();
 
   return (
-    <section className={styles.feature}>
+    <section className={styles.featureSection}>
       <div className="container mx-auto">
         <Slider
           dots={false}
@@ -49,19 +49,19 @@ const SliderFeature: FC<SliderFeatureProps> = ({ contents }) => {
           nextArrow={<SampleNextArrow />}
           prevArrow={<SamplePrevArrow />}
         >
-          {contents &&
-            contents.map((i, index: number) => (
+          {features &&
+            features.map((feature, index: number) => (
               <div
                 key={index}
                 className={[styles.featureItem, "animation"].join(" ")}
               >
                 <Image
-                  src={getPrefixImageUrl(i?.icon?.data?.attributes?.url)}
+                  src={getPrefixImageUrl(feature?.icon?.data?.attributes?.url)}
                   alt=""
                   width={50}
                   height={50}
                 />
-                <p>{i?.title}</p>
+                <p>{feature?.title}</p>
               </div>
             ))}
         </Slider>

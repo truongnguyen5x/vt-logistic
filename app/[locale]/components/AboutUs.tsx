@@ -4,9 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import styles from "@app/styles.module.scss";
 import { FC } from "react";
-
 import clsx from "clsx";
-
 import LeftArrowImg from "@assets/images/icons/arrow_left.svg";
 import RightArrowImg from "@assets/images/icons/arrow_right.svg";
 import Image from "next/image";
@@ -15,8 +13,9 @@ import { ComponentHomeAbout, Maybe } from "@generated/graphql";
 import useWindowSize from "@hooks/use-window-size";
 
 interface Props {
-  content?: Maybe<Array<Maybe<ComponentHomeAbout>>>;
+  abouts?: Maybe<Array<Maybe<ComponentHomeAbout>>>;
 }
+
 function SampleNextArrow(props: any) {
   const { className, style, onClick } = props;
   return (
@@ -43,11 +42,11 @@ function SamplePrevArrow(props: any) {
   );
 }
 
-const AboutUs: FC<Props> = ({ content }) => {
+const AboutUs: FC<Props> = ({ abouts }) => {
   const { isDesktop, isTablet } = useWindowSize();
   return (
     <div
-      className={clsx("animation", styles.aboutUs)}
+      className={clsx("animation", styles.aboutUsSection)}
       data-animation-delay="0.4s"
     >
       <Slider
@@ -60,24 +59,24 @@ const AboutUs: FC<Props> = ({ content }) => {
         nextArrow={<SampleNextArrow />}
         prevArrow={<SamplePrevArrow />}
       >
-        {!!content &&
-          content.map((i, idx) => (
+        {!!abouts &&
+          abouts.map((about, idx) => (
             <div key={idx}>
               <div className={styles.aboutItem}>
-                <div className={styles.aboutItemHead}>
+                <div className={styles.aboutItemHeader}>
                   <div className="relative inline-block">
-                    {i?.is_plus ? "+" : ""}
-                    <AnimatedNumber n={i?.heading || 0} />
-                    <div className={styles.floatTxt}>
+                    {about?.is_plus ? "+" : ""}
+                    <AnimatedNumber n={about?.heading || 0} />
+                    <div className={styles.aboutFloatText}>
                       <p>
-                        {i?.is_plus ? "+" : ""}
-                        <AnimatedNumber n={i?.heading || 0} />
+                        {about?.is_plus ? "+" : ""}
+                        <AnimatedNumber n={about?.heading || 0} />
                       </p>
                     </div>
                   </div>
-                  <p>{i?.subject}</p>
+                  <p>{about?.subject}</p>
                 </div>
-                <p>{i?.detail}</p>
+                <p>{about?.detail}</p>
               </div>
             </div>
           ))}

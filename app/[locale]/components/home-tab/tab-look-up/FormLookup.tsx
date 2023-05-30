@@ -42,7 +42,7 @@ const FormLookup: FC<FormLookupProps> = ({
   const [status, setStatus] = useState<ISTATUS>("NONE");
 
   return (
-    <div className={styles.lookUpBg}>
+    <div className={styles.lookupBackground}>
       {status == "UNAVAILABLE" && <ServiceUnavailable />}
       {status == "AVAILABLE" && <ServiceAvailable contacts={contacts} />}
       {status == "NONE" && (

@@ -13,6 +13,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import useWindowSize from "@hooks/use-window-size";
+
 interface TabMyServiceProps {
   services?: Maybe<Array<Maybe<ComponentHomeHomeService>>>;
 }
@@ -20,7 +21,7 @@ interface TabMyServiceProps {
 const TabMyService: FC<TabMyServiceProps> = ({ services }) => {
   const t = useTranslations("home");
   const router = useRouter();
-  const { width, isTablet, isMobile, isDesktop } = useWindowSize();
+  const { isTablet, isDesktop } = useWindowSize();
 
   const [bgImg, setBgImg] = useState<string | undefined>(
     services?.[0]?.background?.data?.attributes?.url
@@ -32,7 +33,7 @@ const TabMyService: FC<TabMyServiceProps> = ({ services }) => {
 
   return (
     <div className="container mx-auto">
-      <div className={styles.bgMyService}>
+      <div className={styles.homeServiceSection}>
         <Image
           src={getPrefixImageUrl(bgImg)}
           alt=""
@@ -54,10 +55,10 @@ const TabMyService: FC<TabMyServiceProps> = ({ services }) => {
             <div
               key={idx}
               className={styles.serviceItem}
-              onMouseEnter={(idx) =>
+              onMouseEnter={() =>
                 setBgImg(service?.background?.data?.attributes?.url)
               }
-              onClick={(idx) =>
+              onClick={() =>
                 setBgImg(service?.background?.data?.attributes?.url)
               }
             >
@@ -77,7 +78,7 @@ const TabMyService: FC<TabMyServiceProps> = ({ services }) => {
                 </Link>
                 {!!service?.subs &&
                   service?.subs.map((sub, idx2) => (
-                    <div key={idx2} className={styles.serviceDes}>
+                    <div key={idx2} className={styles.serviceDescription}>
                       <Image
                         src={ArrowListImg}
                         alt="arrow"

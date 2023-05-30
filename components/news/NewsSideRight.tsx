@@ -1,10 +1,6 @@
-import { useLocale, useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
-import Image from "next/image";
-import { FC, Fragment } from "react";
-import Search from "@assets/images/icons/search-status.svg";
-import { IPost, IPostCategory } from "@type/post";
-import { ILocale } from "@configs/i18n";
+import { useTranslations } from "next-intl";
+import { FC } from "react";
+import { IPostCategory } from "@type/post";
 import { SideCard } from "./Cards";
 import { NewsEntity } from "@generated/graphql";
 import SearchInput from "./Search";

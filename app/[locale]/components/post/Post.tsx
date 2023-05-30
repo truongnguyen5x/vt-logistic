@@ -1,4 +1,3 @@
-import { IPost } from "@type/post";
 import { FC } from "react";
 import styles from "@app/styles.module.scss";
 import Image from "next/image";
@@ -36,35 +35,34 @@ const PostHome: FC<PostHomeProps> = ({
         </div>
         <div className={styles.postContent}>
           <p
-            className={
-              size == "NORMAL" ? styles.postTitle : styles.postTitleLarge
-            }
+            className={size == "NORMAL" ? styles.postTitle : styles.postTitleXL}
           >
             {postData?.attributes?.title}
           </p>
           <p
             className={
-              size == "NORMAL"
-                ? styles.postTimestamp
-                : styles.postTimestampLarge
+              size == "NORMAL" ? styles.postTimestamp : styles.postTimestampXL
             }
           >
             <Image src={ClockImg} alt="clock" width={15} height={15} />
             {formatDate(new Date(postData?.attributes?.updatedAt))}
           </p>
           <p
-            className={size == "NORMAL" ? styles.postDes : styles.postDesLarge}
+            className={
+              size == "NORMAL"
+                ? styles.postDescription
+                : styles.postDescriptionXL
+            }
           >
             {postData?.attributes?.preview_content}
           </p>
         </div>
       </div>
       <Link
-        className={size == "NORMAL" ? styles.postLink : styles.postLinkLarge}
+        className={size == "NORMAL" ? styles.postLink : styles.postLinkXL}
         href={`/news/${postData?.attributes?.type}/${postData?.attributes?.slug}`}
       >
         {detailTxt}
-
         <Image src={ArrowRightImg} width={15} height={15} alt="next" />
       </Link>
     </div>

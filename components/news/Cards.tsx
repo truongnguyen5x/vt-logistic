@@ -5,7 +5,7 @@ import { format, getDate, getDaysInMonth, getMonth } from "date-fns";
 import { useTranslations } from "next-intl";
 import ArrowRight from "@assets/images/icons/arrow_right_red.svg";
 import Clock from "@assets/images/icons/clock.svg";
-import { IPost, IPostCategory } from "@type/post";
+import { IPostCategory } from "@type/post";
 import Link from "next-intl/link";
 import { NewsEntity } from "@generated/graphql";
 import { getPrefixImageUrl } from "@ultility/index";
@@ -22,7 +22,7 @@ export const Card: FC<CardProps> = ({
   category = "internal_news",
 }) => {
   const t = useTranslations("internal_news");
-  
+
   return (
     <Link
       href={`${
@@ -30,7 +30,14 @@ export const Card: FC<CardProps> = ({
       }${post.attributes?.slug}`}
       className={className}
     >
-      <Image src={getPrefixImageUrl(post.attributes?.featured_image?.data?.attributes?.url)} alt="" width={940} height={360} />
+      <Image
+        src={getPrefixImageUrl(
+          post.attributes?.featured_image?.data?.attributes?.url
+        )}
+        alt=""
+        width={940}
+        height={360}
+      />
       <div className="p-8 max-w-[940px] bg-white shadow-[0px_5px_20px_rgba(0,0,0,0.1)]">
         <div className="flex gap-8 items-start">
           <div className="min-w-[60px]">
@@ -42,10 +49,13 @@ export const Card: FC<CardProps> = ({
               className="mx-auto"
             />
             <div className="text-center mt-2 text-4xl text-th-gray-320 font-bold">
-              {getDate(new Date(post.attributes?.updatedAt)).toLocaleString("en-US", {
-                minimumIntegerDigits: 2,
-                useGrouping: false,
-              })}
+              {getDate(new Date(post.attributes?.updatedAt)).toLocaleString(
+                "en-US",
+                {
+                  minimumIntegerDigits: 2,
+                  useGrouping: false,
+                }
+              )}
             </div>
             <div className="text-center font-medium text-base text-th-gray-300">{`Tháng ${
               getMonth(new Date(post.attributes?.updatedAt)) + 1
@@ -85,7 +95,14 @@ export const SideCard: FC<CardProps> = ({
       }${post.attributes?.slug}`}
       className={className}
     >
-      <Image src={getPrefixImageUrl(post.attributes?.featured_image?.data?.attributes?.url)} alt="" width={490} height={240} />
+      <Image
+        src={getPrefixImageUrl(
+          post.attributes?.featured_image?.data?.attributes?.url
+        )}
+        alt=""
+        width={490}
+        height={240}
+      />
       <div className="pt-6 px-8 pb-8 bg-th-gray-220 max-w-[490px]">
         <div className="flex items-center gap-3 mb-2">
           <Image src={Clock} alt="" width={14} height={14} />
@@ -93,7 +110,9 @@ export const SideCard: FC<CardProps> = ({
             {format(new Date(post.attributes?.updatedAt), "dd-MM-yyyy")}
           </div>
         </div>
-        <h5 className="text-th-gray-320 text-xl font-semibold">{post.attributes?.title}</h5>
+        <h5 className="text-th-gray-320 text-xl font-semibold">
+          {post.attributes?.title}
+        </h5>
       </div>
     </Link>
   );

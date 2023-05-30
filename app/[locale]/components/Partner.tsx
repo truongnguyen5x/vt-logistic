@@ -9,8 +9,9 @@ import { ComponentHomeHomePartner, Maybe } from "@generated/graphql";
 import { getPrefixImageUrl } from "@ultility/index";
 import useWindowSize from "@hooks/use-window-size";
 import clsx from "clsx";
+
 interface PartnerProps {
-  assets?: Maybe<Array<Maybe<ComponentHomeHomePartner>>>;
+  partners?: Maybe<Array<Maybe<ComponentHomeHomePartner>>>;
   title: string;
 }
 
@@ -40,7 +41,7 @@ function SamplePrevArrow(props: any) {
   );
 }
 
-const Partner: FC<PartnerProps> = ({ assets, title }) => {
+const Partner: FC<PartnerProps> = ({ partners, title }) => {
   const { isDesktop } = useWindowSize();
   return (
     <Fragment>
@@ -61,12 +62,14 @@ const Partner: FC<PartnerProps> = ({ assets, title }) => {
             nextArrow={<SampleNextArrow />}
             prevArrow={<SamplePrevArrow />}
           >
-            {!!assets &&
-              assets.map((i, idx) => (
+            {!!partners &&
+              partners.map((partner, idx) => (
                 <div key={idx} className={styles.partnerItem}>
                   <Image
                     alt=""
-                    src={getPrefixImageUrl(i?.image?.data?.attributes?.url)}
+                    src={getPrefixImageUrl(
+                      partner?.image?.data?.attributes?.url
+                    )}
                     width={253}
                     height={165}
                   />

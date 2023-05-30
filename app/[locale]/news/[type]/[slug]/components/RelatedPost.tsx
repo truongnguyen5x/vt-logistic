@@ -1,7 +1,5 @@
-import { IPost } from "@type/post";
 import { useTranslations } from "next-intl";
 import { FC } from "react";
-import PaginationNews from "@components/news/PaginationNews";
 import { SideCard } from "@components/news/Cards";
 import { NewsEntity } from "@generated/graphql";
 
