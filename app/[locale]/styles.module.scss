@@ -446,26 +446,6 @@
 }
 
 @media only screen and (max-width: 1199px) {
-}
-
-@media only screen and (min-width: 991px) {
-}
-
-@media only screen and (max-width: 991px) {
-  /******************************
-  * HOME SLIDER max-width: 991px*
-  ******************************/
-  .sliderHomeSection {
-    @apply mx-6 mt-7 rounded-lg overflow-hidden h-96;
-  }
-
-  .sliderHomeItem {
-    @apply object-cover h-96;
-  }
-  /******************************
-  * HOME SLIDER max-width: 991px*
-  ******************************/
-
   /*************************
   * FEATURE max-width: 991px*
   *************************/
@@ -539,6 +519,7 @@
   }
 
   .formBackgroundMobile {
+    @apply flex-grow;
     display: block !important;
   }
 
@@ -578,6 +559,25 @@
   /*******************************
   * HOME LIST POST max-width: 991px*
   *********************************/
+}
+
+@media only screen and (min-width: 991px) {
+}
+
+@media only screen and (max-width: 991px) {
+  /******************************
+  * HOME SLIDER max-width: 991px*
+  ******************************/
+  .sliderHomeSection {
+    @apply mx-6 mt-7 rounded-lg overflow-hidden h-96;
+  }
+
+  .sliderHomeItem {
+    @apply object-cover h-96;
+  }
+  /******************************
+  * HOME SLIDER max-width: 991px*
+  ******************************/
 }
 
 @media only screen and (max-width: 767px) {

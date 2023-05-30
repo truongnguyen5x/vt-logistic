@@ -618,6 +618,15 @@ a.footer-link {
 }
 
 @media only screen and (max-width: 1199px) {
+  /*************************************
+  *  COMMON COMPONENT max-width: 1440px *
+  *************************************/
+  .custom-select__control {
+    width: 400px;
+  }
+  /*************************************
+  *  COMMON COMPONENT max-width: 1440px *
+  *************************************/
 }
 
 @media only screen and (min-width: 991px) {
