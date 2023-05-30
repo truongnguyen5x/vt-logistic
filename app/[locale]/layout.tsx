@@ -63,13 +63,14 @@ export default function RootLayout({
       <body className={SVNgilroy.className}>
         <Loader />
         <Header
+          locale={locale as ILocale}
           titles={{
             home: t("home"),
             introduce: t("introduce"),
             service: t("service"),
             news: t("news"),
             contact: t("contact"),
-            recruitment: t("re cruitment"),
+            recruitment: t("recruitment"),
             introduce_general: t("introduce_general"),
             milestones: t("milestones"),
             info_contact: t("info_contact"),

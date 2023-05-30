@@ -11,7 +11,7 @@ import { useMutation } from "@apollo/client";
 import { getLanguageForApi } from "@ultility/index";
 
 import { ApolloNextAppProvider } from "@apollo/experimental-nextjs-app-support/ssr";
-import { makeClient, makeSuspenseCache } from "@api/client";
+import { ApolloWrapper, makeClient, makeSuspenseCache } from "@api/client";
 
 type Props = {
   dataNew: NewsEntity | null;
@@ -79,12 +79,9 @@ const ReactPostContent: FC<Props> = ({ dataNew, locale }) => {
 
 const ReactPost: FC<Props> = ({ dataNew, locale }) => {
   return (
-    <ApolloNextAppProvider
-      makeClient={makeClient}
-      makeSuspenseCache={makeSuspenseCache}
-    >
+    <ApolloWrapper>
       <ReactPostContent dataNew={dataNew} locale={locale} />
-    </ApolloNextAppProvider>
+    </ApolloWrapper>
   );
 };
 

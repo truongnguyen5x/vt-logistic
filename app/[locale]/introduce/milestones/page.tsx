@@ -1,4 +1,3 @@
-import { fetchAsset } from "@api/index";
 import Banner from "@components/Banner";
 import BreadCrumbs from "@components/Breadcrumbs";
 import { ILocale } from "@configs/i18n";
@@ -40,19 +39,32 @@ const Milestones = async () => {
 
   return (
     <section>
-      <Banner image={getPrefixImageUrl(assets?.attributes?.banner?.data?.attributes?.url)} title={t("title")} />
+      <Banner
+        image={getPrefixImageUrl(
+          assets?.attributes?.banner?.data?.attributes?.url
+        )}
+        title={t("title")}
+      />
       <div className="container mx-auto">
         <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6" />
         <div className="relative">
           {!!assets?.attributes?.bg_image?.data?.attributes?.url && (
             <Image
-              src={getPrefixImageUrl(assets?.attributes?.bg_image?.data?.attributes?.url)}
+              src={getPrefixImageUrl(
+                assets?.attributes?.bg_image?.data?.attributes?.url
+              )}
               alt=""
               width={1570}
               height={1035}
             />
           )}
-          <Content assets={assets?.attributes?.milestones as Maybe<ComponentIntroduceMilestones[]>} />
+          <Content
+            assets={
+              assets?.attributes?.milestones as Maybe<
+                ComponentIntroduceMilestones[]
+              >
+            }
+          />
         </div>
       </div>
     </section>

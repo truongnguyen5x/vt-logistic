@@ -2,7 +2,6 @@ import { useLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { Fragment } from "react";
 import Banner from "@components/Banner";
-import { fetchAsset } from "@api/index";
 import { ILocale } from "@configs/i18n";
 import BreadCrumbs from "@components/Breadcrumbs";
 import IntroGeneral from "./components/IntroGeneral";

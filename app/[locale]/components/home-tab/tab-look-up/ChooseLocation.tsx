@@ -14,7 +14,7 @@ import LocationImg from "@assets/images/icons/location.svg";
 import MapImg from "@assets/images/icons/map.svg";
 import CustomAutocomplete from "@components/CustomAutocomplete";
 import SearchImg from "@assets/images/icons/search_light.svg";
-import { ICountry, IProvince } from "@type/location";
+import { ILocation } from "@type/location";
 import { SERVICE_TRANSPORT } from "@ultility/constant";
 import { ISTATUS } from "./FormLookup";
 import { ComponentHomeHomeLookup, Maybe } from "@generated/graphql";
@@ -29,8 +29,8 @@ interface ChooseLocationProps {
    *  INDEX == 2: VẬN TẢI  *
    *************************/
   index: number;
-  listCountry: ICountry[];
-  listProvince: IProvince[];
+  listCountry: ILocation[];
+  listProvince: ILocation[];
   setStatus: Dispatch<SetStateAction<ISTATUS>>;
 }
 
@@ -101,8 +101,14 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
                 onChange={onChangeForm}
                 options={
                   index == SERVICE_TRANSPORT.TRANSPORT
-                    ? listProvince.map((i) => ({ value: i.id, label: i.name }))
-                    : listCountry.map((i) => ({ value: i.id, label: i.name }))
+                    ? listProvince.map((i) => ({
+                        value: i.name || "",
+                        label: i.fullname || "",
+                      }))
+                    : listCountry.map((i) => ({
+                        value: i.name || "",
+                        label: i.fullname || "",
+                      }))
                 }
               />
               <div className="mt-6" />
@@ -113,8 +119,14 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
                 onChange={onChangeTo}
                 options={
                   index == SERVICE_TRANSPORT.TRANSPORT
-                    ? listProvince.map((i) => ({ value: i.id, label: i.name }))
-                    : listCountry.map((i) => ({ value: i.id, label: i.name }))
+                    ? listProvince.map((i) => ({
+                        value: i.name || "",
+                        label: i.fullname || "",
+                      }))
+                    : listCountry.map((i) => ({
+                        value: i.name || "",
+                        label: i.fullname || "",
+                      }))
                 }
               />
             </div>

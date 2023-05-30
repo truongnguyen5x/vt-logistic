@@ -2,7 +2,6 @@ import { useLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { Fragment } from "react";
 import Banner from "@components/Banner";
-import { fetchAsset } from "@api/index";
 import { ILocale } from "@configs/i18n";
 import BreadCrumbs from "@components/Breadcrumbs";
 import Image from "next/image";
@@ -15,6 +14,7 @@ import { gql } from "@generated/gql";
 import { getTruckingQueryString } from "@api/trucking.graghql";
 import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
 import { ComponentTruckingOtherService, Maybe } from "@generated/graphql";
+import { ApolloWrapper } from "@api/client";
 
 const getTruckingAsset = async (locale: ILocale) => {
   const { data } = await getClient().query({
@@ -107,32 +107,34 @@ const ServiceTrucking = async () => {
                 </div>
               ))}
             <div className="mt-6">
-              <ResgisterPopup
-                textBtn={t("create_order")}
-                title={t("register_popup.title")}
-                description={t("register_popup.description")}
-                label={{
-                  fullname: t("register_popup.fullname"),
-                  phone_number: t("register_popup.phone_number"),
-                  email: t("register_popup.email"),
-                  service: t("register_popup.service"),
-                  from: t("register_popup.from"),
-                  to: t("register_popup.to"),
-                  weight: t("register_popup.weight"),
-                  note: t("register_popup.note"),
-                  button: t("register_popup.button"),
-                  required: t("register_popup.required"),
-                }}
-                placeholder={{
-                  fullname: t("register_popup.placeholder.fullname"),
-                  phone_number: t("register_popup.placeholder.phone_number"),
-                  email: t("register_popup.placeholder.email"),
-                  from: t("register_popup.placeholder.from"),
-                  to: t("register_popup.placeholder.to"),
-                  weight: t("register_popup.placeholder.weight"),
-                  note: t("register_popup.placeholder.note"),
-                }}
-              />
+              <ApolloWrapper>
+                <ResgisterPopup
+                  textBtn={t("create_order")}
+                  title={t("register_popup.title")}
+                  description={t("register_popup.description")}
+                  label={{
+                    fullname: t("register_popup.fullname"),
+                    phone_number: t("register_popup.phone_number"),
+                    email: t("register_popup.email"),
+                    service: t("register_popup.service"),
+                    from: t("register_popup.from"),
+                    to: t("register_popup.to"),
+                    weight: t("register_popup.weight"),
+                    note: t("register_popup.note"),
+                    button: t("register_popup.button"),
+                    required: t("register_popup.required"),
+                  }}
+                  placeholder={{
+                    fullname: t("register_popup.placeholder.fullname"),
+                    phone_number: t("register_popup.placeholder.phone_number"),
+                    email: t("register_popup.placeholder.email"),
+                    from: t("register_popup.placeholder.from"),
+                    to: t("register_popup.placeholder.to"),
+                    weight: t("register_popup.placeholder.weight"),
+                    note: t("register_popup.placeholder.note"),
+                  }}
+                />
+              </ApolloWrapper>
             </div>
           </div>
         </div>
@@ -166,32 +168,34 @@ const ServiceTrucking = async () => {
                 </div>
               ))}
             <div className="flex gap-6 mt-9">
-              <ResgisterPopup
-                textBtn={t("create_order")}
-                title={t("register_popup.title")}
-                description={t("register_popup.description")}
-                label={{
-                  fullname: t("register_popup.fullname"),
-                  phone_number: t("register_popup.phone_number"),
-                  email: t("register_popup.email"),
-                  service: t("register_popup.service"),
-                  from: t("register_popup.from"),
-                  to: t("register_popup.to"),
-                  weight: t("register_popup.weight"),
-                  note: t("register_popup.note"),
-                  button: t("register_popup.button"),
-                  required: t("register_popup.required"),
-                }}
-                placeholder={{
-                  fullname: t("register_popup.placeholder.fullname"),
-                  phone_number: t("register_popup.placeholder.phone_number"),
-                  email: t("register_popup.placeholder.email"),
-                  from: t("register_popup.placeholder.from"),
-                  to: t("register_popup.placeholder.to"),
-                  weight: t("register_popup.placeholder.weight"),
-                  note: t("register_popup.placeholder.note"),
-                }}
-              />
+              <ApolloWrapper>
+                <ResgisterPopup
+                  textBtn={t("create_order")}
+                  title={t("register_popup.title")}
+                  description={t("register_popup.description")}
+                  label={{
+                    fullname: t("register_popup.fullname"),
+                    phone_number: t("register_popup.phone_number"),
+                    email: t("register_popup.email"),
+                    service: t("register_popup.service"),
+                    from: t("register_popup.from"),
+                    to: t("register_popup.to"),
+                    weight: t("register_popup.weight"),
+                    note: t("register_popup.note"),
+                    button: t("register_popup.button"),
+                    required: t("register_popup.required"),
+                  }}
+                  placeholder={{
+                    fullname: t("register_popup.placeholder.fullname"),
+                    phone_number: t("register_popup.placeholder.phone_number"),
+                    email: t("register_popup.placeholder.email"),
+                    from: t("register_popup.placeholder.from"),
+                    to: t("register_popup.placeholder.to"),
+                    weight: t("register_popup.placeholder.weight"),
+                    note: t("register_popup.placeholder.note"),
+                  }}
+                />
+              </ApolloWrapper>
               <button
                 className="btn-gray-outlined animation"
                 data-animtion-delay="0.6s"
@@ -253,32 +257,34 @@ const ServiceTrucking = async () => {
               )
             )}
           <div className="flex gap-6 mt-9">
-            <ResgisterPopup
-              textBtn={t("create_order")}
-              title={t("register_popup.title")}
-              description={t("register_popup.description")}
-              label={{
-                fullname: t("register_popup.fullname"),
-                phone_number: t("register_popup.phone_number"),
-                email: t("register_popup.email"),
-                service: t("register_popup.service"),
-                from: t("register_popup.from"),
-                to: t("register_popup.to"),
-                weight: t("register_popup.weight"),
-                note: t("register_popup.note"),
-                button: t("register_popup.button"),
-                required: t("register_popup.required"),
-              }}
-              placeholder={{
-                fullname: t("register_popup.placeholder.fullname"),
-                phone_number: t("register_popup.placeholder.phone_number"),
-                email: t("register_popup.placeholder.email"),
-                from: t("register_popup.placeholder.from"),
-                to: t("register_popup.placeholder.to"),
-                weight: t("register_popup.placeholder.weight"),
-                note: t("register_popup.placeholder.note"),
-              }}
-            />
+            <ApolloWrapper>
+              <ResgisterPopup
+                textBtn={t("create_order")}
+                title={t("register_popup.title")}
+                description={t("register_popup.description")}
+                label={{
+                  fullname: t("register_popup.fullname"),
+                  phone_number: t("register_popup.phone_number"),
+                  email: t("register_popup.email"),
+                  service: t("register_popup.service"),
+                  from: t("register_popup.from"),
+                  to: t("register_popup.to"),
+                  weight: t("register_popup.weight"),
+                  note: t("register_popup.note"),
+                  button: t("register_popup.button"),
+                  required: t("register_popup.required"),
+                }}
+                placeholder={{
+                  fullname: t("register_popup.placeholder.fullname"),
+                  phone_number: t("register_popup.placeholder.phone_number"),
+                  email: t("register_popup.placeholder.email"),
+                  from: t("register_popup.placeholder.from"),
+                  to: t("register_popup.placeholder.to"),
+                  weight: t("register_popup.placeholder.weight"),
+                  note: t("register_popup.placeholder.note"),
+                }}
+              />
+            </ApolloWrapper>
             <button
               className="btn-gray-outlined animation"
               data-animtion-delay="0.6s"

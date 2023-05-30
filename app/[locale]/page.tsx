@@ -2,7 +2,7 @@ import React, { Fragment, Suspense, useRef, useState } from "react";
 import styles from "./styles.module.scss";
 import { useLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
-import { fetchAsset, fetchHomePost } from "@api/index";
+import { fetchHomePost } from "@api/index";
 import { ILocale, i18n } from "@configs/i18n";
 import SliderHome from "./components/SliderHome";
 import AboutUs from "./components/AboutUs";
@@ -26,6 +26,8 @@ import {
 } from "@generated/graphql";
 import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
 import SliderFeature from "./components/SliderFeature";
+import { ApolloNextAppProvider } from "@apollo/experimental-nextjs-app-support/ssr";
+import { makeClient, makeSuspenseCache } from "@api/client";
 
 // TODO: generateStaticParams what for?
 // export async function generateStaticParams() {
@@ -79,6 +81,7 @@ export default async function Home() {
           }
         />
       </section>
+
       <NextIntlClientProvider locale={locale} messages={message.default}>
         <HomeTab
           tabs={
@@ -103,6 +106,7 @@ export default async function Home() {
           }
         />
       </NextIntlClientProvider>
+
       <Partner
         title={t("partner")}
         assets={

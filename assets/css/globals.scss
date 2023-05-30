@@ -211,7 +211,7 @@ body {
   @apply flex items-center relative;
 }
 .navbar-brand {
-  @apply h-full px-7 flex items-center mt-5;
+  @apply h-full px-7 flex items-center;
   & > img:nth-child(2) {
     @apply hidden;
   }
@@ -258,9 +258,30 @@ body {
   }
 }
 .locale-header {
+  @apply relative cursor-pointer flex items-center justify-center;
   & > img {
+    @apply rounded-full my-2;
     width: 30px;
     height: 30px;
+  }
+}
+.locale-dropdown {
+  @apply hidden absolute w-36 bg-th-white shadow-md top-12 -left-2;
+  li {
+    a {
+      @apply flex py-2 px-3 gap-2 items-center;
+    }
+    img {
+      @apply rounded-full;
+      width: 30px;
+      height: 30px;
+    }
+    &.show {
+      @apply text-th-red-500;
+    }
+    &:hover {
+      @apply text-th-red-500 bg-th-gray-100;
+    }
   }
 }
 /**************
@@ -601,6 +622,9 @@ a.footer-link {
   /**********
  * HEADER *
  **********/
+  .navbar-brand {
+    @apply mt-5;
+  }
   .navbar-collapse {
     display: flex !important;
   }
@@ -671,6 +695,14 @@ a.footer-link {
       @apply hidden;
     }
   }
+  .locale-header {
+    &:hover {
+      .locale-dropdown {
+        @apply block;
+      }
+    }
+  }
+
   /**********
  * HEADER *
  **********/
@@ -801,7 +833,7 @@ a.footer-link {
   }
 
   .nav-btn {
-    @apply pr-0 mt-4 mb-4;
+    @apply pr-0 mt-4 mb-4 flex flex-col gap-2 w-full;
     & > img {
       height: 24px;
       width: 24px;
@@ -810,6 +842,7 @@ a.footer-link {
   .search-header {
     & > img {
       width: 20px;
+      height: 20px;
     }
     & > img:nth-child(1) {
       @apply hidden;
@@ -821,12 +854,30 @@ a.footer-link {
   .profile-header {
     & > img {
       width: 20px;
+      height: 20px;
     }
     & > img:nth-child(1) {
       @apply hidden;
     }
     & > img:nth-child(2) {
       @apply block;
+    }
+  }
+  .locale-header {
+    @apply w-full flex-wrap;
+    & > img {
+      width: 20px;
+      height: 20px;
+    }
+    & > div {
+      @apply h-2 w-2 border-th-white border-t-2 border-l-2;
+      transform: rotate(-135deg) translate(-4px, 5px);
+    }
+    li {
+      @apply flex justify-center;
+    }
+    .locale-dropdown.show {
+      @apply block static w-full;
     }
   }
 

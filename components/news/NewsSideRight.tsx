@@ -4,7 +4,6 @@ import Image from "next/image";
 import { FC, Fragment } from "react";
 import Search from "@assets/images/icons/search-status.svg";
 import { IPost, IPostCategory } from "@type/post";
-import { fetchAsset } from "@api/index";
 import { ILocale } from "@configs/i18n";
 import { SideCard } from "./Cards";
 import { NewsEntity } from "@generated/graphql";
@@ -50,7 +49,10 @@ const NewsSideRight: FC<Props> = ({ category, data }) => {
         <p className="text-base text-th-gray-300 animation mb-16">
           {t("help_content")}
         </p>
-        <Link href={'/contact'} className="animation px-10 py-5 bg-th-red-500 text-white font-medium text-2xl rounded-[50px] leading-[18px]">
+        <Link
+          href={"/contact"}
+          className="animation px-10 py-5 bg-th-red-500 text-white font-medium text-2xl rounded-[50px] leading-[18px]"
+        >
           {t("contact")}
         </Link>
       </div>

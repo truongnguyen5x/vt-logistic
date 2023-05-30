@@ -2,7 +2,6 @@ import { useLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { Fragment } from "react";
 import Banner from "@components/Banner";
-import { fetchAsset } from "@api/index";
 import { ILocale } from "@configs/i18n";
 import BreadCrumbs from "@components/Breadcrumbs";
 import ServiceOverview from "./components/Overview";
@@ -15,7 +14,7 @@ import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
 import {
   ComponentServiceFeature,
   ComponentServiceTransportation,
-  Maybe
+  Maybe,
 } from "@generated/graphql";
 
 const getServiceAsset = async (locale: ILocale) => {

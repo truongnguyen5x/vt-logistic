@@ -5,17 +5,21 @@ import clsx from "clsx";
 import styles from "@app/styles.module.scss";
 import Slider from "react-slick";
 import FormLookup from "./FormLookup";
-import { fetchFromClient } from "@api/client";
 import { useLocale } from "next-intl";
 import { ILocale } from "@configs/i18n";
 import { useRouter } from "next/router";
 import { useParams } from "next/navigation";
-import { ICountry, IProvince } from "@type/location";
+import { ILocation } from "@type/location";
 import {
   ComponentHomeHomeLookup,
   ComponentHomeServiceContact,
   Maybe,
 } from "@generated/graphql";
+import { getClient } from "@api/graphql-client";
+import { getCountryQueryString, getProvinceQueryString } from "@api/location";
+import { gql } from "@generated/gql";
+import { getLanguageForApi } from "@ultility/index";
+import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
 
 interface TabLookupProps {
   lookups?: Maybe<Array<Maybe<ComponentHomeHomeLookup>>>;
@@ -27,21 +31,16 @@ const TabLookup: FC<TabLookupProps> = ({ lookups, contacts }) => {
   const slickRef = useRef<Slider>(null);
 
   const [activeTab, setActiveTab] = useState(0);
-  const [listCountry, setListCountry] = useState<ICountry[]>([]);
-  const [listProvince, setListProvince] = useState<IProvince[]>([]);
 
-  useEffect(() => {
-    fetchFromClient<ICountry[]>("country", params.locale as ILocale).then(
-      (res) => {
-        setListCountry(res);
-      }
-    );
-    fetchFromClient<IProvince[]>("province", params.locale as ILocale).then(
-      (res) => {
-        setListProvince(res);
-      }
-    );
-  }, []);
+  const { data: dataCountry } = useSuspenseQuery(gql(getCountryQueryString), {
+    variables: { locale: getLanguageForApi(params.locale as ILocale) },
+  });
+  const { data: dataProvince } = useSuspenseQuery(gql(getProvinceQueryString), {
+    variables: { locale: getLanguageForApi(params.locale as ILocale) },
+  });
+
+  const listCountry = dataCountry.countries?.data.map((i) => i.attributes);
+  const listProvince = dataProvince.provinces?.data.map((i) => i.attributes);
 
   const handleChangeTab = (idx: number) => {
     setActiveTab(idx);
@@ -79,22 +78,22 @@ const TabLookup: FC<TabLookupProps> = ({ lookups, contacts }) => {
         speed={500}
       >
         <FormLookup
-          listCountry={listCountry}
-          listProvince={listProvince}
+          listCountry={listCountry as ILocation[]}
+          listProvince={listProvince as ILocation[]}
           lookup={lookups?.[0]}
           contacts={contacts}
           index={0}
         />
         <FormLookup
-          listCountry={listCountry}
-          listProvince={listProvince}
+          listCountry={listCountry as ILocation[]}
+          listProvince={listProvince as ILocation[]}
           index={1}
           lookup={lookups?.[1]}
           contacts={contacts}
         />
         <FormLookup
-          listCountry={listCountry}
-          listProvince={listProvince}
+          listCountry={listCountry as ILocation[]}
+          listProvince={listProvince as ILocation[]}
           index={2}
           lookup={lookups?.[2]}
           contacts={contacts}

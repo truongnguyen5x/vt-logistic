@@ -17,6 +17,7 @@ import {
   Maybe,
 } from "@generated/graphql";
 import { getPrefixImageUrl } from "@ultility/index";
+import { ApolloWrapper } from "@api/client";
 
 interface HomeTabProps {
   tabs?: Maybe<Array<Maybe<ComponentHomeHomeTab>>>;
@@ -69,7 +70,11 @@ const HomeTab: FC<HomeTabProps> = ({ tabs, contacts, lookups, services }) => {
         ))}
       </div>
       <div className="animation" data-animation-delay="0.4s">
-        {activeTab == 0 && <TabLookup lookups={lookups} contacts={contacts} />}
+        {activeTab == 0 && (
+          <ApolloWrapper>
+            <TabLookup lookups={lookups} contacts={contacts} />
+          </ApolloWrapper>
+        )}
         {activeTab == 1 && <TabMyService services={services} />}
       </div>
     </Fragment>

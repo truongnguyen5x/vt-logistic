@@ -3,7 +3,6 @@ import { FC, Fragment } from "react";
 import SmsImg from "@assets/images/icons/sms_tracking.svg";
 import Image from "next/image";
 import { ILocale } from "@configs/i18n";
-import { fetchAsset } from "@api/index";
 import { useLocale } from "next-intl";
 import Link from "next-intl/link";
 import LogoImg from "@assets/images/logos/logo_light.svg";

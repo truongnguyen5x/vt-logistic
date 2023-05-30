@@ -17,9 +17,11 @@ import { usePathname } from "next-intl/client";
 import SearchHeader from "./components/Search";
 import ProfileHeader from "./components/Profile";
 import SelectLocale from "./components/SelectLocale";
+import { ILocale } from "@configs/i18n";
 
 interface HeaderProps {
   titles: any;
+  locale: ILocale;
 }
 
 type IMenu = {
@@ -28,7 +30,7 @@ type IMenu = {
   children?: IMenu[];
 };
 
-const Header: FC<HeaderProps> = ({ titles }) => {
+const Header: FC<HeaderProps> = ({ titles, locale }) => {
   const segment = useSelectedLayoutSegment();
   const [openNav, setOpenNav] = useState(false);
   const [menuOpened, setMenuOpened] = useState<string | undefined>();
@@ -279,7 +281,7 @@ const Header: FC<HeaderProps> = ({ titles }) => {
               </ul>
               <div className="animation nav-btn" data-animation-delay="0.8s">
                 <SearchHeader />
-                <SelectLocale />
+                <SelectLocale locale={locale} />
                 <ProfileHeader />
               </div>
             </div>

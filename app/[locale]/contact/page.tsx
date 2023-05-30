@@ -2,7 +2,6 @@ import React, { Fragment } from "react";
 import { Map, Marker } from "pigeon-maps";
 import { useLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
-import { fetchAsset } from "@api/index";
 import { ILocale } from "@configs/i18n";
 import Banner from "@components/Banner";
 import BreadCrumbs from "@components/Breadcrumbs";
@@ -23,7 +22,6 @@ const getContactAsset = async (locale: ILocale) => {
   return data.contacts?.data[data?.contacts?.data?.length - 1];
 };
 
-
 const Contact = async () => {
   const locale = useLocale();
 
@@ -39,7 +37,12 @@ const Contact = async () => {
 
   return (
     <Fragment>
-      <Banner image={getPrefixImageUrl(contactAsset?.attributes?.banner?.data?.attributes?.url)} title={t("title")} />
+      <Banner
+        image={getPrefixImageUrl(
+          contactAsset?.attributes?.banner?.data?.attributes?.url
+        )}
+        title={t("title")}
+      />
       <div className="container mx-auto">
         <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6 mb-20" />
         {!!contactAsset?.attributes?.contacts?.length && (

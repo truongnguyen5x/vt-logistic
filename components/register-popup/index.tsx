@@ -4,14 +4,17 @@ import Image from "next/image";
 import { FC, useEffect, useRef, useState } from "react";
 import BgPopup from "@assets/images/bg_popup.png";
 import CustomAutocomplete from "@components/CustomAutocomplete";
-import { ICountry, IProvince } from "@type/location";
-import { fetchFromClient } from "@api/client";
+
 import { useParams } from "next/navigation";
 import { ILocale } from "@configs/i18n";
 import { SERVICE_TRANSPORT } from "@ultility/constant";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
+import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
+import { getLanguageForApi } from "@ultility/index";
+import { getCountryQueryString, getProvinceQueryString } from "@api/location";
+import { gql } from "@generated/gql";
 
 type Props = {
   textBtn?: string;
@@ -60,9 +63,6 @@ const ResgisterPopup: FC<Props> = ({
 
   const [open, setOpen] = useState<boolean>(false);
 
-  const [listCountry, setListCountry] = useState<ICountry[]>([]);
-  const [listProvince, setListProvince] = useState<IProvince[]>([]);
-
   const {
     control,
     handleSubmit,
@@ -73,18 +73,17 @@ const ResgisterPopup: FC<Props> = ({
     resolver: yupResolver(schema),
   });
 
-  useEffect(() => {
-    fetchFromClient<ICountry[]>("country", params.locale as ILocale).then(
-      (res) => {
-        setListCountry(res);
-      }
-    );
-    fetchFromClient<IProvince[]>("province", params.locale as ILocale).then(
-      (res) => {
-        setListProvince(res);
-      }
-    );
-  }, []);
+  const { data: dataCountry } = useSuspenseQuery(gql(getCountryQueryString), {
+    variables: { locale: getLanguageForApi(params.locale as ILocale) },
+  });
+  const { data: dataProvince } = useSuspenseQuery(gql(getProvinceQueryString), {
+    variables: { locale: getLanguageForApi(params.locale as ILocale) },
+  });
+
+  const listCountry =
+    dataCountry.countries?.data.map((i) => i.attributes) || [];
+  const listProvince =
+    dataProvince.provinces?.data.map((i) => i.attributes) || [];
 
   const ref = useRef(null);
 
@@ -280,13 +279,13 @@ const ResgisterPopup: FC<Props> = ({
                         options={
                           Number(getValues("service")) ==
                           SERVICE_TRANSPORT.TRANSPORT
-                            ? listProvince.map((i) => ({
-                                value: i.id,
-                                label: i.name,
+                            ? listProvince?.map((i) => ({
+                                value: i?.name || "",
+                                label: i?.fullname || "",
                               }))
-                            : listCountry.map((i) => ({
-                                value: i.id,
-                                label: i.name,
+                            : listCountry?.map((i) => ({
+                                value: i?.name || "",
+                                label: i?.fullname || "",
                               }))
                         }
                       />
@@ -316,13 +315,13 @@ const ResgisterPopup: FC<Props> = ({
                         options={
                           Number(getValues("service")) ==
                           SERVICE_TRANSPORT.TRANSPORT
-                            ? listProvince.map((i) => ({
-                                value: i.id,
-                                label: i.name,
+                            ? listProvince?.map((i) => ({
+                                value: i?.name || "",
+                                label: i?.fullname || "",
                               }))
-                            : listCountry.map((i) => ({
-                                value: i.id,
-                                label: i.name,
+                            : listCountry?.map((i) => ({
+                                value: i?.name || "",
+                                label: i?.fullname || "",
                               }))
                         }
                       />
