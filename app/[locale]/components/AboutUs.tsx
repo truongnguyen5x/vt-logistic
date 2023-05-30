@@ -19,11 +19,7 @@ interface Props {
 function SampleNextArrow(props: any) {
   const { className, style, onClick } = props;
   return (
-    <div
-      className={[className, styles.arrowRightSlider].join(" ")}
-      style={style}
-      onClick={onClick}
-    >
+    <div className={className} style={style} onClick={onClick}>
       <Image src={RightArrowImg} alt="" />
     </div>
   );
@@ -32,11 +28,7 @@ function SampleNextArrow(props: any) {
 function SamplePrevArrow(props: any) {
   const { className, style, onClick } = props;
   return (
-    <div
-      className={[className, styles.arrowLeftSlider].join(" ")}
-      style={style}
-      onClick={onClick}
-    >
+    <div className={className} style={style} onClick={onClick}>
       <Image src={LeftArrowImg} alt="" />
     </div>
   );

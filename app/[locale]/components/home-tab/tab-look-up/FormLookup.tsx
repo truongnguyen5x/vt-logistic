@@ -43,8 +43,15 @@ const FormLookup: FC<FormLookupProps> = ({
 
   return (
     <div className={styles.lookupBackground}>
-      {status == "UNAVAILABLE" && <ServiceUnavailable />}
-      {status == "AVAILABLE" && <ServiceAvailable contacts={contacts} />}
+      {status == "UNAVAILABLE" && (
+        <ServiceUnavailable onBack={() => setStatus("NONE")} />
+      )}
+      {status == "AVAILABLE" && (
+        <ServiceAvailable
+          onBack={() => setStatus("NONE")}
+          contacts={contacts}
+        />
+      )}
       {status == "NONE" && (
         <ChooseLocation
           listCountry={listCountry}

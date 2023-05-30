@@ -174,12 +174,14 @@ const Footer = async () => {
           <div className="col-span-1 xl:col-span-2">
             <p className="footer-item">{t("certified_by")}</p>
             <div className="flex justify-start gap-12 mt-9">
-              <Image
-                src={BCTimg}
-                width={167}
-                height={52}
-                alt="bo_cong_thuong"
-              />
+              <a href={footerAsset?.attributes?.url_bo_cong_thuong || "#"}>
+                <Image
+                  src={BCTimg}
+                  width={167}
+                  height={52}
+                  alt="bo_cong_thuong"
+                />
+              </a>
               <Image src={VtImg} width={127} height={43} alt="viettel" />
             </div>
           </div>

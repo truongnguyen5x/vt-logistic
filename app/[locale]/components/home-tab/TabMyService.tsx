@@ -78,7 +78,11 @@ const TabMyService: FC<TabMyServiceProps> = ({ services }) => {
                 </Link>
                 {!!service?.subs &&
                   service?.subs.map((sub, idx2) => (
-                    <div key={idx2} className={styles.serviceDescription}>
+                    <Link
+                      href={sub?.url || "#"}
+                      key={idx2}
+                      className={styles.serviceDescription}
+                    >
                       <Image
                         src={ArrowListImg}
                         alt="arrow"
@@ -87,7 +91,7 @@ const TabMyService: FC<TabMyServiceProps> = ({ services }) => {
                       />
 
                       <p>{sub?.title}</p>
-                    </div>
+                    </Link>
                   ))}
               </div>
             </div>

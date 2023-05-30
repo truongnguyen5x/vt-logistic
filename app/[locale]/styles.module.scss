@@ -30,6 +30,26 @@
       }
     }
   }
+  :global .slick-next {
+    @apply z-10;
+    top: auto !important;
+    right: 50% !important;
+    bottom: 5px;
+    transform: translateX(79px) !important;
+    &::before {
+      @apply hidden;
+    }
+  }
+  :global .slick-prev {
+    @apply z-10;
+    top: auto !important;
+    left: 50% !important;
+    bottom: 5px;
+    transform: translateX(-79px) !important;
+    &::before {
+      @apply hidden;
+    }
+  }
 }
 
 .sliderHomeItem {
@@ -37,26 +57,6 @@
   height: 450px;
 }
 
-.arrowRightSliderHome {
-  @apply z-10;
-  top: auto !important;
-  right: 50% !important;
-  bottom: 5px;
-  transform: translateX(79px) !important;
-  &::before {
-    @apply hidden;
-  }
-}
-.arrowLeftSliderHome {
-  @apply z-10;
-  top: auto !important;
-  left: 50% !important;
-  bottom: 5px;
-  transform: translateX(-79px) !important;
-  &::before {
-    @apply hidden;
-  }
-}
 /********************
  * END HOME SLIDER *
  ********************/
@@ -92,6 +92,18 @@
 /**************
  * LIST ABOUT *
  **************/
+.aboutUsSection {
+  :global .slick-next {
+    width: 40px !important;
+    right: -50px !important;
+    top: 35% !important;
+  }
+  :global .slick-prev {
+    width: 40px !important;
+    left: -50px !important;
+    top: 35% !important;
+  }
+}
 .aboutItem {
   @apply ml-10;
   & > p {
@@ -122,17 +134,6 @@
   }
 }
 
-.arrowLeftSlider {
-  width: 40px !important;
-  left: -50px !important;
-  top: 35% !important;
-}
-
-.arrowRightSlider {
-  width: 40px !important;
-  right: -50px !important;
-  top: 35% !important;
-}
 /******************
  * END LIST ABOUT *
  ******************/
@@ -224,7 +225,7 @@
     @include text-clip(2);
   }
   &:hover p {
-    // @apply underline underline-offset-4;
+    @apply underline underline-offset-4;
   }
 }
 /**************
@@ -300,7 +301,14 @@
   font-stretch: condensed;
   height: 60px;
 }
-
+.formBack {
+  @apply p-2 text-xl mt-4;
+  img {
+    @apply w-8 h-8;
+    display: inline !important;
+    margin-bottom: 1px;
+  }
+}
 .formBackgroundMobile {
   display: none !important;
 }
@@ -311,6 +319,18 @@
 /****************
  * LIST PARTNER *
  ****************/
+.partnerWp {
+  :global .slick-next {
+    width: 40px !important;
+    right: -50px !important;
+    top: 35% !important;
+  }
+  :global .slick-prev {
+    width: 40px !important;
+    left: -50px !important;
+    top: 35% !important;
+  }
+}
 .partnerItem {
   @apply flex justify-center items-center border-th-gray-200 shadow-lg p-3 m-3 cursor-pointer border;
   display: flex !important;
@@ -328,7 +348,7 @@
  * HOME LIST POST *
  ******************/
 .postItem {
-  @apply relative shadow-xl;
+  @apply relative shadow-xl block;
   padding-top: 87%;
   transition: transform 0.2s;
   &:hover {
@@ -364,7 +384,7 @@
   @apply text-th-gray-300 font-medium mt-1;
   font-size: 11px;
   img {
-    @apply inline;
+    display: inline !important;
     margin: 0 5px 2px 0;
   }
 }
@@ -373,7 +393,7 @@
   @apply text-th-gray-300 font-medium mt-2;
   font-size: 13px;
   img {
-    @apply inline;
+    display: inline !important;
     margin: 0 5px 2px 0;
   }
 }
@@ -391,7 +411,7 @@
 .postLink {
   @apply text-th-red-500 font-medium absolute bottom-3 right-4 text-xs;
   img {
-    @apply inline;
+    display: inline !important;
     width: 13px;
     height: 13px;
     margin: 0 0 2px 5px;
@@ -402,7 +422,7 @@
   @apply text-th-red-500 font-medium absolute bottom-8 right-8;
   font-size: 15px;
   img {
-    @apply inline;
+    display: inline !important;
     margin: 0 0 2px 5px;
   }
 }

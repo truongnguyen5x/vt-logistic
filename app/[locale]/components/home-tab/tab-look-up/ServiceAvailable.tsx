@@ -5,12 +5,14 @@ import CallImg from "@assets/images/icons/calling.svg";
 import styles from "@app/styles.module.scss";
 import { ComponentHomeServiceContact, Maybe } from "@generated/graphql";
 import { useTranslations } from "next-intl";
+import ArrowLeftImg from "@assets/images/icons/arrow_left.svg";
 
 interface ServiceAvailableProps {
   contacts?: Maybe<Array<Maybe<ComponentHomeServiceContact>>>;
+  onBack: () => void;
 }
 
-const ServiceAvailable: FC<ServiceAvailableProps> = ({ contacts }) => {
+const ServiceAvailable: FC<ServiceAvailableProps> = ({ contacts, onBack }) => {
   const t = useTranslations("home");
 
   return (
@@ -37,7 +39,7 @@ const ServiceAvailable: FC<ServiceAvailableProps> = ({ contacts }) => {
                   >
                     <Image src={CallImg} width={24} height={24} alt="calling" />
                     <p className="text-th-gray-300 font-medium text-2xl">
-                      {contact?.phone}
+                      {contact?.phone_displayed}
                     </p>
                   </a>
                 </td>
@@ -45,6 +47,10 @@ const ServiceAvailable: FC<ServiceAvailableProps> = ({ contacts }) => {
             ))}
           </tbody>
         </table>
+        <button className={styles.formBack} onClick={onBack}>
+          <Image src={ArrowLeftImg} width={40} height={40} alt="prev" />
+          {t("back")}
+        </button>
       </div>
     </Fragment>
   );

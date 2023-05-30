@@ -21,7 +21,10 @@ const PostHome: FC<PostHomeProps> = ({
   detailTxt,
 }) => {
   return (
-    <div className={styles.postItem}>
+    <Link
+      href={`/news/${postData?.attributes?.type}/${postData?.attributes?.slug}`}
+      className={styles.postItem}
+    >
       <div className="absolute top-0 left-0 right-0 bottom-0 flex flex-col">
         <div className={styles.postImg}>
           <Image
@@ -58,14 +61,11 @@ const PostHome: FC<PostHomeProps> = ({
           </p>
         </div>
       </div>
-      <Link
-        className={size == "NORMAL" ? styles.postLink : styles.postLinkXL}
-        href={`/news/${postData?.attributes?.type}/${postData?.attributes?.slug}`}
-      >
+      <div className={size == "NORMAL" ? styles.postLink : styles.postLinkXL}>
         {detailTxt}
         <Image src={ArrowRightImg} width={15} height={15} alt="next" />
-      </Link>
-    </div>
+      </div>
+    </Link>
   );
 };
 

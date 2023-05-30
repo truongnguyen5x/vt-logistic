@@ -91,6 +91,7 @@ export const getHomeQueryString = /* GraphQL */ `
           contacts {
             name
             phone
+            phone_displayed
           }
           partners {
             image {
@@ -141,6 +142,7 @@ export const getFooterQueryString = /* GraphQL */ `
             }
             url
           }
+          url_bo_cong_thuong
         }
       }
     }

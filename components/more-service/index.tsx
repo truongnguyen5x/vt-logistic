@@ -40,7 +40,10 @@ const MoreService: FC<MoreServiceProps> = ({ services, more }) => {
         className={[styles.serviceItem, "animation"].join(" ")}
         data-animation-delay="0.4s"
       >
-        <div className="absolute top-0 left-0 right-0 bottom-0">
+        <Link
+          href={service?.link || "#"}
+          className="absolute top-0 left-0 right-0 bottom-0 cursor-pointer"
+        >
           <div className={styles.serviceItemImg}>
             {!!service && service.image?.data?.attributes?.url && (
               <Image
@@ -51,17 +54,15 @@ const MoreService: FC<MoreServiceProps> = ({ services, more }) => {
                 alt=""
               />
             )}
-            <Link href={!!service && !!service.link ? service.link : "#"}>
-              <button className="btn-red absolute -bottom-7 right-0 max-lg:text-base max-lg:w-40 max-lg:h-12 max-lg:-bottom-5">
-                {more}
-                <Image src={RightImg} alt="next" width={20} height={20} />
-              </button>
-            </Link>
+            <button className="btn-red absolute -bottom-7 right-0 max-lg:text-base max-lg:w-40 max-lg:h-12 max-lg:-bottom-5">
+              {more}
+              <Image src={RightImg} alt="next" width={20} height={20} />
+            </button>
           </div>
           <div className={styles.serviceItemTxt}>
             <p>{!!service ? service.title : ""}</p>
           </div>
-        </div>
+        </Link>
       </div>
     );
   };
