@@ -39,7 +39,12 @@ const Milestones = async () => {
 
   return (
     <section>
-      <Banner image={getPrefixImageUrl(assets?.attributes?.banner?.data?.attributes?.url)} title={t("title")} />
+      <Banner
+        image={getPrefixImageUrl(
+          assets?.attributes?.banner?.data?.attributes?.url
+        )}
+        title={t("title")}
+      />
       <div className="container px-4 mx-auto">
         <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6" />
         <div className="relative">
@@ -51,7 +56,7 @@ const Milestones = async () => {
               alt=""
               width={1570}
               height={1035}
-              className="max-lg:hidden"
+              className="max-md:hidden h-[1000px] object-contain"
             />
           )}
           <Content

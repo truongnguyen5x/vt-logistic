@@ -71,20 +71,30 @@ const Content: FC<Props> = ({ assets }) => {
         </div>
       </div>
       <div className="md:hidden mt-10">
-      {!!assets?.length &&
-              assets.map((item, index) => (
-                <div
-                  key={index}
-                  className="animation mb-6 last:mb-0"
-                  data-animation-delay={`${0.3 + 0.1 * index}s`}
-                >
-                  <div className="text-2xl text-th-red-500 font-semibold animation">{item.timeline}</div>
-                  {!!item.datetime && <span className="mr-1">{item.datetime}:</span>}<span>{item.content}</span>
-                  <div className="max-lg:w-full">
-                  <Image src={getPrefixImageUrl(item.image?.data?.attributes?.url)} alt="" width={1280} height={343} />
-                  </div>
-                </div>
-              ))}
+        {!!assets?.length &&
+          assets.map((item, index) => (
+            <div
+              key={index}
+              className="animation mb-6 last:mb-0"
+              data-animation-delay={`${0.3 + 0.1 * index}s`}
+            >
+              <div className="text-2xl text-th-red-500 font-semibold animation">
+                {item.timeline}
+              </div>
+              {!!item.datetime && (
+                <span className="mr-1">{item.datetime}:</span>
+              )}
+              <span>{item.content}</span>
+              <div className="max-lg:w-full">
+                <Image
+                  src={getPrefixImageUrl(item.image?.data?.attributes?.url)}
+                  alt=""
+                  width={1280}
+                  height={343}
+                />
+              </div>
+            </div>
+          ))}
       </div>
     </>
   );
