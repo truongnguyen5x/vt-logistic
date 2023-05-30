@@ -23,6 +23,11 @@
   --color-gray-330: #868686;
   --color-black-overlay: rgba(0, 0, 0, 0.5);
   --color-white-overlay: rgba(255, 255, 255, 0.5);
+
+  /***************
+ * TRANSPARENT *
+ ***************/
+  --color-white-20-percent: #ffffff33;
 }
 
 @media (prefers-color-scheme: dark) {

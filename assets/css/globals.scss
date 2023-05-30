@@ -949,11 +949,21 @@ a.footer-link {
   }
 
   .footer-inner {
-    @apply bg-th-red-500;
+    @apply relative bg-th-red-500 overflow-hidden;
     border-top-right-radius: 80px;
     border-bottom-left-radius: 80px;
     border-top-left-radius: 20px;
     border-bottom-right-radius: 20px;
+    &::before {
+      @apply absolute w-28 h-28 rounded-full -left-20 top-10;
+      content: "";
+      background-color: var(--color-white-20-percent);
+    }
+    &::after {
+      @apply absolute w-52 h-52 rounded-full -bottom-40 -right-20;
+      content: "";
+      background-color: var(--color-white-20-percent);
+    }
   }
 
   .footer-input-register {
@@ -965,7 +975,7 @@ a.footer-link {
     }
     & > input {
       @apply text-th-white;
-      background-color: #ffffff33;
+      background-color: var(--color-white-20-percent);
       border-top-left-radius: 7px;
       border-bottom-left-radius: 7px;
       &::placeholder {
@@ -1037,6 +1047,14 @@ a.footer-link {
   /*************************
   * FOOTER max-width: 480px*
   *************************/
+  .footer-inner {
+    &::before {
+      @apply -left-24 top-7;
+    }
+    &::after {
+      @apply -right-24 -bottom-44;
+    }
+  }
   .footer-input-register {
     width: calc(100% - 32px);
     input {

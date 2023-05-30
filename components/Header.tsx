@@ -158,6 +158,14 @@ const Header: FC<HeaderProps> = ({ titles, locale }) => {
     },
   ];
 
+  const onCloseNav = () => {
+    setTimeout(() => {
+      setOpenNav(false);
+      setMenu1stOpen(undefined);
+      setMenu2ndOpen(undefined);
+    }, 500);
+  };
+
   const renderSecondLevelMenu = (menus?: IMenu[]) => {
     if (menus && menus.length) {
       return (
@@ -182,7 +190,11 @@ const Header: FC<HeaderProps> = ({ titles, locale }) => {
                   {renderThreeLevelMenu(i.children)}
                 </Fragment>
               ) : (
-                <Link className="second-nav-link" href={i.path}>
+                <Link
+                  className="second-nav-link"
+                  href={i.path}
+                  onClick={onCloseNav}
+                >
                   {titles[i.key]}
                 </Link>
               )}
@@ -204,6 +216,7 @@ const Header: FC<HeaderProps> = ({ titles, locale }) => {
                 className={clsx("text-th-gray-400 font-medium", {
                   "mobile-selected": i.path == pathName,
                 })}
+                onClick={onCloseNav}
                 href={i.path}
               >
                 {titles[i.key]}
@@ -268,7 +281,11 @@ const Header: FC<HeaderProps> = ({ titles, locale }) => {
                         {titles[i.key]} <div></div>
                       </div>
                     ) : (
-                      <Link href={i.path} className="first-nav-link">
+                      <Link
+                        href={i.path}
+                        className="first-nav-link"
+                        onClick={onCloseNav}
+                      >
                         {titles[i.key]}
                       </Link>
                     )}
