@@ -2,7 +2,6 @@ import React, { Fragment, Suspense, useRef, useState } from "react";
 import styles from "./styles.module.scss";
 import { useLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
-import { fetchHomePost } from "@api/index";
 import { ILocale, i18n } from "@configs/i18n";
 import SliderHome from "./components/SliderHome";
 import AboutUs from "./components/AboutUs";
@@ -22,12 +21,14 @@ import {
   ComponentHomeHomeTab,
   ComponentHomeServiceContact,
   Maybe,
+  NewsEntity,
   UploadFileRelationResponseCollection,
 } from "@generated/graphql";
 import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
 import SliderFeature from "./components/SliderFeature";
 import { ApolloNextAppProvider } from "@apollo/experimental-nextjs-app-support/ssr";
 import { makeClient, makeSuspenseCache } from "@api/client";
+import { getNewQueryString } from "@api/new.graghql";
 
 // TODO: generateStaticParams what for?
 // export async function generateStaticParams() {
@@ -44,6 +45,20 @@ const getHomeAsset = async (locale: ILocale) => {
   return data.homes?.data[data?.homes?.data?.length - 1];
 };
 
+const getNewAsset = async (locale: ILocale) => {
+  const { data } = await getClient().query({
+    query: gql(getNewQueryString),
+    variables: {
+      locale: getLanguageForApi(locale),
+      filter: { is_hot: { eq: true } },
+      pagination: { page: 1, pageSize: 5 },
+    },
+  });
+
+  // get last element
+  return data.newss?.data;
+};
+
 export default async function Home() {
   const locale = useLocale();
 
@@ -53,7 +68,7 @@ export default async function Home() {
     import(`../../dictionaries/${locale}.json`),
   ]);
 
-  const listHomePost = fetchHomePost(locale as ILocale);
+  const listHomePost = getNewAsset(locale as ILocale);
 
   return (
     <Fragment>
@@ -115,14 +130,14 @@ export default async function Home() {
           >
         }
       />
-      {/* <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div className="text-center">Loading...</div>}>
         <ListPost
           title={t("news_event")}
           detail={t("detail")}
           learn_more={t("learn_more")}
-          promise={listHomePost}
+          promise={listHomePost as Promise<NewsEntity[]>}
         />
-      </Suspense> */}
+      </Suspense>
     </Fragment>
   );
 }

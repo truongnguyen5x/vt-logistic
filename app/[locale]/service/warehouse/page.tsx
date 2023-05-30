@@ -7,7 +7,7 @@ import BreadCrumbs from "@components/Breadcrumbs";
 import Image from "next/image";
 import styles from "./style.module.scss";
 import RightDarkImg from "@assets/images/icons/arrow_right_2_dark.svg";
-import HexagonImg from "@assets/images/hexagon.svg";
+import HexagonImg from "@assets/images/background/hexagon.svg";
 import ButtonRegister from "@components/btn-register";
 import { getClient } from "@api/graphql-client";
 import { gql } from "@generated/gql";

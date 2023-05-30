@@ -500,20 +500,7 @@
  **************/
   .aboutUs {
     @apply mb-28;
-    :global .slick-dots {
-      @apply -bottom-16;
-      li {
-        button:before {
-          font-size: 14px;
-        }
-      }
-      li.slick-active {
-        button:before {
-          @apply text-th-red-500;
-          font-size: 16px;
-        }
-      }
-    }
+    @include slick-dots-red(-64px);
   }
   /**************
  * LIST ABOUT *
@@ -543,20 +530,7 @@
  **************/
   .bgMyService {
     @apply mx-4 mb-12;
-    :global .slick-dots {
-      @apply -bottom-7;
-      li {
-        button:before {
-          font-size: 14px;
-        }
-      }
-      li.slick-active {
-        button:before {
-          @apply text-th-red-500;
-          font-size: 16px;
-        }
-      }
-    }
+    @include slick-dots-red(-28px);
   }
   /**************
  * MY SERVICE *
@@ -586,24 +560,26 @@
  ****************/
   .partnerWp {
     @apply mb-16;
-    :global .slick-dots {
-      @apply -bottom-8;
-      li {
-        button:before {
-          font-size: 14px;
-        }
-      }
-      li.slick-active {
-        button:before {
-          @apply text-th-red-500;
-          font-size: 16px;
-        }
-      }
-    }
+    @include slick-dots-red(-32px);
   }
   /****************
  * LIST PARTNER *
  ****************/
+
+  /******************
+ * HOME LIST POST *
+ ******************/
+  .postSlider {
+    @apply mb-16 mt-9;
+    @include slick-dots-red(0px);
+  }
+  .postItem {
+    @apply mx-4 overflow-hidden mb-10;
+    border-radius: 10px;
+  }
+  /******************
+ * HOME LIST POST *
+ ******************/
 }
 /* -------------------------------------------------
       max-width: 767px

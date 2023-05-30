@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { FC, useEffect, useRef, useState } from "react";
-import BgPopup from "@assets/images/bg_popup.png";
+import BgPopup from "@assets/images/background/bg_popup.png";
 import CustomAutocomplete from "@components/CustomAutocomplete";
 
 import { useParams } from "next/navigation";

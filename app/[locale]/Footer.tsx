@@ -98,14 +98,37 @@ const Footer = async () => {
           />
         </div>
       </div>
-      <div className="container mx-auto py-16 ">
+      <div className="container mx-auto py-10 md:py-16 ">
+        <div className="md:hidden mx-4 border-b border-th-gray-280 pb-4 mb-4">
+          <Image
+            className="mx-auto"
+            src={LogoImg}
+            width={154}
+            height={55}
+            alt="logo"
+          />
+          <p className="footer-col mt-7 text-center">{t("about")}</p>
+          {footerAsset?.attributes?.infos?.map((i, idx1) => (
+            <a
+              key={idx1}
+              target="_blank"
+              href={i?.url || "#"}
+              className="footer-link my-2"
+            >
+              {i?.title}
+            </a>
+          ))}
+        </div>
         <div
           className="grid  grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 mb-7 animation"
           data-animation-delay="0.3s"
         >
           {!!footerAsset &&
             footerAsset?.attributes?.links?.map((item, idx) => (
-              <div key={idx} className="mx-4 md:mx-0">
+              <div
+                key={idx}
+                className="mx-4 md:mx-0 border-b border-th-gray-280 md:border-b-0 pb-2"
+              >
                 <p className="footer-col">{item?.title}</p>
                 {item?.links?.map((i, idx) =>
                   renderLinkItem(i as Maybe<ComponentFooterFooterLink>, idx)
@@ -113,12 +136,12 @@ const Footer = async () => {
               </div>
             ))}
         </div>
-        <div className="custom-horizontal-divider"></div>
+        <div className="custom-horizontal-divider hidden md:block"></div>
         <div
-          className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-7 mt-7 animation"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 md:gap-7 mt-7 animation"
           data-animation-delay="0.4s"
         >
-          <div className="col-span-2 mx-4 md:mx-0">
+          <div className="hidden md:block md:col-span-1 lg:col-span-2 mx-4 md:mx-0">
             <Image src={LogoImg} width={154} height={55} alt="logo" />
             <p className="footer-col mt-7">{t("about")}</p>
             {footerAsset?.attributes?.infos?.map((i, idx1) => (
@@ -132,7 +155,7 @@ const Footer = async () => {
               </a>
             ))}
           </div>
-          <div className=" mx-4 md:mx-0">
+          <div className="mx-4 md:mx-0 border-b border-th-gray-280 md:border-b-0 pb-10">
             <p className="footer-col">{t("connect_with_us")}</p>
             <div className="flex justify-start gap-7 mt-9">
               {footerAsset?.attributes?.socials?.map((i, idx2) => (
@@ -147,7 +170,8 @@ const Footer = async () => {
               ))}
             </div>
           </div>
-          <div className="col-span-2 mx-4 md:mx-0">
+          <div className="lg:hidden"></div>
+          <div className="col-span-1 lg:col-span-2 mx-4 md:mx-0">
             <p className="footer-col">{t("certified_by")}</p>
             <div className="flex justify-start gap-12 mt-9">
               <Image

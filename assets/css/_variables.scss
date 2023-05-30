@@ -28,3 +28,20 @@
     background: var(--color-gray-330);
   }
 }
+
+@mixin slick-dots-red($bottom) {
+  :global .slick-dots {
+    bottom: $bottom;
+    li {
+      button:before {
+        font-size: 14px;
+      }
+    }
+    li.slick-active {
+      button:before {
+        @apply text-th-red-500;
+        font-size: 16px;
+      }
+    }
+  }
+}

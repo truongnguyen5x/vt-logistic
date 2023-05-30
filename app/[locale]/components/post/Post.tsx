@@ -7,9 +7,11 @@ import { formatDate } from "@ultility/date_time";
 
 import Link from "next-intl/link";
 import ArrowRightImg from "@assets/images/icons/arrow_right_red.svg";
+import { NewsEntity } from "@generated/graphql";
+import { getPrefixImageUrl } from "@ultility/index";
 
 interface PostHomeProps {
-  postData: IPost;
+  postData?: NewsEntity;
   detailTxt: string;
   size?: "LARGE" | "NORMAL";
 }
@@ -24,7 +26,9 @@ const PostHome: FC<PostHomeProps> = ({
       <div className="absolute top-0 left-0 right-0 bottom-0 flex flex-col">
         <div className={styles.postImg}>
           <Image
-            src={postData.img}
+            src={getPrefixImageUrl(
+              postData?.attributes?.featured_image?.data?.attributes?.url
+            )}
             width={size == "NORMAL" ? 390 : 685}
             height={size == "NORMAL" ? 193 : 471}
             alt=""
@@ -36,7 +40,7 @@ const PostHome: FC<PostHomeProps> = ({
               size == "NORMAL" ? styles.postTitle : styles.postTitleLarge
             }
           >
-            {postData.title}
+            {postData?.attributes?.title}
           </p>
           <p
             className={
@@ -46,18 +50,18 @@ const PostHome: FC<PostHomeProps> = ({
             }
           >
             <Image src={ClockImg} alt="clock" width={15} height={15} />
-            {formatDate(postData.created_at)}
+            {"22 - 2 - 2023"}
           </p>
           <p
             className={size == "NORMAL" ? styles.postDes : styles.postDesLarge}
           >
-            {postData.description}
+            {postData?.attributes?.preview_content}
           </p>
         </div>
       </div>
       <Link
         className={size == "NORMAL" ? styles.postLink : styles.postLinkLarge}
-        href={`/news/${postData.category}/${postData.slug}`}
+        href={`/news/${postData?.attributes?.type}/${postData?.attributes?.slug}`}
       >
         {detailTxt}
 
