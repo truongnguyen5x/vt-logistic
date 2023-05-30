@@ -45,7 +45,7 @@ function SamplePrevArrow(props: any) {
 }
 
 const SliderHome: FC<Props> = ({ images }) => {
-  const { isDesktop, width } = useWindowSize();
+  const { isDesktop } = useWindowSize();
 
   return (
     <section className={styles.sliderHomeSection}>
