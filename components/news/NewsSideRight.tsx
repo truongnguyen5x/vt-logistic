@@ -38,22 +38,30 @@ const NewsSideRight: FC<Props> = ({ category, data }) => {
             />
           ))}
       </div>
-      <div className="p-8 bg-th-gray-220 border border-th-gray-200 max-w-[490px] mt-[50px]">
-        <h5 className="font-semibold text-xl text-th-gray-320 mb-3 animation">
-          {t("help_title")}
-        </h5>
-        <p className="text-base text-th-gray-300 animation mb-16">
-          {t("help_content")}
-        </p>
-        <Link
-          href={"/contact"}
-          className="animation px-10 py-5 bg-th-red-500 text-white font-medium text-2xl rounded-[50px] leading-[18px]"
-        >
-          {t("contact")}
-        </Link>
-      </div>
+      <HelpCard category={category} />
     </div>
   );
 };
 
 export default NewsSideRight;
+
+export const HelpCard: FC<{ category: IPostCategory }> = ({ category }) => {
+  const t = useTranslations(category);
+
+  return (
+    <div className="p-6 md:p-8 bg-th-gray-220 border border-th-gray-200 min-w-[320px] max-w-[490px] mt-8 md:mt-[50px]">
+      <h5 className="font-semibold text-xl text-th-gray-320 mb-3 animation">
+        {t("help_title")}
+      </h5>
+      <p className="text-base text-th-gray-300 animation mb-10 md:mb-16">
+        {t("help_content")}
+      </p>
+      <Link
+        href={"/contact"}
+        className="animation p-4 md:px-10 md:py-5 bg-th-red-500 text-white font-medium text-2xl rounded-[50px] leading-[18px]"
+      >
+        {t("contact")}
+      </Link>
+    </div>
+  );
+};

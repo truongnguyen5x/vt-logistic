@@ -22,7 +22,7 @@ const SliderFeature: FC<Props> = ({ features }) => {
       slidesToShow={2}
       slidesToScroll={1}
       arrows={false}
-      className="animation custom-slider w-[343px] mx-auto md:!hidden"
+      className="animation custom-slider min-w-[343px] max-w-[720px] mx-auto md:!hidden"
     >
       {!!features &&
         !!features.length &&
