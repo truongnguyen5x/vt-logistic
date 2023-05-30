@@ -43,10 +43,10 @@ const Contact = async () => {
         )}
         title={t("title")}
       />
-      <div className="container mx-auto">
-        <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6 mb-20" />
+      <div className="container mx-auto px-4 md:px-6 2xl:px-0">
+        <BreadCrumbs breadcrumbs={breadcrumbs} className="my-6 xl:mb-20" />
         {!!contactAsset?.attributes?.contacts?.length && (
-          <div className="flex gap-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10 xl:gap-20">
             {contactAsset.attributes.contacts.map((item, index) => (
               <div key={index} className="flex flex-col">
                 <Image
@@ -78,12 +78,12 @@ const Contact = async () => {
         )}
       </div>
       <div className="relative">
-        <div className="container mx-auto flex gap-20 mt-32 ">
+        <div className="container mx-auto px-4 md:px-6 2xl:px-0 flex flex-col xl:flex-row gap-20 mt-32 ">
           <div>
             <h4 className="animation section-name-left mb-11">
               {t("contact_we")}
             </h4>
-            <div className="flex gap-[30px] items-center mb-8">
+            <div className="flex flex-col md:flex-row gap-[30px] items-center mb-8">
               <div className="animation">
                 <div className="text-th-gray-320 text-sm font-semibold mb-1.5">
                   {t("form.title")}
@@ -103,7 +103,7 @@ const Contact = async () => {
                 />
               </div>
             </div>
-            <div className="flex gap-[30px] items-center mb-8">
+            <div className="flex flex-col md:flex-row gap-[30px] items-center mb-8">
               <div className="animation">
                 <div className="text-th-gray-320 text-sm font-semibold mb-1.5">
                   {t("form.phone_number")}
@@ -128,7 +128,7 @@ const Contact = async () => {
                 {t("form.address")}
               </div>
               <input
-                className="bg-th-gray-220 h-14 focus-visible:outline-none px-6 py-4 w-[685px]"
+                className="bg-th-gray-220 h-14 w-full focus-visible:outline-none px-6 py-4 xl:w-[685px]"
                 placeholder={t("form.placeholder_address")}
               />
             </div>
@@ -142,11 +142,10 @@ const Contact = async () => {
                 placeholder={t("form.placeholder_note")}
               />
             </div>
-            <button className="animation bg-th-red-500 text-white text-2xl font-medium text-center w-full rounded-[50px] py-5 mb-32">
+            <button className="animation bg-th-red-500 text-white text-2xl font-medium text-center w-full rounded-[50px] py-5 mb-10 xl:mb-32">
               {t("form.button")}
             </button>
           </div>
-          <div />
         </div>
         <MapContact />
       </div>

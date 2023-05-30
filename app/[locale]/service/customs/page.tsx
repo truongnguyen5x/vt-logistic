@@ -49,9 +49,9 @@ const Customs = async () => {
         )}
         title={t("short_name")}
       />
-      <div className="container mx-auto">
+      <div className="container mx-auto px-4 md:px-6 2xl:px-0">
         <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6 mb-10" />
-        <div className="flex gap-24 mt-14 mb-28">
+        <div className="flex max-lg:flex-col-reverse gap-6 lg:gap-24 mt-6 mb-10 lg:mt-14 lg:mb-28">
           <div className="basis-1/2">
             <div className="relative animation" data-animation-delay="0.4s">
               <Image
@@ -72,12 +72,12 @@ const Customs = async () => {
                 alt=""
                 width={310}
                 height={300}
-                className="rounded-lg absolute -bottom-8 -right-8 shadow-[-31px_-31px_#fff]"
+                className="rounded-lg absolute -bottom-8 -right-8 shadow-[-31px_-31px_#fff] max-lg:bottom-0 max-lg:right-0 max-lg:shadow-[0_0_0_14x_#fff] max-md:hidden"
               />
             </div>
           </div>
           <div className="basis-1/2">
-            <h3 className="section-name-left mb-10 animation mt-12">
+            <h3 className="section-name-left mb-10 animation md:mt-12">
               {t("title")}
             </h3>
             <p
@@ -108,10 +108,10 @@ const Customs = async () => {
           </div>
         </div>
       </div>
-      <div className="bg-th-gray-250 py-28">
-        <div className="container mx-auto">
+      <div className="bg-th-gray-250 py-10 lg:py-28">
+        <div className="container px-4 md:px-6 2xl:px-0 mx-auto">
           <h3 className="section-name mb-10 animation">{t("procedure")}</h3>
-          <div className="grid grid-cols-3 gap-24 mt-20">
+          <div className="grid grid-cols-1 md:grid-cols-2 ml-9 md:ml-6 2xl:ml-0 xl:grid-cols-3 gap-12 lg:gap-24 mt-20">
             {!!customsAsset?.attributes?.procedures?.length &&
               customsAsset?.attributes?.procedures.map((item, idx) => (
                 <div
@@ -126,7 +126,7 @@ const Customs = async () => {
                     height={260}
                     alt="hexagon"
                   />
-                  <div className="absolute left-0 top-0 bottom-0 right-0 flex flex-col p-12 gap-10">
+                  <div className="absolute left-0 top-0 bottom-0 right-0 flex flex-col p-8 md:p-12 gap-10">
                     <div className={styles.gradientBox} />
                     <p className={styles.procedureTxt}>{item?.text}</p>
                   </div>
@@ -155,7 +155,7 @@ const Customs = async () => {
             alt="office"
           />
           <div className="bg-gradient-overlay absolute right-0 left-0 top-0 bottom-0"></div>
-          <p className="animation z-10 text-th-white font-medium text-base">
+          <p className="animation z-10 text-th-white font-medium text-base max-md:text-center max-md:px-4">
             {t("policy")}
           </p>
           <ButtonRegister text={t("register_now")} />

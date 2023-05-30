@@ -19,7 +19,7 @@ const BreadCrumbs: FC<IBreadCrumbProps> = ({ breadcrumbs, className = "" }) => {
   return (
     <section className={`relative ${className} animation`}>
       {!!breadcrumbs.length && (
-        <ul className="flex items-center">
+        <ul className="flex items-center flex-wrap">
           {breadcrumbs.map((item, index) => (
             <li
               key={index}

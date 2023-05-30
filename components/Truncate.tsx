@@ -15,7 +15,7 @@ const Truncate: FC<{ content: string }> = ({ content }) => {
     <>
       <p
         ref={ref}
-        className={`text-center font-medium text-base text-th-gray-300 break-words max-w-[800px] mx-auto mt-8 ${
+        className={`md:text-center font-medium text-base text-th-gray-300 break-words max-w-[800px] mx-auto mt-8 ${
           !isShowingMore ? "line-clamp-3" : ""
         }`}
       >

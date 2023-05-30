@@ -14,7 +14,7 @@ const IntroGeneral: FC<Props> = ({ assets, className = "" }) => {
 
   return (
     <section className={`relative ${className}`}>
-      <div className="flex items-center gap-[60px]">
+      <div className="flex items-center max-md:flex-col-reverse gap-6 md:gap-[60px]">
         <div>
           <div className="relative animation" data-animation-delay="0.4s">
             <Image
@@ -29,7 +29,7 @@ const IntroGeneral: FC<Props> = ({ assets, className = "" }) => {
               alt=""
               width={310}
               height={300}
-              className="rounded-lg absolute -bottom-8 -right-8 shadow-[-31px_-31px_#fff]"
+              className="rounded-lg max-xl:hidden absolute -bottom-8 -right-8 shadow-[-31px_-31px_#fff]"
             />
           </div>
         </div>

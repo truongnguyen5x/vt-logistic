@@ -7,5 +7,5 @@
   flex-basis: 81%;
 }
 .serviceItemTxt {
-  @apply p-11 text-2xl font-bold;
+  @apply p-11 text-2xl font-bold max-lg:p-6 max-lg:text-base;
 }

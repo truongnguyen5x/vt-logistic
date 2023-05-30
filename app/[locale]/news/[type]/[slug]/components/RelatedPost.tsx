@@ -17,7 +17,7 @@ const RelatedPost: FC<Props> = ({ post }) => {
       </h3>
       <div className="flex gap-[50px] animation">
         {!!post?.length &&
-          post.map((item, index) => <SideCard key={index} post={item} />)}
+          post.map((item, index) => <SideCard key={index} post={item} category={item.attributes?.type} />)}
       </div>
       {/* <PaginationNews totalCount={} /> */}
     </div>
