@@ -17,7 +17,7 @@ const MoreInfo: FC<Props> = ({ assets, className = "" }) => {
 
   return (
     <section className={`container mx-auto ${className}`}>
-      <div className="flex items-center gap-[50px]">
+      <div className="flex items-center max-md:flex-col gap-20 md:gap-[50px]">
         {!!assets?.length &&
           assets.map((item, index) => (
             <Link

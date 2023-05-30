@@ -107,7 +107,7 @@ const ResgisterPopup: FC<Props> = ({
     <div>
       <button
         onClick={handleOpenPopup}
-        className="btn-red animation"
+        className="btn-red animation max-md:w-full"
         data-animation-delay="0.6s"
       >
         {textBtn}
@@ -116,7 +116,7 @@ const ResgisterPopup: FC<Props> = ({
         <div className="fixed inset-0 z-[9999] bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
           <div className="flex flex-col items-center justify-center 2xl:h-full mx-auto">
             <div
-              className="relative py-16 px-44 shadow-lg rounded-md bg-white"
+              className="relative m-3 px-4 py-6 lg:py-16 lg:px-44 shadow-lg rounded-md bg-white"
               ref={ref}
             >
               <Image
@@ -128,7 +128,7 @@ const ResgisterPopup: FC<Props> = ({
               />
               <button
                 onClick={handleClose}
-                className="absolute top-4 right-4 w-7 h-7 flex items-center justify-center rounded-full bg-th-gray-300"
+                className="absolute w-4 h-4 top-2 right-2 lg:top-4 lg:right-4 lg:w-7 lg:h-7 flex items-center justify-center rounded-full bg-th-gray-300"
               >
                 <svg className="w-6 h-6" viewBox="0 0 24 24">
                   <path
@@ -145,7 +145,7 @@ const ResgisterPopup: FC<Props> = ({
                   {description}
                 </p>
                 <form onSubmit={handleSubmit(onSubmit)} className="mt-8">
-                  <div className="grid grid-cols-2 gap-8">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     <div>
                       <label className="text-th-gray-320 text-sm font-semibold mb-1.5 relative after:absolute after:-right-2 after:content-['*'] after:text-th-red-500">
                         {label.fullname}

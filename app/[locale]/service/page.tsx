@@ -48,7 +48,7 @@ const Service = async () => {
         )}
         title={t("title")}
       />
-      <div className="container mx-auto">
+      <div className="container max-xl:px-4 mx-auto">
         <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6 mb-10" />
       </div>
       <ServiceOverview

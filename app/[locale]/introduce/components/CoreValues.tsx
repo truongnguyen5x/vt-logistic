@@ -13,16 +13,17 @@ const CoreValues: FC<Props> = ({ assets, className = "" }) => {
   const t = useTranslations("introduce");
 
   return (
-    <section className={`container mx-auto mt-[445px] ${className}`}>
-      <div className="flex items-start gap-20">
+    <section className={`container px-4 md:mx-auto mt-16 md:mt-[445px] ${className}`}>
+      <div className="flex items-start lg:items-center xl:items-start gap-6 md:gap-10 lg:gap-20 max-lg:flex-col-reverse">
         <Image
           src={getPrefixImageUrl(assets?.image?.data?.attributes?.url)}
           alt=""
-          width={725}
-          height={432}
+          width={300}
+          height={300}
+          className="max-lg:w-full max-xl:w-[400px] h-full xl:w-[725px] xl:h-[432px] animation"
         />
         <div>
-          <p className="section-name-left animation">{t("core_values")}</p>
+          <p className="section-name-left max-sm:text-left max-sm:after:left-0 max-sm:after:translate-x-0 max-lg:text-center max-lg:after:left-1/2 max-lg:after:-translate-x-1/2 animation">{t("core_values")}</p>
           <div className="mt-10">
             <h4
               className="text-th-gray-400 font-semibold text-[25px] mb-6 animation"

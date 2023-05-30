@@ -54,20 +54,20 @@ const Introduce = async () => {
         )}
         title={t("common")}
       />
-      <div className="container mx-auto">
+      <div className="container px-4 md:mx-auto">
         <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6 mb-10" />
         <IntroGeneral
           assets={
             introAssets?.attributes?.general as Maybe<ComponentIntroduceGeneral>
           }
-          className="py-10"
+          className="xl:py-10"
         />
       </div>
       <Mission
         assets={
           introAssets?.attributes?.mission as Maybe<ComponentIntroduceMission>
         }
-        className="mt-20"
+        className="mt-14 md:mt-20"
       />
       <CoreValues
         assets={
@@ -80,7 +80,7 @@ const Introduce = async () => {
           introAssets?.attributes
             ?.reasons_choose_we as Maybe<ComponentIntroduceReasonsChooseWe>
         }
-        className="mt-20"
+        className="mt-16 md:mt-20"
       />
       <MoreInfo
         assets={

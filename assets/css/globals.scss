@@ -496,8 +496,12 @@ a.footer-link {
   background-color: var(--color-gray-220) !important;
   border: none !important;
   border-radius: 0px !important;
-  .custom-select-register__value-container,
-  .custom-select-register-error__value-container {
+
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
+
+  .custom-select-register__value-container, .custom-select-register-error__value-container {
     padding: 16px 24px !important;
   }
   .custom-select-register__indicator-separator,

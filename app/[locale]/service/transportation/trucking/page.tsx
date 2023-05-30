@@ -51,7 +51,7 @@ const ServiceTrucking = async () => {
         )}
         title={t("title")}
       />
-      <div className="container mx-auto">
+      <div className="container max-md:px-4 max-xl:px-6 mx-auto">
         <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6 mb-10" />
         <h3 className="section-name mb-10 animation">{t("title")}</h3>
         <p
@@ -60,7 +60,7 @@ const ServiceTrucking = async () => {
         >
           {truckingAsset?.attributes?.description}
         </p>
-        <div className="flex gap-24 mt-14 mb-28">
+        <div className="flex max-lg:flex-col gap-6 lg:gap-24 mt-6 mb-10 lg:mt-14 lg:mb-28">
           <div>
             <div className="relative animation" data-animation-delay="0.4s">
               <Image
@@ -80,7 +80,7 @@ const ServiceTrucking = async () => {
                 alt=""
                 width={310}
                 height={300}
-                className="rounded-lg absolute -bottom-8 -right-8 shadow-[-31px_-31px_#fff]"
+                className="rounded-lg absolute -bottom-8 -right-8 shadow-[-31px_-31px_#fff] max-lg:bottom-0 max-lg:right-0 max-lg:shadow-[0_0_0_14x_#fff] max-md:hidden"
               />
             </div>
           </div>
@@ -139,12 +139,22 @@ const ServiceTrucking = async () => {
           </div>
         </div>
       </div>
-      <div className="bg-th-gray-250 py-28">
-        <div className="container mx-auto flex">
+      <div className="bg-th-gray-250 py-10 lg:py-28">
+        <div className="container max-md:px-4 max-xl:px-6 mx-auto flex">
           <div className="min-w-0">
-            <h3 className="section-name-left mb-11 animation">
+            <h3 className="section-name-left mb-11 animation max-lg:text-center max-lg:after:left-1/2 max-lg:after:-translate-x-1/2">
               {t("domestic_shipping")}
             </h3>
+            <div className="self-center lg:hidden">
+            <Image
+              src={getPrefixImageUrl(
+                truckingAsset?.attributes?.internal_img?.data?.attributes?.url
+              )}
+              width={735}
+              height={400}
+              alt=""
+            />
+          </div>
             {!!truckingAsset?.attributes?.internal_features?.length &&
               truckingAsset?.attributes?.internal_features.map((item, idx) => (
                 <div
@@ -167,7 +177,7 @@ const ServiceTrucking = async () => {
                   </div>
                 </div>
               ))}
-            <div className="flex gap-6 mt-9">
+            <div className="flex max-md:flex-col-reverse gap-6 mt-9">
               <ApolloWrapper>
                 <ResgisterPopup
                   textBtn={t("create_order")}
@@ -204,7 +214,7 @@ const ServiceTrucking = async () => {
               </button>
             </div>
           </div>
-          <div className="self-center">
+          <div className="self-center max-lg:hidden">
             <Image
               src={getPrefixImageUrl(
                 truckingAsset?.attributes?.internal_img?.data?.attributes?.url
@@ -216,8 +226,8 @@ const ServiceTrucking = async () => {
           </div>
         </div>
       </div>
-      <div className="container mx-auto flex py-28 gap-16">
-        <div className="self-center">
+      <div className="container max-md:px-4 max-xl:px-6 mx-auto flex py-10 lg:py-28 gap-16">
+        <div className="self-center max-lg:hidden">
           <Image
             src={getPrefixImageUrl(
               truckingAsset?.attributes?.international_img?.data?.attributes
@@ -229,9 +239,20 @@ const ServiceTrucking = async () => {
           />
         </div>
         <div className="min-w-0">
-          <h3 className="section-name-left mb-11 animation">
+          <h3 className="section-name-left mb-11 animation max-lg:text-center max-lg:after:left-1/2 max-lg:after:-translate-x-1/2">
             {t("international_shipping")}
           </h3>
+          <div className="self-center lg:hidden">
+          <Image
+            src={getPrefixImageUrl(
+              truckingAsset?.attributes?.international_img?.data?.attributes
+                ?.url
+            )}
+            width={735}
+            height={400}
+            alt=""
+          />
+        </div>
           {!!truckingAsset?.attributes?.international_features?.length &&
             truckingAsset?.attributes?.international_features.map(
               (item, idx) => (
@@ -256,7 +277,7 @@ const ServiceTrucking = async () => {
                 </div>
               )
             )}
-          <div className="flex gap-6 mt-9">
+          <div className="flex max-md:flex-col-reverse gap-6 mt-9">
             <ApolloWrapper>
               <ResgisterPopup
                 textBtn={t("create_order")}
@@ -286,7 +307,7 @@ const ServiceTrucking = async () => {
               />
             </ApolloWrapper>
             <button
-              className="btn-gray-outlined animation"
+              className="btn-gray-outlined animation max-xl:!px-3"
               data-animtion-delay="0.6s"
             >
               {t("pricing")}

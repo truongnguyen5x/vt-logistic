@@ -152,7 +152,7 @@ const PostDetail = async (props: any) => {
           </div>
           <NewsSideRight
             data={{ hot_news: dataHotNews?.data as Maybe<NewsEntity[]> }}
-            category={"internal_news"}
+            category={props?.params?.type}
           />
         </div>
       </div>

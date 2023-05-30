@@ -15,7 +15,7 @@ const Reasons: FC<Props> = ({ className = "", assets }) => {
   return (
     <section className={`relative bg-th-gray-250 ${className}`}>
       {!!assets?.image?.data?.attributes?.url && (
-        <div className="absolute top-0 left-[calc(50%_-_550px)]">
+        <div className="absolute top-0 left-[calc(50%_-_550px)] max-xl:hidden">
           <Image
             src={getPrefixImageUrl(assets?.image?.data?.attributes?.url)}
             alt=""
@@ -24,19 +24,19 @@ const Reasons: FC<Props> = ({ className = "", assets }) => {
           />
         </div>
       )}
-      <div className="container mx-auto py-20">
-        <div className="flex items-center justify-center">
-          <p className="section-name mb-6 animation">{t("reason")}</p>
+      <div className="container px-4 md:mx-auto py-10 md:py-20">
+        <div className="flex items-center justify-start md:justify-center">
+          <p className="section-name mb-6 animation max-md:after:left-16 max-md:text-left">{t("reason")}</p>
         </div>
         <p
-          className="mt-10 text-base font-medium text-th-gray-300 text-center animation"
+          className="mt-6 md:mt-10 text-base font-medium text-th-gray-300 md:text-center animation"
           data-animation-delay="0.3s"
         >
           {assets?.description}
         </p>
         {!!assets?.reasons?.length && (
           <div
-            className="grid grid-cols-2 gap-x-[150px] gap-y-20 mt-[55px] animation"
+            className="grid grid-cols-2 gap-y-6 max-md:grid-cols-1 md:gap-10 xl:gap-x-[150px] xl:gap-y-20 mt-6 md:mt-[55px] animation"
             data-animation-delay="0.4s"
           >
             {assets.reasons.map((item, index) => (
