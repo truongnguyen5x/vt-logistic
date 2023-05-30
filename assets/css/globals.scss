@@ -201,7 +201,7 @@ body {
  * 03. HEADER *
  **********/
 .header-wrap {
-  @apply absolute top-0 left-0 right-0 z-20 bg-th-white;
+  @apply absolute top-0 left-0 right-0 z-20;
 }
 
 .header-space {
@@ -496,12 +496,8 @@ a.footer-link {
   background-color: var(--color-gray-220) !important;
   border: none !important;
   border-radius: 0px !important;
-
-  @media (max-width: 1024px) {
-    width: 100%;
-  }
-
-  .custom-select-register__value-container, .custom-select-register-error__value-container {
+  .custom-select-register__value-container,
+  .custom-select-register-error__value-container {
     padding: 16px 24px !important;
   }
   .custom-select-register__indicator-separator,
@@ -628,6 +624,9 @@ a.footer-link {
   .custom-select__control {
     width: 400px;
   }
+  .custom-select-register-error__control {
+    @apply w-full;
+  }
   /*************************************
   *  COMMON COMPONENT max-width: 1440px *
   *************************************/
@@ -637,16 +636,9 @@ a.footer-link {
   /************************
   * HEADER min-width: 991px*
   **************************/
-  .navbar-brand {
-    @apply mt-5;
-  }
 
   .navbar-collapse {
     display: flex !important;
-  }
-
-  .nav-mobile-bg {
-    @apply hidden;
   }
 
   .first-nav-item {
@@ -735,21 +727,18 @@ a.footer-link {
   /************************
   * HEADER max-width: 991px*
   **************************/
-  .header-wrap {
-    @apply bg-transparent;
-  }
 
-  .header-wrap.show {
-    @apply bg-th-red-500;
+  .header-wrap {
+    &.show {
+      @apply bg-th-red-500;
+    }
+    &:not(.home) {
+      @apply bg-th-red-500;
+    }
   }
 
   .navbar {
     @apply justify-center flex-wrap;
-  }
-
-  .nav-mobile-bg {
-    @apply block absolute top-0 w-full;
-    height: 450px;
   }
 
   .navbar-toggler {
@@ -1000,16 +989,6 @@ a.footer-link {
 }
 
 @media only screen and (max-width: 480px) {
-  /*************************
-  * HEADER max-width: 480px*
-  **************************/
-  .nav-mobile-bg {
-    @apply h-72;
-  }
-  /*************************
-  * HEADER max-width: 480px*
-  **************************/
-
   /*****************************************
   * COMMON COMPONENT HEADER max-width: 480px*
   *****************************************/

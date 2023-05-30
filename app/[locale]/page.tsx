@@ -12,6 +12,7 @@ import ListPost from "./components/post";
 import { gql } from "@generated/gql";
 import { NextIntlClientProvider } from "next-intl";
 import { getClient, getHomeQueryString } from "@api/graphql-client";
+import BackgroundMobileImg from "@assets/images/background/background_mobile.png";
 import {
   ComponentHomeAbout,
   ComponentHomeFeature,
@@ -71,6 +72,13 @@ export default async function Home() {
 
   return (
     <Fragment>
+      <Image
+        className={styles.homeBackgroundMobile}
+        src={BackgroundMobileImg}
+        width={375}
+        height={344}
+        alt=""
+      />
       <SliderHome
         images={
           assetData?.attributes

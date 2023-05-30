@@ -11,7 +11,6 @@ import { FC, Fragment, useEffect, useState } from "react";
 import clsx from "clsx";
 import MenuImg from "@assets/images/icons/menu.svg";
 import LogoWhiteImg from "@assets/images/logos/logo_white.svg";
-import BackgroundMobileImg from "@assets/images/background/background_mobile.png";
 import CloseImg from "@assets/images/icons/close.svg";
 import { usePathname } from "next-intl/client";
 import SearchHeader from "@components/SearchHeader";
@@ -250,7 +249,12 @@ const Header: FC<HeaderProps> = ({ titles, locale }) => {
 
   return (
     <Fragment>
-      <header className={clsx("header-wrap", { show: openNav })}>
+      <header
+        className={clsx("header-wrap", {
+          show: openNav,
+          home: !segment,
+        })}
+      >
         <button className="navbar-toggler animation" onClick={handleOpenNavbar}>
           <Image src={MenuImg} alt="menu" />
         </button>
@@ -302,13 +306,6 @@ const Header: FC<HeaderProps> = ({ titles, locale }) => {
           </nav>
         </div>
       </header>
-      <Image
-        className="nav-mobile-bg"
-        src={BackgroundMobileImg}
-        width={375}
-        height={344}
-        alt=""
-      />
       <div className="header-space"></div>
     </Fragment>
   );

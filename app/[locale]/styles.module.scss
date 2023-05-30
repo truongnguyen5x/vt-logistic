@@ -562,9 +562,16 @@
 }
 
 @media only screen and (min-width: 991px) {
+  .homeBackgroundMobile {
+    @apply hidden;
+  }
 }
 
 @media only screen and (max-width: 991px) {
+  .homeBackgroundMobile {
+    @apply block absolute top-0 w-full;
+    height: 450px;
+  }
   /******************************
   * HOME SLIDER max-width: 991px*
   ******************************/
@@ -590,6 +597,9 @@
 }
 
 @media only screen and (max-width: 480px) {
+  .homeBackgroundMobile {
+    @apply h-72;
+  }
   /****************************
   * HOME SLIDER max-width: 480px*
   *****************************/
