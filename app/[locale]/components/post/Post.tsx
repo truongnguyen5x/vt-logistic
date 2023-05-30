@@ -50,7 +50,7 @@ const PostHome: FC<PostHomeProps> = ({
             }
           >
             <Image src={ClockImg} alt="clock" width={15} height={15} />
-            {"22 - 2 - 2023"}
+            {formatDate(new Date(postData?.attributes?.updatedAt))}
           </p>
           <p
             className={size == "NORMAL" ? styles.postDes : styles.postDesLarge}

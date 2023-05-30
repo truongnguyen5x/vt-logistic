@@ -14,9 +14,9 @@ import LogoWhiteImg from "@assets/images/logos/logo_white.svg";
 import BackgroundMobileImg from "@assets/images/background/background_mobile.png";
 import CloseImg from "@assets/images/icons/close.svg";
 import { usePathname } from "next-intl/client";
-import SearchHeader from "./components/Search";
-import ProfileHeader from "./components/Profile";
-import SelectLocale from "./components/SelectLocale";
+import SearchHeader from "@components/SearchHeader";
+import ProfileHeader from "@components/ProfileHeader";
+import SelectLocale from "@components/SelectLocale";
 import { ILocale } from "@configs/i18n";
 
 interface HeaderProps {

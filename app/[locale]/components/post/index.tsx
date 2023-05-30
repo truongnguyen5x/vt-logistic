@@ -5,7 +5,6 @@ import PostHome from "./Post";
 import RightImg from "@assets/images/icons/arrow_right_2.svg";
 import Image from "next/image";
 import styles from "@app/styles.module.scss";
-import { useRouter } from "next-intl/client";
 import Link from "next-intl/link";
 import { Maybe, NewsEntity } from "@generated/graphql";
 import useWindowSize from "@hooks/use-window-size";

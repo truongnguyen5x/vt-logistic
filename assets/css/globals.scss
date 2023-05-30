@@ -731,7 +731,7 @@ a.footer-link {
     @apply block z-10;
   }
   .navbar-brand {
-    @apply mt-3 mb-3;
+    @apply mt-5 mb-3;
     & > img:first-child {
       @apply hidden;
     }
@@ -876,8 +876,15 @@ a.footer-link {
     li {
       @apply flex justify-center;
     }
-    .locale-dropdown.show {
+  }
+  .locale-dropdown {
+    &.show {
       @apply block static w-full;
+    }
+    li {
+      img {
+        @apply w-5 h-5;
+      }
     }
   }
 
@@ -890,6 +897,9 @@ a.footer-link {
  ********************/
   .section-name {
     @apply text-3xl;
+  }
+  .btn-red {
+    height: 50px;
   }
   /********************
  * COMMON COMPONENT *

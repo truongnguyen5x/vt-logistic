@@ -33,6 +33,7 @@
   :global .slick-dots {
     bottom: $bottom;
     li {
+      @apply mx-0;
       button:before {
         font-size: 14px;
       }

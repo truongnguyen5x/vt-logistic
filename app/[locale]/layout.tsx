@@ -5,13 +5,13 @@ import "@assets/css/animate.scss";
 
 import { useLocale, useTranslations } from "next-intl";
 import { notFound } from "next/navigation";
-import Header from "./Header";
+import Header from "@components/Header";
 import localFont from "next/font/local";
-import Loader from "./components/Loader";
+import Loader from "@components/Loader";
 import { ILocale, i18n } from "@configs/i18n";
-import Footer from "./Footer";
+import Footer from "@components/Footer";
 import Script from "next/script";
-import BackToTop from "./components/BackToTop";
+import BackToTop from "@components/BackToTop";
 import toast, { Toaster } from "react-hot-toast";
 
 const SVNgilroy = localFont({
