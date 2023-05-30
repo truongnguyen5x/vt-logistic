@@ -11,10 +11,14 @@ import { SERVICE_TRANSPORT } from "@ultility/constant";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Controller, useForm } from "react-hook-form";
-import { useSuspenseQuery } from "@apollo/experimental-nextjs-app-support/ssr";
+import {
+  ApolloNextAppProvider,
+  useSuspenseQuery,
+} from "@apollo/experimental-nextjs-app-support/ssr";
 import { getLanguageForApi } from "@ultility/index";
 import { getCountryQueryString, getProvinceQueryString } from "@api/location";
 import { gql } from "@generated/gql";
+import { ApolloWrapper, makeClient, makeSuspenseCache } from "@api/client";
 
 type Props = {
   textBtn?: string;
@@ -366,13 +370,10 @@ const ResgisterPopup: FC<Props> = ({
   );
 };
 
-export default ResgisterPopup;
-
 function useOutsideClose(ref: any, onClose: () => void) {
   useEffect(() => {
     function handleClickOutside(event: any) {
       if (ref.current && !ref.current.contains(event.target)) {
-        console.log(1);
         onClose();
       }
     }
@@ -384,4 +385,24 @@ function useOutsideClose(ref: any, onClose: () => void) {
       document.removeEventListener("click", handleClickOutside);
     };
   }, [onClose, ref]);
+}
+
+export default function ResgisterPopupWrap({
+  textBtn = "",
+  label,
+  placeholder,
+  title,
+  description,
+}: Props) {
+  return (
+    <ApolloWrapper>
+      <ResgisterPopup
+        textBtn={textBtn}
+        label={label}
+        placeholder={placeholder}
+        title={title}
+        description={description}
+      />
+    </ApolloWrapper>
+  );
 }
