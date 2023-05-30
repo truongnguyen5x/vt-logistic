@@ -3,6 +3,17 @@ export const getTruckingQueryString = /* GraphQL */ `
     truckings(locale: $locale) {
       data {
         attributes {
+          SEO {
+            metaTitle
+            metaDescription
+            metaImage {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
+          }
           banner {
             data {
               attributes {

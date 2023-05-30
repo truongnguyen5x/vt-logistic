@@ -3,6 +3,17 @@ export const getServiceQueryString = /* GraphQL */ `
     services(locale: $locale) {
       data {
         attributes {
+          SEO {
+            metaTitle
+            metaDescription
+            metaImage {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
+          }
           banner {
             data {
               attributes {
@@ -51,3 +62,22 @@ export const getServiceQueryString = /* GraphQL */ `
     }
   }
 `;
+
+export const mutationOrderService = /* GraphQL */ `
+  mutation createOrderService($data: OrderInput!, $locale: I18NLocaleCode) {
+    createOrder(data: $data, locale: $locale) {
+      data {
+        id
+        attributes {
+          fullname
+          phone_number
+          email
+          service
+          from
+          to
+          note
+        }
+      }
+    }
+  } 
+`

@@ -3,6 +3,17 @@ export const getContactQueryString = /* GraphQL */ `
     contacts(locale: $locale) {
       data {
         attributes {
+          SEO {
+            metaTitle
+            metaDescription
+            metaImage {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
+          }
           banner {
             data {
               attributes {
@@ -28,4 +39,22 @@ export const getContactQueryString = /* GraphQL */ `
       }
     }
   }
+`
+
+export const mutationCustomerContact = /* GraphQL */ `
+  mutation createCustomerContact($data: CustomerContactInput!, $locale: I18NLocaleCode) {
+    createCustomerContact(data: $data, locale: $locale) {
+      data {
+        id
+        attributes {
+          title
+          fullname
+          phone_number
+          email
+          content
+          address
+        }
+      }
+    }
+  } 
 `

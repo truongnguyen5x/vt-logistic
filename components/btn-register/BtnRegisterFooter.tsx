@@ -6,12 +6,19 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import clsx from "clsx";
 import toast, { Toaster } from "react-hot-toast";
+import { ApolloNextAppProvider } from "@apollo/experimental-nextjs-app-support/ssr";
+import { makeClient, makeSuspenseCache } from "@api/client";
+import { useMutation } from "@apollo/client";
+import { CreateCustomerContactDocument } from "@generated/graphql";
+import { getLanguageForApi } from "@ultility/index";
+import { ILocale } from "@configs/i18n";
 
 interface ButtonRegisterFooterProps {
   placeholder: string;
   btn: string;
   errorTxt: string;
   successTxt: string;
+  locale: ILocale;
 }
 
 const registerSchema = yup.object({
@@ -23,6 +30,21 @@ const ButtonRegisterFooter: FC<ButtonRegisterFooterProps> = ({
   btn,
   errorTxt,
   successTxt,
+  locale
+}) => {
+  return (
+    <ApolloNextAppProvider makeClient={makeClient} makeSuspenseCache={makeSuspenseCache}>
+      <RegisterFooter locale={locale} placeholder={placeholder} btn={btn} errorTxt={errorTxt} successTxt={successTxt} />
+    </ApolloNextAppProvider>
+  )
+}
+
+const RegisterFooter: FC<ButtonRegisterFooterProps> = ({
+  placeholder,
+  btn,
+  errorTxt,
+  successTxt,
+  locale
 }) => {
   const {
     control,
@@ -36,8 +58,18 @@ const ButtonRegisterFooter: FC<ButtonRegisterFooterProps> = ({
     },
   });
 
+  const [create] = useMutation(CreateCustomerContactDocument, {
+    onCompleted(data, clientOptions) {
+      console.log(data);
+      toast.success(successTxt);
+    },
+    onError(error, clientOptions) {
+      console.log(error);
+    },
+  });
+
   const onSubmit = (data: { email: string }) => {
-    toast.success(successTxt);
+    create({variables: {data, locale: getLanguageForApi(locale)}})
   };
 
   return (

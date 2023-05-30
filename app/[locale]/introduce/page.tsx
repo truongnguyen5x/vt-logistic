@@ -21,6 +21,7 @@ import {
   ComponentIntroduceReasonsChooseWe,
   Maybe,
 } from "@generated/graphql";
+import { Metadata } from "next";
 
 const getIntroduceAsset = async (locale: ILocale) => {
   const { data } = await getClient().query({
@@ -31,6 +32,28 @@ const getIntroduceAsset = async (locale: ILocale) => {
   // get last element
   return data.introduces?.data[data?.introduces?.data?.length - 1];
 };
+
+
+type Props = {
+  params: { locale: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const locale = params.locale
+
+  // fetch data
+  const [assetData] = await Promise.all([
+    getIntroduceAsset(locale as ILocale),
+  ]);
+
+  return {
+    title: assetData?.attributes?.SEO?.metaTitle,
+    description: assetData?.attributes?.SEO?.metaDescription,
+    openGraph: {
+      images: [getPrefixImageUrl(assetData?.attributes?.SEO?.metaImage.data?.attributes?.url)]
+    },
+  };
+}
 
 const Introduce = async () => {
   const locale = useLocale();

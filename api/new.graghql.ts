@@ -23,6 +23,17 @@ export const getNewQueryString = /* GraphQL */ `
       data {
         id
         attributes {
+          SEO {
+            metaTitle
+            metaDescription
+            metaImage {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
+          }
           title
           content
           preview_content

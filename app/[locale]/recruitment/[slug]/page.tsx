@@ -21,6 +21,7 @@ import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
 import { Maybe, NewsEntity, NewsInput } from "@generated/graphql";
 import ReactPost from "./components/ReactPost";
 import SliderNew from "@components/news/SliderNew";
+import { Metadata } from "next";
 
 const getNewAsset = async (
   locale: ILocale,
@@ -52,6 +53,34 @@ const updateNew = async (locale: ILocale, id: string, data: NewsInput) => {
 
   return mutation;
 };
+
+type Props = {
+  params: { locale: string, slug: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const locale = params.locale
+
+  // fetch data
+  const [assetData] = await Promise.all([
+    getNewAsset(
+      locale as ILocale,
+      {
+        slug: decodeURIComponent(params?.slug),
+        type: "recruitment",
+      },
+      { page: 1 }
+    ),
+  ]);
+
+  return {
+    title: assetData?.data[0]?.attributes?.SEO?.metaTitle,
+    description: assetData?.data[0]?.attributes?.SEO?.metaDescription,
+    openGraph: {
+      images: [getPrefixImageUrl(assetData?.data[0]?.attributes?.SEO?.metaImage.data?.attributes?.url)]
+    },
+  };
+}
 
 const PostDetail = async (props: any) => {
   const locale = useLocale();

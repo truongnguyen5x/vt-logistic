@@ -3,6 +3,17 @@ export const getCustomQueryString = /* GraphQL */ `
     customs(locale: $locale) {
       data {
         attributes {
+          SEO {
+            metaTitle
+            metaDescription
+            metaImage {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
+          }
           banner {
             data {
               attributes {

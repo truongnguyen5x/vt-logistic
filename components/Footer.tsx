@@ -95,6 +95,7 @@ const Footer = async () => {
             errorTxt={t("email_validate")}
             placeholder={t("placeholder")}
             btn={t("register_txt")}
+            locale={locale as ILocale}
           />
         </div>
       </div>

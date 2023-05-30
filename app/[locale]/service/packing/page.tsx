@@ -13,6 +13,7 @@ import { getClient } from "@api/graphql-client";
 import { gql } from "@generated/gql";
 import { getPackingQueryString } from "@api/packing.graghql";
 import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
+import { Metadata } from "next";
 
 const getPackingAsset = async (locale: ILocale) => {
   const { data } = await getClient().query({
@@ -23,6 +24,29 @@ const getPackingAsset = async (locale: ILocale) => {
   // get last element
   return data.packings?.data[data?.packings?.data?.length - 1];
 };
+
+
+type Props = {
+  params: { locale: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const locale = params.locale
+
+  // fetch data
+  const [assetData] = await Promise.all([
+    getPackingAsset(locale as ILocale),
+  ]);
+
+  return {
+    title: assetData?.attributes?.SEO?.metaTitle,
+    description: assetData?.attributes?.SEO?.metaDescription,
+    openGraph: {
+      images: [getPrefixImageUrl(assetData?.attributes?.SEO?.metaImage.data?.attributes?.url)]
+    },
+  };
+}
+
 
 const Packing = async () => {
   const locale = useLocale();

@@ -3,6 +3,17 @@ export const getMilestoneQueryString = /* GraphQL */ `
     milestones(locale: $locale) {
       data {
         attributes {
+          SEO {
+            metaTitle
+            metaDescription
+            metaImage {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
+          }
           banner {
             data {
               attributes {

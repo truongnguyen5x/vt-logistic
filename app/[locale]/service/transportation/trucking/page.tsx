@@ -15,6 +15,7 @@ import { getTruckingQueryString } from "@api/trucking.graghql";
 import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
 import { ComponentTruckingOtherService, Maybe } from "@generated/graphql";
 import { ApolloWrapper } from "@api/client";
+import { Metadata } from "next";
 
 const getTruckingAsset = async (locale: ILocale) => {
   const { data } = await getClient().query({
@@ -25,6 +26,28 @@ const getTruckingAsset = async (locale: ILocale) => {
   // get last element
   return data.truckings?.data[data?.truckings?.data?.length - 1];
 };
+
+
+type Props = {
+  params: { locale: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const locale = params.locale
+
+  // fetch data
+  const [assetData] = await Promise.all([
+    getTruckingAsset(locale as ILocale),
+  ]);
+
+  return {
+    title: assetData?.attributes?.SEO?.metaTitle,
+    description: assetData?.attributes?.SEO?.metaDescription,
+    openGraph: {
+      images: [getPrefixImageUrl(assetData?.attributes?.SEO?.metaImage.data?.attributes?.url)]
+    },
+  };
+}
 
 const ServiceTrucking = async () => {
   const locale = useLocale();
@@ -108,6 +131,7 @@ const ServiceTrucking = async () => {
               ))}
             <div className="mt-6">
               <ResgisterPopup
+                locale={locale as ILocale}
                 textBtn={t("create_order")}
                 title={t("register_popup.title")}
                 description={t("register_popup.description")}
@@ -177,6 +201,7 @@ const ServiceTrucking = async () => {
               ))}
             <div className="flex max-md:flex-col-reverse gap-6 mt-9">
               <ResgisterPopup
+                locale={locale as ILocale}
                 textBtn={t("create_order")}
                 title={t("register_popup.title")}
                 description={t("register_popup.description")}
@@ -276,6 +301,7 @@ const ServiceTrucking = async () => {
             )}
           <div className="flex max-md:flex-col-reverse gap-6 mt-9">
             <ResgisterPopup
+              locale={locale as ILocale}
               textBtn={t("create_order")}
               title={t("register_popup.title")}
               description={t("register_popup.description")}

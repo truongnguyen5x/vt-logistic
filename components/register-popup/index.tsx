@@ -18,7 +18,10 @@ import {
 import { getLanguageForApi } from "@ultility/index";
 import { getCountryQueryString, getProvinceQueryString } from "@api/location";
 import { gql } from "@generated/gql";
-import { ApolloWrapper, makeClient, makeSuspenseCache } from "@api/client";
+import { makeClient, makeSuspenseCache } from "@api/client";
+import { useMutation } from "@apollo/client";
+import { CreateOrderServiceDocument } from "@generated/graphql";
+import { toast } from "react-hot-toast";
 
 type Props = {
   textBtn?: string;
@@ -45,11 +48,12 @@ type Props = {
     weight: string;
     note: string;
   };
+  locale: ILocale
 };
 
 const schema = yup.object({
-  fullName: yup.string().required("Vui lòng nhập"),
-  phoneNumber: yup.string().required("Vui lòng nhập"),
+  fullname: yup.string().required("Vui lòng nhập"),
+  phone_number: yup.string().required("Vui lòng nhập"),
   email: yup.string().email("Vui lòng nhập email"),
   service: yup.string().required("Vui lòng nhập"),
   from: yup.string().required("Vui lòng nhập"),
@@ -62,6 +66,7 @@ const ResgisterPopup: FC<Props> = ({
   placeholder,
   title,
   description,
+  locale
 }) => {
   const params = useParams();
 
@@ -101,10 +106,18 @@ const ResgisterPopup: FC<Props> = ({
     document.body.style.overflowY = "auto";
   };
 
+  const [mutation] = useMutation(CreateOrderServiceDocument, {
+    onCompleted(data, clientOptions) {
+      console.log(data);
+      toast.success("Đăng ký thành công")
+      handleClose()
+    },
+  })
+
   useOutsideClose(ref, handleClose);
 
   const onSubmit = (data: any) => {
-    console.log(data);
+    mutation({variables: {data, locale: getLanguageForApi(locale)}})
   };
 
   return (
@@ -155,12 +168,12 @@ const ResgisterPopup: FC<Props> = ({
                         {label.fullname}
                       </label>
                       <Controller
-                        name="fullName"
+                        name="fullname"
                         control={control}
                         render={({ field }) => (
                           <input
                             className={`bg-th-gray-220 h-14 focus-visible:outline-none px-6 py-4 w-full ${
-                              !!errors.fullName?.message
+                              !!errors.fullname?.message
                                 ? "border border-th-red-500"
                                 : ""
                             }`}
@@ -169,9 +182,9 @@ const ResgisterPopup: FC<Props> = ({
                           />
                         )}
                       />
-                      {!!errors.fullName && !!errors.fullName?.message && (
+                      {!!errors.fullname && !!errors.fullname?.message && (
                         <p className="text-sm text-th-red-500 mt-1">
-                          {errors.fullName?.message.toString()}
+                          {errors.fullname?.message.toString()}
                         </p>
                       )}
                     </div>
@@ -180,12 +193,12 @@ const ResgisterPopup: FC<Props> = ({
                         {label.phone_number}
                       </label>
                       <Controller
-                        name="phoneNumber"
+                        name="phone_number"
                         control={control}
                         render={({ field }) => (
                           <input
                             className={`bg-th-gray-220 h-14 focus-visible:outline-none px-6 py-4 w-full ${
-                              !!errors.phoneNumber?.message
+                              !!errors.phone_number?.message
                                 ? "border border-th-red-500"
                                 : ""
                             }`}
@@ -194,10 +207,10 @@ const ResgisterPopup: FC<Props> = ({
                           />
                         )}
                       />
-                      {!!errors.phoneNumber &&
-                        !!errors.phoneNumber?.message && (
+                      {!!errors.phone_number &&
+                        !!errors.phone_number?.message && (
                           <p className="text-sm text-th-red-500 mt-1">
-                            {errors.phoneNumber?.message.toString()}
+                            {errors.phone_number?.message.toString()}
                           </p>
                         )}
                     </div>
@@ -252,9 +265,9 @@ const ResgisterPopup: FC<Props> = ({
                           });
                         }}
                         options={[
-                          { value: "0", label: "Express" },
-                          { value: "1", label: "Fowarding" },
-                          { value: "2", label: "Vận tải" },
+                          { value: "Express", label: "Express" },
+                          { value: "Fowarding", label: "Fowarding" },
+                          { value: "Vận tải", label: "Vận tải" },
                         ]}
                       />
                       {!!errors.service && !!errors.service?.message && (
@@ -393,16 +406,18 @@ export default function ResgisterPopupWrap({
   placeholder,
   title,
   description,
+  locale
 }: Props) {
   return (
-    <ApolloWrapper>
+    <ApolloNextAppProvider makeClient={makeClient} makeSuspenseCache={makeSuspenseCache}>
       <ResgisterPopup
         textBtn={textBtn}
         label={label}
         placeholder={placeholder}
         title={title}
         description={description}
+        locale={locale}
       />
-    </ApolloWrapper>
+    </ApolloNextAppProvider>
   );
 }
