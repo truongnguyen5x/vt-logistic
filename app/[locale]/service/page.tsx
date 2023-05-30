@@ -16,6 +16,7 @@ import {
   ComponentServiceTransportation,
   Maybe,
 } from "@generated/graphql";
+import { Metadata } from "next";
 
 const getServiceAsset = async (locale: ILocale) => {
   const { data } = await getClient().query({
@@ -26,6 +27,28 @@ const getServiceAsset = async (locale: ILocale) => {
   // get last element
   return data.services?.data[data?.services?.data?.length - 1];
 };
+
+
+type Props = {
+  params: { locale: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const locale = params.locale
+
+  // fetch data
+  const [assetData] = await Promise.all([
+    getServiceAsset(locale as ILocale),
+  ]);
+
+  return {
+    title: assetData?.attributes?.SEO?.metaTitle,
+    description: assetData?.attributes?.SEO?.metaDescription,
+    openGraph: {
+      images: [getPrefixImageUrl(assetData?.attributes?.SEO?.metaImage.data?.attributes?.url)]
+    },
+  };
+}
 
 const Service = async () => {
   const locale = useLocale();

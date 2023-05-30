@@ -25,17 +25,22 @@ import {
   NewsEntity,
   UploadFileRelationResponseCollection,
 } from "@generated/graphql";
-import { getLanguageForApi } from "@ultility/index";
+import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
 import SliderFeature from "./components/SliderFeature";
 import { getNewQueryString } from "@api/new.graghql";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { Metadata, ResolvingMetadata } from 'next';
 
 // TODO: generateStaticParams what for?
 
 // export async function generateStaticParams() {
 //   return i18n.locales.map((i: ILocale) => ({ locale: i }));
 // }
+
+type Props = {
+  params: { locale: string };
+};
 
 const getHomeAsset = async (locale: ILocale) => {
   const { data } = await getClient().query({
@@ -46,6 +51,23 @@ const getHomeAsset = async (locale: ILocale) => {
   // get last element
   return data.homes?.data[data?.homes?.data?.length - 1];
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const locale = params.locale
+
+  // fetch data
+  const [assetData] = await Promise.all([
+    getHomeAsset(locale as ILocale),
+  ]);
+
+  return {
+    title: assetData?.attributes?.SEO?.metaTitle,
+    description: assetData?.attributes?.SEO?.metaDescription,
+    openGraph: {
+      images: [getPrefixImageUrl(assetData?.attributes?.SEO?.metaImage.data?.attributes?.url)]
+    },
+  };
+}
 
 const getListPostHome = async (locale: ILocale) => {
   const { data } = await getClient().query({

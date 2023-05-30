@@ -17,6 +17,17 @@ export const getHomeQueryString = /* GraphQL */ `
     homes(locale: $locale) {
       data {
         attributes {
+          SEO {
+            metaTitle
+            metaDescription
+            metaImage {
+              data {
+                attributes {
+                  url
+                }
+              }
+            }
+          }
           banners {
             data {
               attributes {

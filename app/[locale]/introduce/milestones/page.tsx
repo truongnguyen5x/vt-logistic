@@ -11,6 +11,7 @@ import { gql } from "@generated/gql";
 import { getMilestoneQueryString } from "@api/milestone.graghql";
 import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
 import { ComponentIntroduceMilestones, Maybe } from "@generated/graphql";
+import { Metadata } from "next";
 
 const getMilestoneAsset = async (locale: ILocale) => {
   const { data } = await getClient().query({
@@ -21,6 +22,28 @@ const getMilestoneAsset = async (locale: ILocale) => {
   // get last element
   return data.milestones?.data[data?.milestones?.data?.length - 1];
 };
+
+
+type Props = {
+  params: { locale: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const locale = params.locale
+
+  // fetch data
+  const [assetData] = await Promise.all([
+    getMilestoneAsset(locale as ILocale),
+  ]);
+
+  return {
+    title: assetData?.attributes?.SEO?.metaTitle,
+    description: assetData?.attributes?.SEO?.metaDescription,
+    openGraph: {
+      images: [getPrefixImageUrl(assetData?.attributes?.SEO?.metaImage.data?.attributes?.url)]
+    },
+  };
+}
 
 const Milestones = async () => {
   const locale = useLocale();
