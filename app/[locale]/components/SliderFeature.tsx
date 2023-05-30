@@ -38,7 +38,7 @@ const SliderFeature: FC<SliderFeatureProps> = ({ features }) => {
 
   return (
     <section className={styles.featureSection}>
-      <div className="container mx-auto">
+      <div className="md:container mx-auto">
         <Slider
           dots={false}
           infinite

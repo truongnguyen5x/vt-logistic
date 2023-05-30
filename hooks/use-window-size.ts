@@ -14,8 +14,8 @@ function useWindowSize() {
 
   return {
     width: windowSize,
-    isDesktop: windowSize > 1366,
-    isTablet: windowSize < 1366 && windowSize >= 768,
+    isDesktop: windowSize > 1024,
+    isTablet: windowSize <= 1024 && windowSize >= 768,
     isMobile: windowSize < 768,
   };
 }

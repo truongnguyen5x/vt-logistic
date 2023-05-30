@@ -120,14 +120,14 @@ const Footer = async () => {
           ))}
         </div>
         <div
-          className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3 mb-7 animation"
+          className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-5 gap-3 mb-7 animation"
           data-animation-delay="0.3s"
         >
           {!!footerAsset &&
             footerAsset?.attributes?.links?.map((item, idx) => (
               <div
                 key={idx}
-                className="mx-4 md:mx-0 border-b border-th-gray-280 md:border-b-0 pb-2"
+                className=" border-b border-th-gray-280 md:border-b-0 pb-2"
               >
                 <p className="footer-item">{item?.title}</p>
                 {item?.links?.map((i, idx) =>
@@ -138,10 +138,10 @@ const Footer = async () => {
         </div>
         <div className="custom-horizontal-divider hidden md:block"></div>
         <div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3 md:gap-7 mt-7 animation"
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 gap-3 md:gap-7 mt-7 animation"
           data-animation-delay="0.4s"
         >
-          <div className="hidden md:block md:col-span-1 lg:col-span-2 mx-4 md:mx-0">
+          <div className="hidden md:block md:col-span-1 xl:col-span-2">
             <Image src={LogoImg} width={154} height={55} alt="logo" />
             <p className="footer-item mt-7">{t("about")}</p>
             {footerAsset?.attributes?.infos?.map((i, idx1) => (
@@ -170,8 +170,8 @@ const Footer = async () => {
               ))}
             </div>
           </div>
-          <div className="lg:hidden"></div>
-          <div className="col-span-1 lg:col-span-2 mx-4 md:mx-0">
+          <div className="xl:hidden"></div>
+          <div className="col-span-1 xl:col-span-2 mx-4 md:mx-0">
             <p className="footer-item">{t("certified_by")}</p>
             <div className="flex justify-start gap-12 mt-9">
               <Image

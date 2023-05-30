@@ -43,7 +43,8 @@ function SamplePrevArrow(props: any) {
 }
 
 const AboutUs: FC<Props> = ({ abouts }) => {
-  const { isDesktop, isTablet } = useWindowSize();
+  const { isDesktop, isTablet, width } = useWindowSize();
+
   return (
     <div
       className={clsx("animation", styles.aboutUsSection)}
