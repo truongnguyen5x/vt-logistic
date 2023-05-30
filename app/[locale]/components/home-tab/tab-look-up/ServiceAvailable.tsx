@@ -15,7 +15,7 @@ const ServiceAvailable: FC<ServiceAvailableProps> = ({ contacts }) => {
 
   return (
     <Fragment>
-      <div className="flex flex-col items-center mt-8 mb-8 mx-4 lg:mx-0">
+      <div className="flex flex-col items-center mt-8 mb-8">
         <Image src={CheckImg} width={82} height={82} alt="check" />
         <p className="text-th-gray-300 font-semibold text-2xl uppercase mt-4">
           {t("service_available")}

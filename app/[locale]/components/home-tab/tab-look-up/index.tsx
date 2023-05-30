@@ -76,6 +76,7 @@ const TabLookup: FC<TabLookupProps> = ({ lookups, contacts }) => {
         slidesToScroll={1}
         dots={false}
         speed={500}
+        adaptiveHeight
       >
         <FormLookup
           listCountry={listCountry as ILocation[]}

@@ -77,7 +77,7 @@ const ChooseLocation: FC<ChooseLocationProps> = ({
         />
       </div>
       <div className="container mx-auto flex justify-start lg:p-12 flex-col lg:flex-row gap-10 my-10">
-        <div className="flex mx-4 lg:mx-0 flex-col gap-2">
+        <div className="flex flex-col gap-2">
           <div className="flex gap-7 mb-9">
             <div className={styles.formIconWrapper}>
               <Image alt="location" src={LocationImg} width={38} height={38} />

@@ -1,6 +1,5 @@
 import "@assets/css/globals.scss";
 import "@assets/css/theme.scss";
-import "@assets/css/responsive.scss";
 import "@assets/css/animate.scss";
 
 import { useLocale, useTranslations } from "next-intl";

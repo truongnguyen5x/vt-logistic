@@ -155,7 +155,7 @@ const Footer = async () => {
               </a>
             ))}
           </div>
-          <div className="mx-4 md:mx-0 border-b border-th-gray-280 md:border-b-0 pb-10">
+          <div className="border-b border-th-gray-280 md:border-b-0 pb-10">
             <p className="footer-item">{t("connect_with_us")}</p>
             <div className="flex justify-start gap-7 mt-9">
               {footerAsset?.attributes?.socials?.map((i, idx2) => (
@@ -171,7 +171,7 @@ const Footer = async () => {
             </div>
           </div>
           <div className="xl:hidden"></div>
-          <div className="col-span-1 xl:col-span-2 mx-4 md:mx-0">
+          <div className="col-span-1 xl:col-span-2">
             <p className="footer-item">{t("certified_by")}</p>
             <div className="flex justify-start gap-12 mt-9">
               <Image

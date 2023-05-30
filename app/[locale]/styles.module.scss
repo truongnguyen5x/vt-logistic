@@ -542,7 +542,7 @@
   * MY SERVICE max-width: 991px*
   ****************************/
   .homeServiceSection {
-    @apply mx-4 mb-12;
+    @apply mb-12;
     @include slick-dots-red(-28px);
   }
   /***************************
@@ -557,7 +557,6 @@
   }
 
   .formBackgroundMobile {
-    @apply mx-4;
     display: block !important;
   }
 
