@@ -13,7 +13,9 @@ import { ILocation } from "@type/location";
 import {
   ComponentHomeHomeLookup,
   ComponentHomeServiceContact,
+  CountryEntity,
   Maybe,
+  ProvinceEntity,
 } from "@generated/graphql";
 import { getCountryQueryString, getProvinceQueryString } from "@api/location";
 import { gql } from "@generated/gql";
@@ -38,8 +40,12 @@ const TabLookup: FC<TabLookupProps> = ({ lookups, contacts }) => {
     variables: { locale: getLanguageForApi(params.locale as ILocale) },
   });
 
-  const listCountry = dataCountry.countries?.data.map((i) => i.attributes);
-  const listProvince = dataProvince.provinces?.data.map((i) => i.attributes);
+  const listCountry = dataCountry.countries?.data.map(
+    (i: CountryEntity) => i.attributes
+  );
+  const listProvince = dataProvince.provinces?.data.map(
+    (i: ProvinceEntity) => i.attributes
+  );
 
   const handleChangeTab = (idx: number) => {
     setActiveTab(idx);

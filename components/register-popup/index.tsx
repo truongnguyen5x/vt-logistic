@@ -19,6 +19,7 @@ import { getLanguageForApi } from "@ultility/index";
 import { getCountryQueryString, getProvinceQueryString } from "@api/location";
 import { gql } from "@generated/gql";
 import { ApolloWrapper, makeClient, makeSuspenseCache } from "@api/client";
+import { CountryEntity, ProvinceEntity } from "@generated/graphql";
 
 type Props = {
   textBtn?: string;
@@ -85,9 +86,9 @@ const ResgisterPopup: FC<Props> = ({
   });
 
   const listCountry =
-    dataCountry.countries?.data.map((i) => i.attributes) || [];
+    dataCountry.countries?.data.map((i: CountryEntity) => i.attributes) || [];
   const listProvince =
-    dataProvince.provinces?.data.map((i) => i.attributes) || [];
+    dataProvince.provinces?.data.map((i: ProvinceEntity) => i.attributes) || [];
 
   const ref = useRef(null);
 
