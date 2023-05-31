@@ -1,7 +1,7 @@
 export const getIntroduceQueryString = /* GraphQL */ `
   query getIntroduces($locale: I18NLocaleCode) {
     introduces(locale: $locale) {
-      data{
+      data {
         attributes {
           SEO {
             metaTitle
@@ -14,24 +14,24 @@ export const getIntroduceQueryString = /* GraphQL */ `
               }
             }
           }
-          banner{
-            data{
-              attributes{
+          banner {
+            data {
+              attributes {
                 url
               }
             }
           }
           general {
-            image{
-              data{
-                attributes{
+            image {
+              data {
+                attributes {
                   url
                 }
               }
             }
-            sub_image{
-              data{
-                attributes{
+            sub_image {
+              data {
+                attributes {
                   url
                 }
               }
@@ -41,8 +41,8 @@ export const getIntroduceQueryString = /* GraphQL */ `
           }
           mission {
             image {
-              data{
-                attributes{
+              data {
+                attributes {
                   url
                 }
               }
@@ -53,19 +53,20 @@ export const getIntroduceQueryString = /* GraphQL */ `
             }
             introduce {
               icon {
-                data{
-                  attributes{
+                data {
+                  attributes {
                     url
                   }
                 }
               }
+              number
               title
             }
           }
           core_values {
             image {
-              data{
-                attributes{
+              data {
+                attributes {
                   url
                 }
               }
@@ -79,8 +80,8 @@ export const getIntroduceQueryString = /* GraphQL */ `
           }
           reasons_choose_we {
             image {
-              data{
-                attributes{
+              data {
+                attributes {
                   url
                 }
               }
@@ -88,8 +89,8 @@ export const getIntroduceQueryString = /* GraphQL */ `
             description
             reasons {
               icon {
-                data{
-                  attributes{
+                data {
+                  attributes {
                     url
                   }
                 }
@@ -100,8 +101,8 @@ export const getIntroduceQueryString = /* GraphQL */ `
           }
           other {
             image {
-              data{
-                attributes{
+              data {
+                attributes {
                   url
                 }
               }
@@ -113,5 +114,5 @@ export const getIntroduceQueryString = /* GraphQL */ `
         }
       }
     }
-  } 
-`
+  }
+`;

@@ -75,10 +75,6 @@ const Header: FC<HeaderProps> = ({ titles, locale }) => {
           path: "/introduce/milestones",
           key: "milestones",
         },
-        {
-          path: "/contact",
-          key: "info_contact",
-        },
       ],
     },
     {

@@ -72,7 +72,6 @@ export default function RootLayout({
             recruitment: t("recruitment"),
             introduce_general: t("introduce_general"),
             milestones: t("milestones"),
-            info_contact: t("info_contact"),
             transportation: t("transportation"),
             trucking: t("trucking"),
             rail_transportation: t("rail_transportation"),

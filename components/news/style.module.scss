@@ -1,0 +1,5 @@
+@import "../../assets/css/_variables.scss";
+@import "../../assets/css/animate.scss";
+.slider {
+  @include slick-dots-red(-8px);
+}

@@ -2,12 +2,13 @@
 
 import { FC } from "react";
 import Slider from "react-slick";
-
+import styles from "./style.module.scss";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { NewsEntity } from "@generated/graphql";
 import { SideCard } from "./Cards";
 import { IPostCategory } from "@type/post";
+import clsx from "clsx";
 
 type Props = {
   title?: string;
@@ -31,7 +32,10 @@ const SliderNew: FC<Props> = ({ title, data, category }) => {
         slidesToShow={!!data && data?.length > 1 ? 2 : 1}
         slidesToScroll={1}
         arrows={false}
-        className="animation slider-selectable min-w-[343px] max-w-[720px]"
+        className={clsx(
+          "animation slider-selectable min-w-[343px] max-w-[720px]",
+          styles.slider
+        )}
         responsive={[
           {
             breakpoint: 600,

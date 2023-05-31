@@ -22,7 +22,7 @@ const SliderFeature: FC<Props> = ({ features }) => {
       slidesToShow={2}
       slidesToScroll={1}
       arrows={false}
-      className="animation slider-selectable min-w-[343px] max-w-[720px] mx-auto md:!hidden"
+      className="animation slider-selectable md:!hidden w-screen"
     >
       {!!features &&
         !!features.length &&

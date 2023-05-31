@@ -786,7 +786,7 @@ a.footer-link {
     }
     &.mobile-toggle {
       .second-nav {
-        @apply block static w-full bg-th-red-500;
+        @apply block static w-full bg-th-white;
       }
     }
     &.toggleable {
@@ -800,9 +800,10 @@ a.footer-link {
   }
 
   .second-nav-link {
-    @apply text-th-white w-auto flex justify-center items-center;
+    @apply w-auto flex justify-center items-center;
     &::before {
-      @apply absolute w-0 bg-th-white bottom-0  left-0 right-0 mx-auto h-1;
+      @apply absolute w-0 bg-th-red-500 bottom-0 left-0 right-0 mx-auto;
+      height: 3px;
       content: "";
       transition: width 0.2s;
     }
@@ -819,7 +820,7 @@ a.footer-link {
     &.toggleable {
       & > .second-nav-link {
         & > div {
-          @apply h-2 w-2 border-th-white border-t-2 border-l-2;
+          @apply h-2 w-2 border-th-gray-400 border-t-2 border-l-2;
           transform: rotate(-135deg) translate(-4px, 5px);
         }
       }

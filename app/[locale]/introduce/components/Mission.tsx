@@ -1,3 +1,4 @@
+import AnimatedNumber from "@components/AnimatedNumber";
 import Truncate from "@components/Truncate";
 import { ComponentIntroduceMission } from "@generated/graphql";
 import { getPrefixImageUrl } from "@ultility/index";
@@ -59,15 +60,23 @@ const Mission: FC<Props> = ({ assets, className = "" }) => {
               data-animation-delay="0.5s"
             >
               {assets.introduce.map((item, index) => (
-                <div key={index} className="max-xl:flex max-xl:gap-4 max-xl:mb-4 max-xl:last:mb-0 max-xl:items-center">
+                <div
+                  key={index}
+                  className="flex lg:max-xl:ml-8 md:items-start gap-5 max-md:ml-12 max-xl:mb-16 max-xl:last:mb-0"
+                >
                   <Image
                     src={getPrefixImageUrl(item?.icon?.data?.attributes?.url)}
                     alt=""
                     width={64}
                     height={64}
                   />
-                  <div className="text-th-gray-500 font-bold text-[25px] xl:mt-[22px] max-w-[305px] xl:min-w-[274px]">
-                    {item?.title}
+                  <div className="flex flex-col">
+                    <p className="text-th-red-500 font-bold text-4xl">
+                      + <AnimatedNumber n={item?.number || 0} />
+                    </p>
+                    <p className="text-th-gray-500 font-bold text-[25px] ">
+                      {item?.title}
+                    </p>
                   </div>
                 </div>
               ))}
