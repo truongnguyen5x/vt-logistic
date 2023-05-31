@@ -43,3 +43,20 @@
   }
   @include slick-dots-red(8px);
 }
+@media only screen and (max-width: 1440px) {
+  .slider {
+    :global .slick-next {
+      @apply z-10;
+      width: 50px !important ;
+      height: 50px !important;
+      right: -50px !important;
+    }
+    :global .slick-prev {
+      @apply z-10;
+      width: 50px !important ;
+      height: 50px !important;
+      left: -50px !important;
+    }
+    @include slick-dots-red(8px);
+  }
+}
