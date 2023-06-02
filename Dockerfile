@@ -1,10 +1,12 @@
+#################### Prepare Stage #############################
 FROM node:18-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 COPY package.json package-lock.json ./
-RUN  npm install --production
+RUN  npm install --save @types/react-slick
 
+#################### Builder Stage #############################
 FROM node:18-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
@@ -14,6 +16,7 @@ ENV NEXT_TELEMETRY_DISABLED 1
 
 RUN npm run build
 
+################### Runner Stage ###############################
 FROM node:18-alpine AS runner
 WORKDIR /app
 
@@ -29,8 +32,8 @@ COPY --from=builder /app/package.json ./package.json
 
 USER nextjs
 
-EXPOSE 3000
+EXPOSE 9200
 
-ENV PORT 3000
+ENV PORT 9200
 
 CMD ["npm", "start"]
