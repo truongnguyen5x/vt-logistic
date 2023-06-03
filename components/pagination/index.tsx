@@ -50,8 +50,6 @@ const Pagination: FC<Props> = (props) => {
 
   let lastPage = paginationRange[paginationRange.length - 1];
 
-  console.log(paginationRange);
-
   return (
     <ul className={clsx("flex items-end justify-center gap-4", className)}>
       <li
