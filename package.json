@@ -6,9 +6,12 @@
     "dev": "next dev -p 3002",
     "build": "next build",
     "start": "next start -p 3002",
-    "lint": "next lint"
+    "lint": "next lint",
+    "compile": "graphql-codegen"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.0-alpha.15",
+    "@apollo/experimental-nextjs-app-support": "^0.1.0",
     "@hookform/resolvers": "^3.1.0",
     "@tailwindcss/line-clamp": "^0.4.4",
     "@types/node": "20.1.2",
@@ -16,9 +19,12 @@
     "@types/react-dom": "18.2.4",
     "autoprefixer": "10.4.14",
     "clsx": "^1.2.1",
+    "cross-fetch": "^3.1.6",
     "date-fns": "^2.30.0",
     "eslint": "8.40.0",
     "eslint-config-next": "13.4.1",
+    "graphql": "^16.6.0",
+    "js-cookie": "^3.0.5",
     "next": "13.4.1",
     "next-intl": "^2.15.0-beta.1",
     "pigeon-maps": "^0.21.3",
@@ -41,7 +47,11 @@
     "yup": "^1.1.1"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^3.3.1",
+    "@graphql-codegen/client-preset": "^3.0.1",
+    "@types/js-cookie": "^3.0.3",
     "@types/react-slick": "^0.23.10",
+    "encoding": "^0.1.13",
     "sass": "^1.62.1"
   }
 }

@@ -1,4 +1,114 @@
 .borderCustom {
   border: 2px solid;
-  border-image-source: linear-gradient(106.62deg, rgba(0, 0, 0, 0.04) 11.16%, rgba(108, 108, 108, 0.1) 87.05%);
+  border-image-source: linear-gradient(
+    106.62deg,
+    rgba(0, 0, 0, 0.04) 11.16%,
+    rgba(108, 108, 108, 0.1) 87.05%
+  );
+}
+
+@media only screen and (min-width: 768px) {
+  .borderCustom {
+    height: 410px;
+  }
+  .slider {
+    margin-right: 25%;
+    :global .slick-dots {
+      @apply relative;
+      right: 17%;
+      bottom: -80px;
+      width: 700px;
+      height: 2px;
+      background: var(--color-back-gray-gradient);
+      transform: rotate(90deg);
+      transform-origin: right;
+      li {
+        @apply mx-6 relative -rotate-90;
+        top: -18px;
+        &:after {
+          @apply block absolute h-4 w-4 bg-th-gray-330 rounded-full -left-2 -top-2;
+          content: "";
+        }
+        p {
+          @apply absolute -left-6 -top-5 text-th-gray-330 transition-all text-right z-20;
+          font-size: 25px;
+          width: 140px;
+          height: 44px;
+        }
+        &.slick-active {
+          &::after {
+            @apply bg-th-red-500 w-8 h-8 -left-4 -top-4;
+          }
+          p {
+            @apply text-th-red-500 font-semibold text-4xl;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 991px) {
+  .slider {
+    :global .slick-dots {
+      right: -12%;
+    }
+  }
+}
+
+@media only screen and (min-width: 1199px) {
+  .slider {
+    :global .slick-dots {
+      right: -33%;
+    }
+  }
+}
+
+@media only screen and (min-width: 1440px) {
+  .slider {
+    margin-right: 30%;
+  }
+  .slider {
+    :global .slick-dots {
+      right: -40%;
+      li {
+        p {
+          @apply -left-4;
+          width: 160px;
+        }
+      }
+    }
+  }
+}
+@media only screen and (min-width: 1660px) {
+  .slider {
+    :global .slick-dots {
+      right: -50%;
+    }
+  }
+}
+@media only screen and (max-width: 767px) {
+  .slider {
+    :global .slick-dots {
+      bottom: 10px;
+      li {
+        @apply mx-0;
+        & > p {
+          @apply block rounded-full mx-1;
+          content: "";
+          width: 14px;
+          height: 14px;
+          background-color: var(--color-gray-100);
+        }
+      }
+      li.slick-active {
+        & > p {
+          @apply bg-th-red-500;
+          width: 16px;
+          height: 16px;
+          transform: translateY(-1px);
+        }
+      }
+    }
+  }
 }

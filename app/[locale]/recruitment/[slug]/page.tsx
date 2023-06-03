@@ -1,93 +1,220 @@
-import { fetchAsset, fetchDetailPost } from "@api/index";
+import { Fragment } from "react";
+import { format } from "date-fns";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import Clock from "@assets/images/icons/clock.svg";
-import Dislike from "@assets/images/icons/dislike.svg";
 import Eye from "@assets/images/icons/eye.svg";
-import Like from "@assets/images/icons/like.svg";
 import Banner from "@components/Banner";
 import BreadCrumbs from "@components/Breadcrumbs";
-import { ILocale } from "@configs/i18n";
-import { IPost } from "@type/post";
-import { format } from "date-fns";
+import { ILocale } from "@type/locale";
 import { useLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
-import { Fragment } from "react";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import NewsSideRight from "@components/news/NewsSideRight";
+import NewsSideRight, { HelpCard } from "@components/news/NewsSideRight";
 import RelatedPost from "./components/RelatedPost";
 import styles from "./style.module.scss";
+import { Filter, Pagination } from "@app/news/components/ListNews";
+import { getClient } from "@graphql/graphql-client";
+import { gql } from "@generated/gql";
+import {
+  getDetailNewsQueryString,
+  getNewQueryString,
+  mutationPageView,
+} from "@graphql/new.graghql";
+import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
+import {
+  Enum_News_Type,
+  Maybe,
+  NewsEntity,
+  NewsInput,
+} from "@generated/graphql";
+import ReactPost from "./components/ReactPost";
+import SliderNew from "@components/news/SliderNew";
+import { Metadata } from "next";
+import { formatDate2 } from "@ultility/date_time";
 
-const PostDetail = async (props: any) => {
+const getNewAsset = async (
+  locale: ILocale,
+  filter: Filter,
+  pagination: Pagination
+) => {
+  const { data } = await getClient().query({
+    query: gql(getDetailNewsQueryString),
+    variables: {
+      locale: getLanguageForApi(locale),
+      filter: {
+        slug: { eq: filter.slug },
+        type: { eq: filter.type },
+      },
+      pagination: { page: pagination.page, pageSize: 3 },
+    },
+  });
+
+  // get last element
+  return data.newss;
+};
+
+const updateNew = async (locale: ILocale, id: string, data: NewsInput) => {
+  const mutation = await getClient().mutate({
+    mutation: gql(mutationPageView),
+    variables: { id: id, data: data, locale: locale },
+  });
+
+  return mutation;
+};
+
+type Props = {
+  params: { locale: string; slug: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const locale = params.locale;
+
+  // fetch data
+  const [assetData] = await Promise.all([
+    getNewAsset(
+      locale as ILocale,
+      {
+        slug: decodeURIComponent(params?.slug),
+        type: "recruitment",
+      },
+      { page: 1 }
+    ),
+  ]);
+
+  return {
+    title: assetData?.data[0]?.attributes?.SEO?.metaTitle,
+    description: assetData?.data[0]?.attributes?.SEO?.metaDescription,
+    openGraph: {
+      images: [
+        getPrefixImageUrl(
+          assetData?.data[0]?.attributes?.SEO?.metaImage.data?.attributes?.url
+        ),
+      ],
+    },
+  };
+}
+
+const RecruitmentDetail = async (props: any) => {
   const locale = useLocale();
 
   const [data, dataHotNews, t] = await Promise.all([
-    fetchDetailPost(locale as ILocale),
-    fetchAsset<{ hot_news: IPost[] }>("hot_news", locale as ILocale),
+    getNewAsset(
+      locale as ILocale,
+      {
+        slug: decodeURIComponent(props?.params?.slug),
+        type: "recruitment",
+      },
+      { page: 1 }
+    ),
+    getNewAsset(
+      locale as ILocale,
+      { type: "recruitment", is_hot: true },
+      { page: 1 }
+    ),
     getTranslations("internal_news"),
   ]);
 
   const breadcrumbs = [
     { title: t("breadcrumbs.home"), link: "#" },
     { title: t("breadcrumbs.news"), link: "#" },
-    { title: t("title"), link: "#" },
-    { title: props?.params?.type || "", link: "#" },
-    { title: props?.params?.slug || "", link: "#", active: true },
+    { title: t("breadcrumbs.recruitment"), link: "/recruitment" },
+    {
+      title: decodeURIComponent(props?.params?.slug) || "",
+      link: "#",
+      active: true,
+    },
   ];
+
+  const dataNew = data?.data[0];
+
+  if (!!dataNew?.id) {
+    updateNew(locale as ILocale, dataNew.id, {
+      page_view: dataNew.attributes?.page_view + 1,
+    });
+  }
 
   return (
     <Fragment>
-      <Banner image={data.banner} title={t("title")} />
-      <div className="container mx-auto mb-32">
-        <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6 mb-20" />
-        <div className="flex items-start gap-[100px]">
-          <div>
-            <h5 className="text-th-gray-320 text-xl font-semibold animation">
-              {data.title}
+      <Banner
+        image={getPrefixImageUrl(
+          dataNew?.attributes?.featured_image?.data?.attributes?.url
+        )}
+        title={t("breadcrumbs.recruitment")}
+      />
+      <div className="container px-4 md:px-6 2xl:px-0 mx-auto lg:mt-0 mb-10 lg:mb-32">
+        <BreadCrumbs breadcrumbs={breadcrumbs} className="my-6 xl:mb-20" />
+        <div className="flex items-start lg:gap-10 2xl:gap-[100px] flex-col lg:flex-row">
+          <div className="max-w-[100%] min-w-[1px] lg:max-w-[940px] basis-2/3 overflow-x-hidden">
+            <h5 className="text-th-gray-400 text-4xl font-semibold animation">
+              {dataNew?.attributes?.title}
             </h5>
-            <div className="flex items-center gap-3 mb-5 mt-1 animation">
+            <div className="flex items-center gap-3 mb-5 mt-2 animation">
               <Image src={Clock} alt="" width={14} height={14} />
               <div className="text-th-gray-300 text-[13px] leading-[22px]">
-                {format(new Date(data.created_at), "dd-MM-yyyy")}
+                {!!dataNew?.attributes?.updatedAt
+                  ? formatDate2(new Date(dataNew.attributes?.updatedAt))
+                  : ""}
               </div>
             </div>
-            {!!data.content && (
-              <ReactMarkdown
-                className={[
-                  "text-lg text-black font-regular mb-3 list-decimal animation",
-                  styles.unreset,
-                ].join(" ")}
-                remarkPlugins={[remarkGfm]}
-              >
-                {data.content}
-              </ReactMarkdown>
-            )}
-            <div className="flex mb-2 animation">
-              <div className="flex flex-1 items-center gap-3 ">
+            <div
+              className={styles.unreset}
+              dangerouslySetInnerHTML={{
+                __html: dataNew?.attributes?.contents || "",
+              }}
+            />
+            <div className="flex justify-between mb-2 animation">
+              <div className="flex lg:flex-1 items-center gap-3 ">
                 <Image src={Eye} alt="" width={20} height={20} />
                 <div className="text-th-gray-300 text-[16px] leading-[22px]">
-                  {data.readed} {t("readed")}
+                  {dataNew?.attributes?.page_view}{" "}
+                  <span className="max-lg:hidden">{t("readed")}</span>
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <div className="p-3 bg-th-gray-220 rounded-full">
-                  <Image src={Like} alt="" width={20} height={20} />
-                </div>
-                <div className="p-3 bg-th-gray-220 rounded-full">
-                  <Image src={Dislike} alt="" width={20} height={20} />
-                </div>
+                <ReactPost
+                  dataNew={dataNew as NewsEntity}
+                  locale={locale as ILocale}
+                />
                 <div className="text-th-gray-300 text-[16px] leading-[22px]">
                   {t("post_useful")}
                 </div>
               </div>
             </div>
-            <RelatedPost post={data.relatedPost} />
+            <div className="max-lg:hidden">
+              {!!dataNew?.attributes?.news?.data.length && (
+                <RelatedPost
+                  title={t("related_post")}
+                  post={dataNew?.attributes?.news?.data as Maybe<NewsEntity[]>}
+                />
+              )}
+            </div>
           </div>
-          <NewsSideRight data={dataHotNews} category={"internal_news"} />
+          <div className="max-lg:hidden basis-1/3">
+            <NewsSideRight
+              data={{ hot_news: dataHotNews?.data as Maybe<NewsEntity[]> }}
+              category={Enum_News_Type.Recruitment}
+            />
+          </div>
+          <div className="w-full lg:hidden">
+            {!!dataNew?.attributes?.news?.data.length && (
+              <SliderNew
+                title="Bài viết liên quan"
+                data={dataNew?.attributes?.news?.data as Maybe<NewsEntity[]>}
+                category={Enum_News_Type.Recruitment}
+              />
+            )}
+            <SliderNew
+              title="Tin nổi bật"
+              data={dataHotNews?.data as Maybe<NewsEntity[]>}
+              category={Enum_News_Type.Recruitment}
+            />
+            <HelpCard category={Enum_News_Type.Recruitment} />
+          </div>
         </div>
       </div>
     </Fragment>
   );
 };
 
-export default PostDetail;
+export default RecruitmentDetail;

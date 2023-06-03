@@ -11,7 +11,6 @@
     "certified_by": "Chứng nhận bởi",
     "introduce_general": "Giới thiệu chung",
     "milestones": "Dấu mốc phát triển",
-    "info_contact": "Thông tin liên hệ",
     "transportation": "Vận tải",
     "trucking": "Vận tải đường bộ",
     "rail_transportation": "Vận tải đường sắt",
@@ -22,6 +21,7 @@
     "endpoint_delivery": "Giao hàng điểm cuối",
     "packing": "Đóng gói & Chia chọn",
     "insider_news": "Tin nội bộ",
+    "service_common": "Dịch vụ chung",
     "market_news": "Tin thị trường",
     "specialized_news": "Kiến thức chuyên ngành",
     "receive_info": "Nhận thông tin mới nhất từ Viettel Logistics",
@@ -29,14 +29,25 @@
     "register_txt": "Đăng ký",
     "back_to_head": "Về đầu trang",
     "email_validate": "Địa chỉ email của bạn không đúng",
-    "register_success": "Đăng ký email thành công"
+    "register_success": "Đăng ký email thành công",
+    "copyright": "Copyright @ 2023 Viettel Logistics All right reserved",
+    "search": "Tìm kiếm"
   },
   "home": {
     "about_us": "Về chúng tôi",
     "partner": "Đối tác chiến lược",
     "news_event": "Tin tức & Sự kiện",
     "learn_more": "Tìm hiểu thêm",
-    "detail": "Chi tiết"
+    "detail": "Chi tiết",
+    "all_service": "Tất cả dịch vụ",
+    "from": "Điểm gửi",
+    "to": "Điểm nhận",
+    "lookup": "Tra cứu",
+    "service_unavailable": "DỊCH VỤ KHÔNG KHẢ DỤNG",
+    "service_available": "Dịch vụ khả dụng",
+    "service_available_des": "Để biết thêm chi tiết về hành trình & Giá cước vận chuyển\n khách hàng vui lòng liên hệ",
+    "select": "Chọn...",
+    "back": "Quay lại"
   },
   "introduce": {
     "common": "Giới thiệu chung",
@@ -84,15 +95,15 @@
     "register_popup": {
       "title": "VUI LÒNG ĐIỀN CÁC THÔNG TIN DƯỚI ĐÂY ĐỂ VIETTEL LOGISTICS HỖ TRỢ KHÁCH HÀNG TỐT NHẤT",
       "description": "(Lưu ý: không để trống các trường thông tin có dấu *)",
-      "fullname": "Họ tên*",
-      "phone_number": "Số điện thoại*",
+      "fullname": "Họ và tên",
+      "phone_number": "Số điện thoại",
       "email": "Email",
-      "service": "Dịch vụ*",
-      "from": "Điểm đi*",
-      "to": "Điểm đến*",
+      "service": "Dịch vụ",
+      "from": "Điểm đi",
+      "to": "Điểm đến",
       "weight": "Trọng lượng (Tính theo Kilogam)*",
-      "note": "Ghi chú loại hàng hóa và các yêu cầu khác",
-      "button": "GỬI THÔNG TIN",
+      "note": "Ghi chú",
+      "button": "Gửi liên hệ",
       "required": "(Vui lòng điền đủ các trường thông tin có dấu * để hoàn tất việc tạo đơn)",
       "placeholder": {
         "fullname": "VD: Nguyễn Văn A",
@@ -101,8 +112,13 @@
         "from": "VD: QL32, P.Minh Khai, Hà Nội",
         "to": "VD: Hà Nội, Đà Nẵng, Cần Thơ",
         "weight": "VD: 1000 tấn",
-        "note": "VD: Hàng dễ vỡ, thời gian giao hàng gấp,..."
-      }
+        "note": "Nội dung",
+        "select": "Chọn..."
+      },
+      "success": "Đăng ký thành công",
+      "fail": "Đăng ký thất bại",
+      "requiredTxt": "Vui lòng nhập",
+      "emailTxt": "Vui lòng nhập email"
     }
   },
   "customs": {
@@ -159,14 +175,20 @@
     "contact": "Liên hệ",
     "breadcrumbs": {
       "home": "Trang chủ",
-      "news": "Tin tức"
+      "news": "Tin tức",
+      "internal_news": "Tin nội bộ",
+      "market_news": "Tin thị trường",
+      "specialized_news": "Kiến thức chuyên ngành",
+      "recruitment": "Tuyển dụng"
     },
     "read_more": "Đọc thêm",
     "help_title": "Chúng tôi có thể giúp gì?",
     "help_content": "Bạn đang tìm kiếm thêm về giải pháp vận chuyển cho doanh nghiệp của bạn?",
     "readed": "lượt đọc",
     "post_useful": "Bài viết hữu ích?",
-    "related_post": "Bài viết liên quan"
+    "related_post": "Bài viết liên quan",
+    "search_placeholder": "Nhập từ khóa",
+    "no_data": "No data!"
   },
   "market_news": {
     "title": "Tin thị trường",
@@ -180,7 +202,9 @@
     },
     "read_more": "Đọc thêm",
     "help_title": "Chúng tôi có thể giúp gì?",
-    "help_content": "Bạn đang tìm kiếm thêm về giải pháp vận chuyển cho doanh nghiệp của bạn?"
+    "help_content": "Bạn đang tìm kiếm thêm về giải pháp vận chuyển cho doanh nghiệp của bạn?",
+    "search_placeholder": "Nhập từ khóa",
+    "no_data": "No data!"
   },
   "specialized_news": {
     "title": "Kiến thức chuyên ngành",
@@ -194,7 +218,9 @@
     },
     "read_more": "Đọc thêm",
     "help_title": "Chúng tôi có thể giúp gì?",
-    "help_content": "Bạn đang tìm kiếm thêm về giải pháp vận chuyển cho doanh nghiệp của bạn?"
+    "help_content": "Bạn đang tìm kiếm thêm về giải pháp vận chuyển cho doanh nghiệp của bạn?",
+    "search_placeholder": "Nhập từ khóa",
+    "no_data": "No data!"
   },
   "recruitment": {
     "title": "Tuyển dụng",
@@ -208,7 +234,9 @@
     },
     "read_more": "Đọc thêm",
     "help_title": "Chúng tôi có thể giúp gì?",
-    "help_content": "Bạn đang tìm kiếm thêm về giải pháp vận chuyển cho doanh nghiệp của bạn?"
+    "help_content": "Bạn đang tìm kiếm thêm về giải pháp vận chuyển cho doanh nghiệp của bạn?",
+    "search_placeholder": "Nhập từ khóa",
+    "no_data": "No data!"
   },
   "contact": {
     "title": "Liên hệ",
@@ -232,6 +260,15 @@
       "note": "Nội dung",
       "placeholder_note": "Nội dung",
       "button": "Gửi liên hệ"
+    },
+    "success": "Đăng ký thành công"
+  },
+  "search": {
+    "title": "Tìm kiếm",
+    "breadcrumb": "Tìm kiếm từ khóa",
+    "no_data": "No data!",
+    "breadcrumbs": {
+      "home": "Trang chủ"
     }
   }
 }

@@ -2,32 +2,60 @@ import { useLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { Fragment } from "react";
 import Banner from "@components/Banner";
-import { fetchAsset } from "@api/index";
-import { ILocale } from "@configs/i18n";
+import { ILocale } from "@type/locale";
 import BreadCrumbs from "@components/Breadcrumbs";
 import ServiceOverview from "./components/Overview";
 import MoreService from "@components/more-service";
 import "react-loading-skeleton/dist/skeleton.css";
+import { getClient } from "@graphql/graphql-client";
+import { gql } from "@generated/gql";
+import { getServiceQueryString } from "@graphql/service.graghql";
+import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
+import {
+  ComponentServiceFeature,
+  ComponentServiceTransportation,
+  Maybe,
+} from "@generated/graphql";
+import { Metadata } from "next";
 
-type IServiceAsset = {
-  banner_img: string;
-  my_service: string;
-  overview_img: string;
-  features: Array<{
-    img: string;
-    number: number;
-    object: string;
-    txt: string;
-  }>;
-  service_transportation_des: string;
-  transportation_list_service: Array<{ txt: string; url: string; img: string }>;
+const getServiceAsset = async (locale: ILocale) => {
+  const { data } = await getClient().query({
+    query: gql(getServiceQueryString),
+    variables: { locale: getLanguageForApi(locale) },
+  });
+
+  // get last element
+  return data.services?.data[data?.services?.data?.length - 1];
 };
+
+type Props = {
+  params: { locale: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const locale = params.locale;
+
+  // fetch data
+  const [assetData] = await Promise.all([getServiceAsset(locale as ILocale)]);
+
+  return {
+    title: assetData?.attributes?.SEO?.metaTitle,
+    description: assetData?.attributes?.SEO?.metaDescription,
+    openGraph: {
+      images: [
+        getPrefixImageUrl(
+          assetData?.attributes?.SEO?.metaImage.data?.attributes?.url
+        ),
+      ],
+    },
+  };
+}
 
 const Service = async () => {
   const locale = useLocale();
 
   const [serviceAsset, t] = await Promise.all([
-    fetchAsset<IServiceAsset>("service", locale as ILocale),
+    getServiceAsset(locale as ILocale),
     getTranslations("service"),
   ]);
 
@@ -38,14 +66,23 @@ const Service = async () => {
 
   return (
     <Fragment>
-      <Banner image={serviceAsset.banner_img} title={t("title")} />
-      <div className="container mx-auto">
+      <Banner
+        image={getPrefixImageUrl(
+          serviceAsset?.attributes?.banner?.data?.attributes?.url
+        )}
+        title={t("title")}
+      />
+      <div className="container max-xl:px-4 mx-auto">
         <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6 mb-10" />
       </div>
       <ServiceOverview
-        bgImg={serviceAsset.overview_img}
-        txt={serviceAsset.my_service}
-        features={serviceAsset.features}
+        bgImg={getPrefixImageUrl(
+          serviceAsset?.attributes?.bg_service?.data?.attributes?.url
+        )}
+        txt={serviceAsset?.attributes?.description || ""}
+        features={
+          serviceAsset?.attributes?.features as Maybe<ComponentServiceFeature[]>
+        }
       />
       <div className="container mx-auto">
         <div className="section-name mb-9 mt-12 animation">
@@ -55,10 +92,14 @@ const Service = async () => {
           className="text-base text-th-gray-300 font-medium text-center whitespace-pre-line animation"
           data-animation-delay="0.3s"
         >
-          {serviceAsset.service_transportation_des}
+          {serviceAsset?.attributes?.description_service}
         </p>
         <MoreService
-          services={serviceAsset.transportation_list_service}
+          services={
+            serviceAsset?.attributes?.transportations as Maybe<
+              ComponentServiceTransportation[]
+            >
+          }
           more={t("more")}
         />
       </div>

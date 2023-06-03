@@ -1,80 +1,87 @@
 @import "../../assets/css/_variables.scss";
 @import "../../assets/css/animate.scss";
+
 /****************
- * FIRST SLIDER *
+ * HOME SLIDER *
  ****************/
-.sliderWp {
+.sliderHomeSection {
   height: 450px;
   :global .slick-dots {
     bottom: 3px !important;
     li {
       button {
         &::before {
+          @apply text-th-white border border-th-white bg-th-white;
           transition: width 0.7s;
-          @apply text-th-white;
           opacity: 1 !important;
           border-radius: 3px;
-          border: 1px solid var(--color-white);
           content: "";
           width: 18px;
           height: 10px;
-          background-color: var(--color-white);
         }
       }
       &:not(.slick-active) {
         button {
           &::before {
+            @apply bg-transparent;
             width: 10px;
-            background-color: transparent;
           }
         }
       }
     }
   }
+  :global .slick-next {
+    @apply z-10;
+    top: auto !important;
+    right: 50% !important;
+    bottom: 5px;
+    transform: translateX(79px) !important;
+    &::before {
+      @apply hidden;
+    }
+  }
+  :global .slick-prev {
+    @apply z-10;
+    top: auto !important;
+    left: 50% !important;
+    bottom: 5px;
+    transform: translateX(-79px) !important;
+    &::before {
+      @apply hidden;
+    }
+  }
 }
 
-.banner {
-  height: 450px;
+.sliderHomeItem {
   @apply object-cover;
+  height: 450px;
 }
-.arrowRightSlider1 {
-  @apply z-10;
-  top: auto !important;
-  right: 50% !important;
-  bottom: 5px;
-  transform: translateX(79px) !important;
-  &::before {
-    @apply hidden;
-  }
-}
-.arrowLeftSlider1 {
-  @apply z-10;
-  top: auto !important;
-  left: 50% !important;
-  bottom: 5px;
-  transform: translateX(-79px) !important;
-  &::before {
-    @apply hidden;
-  }
-}
+
 /********************
- * END FIRST SLIDER *
+ * END HOME SLIDER *
  ********************/
 
 /****************
  * LIST FEATURE *
  ****************/
-.feature {
-  //height: 80px;
-  border-bottom: 1px solid var(--color-gray-100);
+.featureSection {
+  @apply border-b border-th-gray-100;
+  :global .slick-prev {
+    @apply top-1/4;
+  }
+  :global .slick-next {
+    @apply top-1/4;
+  }
 }
+
 .featureItem {
-  @apply flex items-center gap-7;
+  @apply items-center gap-7 justify-center py-3;
+  display: flex !important;
   img {
     height: 50px;
   }
   p {
-    @apply whitespace-pre-line text-sm font-semibold;
+    @apply whitespace-pre-line text-sm font-semibold line-clamp-2;
   }
 }
 /********************
@@ -84,47 +91,46 @@
 /**************
  * LIST ABOUT *
  **************/
+.aboutUsSection {
+  :global .slick-next {
+    width: 40px !important;
+    right: -50px !important;
+    top: 35% !important;
+  }
+  :global .slick-prev {
+    width: 40px !important;
+    left: -50px !important;
+    top: 35% !important;
+  }
+}
 .aboutItem {
-  @apply relative;
+  @apply ml-10;
   & > p {
-    @apply absolute text-transparent -top-2;
+    @apply inline-block w-80 text-th-gray-300 font-medium line-clamp-2;
+  }
+}
+
+.aboutItemHeader {
+  @apply flex items-end mb-6 mt-5;
+  & > div {
+    @apply text-th-red-500 font-semibold mr-3 inline;
+    font-size: 64px;
+    line-height: 68px;
+  }
+  & > p {
+    @apply text-th-red-500 font-semibold mr-3 text-2xl inline line-clamp-2;
+  }
+}
+
+.aboutFloatText {
+  p {
+    @apply absolute text-transparent -top-6 -left-10;
     font-size: 110px;
     -webkit-text-stroke: 1px var(--color-gray-310);
     line-height: 110px;
   }
 }
-.aboutItem1 {
-  // @apply flex flex-col items-center;
 
-  @apply ml-10;
-  & > p {
-    @apply inline-block w-80 text-th-gray-300 font-medium;
-  }
-}
-.aboutItemHead {
-  p {
-    &:first-child {
-      @apply text-th-red-500 font-semibold inline mr-3;
-      font-size: 64px;
-    }
-  }
-  p {
-    &:nth-child(2) {
-      @apply text-th-red-500 font-semibold inline mr-3 text-2xl;
-    }
-  }
-}
-.arrowLeftSlider {
-  width: 40px !important;
-  left: -50px !important;
-  top: 35% !important;
-}
-
-.arrowRightSlider {
-  width: 40px !important;
-  right: -50px !important;
-  top: 35% !important;
-}
 /******************
  * END LIST ABOUT *
  ******************/
@@ -132,14 +138,13 @@
 /***************
  * ABOUT > TAB *
  ***************/
-.tabWp {
+.homeTabSection {
+  @apply border border-th-gray-200 cursor-pointer text-2xl font-semibold gap-4 relative;
   width: 376px;
   height: 125px;
-  border-width: 1px;
   padding: 31px;
-  @apply border-th-gray-200 cursor-pointer text-2xl font-semibold gap-4;
   p {
-    @apply whitespace-pre-line text-th-gray-300;
+    @apply whitespace-pre-line text-th-gray-300 line-clamp-2;
   }
   & > div {
     @apply relative;
@@ -152,14 +157,13 @@
   }
 }
 
-.selectedTab {
+.homeTabSelected {
   @apply bg-th-red-500;
   &:hover p,
   p {
     @apply text-th-white;
   }
 }
-
 /*******************
  * END ABOUT > TAB *
  *******************/
@@ -167,17 +171,22 @@
 /**************
  * MY SERVICE *
  **************/
-.bgMyService {
-  @apply relative grid grid-cols-5;
+.homeServiceSection {
+  @apply relative;
   height: 417px;
-  gap: 5px;
   & > img {
-    @apply w-full absolute top-0 left-0;
+    @apply w-full absolute top-0 left-0 object-cover;
     height: 417px;
   }
 }
+
 .serviceItem {
+  padding: 0 2px;
+}
+
+.serviceItemInner {
   @apply flex flex-col items-center py-11 px-11 z-10 transition-all;
+  height: 417px;
   background-color: var(--color-black-400);
   &:hover {
     background-color: rgba(0, 0, 0, 0.6);
@@ -188,27 +197,29 @@
     }
   }
 }
+
 .serviceLink {
   img {
     @apply mx-auto transition-all;
   }
   p {
-    @apply text-th-white text-2xl font-semibold mt-8;
+    @apply text-th-white text-2xl font-semibold mt-8 line-clamp-2;
   }
   &:hover p {
     @apply underline underline-offset-8;
   }
 }
-.serviceDes {
+
+.serviceDescription {
   @apply self-start flex items-start my-2;
   img {
     @apply mr-3 mt-1;
   }
   p {
-    @apply text-th-white font-medium text-sm;
+    @apply text-th-white font-medium text-sm line-clamp-2;
   }
   &:hover p {
-    // @apply underline underline-offset-4;
+    @apply underline underline-offset-4;
   }
 }
 /**************
@@ -218,38 +229,36 @@
 /**************
  * TAB LOOKUP *
  **************/
-.tabHeaderLookup {
+.lookupHeader {
   @apply w-40 text-th-gray-300 font-medium text-2xl cursor-pointer relative text-center pb-4;
-  // transition: color 1s;
   &::before {
+    @apply absolute w-0 bg-th-red-500 bottom-0 border-t left-0 right-0 mx-auto;
     content: "";
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
     transition: width 0.2s;
-    @apply absolute w-0 bg-th-red-500 bottom-0 border-t rounded-t-[20px] left-0 right-0 mx-auto;
     height: 5px;
     &:hover {
       @apply w-20;
-      // height: 5px;
     }
   }
   &:hover {
     @apply text-th-red-500;
   }
 }
-.tabSelectLookup {
+
+.lookupHeaderSelected {
   @apply text-th-red-500 font-semibold;
   &::before {
     @apply w-20;
-    // height: 5px;
   }
 }
-.lookUpBg {
-  @apply relative;
-  height: 477px;
-  background-color: var(--color-gray-250);
-  border-top: 1px solid var(--color-gray-100);
-  border-bottom: 1px solid var(--color-gray-100);
+
+.lookupBackground {
+  @apply relative bg-th-gray-250 border-t border-b border-th-gray-100;
 }
-.formIconWp {
+
+.formIconWrapper {
   @apply flex flex-col gap-1 items-center;
   width: 38px;
   & > div {
@@ -258,18 +267,44 @@
     border: 1px dashed var(--color-gray-260);
   }
 }
+
 .formTitle {
   @apply text-th-gray-300 font-medium text-2xl;
 }
-.formBg {
+
+.formBackground {
   @apply absolute right-14 top-14 p-3 shadow-lg bg-th-white;
   width: 709px;
   height: 348px;
+  img {
+    @apply object-cover;
+    width: 719px;
+    height: 323px;
+  }
 }
-.boxContact {
+
+.formBackgroundMobile {
+  @apply p-3 shadow-lg bg-th-white;
+  img {
+    @apply w-full h-full object-cover;
+  }
+}
+
+.formContact {
   @apply flex p-5 gap-5 items-center bg-th-white border border-th-gray-200 shadow-md flex-grow;
   font-stretch: condensed;
   height: 60px;
+}
+.formBack {
+  @apply p-2 text-xl mt-4;
+  img {
+    @apply w-8 h-8;
+    display: inline !important;
+    margin-bottom: 1px;
+  }
+}
+.formBackgroundMobile {
+  display: none !important;
 }
 /**************
  * END TAB LOOKUP *
@@ -278,14 +313,23 @@
 /****************
  * LIST PARTNER *
  ****************/
+.partnerWp {
+  :global .slick-next {
+    width: 40px !important;
+    right: -50px !important;
+    top: 35% !important;
+  }
+  :global .slick-prev {
+    width: 40px !important;
+    left: -50px !important;
+    top: 35% !important;
+  }
+}
 .partnerItem {
-  @apply flex justify-center items-center border-th-gray-200 shadow-lg p-3 m-3 cursor-pointer;
-  border-width: 1px;
+  @apply flex justify-center items-center border-th-gray-200 shadow-lg p-3 m-3 cursor-pointer border;
   display: flex !important;
   width: 253px !important;
   height: 165px;
-  img {
-  }
   &:hover {
     @apply border border-th-red-500;
   }
@@ -298,13 +342,14 @@
  * HOME LIST POST *
  ******************/
 .postItem {
-  @apply relative shadow-xl;
+  @apply relative shadow-xl block;
   padding-top: 87%;
   transition: transform 0.2s;
   &:hover {
     transform: scale(1.02);
   }
 }
+
 .postImg {
   @apply block min-h-0;
   flex-basis: 57%;
@@ -312,60 +357,346 @@
     @apply w-full h-full object-cover;
   }
 }
+
 .postContent {
   flex-basis: 43%;
   padding: 10px 15px 30px;
 }
+
 .postTitle {
-  @apply font-semibold text-base;
+  @apply font-semibold text-base line-clamp-2;
   color: var(--color-gray-320);
 }
-.postTitleLarge {
+
+.postTitleXL {
   @apply font-semibold text-2xl;
   color: var(--color-gray-320);
 }
+
 .postTimestamp {
   @apply text-th-gray-300 font-medium mt-1;
   font-size: 11px;
   img {
-    @apply inline;
+    display: inline !important;
     margin: 0 5px 2px 0;
   }
 }
-.postTimestampLarge {
+
+.postTimestampXL {
   @apply text-th-gray-300 font-medium mt-2;
   font-size: 13px;
   img {
-    @apply inline;
+    display: inline !important;
     margin: 0 5px 2px 0;
   }
 }
-.postDes {
-  @apply font-medium text-xs text-th-gray-300 mt-1;
-  @include text-clip(2);
+
+.postDescription {
+  @apply font-medium text-xs text-th-gray-300 mt-1 line-clamp-2;
 }
-.postDesLarge {
-  @apply font-medium text-sm text-th-gray-300 mt-5;
-  @include text-clip(3);
+
+.postDescriptionXL {
+  @apply font-medium text-sm text-th-gray-300 mt-5 line-clamp-3;
 }
+
 .postLink {
-  @apply text-th-red-500 font-medium absolute bottom-3 right-4;
-  font-size: 12px;
+  @apply text-th-red-500 font-medium absolute bottom-3 right-4 text-xs;
   img {
-    @apply inline;
+    display: inline !important;
     width: 13px;
     height: 13px;
     margin: 0 0 2px 5px;
   }
 }
-.postLinkLarge {
+
+.postLinkXL {
   @apply text-th-red-500 font-medium absolute bottom-8 right-8;
   font-size: 15px;
   img {
-    @apply inline;
+    display: inline !important;
     margin: 0 0 2px 5px;
   }
 }
 /******************
  * END HOME LIST POST *
  ******************/
+
+@media (min-width: 1200px) {
+}
+
+@media only screen and (min-width: 991px) and (max-width: 1199px) {
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+}
+
+@media only screen and (max-width: 1600px) {
+  /**************************
+  * LOOK UP max-width: 1600px*
+  ***************************/
+  .formBackground {
+    @apply right-10;
+    width: 600px;
+  }
+  /**************************
+  * LOOK UP max-width: 1600px*
+  ***************************/
+}
+
+@media only screen and (max-width: 1440px) {
+  /***************************
+  * LOOK UP max-width: 1440px*
+  ***************************/
+  .formBackground {
+    @apply right-5;
+    width: 500px;
+  }
+  /***************************
+  * LOOK UP max-width: 1440px*
+  ***************************/
+}
+
+@media only screen and (max-width: 1199px) {
+  /*************************
+  * FEATURE max-width: 991px*
+  *************************/
+  .featureSection {
+    :global .slick-prev {
+      left: 0px;
+      top: 20%;
+    }
+    :global .slick-next {
+      right: 0px;
+      top: 20%;
+    }
+  }
+
+  .featureItem {
+    @apply gap-4;
+    img {
+      @apply h-10 w-10;
+    }
+  }
+  /*************************
+  * FEATURE max-width: 991px*
+  *************************/
+
+  /*****************************
+  * LIST ABOUT max-width: 991px*
+  *****************************/
+  .aboutUsSection {
+    @apply mb-28;
+    @include slick-dots-red(-64px);
+  }
+  /*****************************
+  * LIST ABOUT max-width: 991px*
+  *****************************/
+
+  /***************************
+  *  HOME TAB max-width: 991px *
+  *****************************/
+  .homeTabSection {
+    @apply px-5 py-6 w-72 h-28;
+    p {
+      @apply text-lg;
+    }
+    & > div > p > img {
+      @apply w-5;
+    }
+    & > img {
+      @apply w-10;
+    }
+  }
+  /***************************
+  *  HOME TAB max-width: 991px *
+  *****************************/
+
+  /***************************
+  * MY SERVICE max-width: 991px*
+  ****************************/
+  .homeServiceSection {
+    @apply mb-12;
+    @include slick-dots-red(-28px);
+  }
+  /***************************
+  * MY SERVICE max-width: 991px*
+  ****************************/
+
+  /***************************
+  * TAB LOOKUP max-width: 991px*
+  ****************************/
+  .lookupHeader {
+    @apply text-lg;
+  }
+
+  .formBackgroundMobile {
+    @apply flex-grow;
+    display: block !important;
+  }
+
+  .formBackground {
+    display: none;
+  }
+
+  .formTitle {
+    @apply text-xl;
+  }
+  /***************************
+  * TAB LOOKUP max-width: 991px*
+  ****************************/
+
+  /*****************************
+  * LIST PARTNER max-width: 991px*
+  ********************************/
+  .partnerWp {
+    @apply mb-16;
+    @include slick-dots-red(-32px);
+  }
+  /*****************************
+  * LIST PARTNER max-width: 991px*
+  ********************************/
+
+  /*******************************
+  * HOME LIST POST max-width: 991px*
+  *********************************/
+  .postSlider {
+    @apply mb-8 mt-9;
+    @include slick-dots-red(0px);
+  }
+  .postItem {
+    @apply mx-4 overflow-hidden mb-10;
+    border-radius: 10px;
+  }
+  /*******************************
+  * HOME LIST POST max-width: 991px*
+  *********************************/
+}
+
+@media only screen and (min-width: 991px) {
+  .homeBackgroundMobile {
+    @apply hidden;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .homeBackgroundMobile {
+    @apply block absolute top-0 w-full;
+    height: 450px;
+  }
+  /******************************
+  * HOME SLIDER max-width: 991px*
+  ******************************/
+  .sliderHomeSection {
+    @apply mx-6 mt-7 rounded-lg overflow-hidden h-96;
+  }
+
+  .sliderHomeItem {
+    @apply object-cover h-96;
+  }
+  /******************************
+  * HOME SLIDER max-width: 991px*
+  ******************************/
+}
+
+@media only screen and (max-width: 767px) {
+}
+
+@media only screen and (max-width: 640px) {
+}
+
+@media only screen and (max-width: 580px) {
+}
+
+@media only screen and (max-width: 480px) {
+  .homeBackgroundMobile {
+    @apply h-72;
+  }
+  /****************************
+  * HOME SLIDER max-width: 480px*
+  *****************************/
+  .sliderHomeSection {
+    @apply mx-4 mt-4 rounded-lg overflow-hidden h-60;
+  }
+
+  .sliderHomeItem {
+    @apply object-cover h-60;
+  }
+  /****************************
+  * HOME SLIDER max-width: 480px*
+  *****************************/
+
+  /*************************
+  * FEATURE max-width: 480px*
+  *************************/
+  .featureSection {
+    :global .slick-prev {
+      top: 15%;
+    }
+    :global .slick-next {
+      top: 15%;
+    }
+  }
+
+  .featureItem {
+    @apply gap-4 border-r border-th-gray-100;
+    img {
+      @apply h-6 w-6;
+    }
+    p {
+      @apply text-xs;
+    }
+  }
+  /*************************
+  * FEATURE max-width: 480px*
+  *************************/
+
+  /*************************
+  * LIST ABOUT max-width: 480px*
+  *************************/
+  .aboutItem {
+    & > p {
+      @apply text-center;
+    }
+  }
+  .aboutItemHeader {
+    @apply justify-center;
+  }
+  /*************************
+  * LIST ABOUT max-width: 480px*
+  *************************/
+
+  /*************************
+  * HOME TAB max-width: 480px*
+  *************************/
+  .homeTabSection {
+    @apply px-3 py-5 h-20;
+    p {
+      @apply text-sm;
+    }
+    & > div > p > img {
+      @apply w-5;
+    }
+    & > img {
+      @apply absolute w-6 right-3 top-3;
+    }
+  }
+  /*************************
+  * HOME TAB max-width: 480px*
+  *************************/
+
+  /*************************
+  * LOOKUP max-width: 480px*
+  *************************/
+  .lookupHeader {
+    @apply text-base;
+  }
+  .formTitle {
+    @apply text-base;
+  }
+  /*************************
+  * LOOKUP max-width: 480px*
+  *************************/
+}
+
+@media only screen and (max-width: 380px) {
+}

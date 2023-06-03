@@ -8,5 +8,3 @@ export const i18n = {
   defaultLocale: "vi",
   locales: ["en", "vi"],
 } as const;
-
-export type ILocale = (typeof i18n)["locales"][number];

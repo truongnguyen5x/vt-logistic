@@ -3,6 +3,7 @@
 import { FC, useLayoutEffect, useRef, useState } from "react";
 import ArrowRight from "@assets/images/icons/arrow_right.svg";
 import Image from "next/image";
+import clsx from "clsx";
 
 const Truncate: FC<{ content: string }> = ({ content }) => {
   const ref = useRef(null);
@@ -15,9 +16,10 @@ const Truncate: FC<{ content: string }> = ({ content }) => {
     <>
       <p
         ref={ref}
-        className={`text-center font-medium text-base text-th-gray-300 break-words max-w-[800px] mx-auto mt-8 ${
-          !isShowingMore ? "line-clamp-3" : ""
-        }`}
+        className={clsx(
+          "md:text-center font-medium text-base text-th-gray-300 break-words max-w-[800px] mx-auto mt-8",
+          { "line-clamp-3": !isShowingMore }
+        )}
       >
         {content}
       </p>

@@ -1,52 +1,62 @@
 "use client";
 import { FC, Fragment, useState } from "react";
-import { ILookupContent } from "..";
+
 import Image from "next/image";
 import styles from "@app/styles.module.scss";
 import LocationImg from "@assets/images/icons/location.svg";
 import MapImg from "@assets/images/icons/map.svg";
 import SearchImg from "@assets/images/icons/search_light.svg";
-import { ICountry, IProvince } from "@type/location";
+import { ILocation } from "@type/location";
 import { SERVICE_TRANSPORT } from "@ultility/constant";
 import ServiceUnavailable from "./ServiceUnvailable";
 import ServiceAvailable from "./ServiceAvailable";
 import ChooseLocation from "./ChooseLocation";
+import {
+  ComponentHomeHomeLookup,
+  ComponentHomeServiceContact,
+  Maybe,
+} from "@generated/graphql";
 
 interface FormLookupProps {
-  content: ILookupContent;
   /*************************
    *  INDEX == 0: EXPRESS  *
    * INDEX == 1: FOWARDING *
    *  INDEX == 2: VẬN TẢI  *
    *************************/
   index: number;
-  listCountry: ICountry[];
-  listProvince: IProvince[];
+  listCountry: ILocation[];
+  listProvince: ILocation[];
+  lookup?: Maybe<ComponentHomeHomeLookup>;
 }
 
 export type ISTATUS = "NONE" | "UNAVAILABLE" | "AVAILABLE";
 
 const FormLookup: FC<FormLookupProps> = ({
-  content,
   index,
   listCountry,
   listProvince,
+  lookup,
 }) => {
   const [status, setStatus] = useState<ISTATUS>("NONE");
 
   return (
-    <div className={styles.lookUpBg}>
+    <div className={styles.lookupBackground}>
       {status == "UNAVAILABLE" && (
-        <ServiceUnavailable title={content.service_unavailable} />
+        <ServiceUnavailable onBack={() => setStatus("NONE")} />
       )}
-      {status == "AVAILABLE" && <ServiceAvailable content={content} />}
+      {status == "AVAILABLE" && (
+        <ServiceAvailable
+          onBack={() => setStatus("NONE")}
+          contacts={lookup?.contacts}
+        />
+      )}
       {status == "NONE" && (
         <ChooseLocation
           listCountry={listCountry}
           listProvince={listProvince}
-          content={content}
           index={index}
           setStatus={setStatus}
+          lookup={lookup}
         />
       )}
     </div>

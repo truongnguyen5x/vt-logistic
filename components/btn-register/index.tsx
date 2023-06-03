@@ -1,5 +1,6 @@
 "use client";
 
+import clsx from "clsx";
 import { FC } from "react";
 
 type Props = {
@@ -11,13 +12,15 @@ const ButtonRegister: FC<Props> = ({ text, className = "" }) => {
   const handleRegister = () => {
     if (!!document.getElementById("js-register-input")) {
       document.getElementById("js-register-input")?.focus();
-      document.getElementById("js-register-input")?.scrollIntoView({ behavior: "smooth", inline: "nearest" });
+      document
+        .getElementById("js-register-input")
+        ?.scrollIntoView({ behavior: "smooth", inline: "nearest" });
     }
   };
 
   return (
     <button
-      className={`animation btn-red z-10 ${className}`}
+      className={clsx("animation btn-red z-10", className)}
       onClick={handleRegister}
     >
       {text}

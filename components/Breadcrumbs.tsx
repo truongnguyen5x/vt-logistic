@@ -3,6 +3,7 @@ import Link from "next-intl/link";
 
 import RightArrowImg from "@assets/images/icons/arrow_right.svg";
 import Image from "next/image";
+import clsx from "clsx";
 
 type IBreadCrumb = {
   title: string;
@@ -17,28 +18,32 @@ type IBreadCrumbProps = {
 
 const BreadCrumbs: FC<IBreadCrumbProps> = ({ breadcrumbs, className = "" }) => {
   return (
-    <section className={`relative ${className} animation`}>
+    <section className={clsx("relative animation", className)}>
       {!!breadcrumbs.length && (
-        <ul className="flex items-center">
+        <div className="inline">
           {breadcrumbs.map((item, index) => (
-            <li
-              key={index}
-              className="flex items-center gap-2.5 mr-2 last:mr-0"
-            >
+            <p key={index} className="inline mr-2 last:mr-0">
               <Link
                 href={item.link}
-                className={`font-medium hover:text-th-red-500 ${
-                  item.active ? "text-th-red-500" : "text-th-gray-300"
-                }`}
+                className={clsx("font-medium hover:text-th-red-500", {
+                  "text-th-red-500": item.active,
+                  "text-th-gray-300": !item.active,
+                })}
               >
                 {item.title}
               </Link>
               {index < breadcrumbs.length - 1 && (
-                <Image src={RightArrowImg} alt="" width={16} height={16} />
+                <Image
+                  className="inline-block"
+                  src={RightArrowImg}
+                  alt=""
+                  width={16}
+                  height={16}
+                />
               )}
-            </li>
+            </p>
           ))}
-        </ul>
+        </div>
       )}
     </section>
   );

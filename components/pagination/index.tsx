@@ -4,6 +4,7 @@ import styles from "./styles.module.scss";
 import Image from "next/image";
 import ArrowLeft from "@assets/images/icons/arrow_left.svg";
 import ArrowRight from "@assets/images/icons/arrow_right.svg";
+import clsx from "clsx";
 
 type Props = {
   onPageChange: (page: number | string) => void;
@@ -36,29 +37,38 @@ const Pagination: FC<Props> = (props) => {
   }
 
   const onNext = () => {
-    onPageChange(Number(currentPage) + 1);
+    if (lastPage != currentPage) {
+      onPageChange(Number(currentPage) + 1);
+    }
   };
 
   const onPrevious = () => {
-    onPageChange(Number(currentPage) - 1);
+    if (currentPage != 1) {
+      onPageChange(Number(currentPage) - 1);
+    }
   };
 
   let lastPage = paginationRange[paginationRange.length - 1];
 
+  console.log(paginationRange);
+
   return (
-    <ul className={`flex items-end justify-center gap-4 ${className}`}>
+    <ul className={clsx("flex items-end justify-center gap-4", className)}>
       <li
         onClick={onPrevious}
-        className={`w-10 h-10 rounded border flex items-center justify-center ${
-          currentPage === 1
-            ? "opacity-70"
-            : "border-th-gray-300 hover:border-th-red-500 hover:bg-th-red-200 hover:text-th-red-500"
-        }`}
+        className={clsx(
+          "w-10 h-10 rounded border flex items-center justify-center cursor-pointer",
+          {
+            "opacity-70 cursor-not-allowed": currentPage == 1,
+            "border-th-gray-300 hover:border-th-red-500 hover:bg-th-red-200 hover:text-th-red-500":
+              currentPage != 1,
+          }
+        )}
       >
         <Image alt="" src={ArrowLeft} height={24} width={24} />
       </li>
       {paginationRange.map((pageNumber) => {
-        if (pageNumber === DOTS) {
+        if (pageNumber == DOTS) {
           return (
             <li
               className="w-10 h-10 flex items-center justify-center text-black"
@@ -71,11 +81,15 @@ const Pagination: FC<Props> = (props) => {
 
         return (
           <li
-            className={`w-10 h-10 cursor-pointer rounded border flex items-center justify-center font-semibold leading-4 hover:border-th-red-500 hover:bg-th-red-200 hover:text-th-red-500 ${
-              pageNumber === currentPage
-                ? "text-th-red-500 bg-th-red-200 border-th-red-500"
-                : "border-th-gray-300 text-black"
-            }`}
+            className={clsx(
+              "w-10 h-10 cursor-pointer rounded border flex items-center justify-center font-semibold leading-4",
+              "hover:border-th-red-500 hover:bg-th-red-200 hover:text-th-red-500",
+              {
+                "text-th-red-500 bg-th-red-200 border-th-red-500":
+                  pageNumber == currentPage,
+                "border-th-gray-300 text-black": pageNumber != currentPage,
+              }
+            )}
             key={pageNumber}
             onClick={() => onPageChange(pageNumber)}
           >
@@ -85,11 +99,14 @@ const Pagination: FC<Props> = (props) => {
       })}
       <li
         onClick={onNext}
-        className={`w-10 h-10 rounded border flex items-center justify-center ${
-          lastPage === currentPage
-            ? "opacity-80"
-            : "border-th-gray-300 hover:border-th-red-500 hover:bg-th-red-200 hover:text-th-red-500"
-        }`}
+        className={clsx(
+          "w-10 h-10 rounded border flex items-center justify-center cursor-pointer",
+          {
+            "opacity-80 cursor-not-allowed": lastPage == currentPage,
+            "border-th-gray-300 hover:border-th-red-500 hover:bg-th-red-200 hover:text-th-red-500":
+              lastPage != currentPage,
+          }
+        )}
       >
         <Image alt="" src={ArrowRight} height={24} width={24} />
       </li>

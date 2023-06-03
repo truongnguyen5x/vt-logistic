@@ -1,0 +1,37 @@
+@import "../../assets/css/_variables.scss";
+@import "../../assets/css/animate.scss";
+
+.sliderWrapper {
+  @include slick-dots-red(-8px);
+  :global .slick-list {
+    @apply -mx-1;
+  }
+  :global .slick-slide {
+    & > div {
+      @apply mx-1;
+    }
+  }
+}
+
+.cardXL {
+  &:hover {
+    .cardImage {
+      transform: scale(1.1);
+    }
+  }
+}
+.card {
+  &:hover {
+    .cardImage {
+      transform: scale(1.1);
+    }
+  }
+}
+
+.cardImage {
+  @apply transition-all h-full w-full object-cover;
+}
+
+.cardBody {
+  height: 165px;
+}

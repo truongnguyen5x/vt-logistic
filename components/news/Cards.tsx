@@ -5,13 +5,17 @@ import { format, getDate, getDaysInMonth, getMonth } from "date-fns";
 import { useTranslations } from "next-intl";
 import ArrowRight from "@assets/images/icons/arrow_right_red.svg";
 import Clock from "@assets/images/icons/clock.svg";
-import { IPost, IPostCategory } from "@type/post";
 import Link from "next-intl/link";
+import { Enum_News_Type, NewsEntity } from "@generated/graphql";
+import { convertNewsTypeToURL, getPrefixImageUrl } from "@ultility/index";
+import styles from "./style.module.scss";
+import clsx from "clsx";
+import { formatDate2 } from "@ultility/date_time";
 
 type CardProps = {
-  post: IPost;
+  post: NewsEntity;
   className?: string;
-  category?: IPostCategory;
+  category?: Enum_News_Type;
 };
 
 export const Card: FC<CardProps> = ({
@@ -24,12 +28,25 @@ export const Card: FC<CardProps> = ({
   return (
     <Link
       href={`${
-        category === "recruitment" ? "/recruitment/" : `/news/${post.category}/`
-      }${post.slug}`}
-      className={className}
+        category === "recruitment"
+          ? "/recruitment/"
+          : `/news/${convertNewsTypeToURL(category)}/`
+      }${post.attributes?.slug}`}
+      className={clsx(className, styles.cardXL)}
     >
-      <Image src={post.img} alt="" width={940} height={360} />
-      <div className="p-8 max-w-[940px] bg-white shadow-[0px_5px_20px_rgba(0,0,0,0.1)]">
+      <div className="h-64 xl:h-80 overflow-hidden">
+        <Image
+          src={getPrefixImageUrl(
+            post.attributes?.featured_image?.data?.attributes?.url
+          )}
+          alt=""
+          className={styles.cardImage}
+          width={940}
+          height={360}
+        />
+      </div>
+
+      <div className="p-8 bg-white shadow-[0px_5px_20px_rgba(0,0,0,0.1)]">
         <div className="flex gap-8 items-start">
           <div className="min-w-[60px]">
             <Image
@@ -40,22 +57,25 @@ export const Card: FC<CardProps> = ({
               className="mx-auto"
             />
             <div className="text-center mt-2 text-4xl text-th-gray-320 font-bold">
-              {getDate(new Date(post.created_at)).toLocaleString("en-US", {
-                minimumIntegerDigits: 2,
-                useGrouping: false,
-              })}
+              {getDate(new Date(post.attributes?.updatedAt)).toLocaleString(
+                "en-US",
+                {
+                  minimumIntegerDigits: 2,
+                  useGrouping: false,
+                }
+              )}
             </div>
             <div className="text-center font-medium text-base text-th-gray-300">{`Tháng ${
-              getMonth(new Date(post.created_at)) + 1
+              getMonth(new Date(post.attributes?.updatedAt)) + 1
             }`}</div>
           </div>
           <div className="pl-8 border-l border-th-gray-330 max-w-[782px]">
             <h4 className="break-words text-th-gray-320 text-[25px] leading-8 font-semibold">
-              {post.title}
+              {post.attributes?.title}
             </h4>
-            {!!post.description && (
+            {!!post.attributes?.contents && (
               <p className="break-words mt-4 text-th-gray-300 text-base">
-                {post.description}
+                {post.attributes?.preview_content}
               </p>
             )}
           </div>
@@ -79,19 +99,38 @@ export const SideCard: FC<CardProps> = ({
   return (
     <Link
       href={`${
-        category === "recruitment" ? "/recruitment/" : `/news/${post.category}/`
-      }${post.slug}`}
-      className={className}
+        category === "recruitment"
+          ? "/recruitment/"
+          : `/news/${convertNewsTypeToURL(category)}/`
+      }${post.attributes?.slug}`}
+      className={clsx(className, styles.card)}
     >
-      <Image src={post.img} alt="" width={490} height={240} />
-      <div className="pt-6 px-8 pb-8 bg-th-gray-220 max-w-[490px]">
+      <div className="mx-0 h-48 md:h-40 overflow-hidden">
+        <Image
+          src={getPrefixImageUrl(
+            post.attributes?.featured_image?.data?.attributes?.url
+          )}
+          className={styles.cardImage}
+          alt=""
+          width={490}
+          height={240}
+        />
+      </div>
+      <div
+        className={clsx(
+          "p-6 mx-0 md:pt-6 md:px-8 md:pb-8 bg-th-gray-220",
+          styles.cardBody
+        )}
+      >
         <div className="flex items-center gap-3 mb-2">
           <Image src={Clock} alt="" width={14} height={14} />
           <div className="text-th-gray-300 text-[13px] leading-[22px]">
-            {format(new Date(post.created_at), "dd-MM-yyyy")}
+            {formatDate2(new Date(post.attributes?.updatedAt))}
           </div>
         </div>
-        <h5 className="text-th-gray-320 text-xl font-semibold">{post.title}</h5>
+        <h5 className="text-th-gray-320 text-xl font-semibold line-clamp-3">
+          {post.attributes?.title}
+        </h5>
       </div>
     </Link>
   );

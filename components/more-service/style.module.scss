@@ -1,11 +1,65 @@
+@import "../../assets/css/_variables.scss";
+@import "../../assets/css/animate.scss";
+
 .serviceItem {
-  @apply relative shadow-xl;
+  @apply relative shadow-xl mb-10;
   padding-top: 135%;
 }
 .serviceItemImg {
   @apply min-h-0 relative;
-  flex-basis: 81%;
+  height: 80%;
+  flex-basis: 80%;
 }
 .serviceItemTxt {
-  @apply p-11 text-2xl font-bold;
+  @apply p-11 text-2xl font-bold max-lg:p-6 max-lg:text-base;
+  p {
+    @apply line-clamp-1;
+  }
+}
+.slider {
+  :global .slick-list {
+    @apply -mx-4;
+  }
+  :global .slick-slide {
+    & > div {
+      @apply mx-4;
+    }
+  }
+  :global .slick-next {
+    @apply z-10;
+    width: 88px !important ;
+    height: 88px !important;
+    right: -135px !important;
+    &::before {
+      @apply hidden;
+    }
+  }
+  :global .slick-prev {
+    @apply z-10;
+    width: 88px !important ;
+    height: 88px !important;
+    left: -135px !important;
+    // transform: translateX(79px) !important;
+    &::before {
+      @apply hidden;
+    }
+  }
+  @include slick-dots-red(8px);
+}
+@media only screen and (max-width: 1440px) {
+  .slider {
+    :global .slick-next {
+      @apply z-10;
+      width: 50px !important ;
+      height: 50px !important;
+      right: -50px !important;
+    }
+    :global .slick-prev {
+      @apply z-10;
+      width: 50px !important ;
+      height: 50px !important;
+      left: -50px !important;
+    }
+    @include slick-dots-red(8px);
+  }
 }

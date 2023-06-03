@@ -1,19 +1,17 @@
-import { useLocale, useTranslations } from "next-intl";
-import { getTranslations } from "next-intl/server";
-import Image from "next/image";
-import { FC, Fragment } from "react";
-import Search from "@assets/images/icons/search-status.svg";
-import { IPost, IPostCategory } from "@type/post";
-import { fetchAsset } from "@api/index";
-import { ILocale } from "@configs/i18n";
+import { useTranslations } from "next-intl";
+import { FC } from "react";
 import { SideCard } from "./Cards";
+import { Enum_News_Type, NewsEntity } from "@generated/graphql";
+import SearchInput from "./Search";
+import Link from "next/link";
+import clsx from "clsx";
 
 type IDataHotNews = {
-  hot_news: IPost[];
+  hot_news: NewsEntity[] | null;
 };
 
 type Props = {
-  category: IPostCategory;
+  category: Enum_News_Type;
   data: IDataHotNews;
 };
 
@@ -22,30 +20,15 @@ const NewsSideRight: FC<Props> = ({ category, data }) => {
 
   return (
     <div>
-      <h3 className="text-th-gray-320 text-4xl font-semibold mb-4 animation">
+      <h3 className="text-th-gray-320 text-3xl lg:text-4xl font-semibold mb-4 animation">
         {t("search")}
       </h3>
-      <div
-        className="relative h-14 w-full bg-th-gray-220 px-6 py-4 animation"
-        data-animation-delay="0.3s"
-      >
-        <input
-          placeholder={t("placeholder")}
-          className="pr-12 bg-th-gray-220 w-full focus-visible:outline-none h-full"
-        />
-        <Image
-          src={Search}
-          alt=""
-          width={24}
-          height={24}
-          className="absolute right-6 top-4"
-        />
-      </div>
-      <h3 className="text-th-gray-400 text-4xl font-semibold mt-[50px] mb-6">
+      <SearchInput placeholder={t("placeholder")} />
+      <h3 className="text-th-gray-400 text-3xl lg:text-4xl font-semibold mt-[50px] mb-6 animation">
         {t("hot_news")}
       </h3>
       <div className="flex flex-col gap-[50px]">
-        {!!data.hot_news.length &&
+        {!!data.hot_news?.length &&
           data.hot_news.map((item, index) => (
             <SideCard
               key={index}
@@ -55,19 +38,34 @@ const NewsSideRight: FC<Props> = ({ category, data }) => {
             />
           ))}
       </div>
-      <div className="p-8 bg-th-gray-220 border border-th-gray-200 max-w-[490px] mt-[50px]">
-        <h5 className="font-semibold text-xl text-th-gray-320 mb-3 animation">
-          {t("help_title")}
-        </h5>
-        <p className="text-base text-th-gray-300 animation">
-          {t("help_content")}
-        </p>
-        <button className="animation mt-[50px] px-10 py-5 bg-th-red-500 text-white font-medium text-2xl rounded-[50px] leading-[18px]">
-          {t("contact")}
-        </button>
-      </div>
+      <HelpCard category={category} />
     </div>
   );
 };
 
 export default NewsSideRight;
+
+export const HelpCard: FC<{ category: Enum_News_Type }> = ({ category }) => {
+  const t = useTranslations(category);
+
+  return (
+    <div className="p-6 md:p-8 bg-th-gray-220 border border-th-gray-200 min-w-[320px] max-w-[490px] mt-8 md:mt-[50px]">
+      <h5 className="font-semibold text-xl text-th-gray-320 mb-3 animation">
+        {t("help_title")}
+      </h5>
+      <p className="text-base text-th-gray-300 animation mb-10 md:mb-16">
+        {t("help_content")}
+      </p>
+      <Link
+        href={"/contact"}
+        className={clsx(
+          "animation bg-th-red-500 text-white font-medium rounded-[50px] leading-[18px]",
+          "px-4 py-2 md:px-10 xl:py-5",
+          "text-xl md:text-2xl"
+        )}
+      >
+        {t("contact")}
+      </Link>
+    </div>
+  );
+};

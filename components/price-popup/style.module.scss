@@ -1,0 +1,21 @@
+.priceWp {
+  @apply my-4 overflow-x-auto;
+}
+
+@media only screen and (max-width: 1199px) {
+  .priceWp {
+    max-width: 854px;
+  }
+}
+
+@media only screen and (max-width: 991px) {
+  .priceWp {
+    max-width: 650px;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  .priceWp {
+    max-width: calc(100vw - 50px);
+  }
+}

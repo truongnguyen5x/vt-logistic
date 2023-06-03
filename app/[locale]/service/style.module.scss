@@ -20,6 +20,9 @@
   font-size: 25px;
 }
 
+.priceTable {
+  @include horizontal-scrollbar();
+}
 /*******************
  * END SERVICE GENERAL *
  *******************/

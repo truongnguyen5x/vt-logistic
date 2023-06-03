@@ -1,26 +1,49 @@
-import { IPost } from "@type/post";
-import { useTranslations } from "next-intl";
-import { FC } from "react";
-import PaginationNews from "@components/news/PaginationNews";
+"use client";
+import { FC, useMemo, useState } from "react";
 import { SideCard } from "@components/news/Cards";
+import { NewsEntity } from "@generated/graphql";
+import useWindowSize from "@hooks/use-window-size";
+import clsx from "clsx";
+import Pagination from "@components/pagination";
 
 type Props = {
-  post: IPost[];
+  post: NewsEntity[] | null;
+  title: string;
 };
 
-const RelatedPost: FC<Props> = ({ post }) => {
-  const t = useTranslations("internal_news");
+const RelatedPost: FC<Props> = ({ post, title }) => {
+  const { isDesktop, isTablet, isMobile } = useWindowSize();
+  const [page, setPage] = useState(1);
+
+  const [from, to] = useMemo(() => {
+    if (isMobile) {
+      return [page, page + 1];
+    } else {
+      return [(page - 1) * 2, page * 2];
+    }
+  }, [page, isMobile]);
+
+  const handleChange = (newPage: number | string) => {
+    setPage(parseInt(newPage + ""));
+  };
 
   return (
     <div>
       <h3 className="text-th-gray-400 text-4xl font-semibold mt-[50px] mb-6 animation">
-        {t("related_post")}
+        {title}
       </h3>
-      <div className="flex gap-[50px] animation">
-        {!!post?.length &&
-          post.map((item, index) => <SideCard key={index} post={item} />)}
+      <div className={clsx("animation grid grid-cols-1 md:grid-cols-2 gap-4")}>
+        {post?.slice(from, to).map((p, idx) => (
+          <SideCard key={idx} post={p} category={p.attributes?.type} />
+        ))}
       </div>
-      <PaginationNews />
+      <Pagination
+        className="mt-6 animation"
+        pageSize={isMobile ? 1 : 2}
+        onPageChange={handleChange}
+        totalCount={post?.length || 0}
+        currentPage={page}
+      />
     </div>
   );
 };

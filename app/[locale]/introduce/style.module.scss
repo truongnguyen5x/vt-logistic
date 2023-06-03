@@ -1,0 +1,22 @@
+.text {
+  @apply font-bold text-2xl text-th-gray-320 text-center;
+  background: linear-gradient(
+    -12deg,
+    var(--color-gray-320) 20%,
+    var(--color-red-500) 45%,
+    var(--color-red-500) 55%,
+    var(--color-gray-320) 80%
+  );
+  background-size: 200% auto;
+  color: #000;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shine 2s linear infinite reverse;
+}
+
+@keyframes shine {
+  to {
+    background-position: 200% center;
+  }
+}

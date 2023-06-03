@@ -1,18 +1,17 @@
 import "@assets/css/globals.scss";
 import "@assets/css/theme.scss";
-import "@assets/css/responsive.scss";
 import "@assets/css/animate.scss";
 
 import { useLocale, useTranslations } from "next-intl";
 import { notFound } from "next/navigation";
-import Header from "./Header";
+import Header from "@components/Header";
 import localFont from "next/font/local";
-import Loader from "./components/Loader";
-import { ILocale, i18n } from "@configs/i18n";
-import Footer from "./Footer";
+import Loader from "@components/Loader";
+import { ILocale } from "@type/locale";
+import Footer from "@components/Footer";
 import Script from "next/script";
-import BackToTop from "./components/BackToTop";
-import toast, { Toaster } from "react-hot-toast";
+import BackToTop from "@components/BackToTop";
+import { Toaster } from "react-hot-toast";
 
 const SVNgilroy = localFont({
   src: [
@@ -63,6 +62,7 @@ export default function RootLayout({
       <body className={SVNgilroy.className}>
         <Loader />
         <Header
+          locale={locale as ILocale}
           titles={{
             home: t("home"),
             introduce: t("introduce"),
@@ -72,7 +72,6 @@ export default function RootLayout({
             recruitment: t("recruitment"),
             introduce_general: t("introduce_general"),
             milestones: t("milestones"),
-            info_contact: t("info_contact"),
             transportation: t("transportation"),
             trucking: t("trucking"),
             rail_transportation: t("rail_transportation"),
@@ -85,6 +84,8 @@ export default function RootLayout({
             insider_news: t("insider_news"),
             market_news: t("market_news"),
             specialized_news: t("specialized_news"),
+            service_common: t("service_common"),
+            search: t("search"),
           }}
         />
         {children}

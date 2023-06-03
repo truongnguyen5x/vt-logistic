@@ -23,6 +23,20 @@
   --color-gray-330: #868686;
   --color-black-overlay: rgba(0, 0, 0, 0.5);
   --color-white-overlay: rgba(255, 255, 255, 0.5);
+
+  /***************
+ * TRANSPARENT *
+ ***************/
+  --color-white-20-percent: #ffffff33;
+
+  /************
+ * GRADIENT *
+ ************/
+  --color-back-gray-gradient: radial-gradient(
+    50% 50% at 50% 50%,
+    #44494d 73.96%,
+    rgba(68, 73, 77, 0) 100%
+  );
 }
 
 @media (prefers-color-scheme: dark) {

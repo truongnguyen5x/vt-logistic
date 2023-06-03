@@ -1,3 +1,4 @@
+"use client";
 import {
   ChangeEvent,
   ChangeEventHandler,
@@ -16,10 +17,11 @@ type IOption = {
 };
 
 type CustomSelectProps = {
-  children?: ReactNode;
   value?: string;
   onChange?: (newValue: string) => void;
   options: IOption[];
+  classNamePrefix?: string;
+  placeholder?: string;
 };
 
 const DropdownIndicator = (props: any) => {
@@ -30,7 +32,28 @@ const DropdownIndicator = (props: any) => {
   );
 };
 
-const CustomSelect: FC<CustomSelectProps> = ({ options, value, onChange }) => {
+const MenuCustom = (props: any) => {
+  return (
+    <components.Menu
+      {...props}
+      innerProps={{
+        ...props.innerProps,
+        onClick: (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        },
+      }}
+    />
+  );
+};
+
+const CustomSelect: FC<CustomSelectProps> = ({
+  options,
+  value,
+  onChange,
+  placeholder,
+  classNamePrefix = "custom-select",
+}) => {
   const [_value, setValue] = useState<IOption | undefined>(undefined);
 
   useEffect(() => {
@@ -42,14 +65,17 @@ const CustomSelect: FC<CustomSelectProps> = ({ options, value, onChange }) => {
 
   return (
     <Select
-      classNamePrefix={"custom-select"}
+      classNamePrefix={classNamePrefix}
       value={_value}
       isSearchable
+      placeholder={placeholder}
       components={{
         DropdownIndicator: DropdownIndicator,
+        Menu: MenuCustom,
       }}
       options={options}
       menuPortalTarget={document.querySelector("body")}
+      styles={{ menuPortal: (base) => ({ ...base, zIndex: 9999 }) }}
       onChange={(e) => e && onChange && onChange(e.value)}
     />
   );
