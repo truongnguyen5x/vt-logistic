@@ -14,7 +14,7 @@ import {
 } from "@generated/graphql";
 import { getPrefixImageUrl } from "@ultility/index";
 import useWindowSize from "@hooks/use-window-size";
-import Link from "next-intl/link"
+import Link from "next-intl/link";
 
 interface Props {
   banners?: Maybe<Array<Maybe<ComponentHomeBanner>>>;
@@ -57,10 +57,9 @@ const SliderHome: FC<Props> = ({ banners }) => {
       >
         {!!banners &&
           banners.map((banner, idx) => (
-            <Link href={banner?.url ||"#"}>
+            <Link href={banner?.url || "#"} key={idx}>
               <Image
                 src={getPrefixImageUrl(banner?.image?.data?.attributes?.url)}
-                key={idx}
                 className={styles.sliderHomeItem}
                 alt=""
                 width={1920}
