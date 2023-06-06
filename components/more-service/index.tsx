@@ -66,13 +66,15 @@ const MoreService: FC<MoreServiceProps> = ({ services, more }) => {
         >
           <div className={styles.serviceItemImg}>
             {!!service && service.image?.data?.attributes?.url && (
-              <Image
-                src={getPrefixImageUrl(service.image?.data?.attributes?.url)}
-                className="w-full h-full object-cover"
-                width={474}
-                height={520}
-                alt=""
-              />
+              <div className={styles.serviceItemImgWp}>
+                <Image
+                  src={getPrefixImageUrl(service.image?.data?.attributes?.url)}
+                  className="w-full h-full object-cover"
+                  width={474}
+                  height={520}
+                  alt=""
+                />
+              </div>
             )}
             <button className="btn-red absolute -bottom-7 right-0 max-lg:text-base max-lg:w-40 max-lg:h-12 max-lg:-bottom-5">
               {more}

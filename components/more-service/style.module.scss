@@ -2,20 +2,37 @@
 @import "../../assets/css/animate.scss";
 
 .serviceItem {
-  @apply relative shadow-xl mb-10;
+  @apply relative shadow-xl mb-10 overflow-hidden;
   padding-top: 135%;
+  &:hover {
+    .serviceItemImgWp {
+      & > img {
+        transform: scale(1.1);
+      }
+    }
+  }
 }
+
+.serviceItemImgWp {
+  @apply w-full h-full overflow-hidden;
+  & > img {
+    @apply transition-all duration-500;
+  }
+}
+
 .serviceItemImg {
   @apply min-h-0 relative;
   height: 80%;
   flex-basis: 80%;
 }
+
 .serviceItemTxt {
   @apply p-11 text-2xl font-bold max-lg:p-6 max-lg:text-base;
   p {
     @apply line-clamp-1;
   }
 }
+
 .slider {
   :global .slick-list {
     @apply -mx-4;
