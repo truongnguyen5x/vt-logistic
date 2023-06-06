@@ -6,6 +6,7 @@ import ArrowRight from "@assets/images/icons/arrow_right.svg";
 import Link from "next/link";
 import { ComponentCommonGroupImageContent } from "@generated/graphql";
 import { getPrefixImageUrl } from "@ultility/index";
+import styles from "../style.module.scss";
 import clsx from "clsx";
 
 type Props = {
@@ -24,7 +25,7 @@ const MoreInfo: FC<Props> = ({ assets, className = "" }) => {
             <Link
               key={index}
               href={item.link || "#"}
-              className="relative cursor-pointer animation"
+              className={clsx("animation", styles.contact)}
             >
               <div>
                 <Image
@@ -32,8 +33,9 @@ const MoreInfo: FC<Props> = ({ assets, className = "" }) => {
                   alt=""
                   width={740}
                   height={480}
+                  className={styles.backgroundContact}
                 />
-                <div className="bg-gradient-overlay absolute top-0 left-0 w-full h-full"></div>
+                <div className={styles.backgroundOverlay}></div>
               </div>
               <div className="absolute bottom-6 z-10">
                 <h4 className="text-white text-[25px] w-fit font-bold py-2 pl-8 pr-4 bg-th-red-500 rounded-tr-2xl leading-[26px]">

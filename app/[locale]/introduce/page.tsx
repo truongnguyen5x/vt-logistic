@@ -94,6 +94,7 @@ const Introduce = async () => {
         className="mt-14 md:mt-20"
       />
       <CoreValues
+        title={t("core_values")}
         assets={
           introAssets?.attributes
             ?.core_values as Maybe<ComponentIntroduceCoreValues>

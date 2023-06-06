@@ -974,6 +974,14 @@ a.footer-link {
     @apply text-3xl;
   }
 
+  .section-name-left {
+    @apply text-3xl;
+  }
+
+  .section-name-light-left {
+    @apply text-3xl;
+  }
+
   .btn-red {
     height: 50px;
   }
@@ -1076,6 +1084,20 @@ a.footer-link {
   * COMMON COMPONENT HEADER max-width: 480px*
   *****************************************/
   .section-name {
+    @apply text-2xl;
+    &::after {
+      @apply -bottom-3;
+    }
+  }
+
+  .section-name-left {
+    @apply text-2xl;
+    &::after {
+      @apply -bottom-3;
+    }
+  }
+
+  .section-name-light-left {
     @apply text-2xl;
     &::after {
       @apply -bottom-3;
