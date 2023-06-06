@@ -1,7 +1,12 @@
-.text {
+.textTypewriter {
   @apply font-bold text-2xl text-th-gray-320 text-center;
-  //TODO: add animation typewriter
+  overflow: hidden;
+  border-right: 0.15em solid var(--color-red-500);
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: 0.15em;
 }
+
 .backgroundOverlay {
   @apply bg-gradient-overlay absolute top-0 left-0 w-full h-full transition-all opacity-100 duration-500;
 }
@@ -20,4 +25,8 @@
 
 .backgroundContact {
   @apply transition-all duration-500;
+}
+
+.text {
+  @apply font-bold text-2xl text-th-gray-320 text-center;
 }

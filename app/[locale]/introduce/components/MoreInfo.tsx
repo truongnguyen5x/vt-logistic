@@ -19,7 +19,7 @@ const MoreInfo: FC<Props> = ({ assets, className = "" }) => {
 
   return (
     <section className={clsx("container mx-auto", className)}>
-      <div className="flex items-center max-md:flex-col gap-20 md:gap-[50px]">
+      <div className="flex items-center max-lg:flex-col gap-20 lg:gap-[50px]">
         {!!assets?.length &&
           assets.map((item, index) => (
             <Link

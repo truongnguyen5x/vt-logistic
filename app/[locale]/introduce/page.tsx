@@ -88,6 +88,7 @@ const Introduce = async () => {
         />
       </div>
       <Mission
+        title={t("mission")}
         assets={
           introAssets?.attributes?.mission as Maybe<ComponentIntroduceMission>
         }

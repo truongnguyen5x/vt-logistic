@@ -1,3 +1,4 @@
+"use client";
 import AnimatedNumber from "@components/AnimatedNumber";
 import Truncate from "@components/Truncate";
 import { ComponentIntroduceMission } from "@generated/graphql";
@@ -7,13 +8,16 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { FC, useLayoutEffect, useRef, useState } from "react";
 import styles from "../style.module.scss";
+import useWindowSize from "@hooks/use-window-size";
 
 type Props = {
   assets: ComponentIntroduceMission | null;
   className?: string;
+  title: string;
 };
-const Mission: FC<Props> = ({ assets, className = "" }) => {
-  const t = useTranslations("introduce");
+const Mission: FC<Props> = ({ assets, className = "", title }) => {
+  // const t = useTranslations("introduce");
+  const { isMobile } = useWindowSize();
 
   return (
     <section className={className}>
@@ -40,7 +44,7 @@ const Mission: FC<Props> = ({ assets, className = "" }) => {
               className="section-name mb-6 animation max-md:after:left-16"
               data-animation-delay="0.3s"
             >
-              {t("mission")}
+              {title}
             </p>
           </div>
           {!!assets?.description && <Truncate content={assets?.description} />}
@@ -53,12 +57,26 @@ const Mission: FC<Props> = ({ assets, className = "" }) => {
                 <div
                   key={index}
                   className={clsx(
-                    "flex items-center justify-center gap-4 md:min-w-[181px] max-md:flex-col py-6 border-l first:border-none border-th-gray-50",
-                    "px-4 md:px-10 lg:px-16"
+                    "flex items-center justify-center gap-4 max-md:flex-col py-6 border-l first:border-none border-th-gray-50",
+                    "px-4 md:px-10 lg:px-14"
                   )}
                 >
-                  <span className="w-4 h-4 bg-gradient-red"></span>
-                  <div className={styles.text}>{item?.title}</div>
+                  {isMobile && (
+                    <span className="w-4 h-4 bg-gradient-red inline-block"></span>
+                  )}
+                  <div
+                    className={styles.text}
+                    // style={{
+                    //   animation: !isMobile
+                    //     ? `typing 1.2s steps(${item?.title.length}, end) 1s`
+                    //     : "",
+                    // }}
+                  >
+                    {!isMobile && (
+                      <span className="w-4 h-4 mr-2 bg-gradient-red inline-block"></span>
+                    )}
+                    {item?.title}
+                  </div>
                 </div>
               ))}
             </div>
