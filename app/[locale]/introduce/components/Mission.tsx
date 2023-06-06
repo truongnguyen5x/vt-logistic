@@ -66,11 +66,10 @@ const Mission: FC<Props> = ({ assets, className = "" }) => {
           {!!assets?.introduce?.length && (
             <div
               className={clsx(
-                "items-baseline justify-between md:gap-[50px] animation",
+                "items-baseline justify-between md:gap-[50px]",
                 "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4",
                 "mt-6 md:mt-[55px]"
               )}
-              data-animation-delay="0.5s"
             >
               {assets.introduce.map((item, index) => (
                 <div
@@ -83,11 +82,16 @@ const Mission: FC<Props> = ({ assets, className = "" }) => {
                     width={64}
                     height={64}
                   />
+
                   <div className="flex flex-col">
-                    <p className="text-th-red-500 font-bold text-4xl">
+                    <p className="text-th-red-500 font-bold text-3xl">
                       + <AnimatedNumber n={item?.number || 0} />
                     </p>
-                    <p className="text-th-gray-500 font-bold text-[25px] ">
+                    <p
+                      className="text-th-gray-500 font-bold text-xl animation"
+                      data-animation="tracking-in-expand"
+                      data-animation-delay="0.5s"
+                    >
                       {item?.title}
                     </p>
                   </div>
