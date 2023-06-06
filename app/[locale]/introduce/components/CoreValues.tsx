@@ -43,6 +43,7 @@ const CoreValues: FC<Props> = ({ assets, className = "", title }) => {
         >
           {[0, 1].map((index) => (
             <Image
+              key={index}
               src={getPrefixImageUrl(
                 assets?.images.data[index].attributes?.url
               )}
