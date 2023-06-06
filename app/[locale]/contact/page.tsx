@@ -6,7 +6,7 @@ import { ILocale } from "@type/locale";
 import Banner from "@components/Banner";
 import BreadCrumbs from "@components/Breadcrumbs";
 import Image from "next/image";
-import MapContact from "./components/Map";
+import MapContact from "@components/Map";
 import { getClient } from "@graphql/graphql-client";
 import { gql } from "@generated/gql";
 import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";

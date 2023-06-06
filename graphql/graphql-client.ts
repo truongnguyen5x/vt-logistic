@@ -29,12 +29,15 @@ export const getHomeQueryString = /* GraphQL */ `
             }
           }
           banners {
-            data {
-              attributes {
-                url
-                previewUrl
+            image {
+              data {
+                attributes {
+                  url
+                  previewUrl
+                }
               }
             }
+            url
           }
           abouts {
             is_plus

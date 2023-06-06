@@ -88,12 +88,14 @@ const Introduce = async () => {
         />
       </div>
       <Mission
+        title={t("mission")}
         assets={
           introAssets?.attributes?.mission as Maybe<ComponentIntroduceMission>
         }
         className="mt-14 md:mt-20"
       />
       <CoreValues
+        title={t("core_values")}
         assets={
           introAssets?.attributes
             ?.core_values as Maybe<ComponentIntroduceCoreValues>

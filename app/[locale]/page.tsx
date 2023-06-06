@@ -14,6 +14,7 @@ import { getClient, getHomeQueryString } from "@graphql/graphql-client";
 import BackgroundMobileImg from "@assets/images/background/background_mobile.png";
 import {
   ComponentHomeAbout,
+  ComponentHomeBanner,
   ComponentHomeFeature,
   ComponentHomeHomeLookup,
   ComponentHomeHomePartner,
@@ -104,9 +105,9 @@ export default async function Home() {
         alt=""
       />
       <SliderHome
-        images={
+        banners={
           assetData?.attributes
-            ?.banners as Maybe<UploadFileRelationResponseCollection>
+            ?.banners as Maybe<Array<Maybe<ComponentHomeBanner>>>
         }
       />
       <SliderFeature

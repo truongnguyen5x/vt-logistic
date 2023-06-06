@@ -1,3 +1,4 @@
+"use client";
 import AnimatedNumber from "@components/AnimatedNumber";
 import Truncate from "@components/Truncate";
 import { ComponentIntroduceMission } from "@generated/graphql";
@@ -7,13 +8,16 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { FC, useLayoutEffect, useRef, useState } from "react";
 import styles from "../style.module.scss";
+import useWindowSize from "@hooks/use-window-size";
 
 type Props = {
   assets: ComponentIntroduceMission | null;
   className?: string;
+  title: string;
 };
-const Mission: FC<Props> = ({ assets, className = "" }) => {
-  const t = useTranslations("introduce");
+const Mission: FC<Props> = ({ assets, className = "", title }) => {
+  // const t = useTranslations("introduce");
+  const { isMobile } = useWindowSize();
 
   return (
     <section className={className}>
@@ -40,7 +44,7 @@ const Mission: FC<Props> = ({ assets, className = "" }) => {
               className="section-name mb-6 animation max-md:after:left-16"
               data-animation-delay="0.3s"
             >
-              {t("mission")}
+              {title}
             </p>
           </div>
           {!!assets?.description && <Truncate content={assets?.description} />}
@@ -53,12 +57,26 @@ const Mission: FC<Props> = ({ assets, className = "" }) => {
                 <div
                   key={index}
                   className={clsx(
-                    "flex items-center justify-center gap-4 md:min-w-[181px] max-md:flex-col py-6 border-l first:border-none border-th-gray-50",
-                    "px-4 md:px-10 lg:px-16"
+                    "flex items-center justify-center gap-4 max-md:flex-col py-6 border-l first:border-none border-th-gray-50",
+                    "px-4 md:px-10 lg:px-14"
                   )}
                 >
-                  <span className="w-4 h-4 bg-gradient-red"></span>
-                  <div className={styles.text}>{item?.title}</div>
+                  {isMobile && (
+                    <span className="w-4 h-4 bg-gradient-red inline-block"></span>
+                  )}
+                  <div
+                    className={styles.text}
+                    // style={{
+                    //   animation: !isMobile
+                    //     ? `typing 1.2s steps(${item?.title.length}, end) 1s`
+                    //     : "",
+                    // }}
+                  >
+                    {!isMobile && (
+                      <span className="w-4 h-4 mr-2 bg-gradient-red inline-block"></span>
+                    )}
+                    {item?.title}
+                  </div>
                 </div>
               ))}
             </div>
@@ -66,11 +84,10 @@ const Mission: FC<Props> = ({ assets, className = "" }) => {
           {!!assets?.introduce?.length && (
             <div
               className={clsx(
-                "items-baseline justify-between md:gap-[50px] animation",
+                "items-baseline justify-between md:gap-[50px]",
                 "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4",
                 "mt-6 md:mt-[55px]"
               )}
-              data-animation-delay="0.5s"
             >
               {assets.introduce.map((item, index) => (
                 <div
@@ -83,11 +100,16 @@ const Mission: FC<Props> = ({ assets, className = "" }) => {
                     width={64}
                     height={64}
                   />
+
                   <div className="flex flex-col">
-                    <p className="text-th-red-500 font-bold text-4xl">
+                    <p className="text-th-red-500 font-bold text-3xl">
                       + <AnimatedNumber n={item?.number || 0} />
                     </p>
-                    <p className="text-th-gray-500 font-bold text-[25px] ">
+                    <p
+                      className="text-th-gray-500 font-bold text-xl animation"
+                      data-animation="tracking-in-expand"
+                      data-animation-delay="0.5s"
+                    >
                       {item?.title}
                     </p>
                   </div>

@@ -29,7 +29,7 @@ const Content: FC<Props> = ({ assets }) => {
         vertical={!isMobile}
         verticalSwiping={!isMobile}
         adaptiveHeight={isMobile}
-        speed={500}
+        speed={300}
         arrows={false}
         dots
         slidesToShow={1}

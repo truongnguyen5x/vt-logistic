@@ -64,7 +64,7 @@ export const getIntroduceQueryString = /* GraphQL */ `
             }
           }
           core_values {
-            image {
+            images {
               data {
                 attributes {
                   url

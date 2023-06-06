@@ -8,14 +8,16 @@ import Image from "next/image";
 import LeftArrowImg from "@assets/images/icons/arrow_left_3.svg";
 import RightArrowImg from "@assets/images/icons/arrow_right_3.svg";
 import {
+  ComponentHomeBanner,
   Maybe,
   UploadFileRelationResponseCollection,
 } from "@generated/graphql";
 import { getPrefixImageUrl } from "@ultility/index";
 import useWindowSize from "@hooks/use-window-size";
+import Link from "next-intl/link";
 
 interface Props {
-  images?: UploadFileRelationResponseCollection | null;
+  banners?: Maybe<Array<Maybe<ComponentHomeBanner>>>;
 }
 
 function SampleNextArrow(props: any) {
@@ -36,7 +38,7 @@ function SamplePrevArrow(props: any) {
   );
 }
 
-const SliderHome: FC<Props> = ({ images }) => {
+const SliderHome: FC<Props> = ({ banners }) => {
   const { isDesktop } = useWindowSize();
 
   return (
@@ -53,16 +55,17 @@ const SliderHome: FC<Props> = ({ images }) => {
         nextArrow={<SampleNextArrow />}
         prevArrow={<SamplePrevArrow />}
       >
-        {!!images &&
-          images.data.map((i, idx) => (
-            <Image
-              src={getPrefixImageUrl(i?.attributes?.url)}
-              key={idx}
-              className={styles.sliderHomeItem}
-              alt=""
-              width={1920}
-              height={450}
-            />
+        {!!banners &&
+          banners.map((banner, idx) => (
+            <Link href={banner?.url || "#"} key={idx}>
+              <Image
+                src={getPrefixImageUrl(banner?.image?.data?.attributes?.url)}
+                className={styles.sliderHomeItem}
+                alt=""
+                width={1920}
+                height={450}
+              />
+            </Link>
           ))}
       </Slider>
     </section>
