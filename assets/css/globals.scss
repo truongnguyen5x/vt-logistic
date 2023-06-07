@@ -308,7 +308,7 @@ body {
   @apply hidden absolute w-36 bg-th-white shadow-md top-12 -left-2;
   li {
     a {
-      @apply flex py-2 px-3 gap-2 items-center;
+      @apply flex py-2 px-3 gap-2 items-center text-th-gray-400;
     }
     img {
       @apply rounded-full object-cover;

@@ -183,17 +183,6 @@ const Footer = async () => {
           <div className="col-span-1 xl:col-span-2">
             <p className="footer-item">{t("certified_by")}</p>
             <div className="flex justify-start gap-12 mt-9">
-              <a
-                href={footerAsset?.attributes?.url_bo_cong_thuong || "#"}
-                target="_blank"
-              >
-                <Image
-                  src={BCTimg}
-                  width={167}
-                  height={52}
-                  alt="bo_cong_thuong"
-                />
-              </a>
               <a href="https://viettelpost.com.vn/" target="_blank">
                 <Image src={VtpImg} width={127} height={43} alt="viettel" />
               </a>
