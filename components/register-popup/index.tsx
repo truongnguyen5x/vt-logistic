@@ -52,7 +52,7 @@ const schema = ({ required, email }: { required: string; email: string }) => {
   });
 };
 
-const ResgisterPopup: FC<Props> = ({ locale, type = "trucking" }) => {
+const ResgisterPopup: FC<Props> = ({ locale, type = "trucking_domestic" }) => {
   const params = useParams();
   const t = useTranslations("register_popup");
   const [open, setOpen] = useState<boolean>(false);
@@ -131,7 +131,7 @@ const ResgisterPopup: FC<Props> = ({ locale, type = "trucking" }) => {
     if (data.weight) {
       data.weight = parseFloat(data.weight);
     }
-    mutation({ variables: { data, locale: getLanguageForApi(locale) } });
+    mutation({ variables: { data } });
   };
 
   return (
@@ -384,25 +384,26 @@ const ResgisterPopup: FC<Props> = ({ locale, type = "trucking" }) => {
                       )}
                     </div>
                   </div>
-                  {type != "trucking" && (
-                    <div className="mt-8">
-                      <label className="text-th-gray-320 text-sm font-semibold mb-1.5">
-                        {t("weight")}
-                      </label>
-                      <Controller
-                        name="weight"
-                        control={control}
-                        defaultValue={""}
-                        render={({ field }) => (
-                          <input
-                            type="number"
-                            className="bg-th-gray-220 focus-visible:outline-none px-6 py-4 w-full"
-                            {...field}
-                          />
-                        )}
-                      />
-                    </div>
-                  )}
+                  {type != "trucking_domestic" &&
+                    type != "trucking_international" && (
+                      <div className="mt-8">
+                        <label className="text-th-gray-320 text-sm font-semibold mb-1.5">
+                          {t("weight")}
+                        </label>
+                        <Controller
+                          name="weight"
+                          control={control}
+                          defaultValue={""}
+                          render={({ field }) => (
+                            <input
+                              type="number"
+                              className="bg-th-gray-220 focus-visible:outline-none px-6 py-4 w-full"
+                              {...field}
+                            />
+                          )}
+                        />
+                      </div>
+                    )}
                   <div className="mt-8">
                     <label className="text-th-gray-320 text-sm font-semibold mb-1.5">
                       {t("note")}

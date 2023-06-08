@@ -198,7 +198,10 @@ const ServiceTrucking = async () => {
                 locale={locale}
                 messages={message.default}
               >
-                <ResgisterPopup locale={locale as ILocale} />
+                <ResgisterPopup
+                  type="trucking_domestic"
+                  locale={locale as ILocale}
+                />
               </NextIntlClientProvider>
               <PricePopup
                 buttonTxt={t("pricing")}

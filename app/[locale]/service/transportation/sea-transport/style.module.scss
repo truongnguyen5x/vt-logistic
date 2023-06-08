@@ -23,7 +23,7 @@
   @apply relative overflow-hidden rounded-lg;
   & > img {
     @apply object-cover w-full transition-all duration-500;
-    height: 270px;
+    height: 320px;
   }
   &:hover {
     & > img {

@@ -64,8 +64,8 @@ export const getServiceQueryString = /* GraphQL */ `
 `;
 
 export const mutationOrderService = /* GraphQL */ `
-  mutation createOrderService($data: OrderInput!, $locale: I18NLocaleCode) {
-    createOrder(data: $data, locale: $locale) {
+  mutation createOrderService($data: OrderInput!) {
+    createOrder(data: $data) {
       data {
         id
         attributes {

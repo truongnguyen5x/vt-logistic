@@ -4,7 +4,12 @@ export type ISearchParams = {
 };
 
 export type IService =
-  | "trucking"
+  | "trucking_domestic"
+  | "trucking_international"
   | "rail_transport"
   | "sea_transport"
-  | "air_transport";
+  | "lcl_sea_transport"
+  | "fcl_sea_transport"
+  | "bulk_sea_transport"
+  | "air_transport_domestic"
+  | "air_transport_international";

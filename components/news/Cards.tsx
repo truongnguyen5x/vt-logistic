@@ -74,7 +74,7 @@ export const Card: FC<CardProps> = ({
               {post.attributes?.title}
             </h4>
             {!!post.attributes?.contents && (
-              <p className="break-words mt-4 text-th-gray-300 text-base">
+              <p className="break-words mt-4 text-th-gray-300 text-base line-clamp-2">
                 {post.attributes?.preview_content}
               </p>
             )}

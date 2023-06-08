@@ -17,3 +17,7 @@ export const convertNewsTypeToURL = (type?: string) =>
 
 export const convertNewsUrlToType = (urlType?: string) =>
   (urlType || "").replace("-", "_");
+
+export const numberWithDot = (x: number) => {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+};

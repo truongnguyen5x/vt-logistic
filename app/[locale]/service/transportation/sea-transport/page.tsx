@@ -14,6 +14,7 @@ import { gql } from "@generated/gql";
 import { getTruckingQueryString } from "@graphql/trucking.graghql";
 import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
 import {
+  ComponentSeaFeature,
   ComponentServiceFeature,
   ComponentTruckingOtherService,
   Maybe,
@@ -23,18 +24,17 @@ import { Metadata } from "next";
 import PricePopup from "@components/price-popup";
 import clsx from "clsx";
 import { getRailQueryString } from "@graphql/rail.graphql";
-import SliderRail from "./components/Slider";
+import SliderSea from "./components/Slider";
+import { getSeaTransportQueryString } from "@graphql/sea.graphql";
 
-const getRailAsset = async (locale: ILocale) => {
+const getSeaTransportAsset = async (locale: ILocale) => {
   const { data } = await getClient().query({
-    query: gql(getRailQueryString),
+    query: gql(getSeaTransportQueryString),
     variables: { locale: getLanguageForApi(locale) },
   });
 
   // get last element
-  return data.railTransportations?.data[
-    data?.railTransportations?.data?.length - 1
-  ];
+  return data.seaTransports?.data[data?.seaTransports?.data?.length - 1];
 };
 
 type Props = {
@@ -45,7 +45,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = params.locale;
 
   // fetch data
-  const [assetData] = await Promise.all([getRailAsset(locale as ILocale)]);
+  const [assetData] = await Promise.all([
+    getSeaTransportAsset(locale as ILocale),
+  ]);
 
   return {
     title: assetData?.attributes?.SEO?.metaTitle,
@@ -60,11 +62,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const ServiceRailTransport = async () => {
+const SeaTransport = async () => {
   const locale = useLocale();
-  const [railAsset, t, message] = await Promise.all([
-    getRailAsset(locale as ILocale),
-    getTranslations("rail"),
+  const [seaTransportAsset, t, message] = await Promise.all([
+    getSeaTransportAsset(locale as ILocale),
+    getTranslations("sea"),
     import(`../../../../../dictionaries/${locale}.json`),
   ]);
 
@@ -72,8 +74,8 @@ const ServiceRailTransport = async () => {
     { title: t("breadcrumbs.home"), link: "#" },
     { title: t("breadcrumbs.service"), link: "/service" },
     {
-      title: t("breadcrumbs.rail"),
-      link: "/service/transportation/rail-transportation",
+      title: t("breadcrumbs.sea"),
+      link: "/service/transportation/sea-transport",
       active: true,
     },
   ];
@@ -82,7 +84,7 @@ const ServiceRailTransport = async () => {
     <Fragment>
       <Banner
         image={getPrefixImageUrl(
-          railAsset?.attributes?.banner?.data?.attributes?.url
+          seaTransportAsset?.attributes?.banner?.data?.attributes?.url
         )}
         title={t("title")}
       />
@@ -93,18 +95,18 @@ const ServiceRailTransport = async () => {
           className="text-th-gray-300 font-medium text-lg whitespace-pre-line text-center animation"
           data-animation-delay="0.3s"
         >
-          {railAsset?.attributes?.description}
+          {seaTransportAsset?.attributes?.description}
         </p>
-        <SliderRail
+        <SliderSea
           features={
-            railAsset?.attributes?.features as Maybe<
-              Array<Maybe<ComponentServiceFeature>>
+            seaTransportAsset?.attributes?.features as Maybe<
+              Array<Maybe<ComponentSeaFeature>>
             >
           }
         />
         <div className="mt-10 mb-20 flex justify-center">
           <NextIntlClientProvider locale={locale} messages={message.default}>
-            <ResgisterPopup type="rail_transport" locale={locale as ILocale} />
+            <ResgisterPopup type="sea_transport" locale={locale as ILocale} />
           </NextIntlClientProvider>
         </div>
       </div>
@@ -117,53 +119,58 @@ const ServiceRailTransport = async () => {
                 "max-lg:after:left-1/2 max-lg:after:-translate-x-1/2"
               )}
             >
-              {t("service")}
+              {t("domestic")}
             </h3>
             <div className="self-center lg:hidden">
               <Image
                 src={getPrefixImageUrl(
-                  railAsset?.attributes?.service_image?.data?.attributes?.url
+                  seaTransportAsset?.attributes?.domestic_image?.data
+                    ?.attributes?.url
                 )}
                 width={735}
                 height={400}
                 alt=""
               />
             </div>
-            {!!railAsset?.attributes?.services?.length &&
-              railAsset?.attributes?.services.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-start gap-3 my-6 animation"
-                  data-animtion-delay={`${0.3 + 0.1 * idx}s`}
-                >
-                  <Image
-                    className="mt-2"
-                    src={RightDarkImg}
-                    width={20}
-                    height={20}
-                    alt=""
-                  />
-                  <div className="mr-10">
-                    <p className={styles.domesticItem}>{item?.title}</p>
+            {!!seaTransportAsset?.attributes?.domestic_services?.length &&
+              seaTransportAsset?.attributes?.domestic_services.map(
+                (item, idx) => (
+                  <div
+                    key={idx}
+                    className="flex items-start gap-3 my-6 animation"
+                    data-animtion-delay={`${0.3 + 0.1 * idx}s`}
+                  >
+                    <Image
+                      className="mt-2"
+                      src={RightDarkImg}
+                      width={20}
+                      height={20}
+                      alt=""
+                    />
+                    <div className="mr-10">
+                      <p className={styles.domesticItem}>{item?.title}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                )
+              )}
             <div className="flex max-md:flex-col-reverse gap-6 mt-9">
               <NextIntlClientProvider
                 locale={locale}
                 messages={message.default}
               >
                 <ResgisterPopup
-                  type="rail_transport"
+                  type="sea_transport"
                   locale={locale as ILocale}
                 />
               </NextIntlClientProvider>
               <PricePopup
                 buttonTxt={t("pricing")}
-                title={railAsset?.attributes?.price_table?.title || ""}
+                title={
+                  seaTransportAsset?.attributes?.domestic_price?.title || ""
+                }
                 priceImage={
-                  railAsset?.attributes?.price_table?.price_image?.data
-                    ?.attributes?.url || ""
+                  seaTransportAsset?.attributes?.domestic_price?.price_image
+                    ?.data?.attributes?.url || ""
                 }
               />
             </div>
@@ -171,7 +178,8 @@ const ServiceRailTransport = async () => {
           <div className="self-center max-lg:hidden basis-1/2 xl:h-[450px]">
             <Image
               src={getPrefixImageUrl(
-                railAsset?.attributes?.service_image?.data?.attributes?.url
+                seaTransportAsset?.attributes?.domestic_image?.data?.attributes
+                  ?.url
               )}
               width={735}
               height={400}
@@ -181,68 +189,8 @@ const ServiceRailTransport = async () => {
           </div>
         </div>
       </div>
-      <div className="container max-md:px-4 max-xl:px-6 mx-auto flex py-10 lg:py-28 gap-16">
-        <div className="self-center max-lg:hidden basis-1/2 xl:h-[450px]">
-          <Image
-            src={getPrefixImageUrl(
-              railAsset?.attributes?.advantag_image?.data?.attributes?.url
-            )}
-            width={735}
-            height={400}
-            alt=""
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="min-w-0 max-xl:flex-grow xl:basis-1/2">
-          <h3 className="section-name-left mb-11 animation max-lg:text-center max-lg:after:left-1/2 max-lg:after:-translate-x-1/2">
-            {t("advantage")}
-          </h3>
-          <div className="self-center lg:hidden">
-            <Image
-              src={getPrefixImageUrl(
-                railAsset?.attributes?.advantag_image?.data?.attributes?.url
-              )}
-              width={735}
-              height={400}
-              alt=""
-            />
-          </div>
-          {!!railAsset?.attributes?.advantages?.length &&
-            railAsset?.attributes?.advantages.map((item, idx) => (
-              <div
-                key={idx}
-                className="flex items-start gap-3 my-6 animation"
-                data-animtion-delay={`${0.3 + 0.1 * idx}s`}
-              >
-                <Image
-                  className="mt-2"
-                  src={RightDarkImg}
-                  width={20}
-                  height={20}
-                  alt=""
-                />
-                <div>
-                  <p className={styles.domesticItem}>{item?.title}</p>
-                </div>
-              </div>
-            ))}
-          <div className="flex max-md:flex-col-reverse gap-6 mt-9">
-            <NextIntlClientProvider locale={locale} messages={message.default}>
-              <ResgisterPopup
-                type="rail_transport"
-                locale={locale as ILocale}
-              />
-            </NextIntlClientProvider>
-            <PricePopup
-              buttonTxt={t("pricing")}
-              title={railAsset?.attributes?.price_table?.title || ""}
-              priceImage={
-                railAsset?.attributes?.price_table?.price_image?.data
-                  ?.attributes?.url || ""
-              }
-            />
-          </div>
-        </div>
+      <div className="container mx-auto mb-28">
+        <p className="section-name mb-10 mt-16">{t("international")}</p>
       </div>
       <div className="container mx-auto">
         <h3 className="section-name mb-14 animation">
@@ -251,7 +199,7 @@ const ServiceRailTransport = async () => {
         <MoreService
           more={t("more")}
           services={
-            railAsset?.attributes?.others as Maybe<
+            seaTransportAsset?.attributes?.others as Maybe<
               ComponentTruckingOtherService[]
             >
           }
@@ -261,4 +209,4 @@ const ServiceRailTransport = async () => {
   );
 };
 
-export default ServiceRailTransport;
+export default SeaTransport;

@@ -92,6 +92,19 @@
       "trucking": "Dịch vụ vận tải đường bộ"
     }
   },
+  "sea": {
+    "more": "Xem thêm",
+    "title": "Dịch vụ vận tải đường biển",
+    "pricing": "Tra cứu bảng giá",
+    "domestic": "Dịch vụ vận chuyển đường thuỷ nội địa",
+    "international": "Vận tải đường biển quốc tế và gom hàng lẻ (LCL)",
+    "maybe_you_are_interested": "Có thể bạn quan tâm",
+    "breadcrumbs": {
+      "home": "Trang chủ",
+      "service": "Dịch vụ",
+      "sea": "Dịch vụ vận tải đường biển"
+    }
+  },
   "register_popup": {
     "create_order": "Tạo đơn hàng",
     "title": "VUI LÒNG ĐIỀN CÁC THÔNG TIN DƯỚI ĐÂY ĐỂ VIETTEL LOGISTICS HỖ TRỢ KHÁCH HÀNG TỐT NHẤT",
