@@ -22,18 +22,7 @@ export const getRailQueryString = /* GraphQL */ `
               }
             }
           }
-          internal_price_table {
-            title
-            price_image {
-              data {
-                attributes {
-                  url
-                  previewUrl
-                }
-              }
-            }
-          }
-          international_price_table {
+          price_table {
             title
             price_image {
               data {

@@ -13,12 +13,17 @@ import { getClient } from "@graphql/graphql-client";
 import { gql } from "@generated/gql";
 import { getTruckingQueryString } from "@graphql/trucking.graghql";
 import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
-import { ComponentTruckingOtherService, Maybe } from "@generated/graphql";
+import {
+  ComponentServiceFeature,
+  ComponentTruckingOtherService,
+  Maybe,
+} from "@generated/graphql";
 import { ApolloWrapper } from "@graphql/client";
 import { Metadata } from "next";
 import PricePopup from "@components/price-popup";
 import clsx from "clsx";
 import { getRailQueryString } from "@graphql/rail.graphql";
+import SliderRail from "./components/Slider";
 
 const getRailAsset = async (locale: ILocale) => {
   const { data } = await getClient().query({
@@ -89,6 +94,13 @@ const ServiceTrucking = async () => {
         >
           {railAsset?.attributes?.description}
         </p>
+        <SliderRail
+          features={
+            railAsset?.attributes?.features as Maybe<
+              Array<Maybe<ComponentServiceFeature>>
+            >
+          }
+        />
       </div>
       <div className="bg-th-gray-250 py-10 lg:py-28">
         <div className="container max-md:px-4 max-xl:px-6 mx-auto flex">
@@ -165,9 +177,9 @@ const ServiceTrucking = async () => {
 
               <PricePopup
                 buttonTxt={t("pricing")}
-                title={railAsset?.attributes?.internal_price_table?.title || ""}
+                title={railAsset?.attributes?.price_table?.title || ""}
                 priceImage={
-                  railAsset?.attributes?.internal_price_table?.price_image?.data
+                  railAsset?.attributes?.price_table?.price_image?.data
                     ?.attributes?.url || ""
                 }
               />
@@ -264,12 +276,10 @@ const ServiceTrucking = async () => {
             />
             <PricePopup
               buttonTxt={t("pricing")}
-              title={
-                railAsset?.attributes?.international_price_table?.title || ""
-              }
+              title={railAsset?.attributes?.price_table?.title || ""}
               priceImage={
-                railAsset?.attributes?.international_price_table?.price_image
-                  ?.data?.attributes?.url || ""
+                railAsset?.attributes?.price_table?.price_image?.data
+                  ?.attributes?.url || ""
               }
             />
           </div>

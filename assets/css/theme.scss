@@ -37,6 +37,12 @@
     #44494d 73.96%,
     rgba(68, 73, 77, 0) 100%
   );
+
+  --color-back-gray-gradient-2: linear-gradient(
+    180deg,
+    rgba(42, 53, 61, 0) -0.16%,
+    rgba(42, 53, 61, 0.9) 59%
+  );
 }
 
 @media (prefers-color-scheme: dark) {
