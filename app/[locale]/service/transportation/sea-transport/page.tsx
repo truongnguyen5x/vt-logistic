@@ -15,6 +15,7 @@ import { getTruckingQueryString } from "@graphql/trucking.graghql";
 import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
 import {
   ComponentSeaFeature,
+  ComponentSeaService,
   ComponentServiceFeature,
   ComponentTruckingOtherService,
   Maybe,
@@ -26,6 +27,7 @@ import clsx from "clsx";
 import { getRailQueryString } from "@graphql/rail.graphql";
 import SliderSea from "./components/Slider";
 import { getSeaTransportQueryString } from "@graphql/sea.graphql";
+import ServiceSlider from "./components/ServiceSlider";
 
 const getSeaTransportAsset = async (locale: ILocale) => {
   const { data } = await getClient().query({
@@ -104,7 +106,7 @@ const SeaTransport = async () => {
             >
           }
         />
-        <div className="mt-10 mb-20 flex justify-center">
+        <div className="mt-10 mb-20 text-center">
           <NextIntlClientProvider locale={locale} messages={message.default}>
             <ResgisterPopup type="sea_transport" locale={locale as ILocale} />
           </NextIntlClientProvider>
@@ -191,6 +193,16 @@ const SeaTransport = async () => {
       </div>
       <div className="container mx-auto mb-28">
         <p className="section-name mb-10 mt-16">{t("international")}</p>
+        <NextIntlClientProvider locale={locale} messages={message.default}>
+          <ServiceSlider
+            locale={locale as ILocale}
+            services={
+              seaTransportAsset?.attributes?.services as Maybe<
+                Array<ComponentSeaService>
+              >
+            }
+          />
+        </NextIntlClientProvider>
       </div>
       <div className="container mx-auto">
         <h3 className="section-name mb-14 animation">

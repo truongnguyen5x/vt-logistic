@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, Fragment, useEffect, useRef, useState } from "react";
 import BgPopup from "@assets/images/background/bg_popup.png";
 import CustomAutocomplete from "@components/CustomAutocomplete";
 
@@ -135,7 +135,7 @@ const ResgisterPopup: FC<Props> = ({ locale, type = "trucking_domestic" }) => {
   };
 
   return (
-    <div>
+    <Fragment>
       <button
         onClick={handleOpenPopup}
         className="btn-red animation max-md:w-full"
@@ -434,7 +434,7 @@ const ResgisterPopup: FC<Props> = ({ locale, type = "trucking_domestic" }) => {
           </div>
         </div>
       )}
-    </div>
+    </Fragment>
   );
 };
 

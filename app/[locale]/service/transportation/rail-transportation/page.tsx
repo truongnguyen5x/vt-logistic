@@ -102,7 +102,7 @@ const ServiceRailTransport = async () => {
             >
           }
         />
-        <div className="mt-10 mb-20 flex justify-center">
+        <div className="mt-10 mb-20 text-center">
           <NextIntlClientProvider locale={locale} messages={message.default}>
             <ResgisterPopup type="rail_transport" locale={locale as ILocale} />
           </NextIntlClientProvider>

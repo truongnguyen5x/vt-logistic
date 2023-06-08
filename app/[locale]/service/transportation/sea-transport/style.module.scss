@@ -45,5 +45,20 @@
   font-size: 25px;
 }
 
-@media only screen and (max-width: 1440px) {
+.sliderService {
+  @include slick-dots-red(-30px);
+  @apply mt-20;
+  :global .slick-list {
+    @apply -mx-4;
+  }
+  :global .slick-slide {
+    & > div {
+      @apply mx-4;
+    }
+  }
+}
+
+.propertyItem {
+  @apply text-lg font-semibold;
+  color: var(--color-gray-340);
 }
