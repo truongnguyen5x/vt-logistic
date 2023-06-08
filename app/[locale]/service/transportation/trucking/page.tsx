@@ -81,7 +81,7 @@ const ServiceTrucking = async () => {
         <BreadCrumbs breadcrumbs={breadcrumbs} className="mt-6 mb-10" />
         <h3 className="section-name mb-10 animation">{t("title")}</h3>
         <p
-          className="text-th-gray-300 font-medium text-base whitespace-pre-line text-center animation"
+          className="text-th-gray-300 font-medium text-lg whitespace-pre-line text-center animation"
           data-animation-delay="0.3s"
         >
           {truckingAsset?.attributes?.description}
@@ -175,7 +175,7 @@ const ServiceTrucking = async () => {
       </div>
       <div className="bg-th-gray-250 py-10 lg:py-28">
         <div className="container max-md:px-4 max-xl:px-6 mx-auto flex">
-          <div className="min-w-0">
+          <div className="min-w-0 basis-1/2">
             <h3
               className={clsx(
                 "section-name-left mb-11 animation max-lg:text-center",
@@ -204,8 +204,8 @@ const ServiceTrucking = async () => {
                   <Image
                     className="mt-2"
                     src={RightDarkImg}
-                    width={24}
-                    height={24}
+                    width={20}
+                    height={20}
                     alt=""
                   />
                   <div className="mr-10">
@@ -261,7 +261,7 @@ const ServiceTrucking = async () => {
               />
             </div>
           </div>
-          <div className="self-center max-lg:hidden">
+          <div className="self-center max-lg:hidden basis-1/2 xl:h-[450px]">
             <Image
               src={getPrefixImageUrl(
                 truckingAsset?.attributes?.internal_img?.data?.attributes?.url
@@ -269,12 +269,13 @@ const ServiceTrucking = async () => {
               width={735}
               height={400}
               alt=""
+              className="w-full h-full object-cover"
             />
           </div>
         </div>
       </div>
       <div className="container max-md:px-4 max-xl:px-6 mx-auto flex py-10 lg:py-28 gap-16">
-        <div className="self-center max-lg:hidden">
+        <div className="self-center max-lg:hidden basis-1/2 xl:h-[450px]">
           <Image
             src={getPrefixImageUrl(
               truckingAsset?.attributes?.international_img?.data?.attributes
@@ -283,9 +284,10 @@ const ServiceTrucking = async () => {
             width={735}
             height={400}
             alt=""
+            className="w-full h-full object-cover"
           />
         </div>
-        <div className="min-w-0">
+        <div className="min-w-0 basis-1/2">
           <h3 className="section-name-left mb-11 animation max-lg:text-center max-lg:after:left-1/2 max-lg:after:-translate-x-1/2">
             {t("international_shipping")}
           </h3>
@@ -311,8 +313,8 @@ const ServiceTrucking = async () => {
                   <Image
                     className="mt-2"
                     src={RightDarkImg}
-                    width={24}
-                    height={24}
+                    width={20}
+                    height={20}
                     alt=""
                   />
                   <div>
