@@ -18,15 +18,18 @@ import { ApolloWrapper } from "@graphql/client";
 import { Metadata } from "next";
 import PricePopup from "@components/price-popup";
 import clsx from "clsx";
+import { getRailQueryString } from "@graphql/rail.graphql";
 
-const getTruckingAsset = async (locale: ILocale) => {
+const getRailAsset = async (locale: ILocale) => {
   const { data } = await getClient().query({
-    query: gql(getTruckingQueryString),
+    query: gql(getRailQueryString),
     variables: { locale: getLanguageForApi(locale) },
   });
 
   // get last element
-  return data.truckings?.data[data?.truckings?.data?.length - 1];
+  return data.railTransportations?.data[
+    data?.railTransportations?.data?.length - 1
+  ];
 };
 
 type Props = {
@@ -37,7 +40,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = params.locale;
 
   // fetch data
-  const [assetData] = await Promise.all([getTruckingAsset(locale as ILocale)]);
+  const [assetData] = await Promise.all([getRailAsset(locale as ILocale)]);
 
   return {
     title: assetData?.attributes?.SEO?.metaTitle,
@@ -54,17 +57,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const ServiceTrucking = async () => {
   const locale = useLocale();
-  const [truckingAsset, t] = await Promise.all([
-    getTruckingAsset(locale as ILocale),
-    getTranslations("trucking"),
+  const [railAsset, t] = await Promise.all([
+    getRailAsset(locale as ILocale),
+    getTranslations("rail"),
   ]);
 
   const breadcrumbs = [
     { title: t("breadcrumbs.home"), link: "#" },
     { title: t("breadcrumbs.service"), link: "/service" },
     {
-      title: t("breadcrumbs.trucking"),
-      link: "/service/transportation/trucking",
+      title: t("breadcrumbs.rail"),
+      link: "/service/transportation/rail-transportation",
       active: true,
     },
   ];
@@ -73,7 +76,7 @@ const ServiceTrucking = async () => {
     <Fragment>
       <Banner
         image={getPrefixImageUrl(
-          truckingAsset?.attributes?.banner?.data?.attributes?.url
+          railAsset?.attributes?.banner?.data?.attributes?.url
         )}
         title={t("title")}
       />
@@ -84,119 +87,32 @@ const ServiceTrucking = async () => {
           className="text-th-gray-300 font-medium text-lg whitespace-pre-line text-center animation"
           data-animation-delay="0.3s"
         >
-          {truckingAsset?.attributes?.description}
+          {railAsset?.attributes?.description}
         </p>
-        <div className="flex max-xl:flex-col gap-6 xl:gap-24 mt-6 mb-10 xl:mt-14 xl:mb-28">
-          <div>
-            <div className="relative animation" data-animation-delay="0.4s">
-              <Image
-                src={getPrefixImageUrl(
-                  truckingAsset?.attributes?.intro_img?.data?.attributes?.url
-                )}
-                alt=""
-                width={700}
-                height={480}
-                className="rounded-lg h-60 md:h-80 xl:h-96 object-cover"
-              />
-              <Image
-                src={getPrefixImageUrl(
-                  truckingAsset?.attributes?.sub_intro_img?.data?.attributes
-                    ?.url
-                )}
-                alt=""
-                width={310}
-                height={300}
-                className={clsx(
-                  "absolute -bottom-8 -right-8 max-xl:bottom-0 max-xl:right-0",
-                  "rounded-lg object-cover max-md:hidden",
-                  "shadow-[-31px_-31px_#fff] max-xl:shadow-[0_0_0_14x_#fff]",
-                  "h-36 xl:h-48"
-                )}
-              />
-            </div>
-          </div>
-          <div className="flex flex-col gap-3">
-            {!!truckingAsset?.attributes?.intro_features?.length &&
-              truckingAsset?.attributes?.intro_features.map((intro, idx) => (
-                <div
-                  key={idx}
-                  className="flex animation gap-3 items-start"
-                  data-animation-delay={`${0.3 + 0.1 * idx}s`}
-                >
-                  <Image
-                    src={getPrefixImageUrl(intro?.icon?.data?.attributes?.url)}
-                    width={64}
-                    height={64}
-                    alt=""
-                  />
-                  <div>
-                    <p className={styles.introItem}>{intro?.title}</p>
-                    <p className="text-base text-th-gray-300 font-medium">
-                      {intro?.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            <div className="mt-6">
-              <ResgisterPopup
-                locale={locale as ILocale}
-                textBtn={t("create_order")}
-                title={t("register_popup.title")}
-                description={t("register_popup.description")}
-                successTxt={t("register_popup.success")}
-                requiredTxt={t("register_popup.requiredTxt")}
-                emailTxt={t("register_popup.emailTxt")}
-                label={{
-                  fullname: t("register_popup.fullname"),
-                  phone_number: t("register_popup.phone_number"),
-                  email: t("register_popup.email"),
-                  service: t("register_popup.service"),
-                  from: t("register_popup.from"),
-                  to: t("register_popup.to"),
-                  weight: t("register_popup.weight"),
-                  note: t("register_popup.note"),
-                  button: t("register_popup.button"),
-                  required: t("register_popup.required"),
-                }}
-                placeholder={{
-                  fullname: t("register_popup.placeholder.fullname"),
-                  phone_number: t("register_popup.placeholder.phone_number"),
-                  email: t("register_popup.placeholder.email"),
-                  from: t("register_popup.placeholder.from"),
-                  to: t("register_popup.placeholder.to"),
-                  weight: t("register_popup.placeholder.weight"),
-                  note: t("register_popup.placeholder.note"),
-                  select: t("register_popup.placeholder.select"),
-                }}
-              />
-            </div>
-          </div>
-        </div>
       </div>
-      <div className="bg-th-gray-250 py-10 xl:py-28">
+      <div className="bg-th-gray-250 py-10 lg:py-28">
         <div className="container max-md:px-4 max-xl:px-6 mx-auto flex">
           <div className="min-w-0 max-xl:flex-grow xl:basis-1/2">
             <h3
               className={clsx(
-                "section-name-left mb-11 animation max-xl:text-center",
-                "max-xl:after:left-1/2 max-xl:after:-translate-x-1/2"
+                "section-name-left mb-11 animation max-lg:text-center",
+                "max-lg:after:left-1/2 max-lg:after:-translate-x-1/2"
               )}
             >
-              {t("domestic_shipping")}
+              {t("service")}
             </h3>
-            <div className="self-center xl:hidden">
+            <div className="self-center lg:hidden">
               <Image
                 src={getPrefixImageUrl(
-                  truckingAsset?.attributes?.internal_img?.data?.attributes?.url
+                  railAsset?.attributes?.service_image?.data?.attributes?.url
                 )}
                 width={735}
                 height={400}
                 alt=""
-                className="w-full h-full object-cover"
               />
             </div>
-            {!!truckingAsset?.attributes?.internal_features?.length &&
-              truckingAsset?.attributes?.internal_features.map((item, idx) => (
+            {!!railAsset?.attributes?.services?.length &&
+              railAsset?.attributes?.services.map((item, idx) => (
                 <div
                   key={idx}
                   className="flex items-start gap-3 my-6 animation"
@@ -211,9 +127,6 @@ const ServiceTrucking = async () => {
                   />
                   <div className="mr-10">
                     <p className={styles.domesticItem}>{item?.title}</p>
-                    <p className="text-base text-th-gray-300 font-medium">
-                      {item?.description}
-                    </p>
                   </div>
                 </div>
               ))}
@@ -252,20 +165,18 @@ const ServiceTrucking = async () => {
 
               <PricePopup
                 buttonTxt={t("pricing")}
-                title={
-                  truckingAsset?.attributes?.internal_price_table?.title || ""
-                }
+                title={railAsset?.attributes?.internal_price_table?.title || ""}
                 priceImage={
-                  truckingAsset?.attributes?.internal_price_table?.price_image
-                    ?.data?.attributes?.url || ""
+                  railAsset?.attributes?.internal_price_table?.price_image?.data
+                    ?.attributes?.url || ""
                 }
               />
             </div>
           </div>
-          <div className="self-center max-xl:hidden xl:basis-1/2 xl:h-[450px]">
+          <div className="self-center max-lg:hidden basis-1/2 xl:h-[450px]">
             <Image
               src={getPrefixImageUrl(
-                truckingAsset?.attributes?.internal_img?.data?.attributes?.url
+                railAsset?.attributes?.service_image?.data?.attributes?.url
               )}
               width={735}
               height={400}
@@ -275,12 +186,11 @@ const ServiceTrucking = async () => {
           </div>
         </div>
       </div>
-      <div className="container max-md:px-4 max-xl:px-6 mx-auto flex py-10 xl:py-28 gap-16">
-        <div className="self-center max-xl:hidden xl:basis-1/2 xl:h-[450px]">
+      <div className="container max-md:px-4 max-xl:px-6 mx-auto flex py-10 lg:py-28 gap-16">
+        <div className="self-center max-lg:hidden basis-1/2 xl:h-[450px]">
           <Image
             src={getPrefixImageUrl(
-              truckingAsset?.attributes?.international_img?.data?.attributes
-                ?.url
+              railAsset?.attributes?.advantag_image?.data?.attributes?.url
             )}
             width={735}
             height={400}
@@ -289,45 +199,38 @@ const ServiceTrucking = async () => {
           />
         </div>
         <div className="min-w-0 max-xl:flex-grow xl:basis-1/2">
-          <h3 className="section-name-left mb-11 animation max-xl:text-center max-xl:after:left-1/2 max-xl:after:-translate-x-1/2">
-            {t("international_shipping")}
+          <h3 className="section-name-left mb-11 animation max-lg:text-center max-lg:after:left-1/2 max-lg:after:-translate-x-1/2">
+            {t("advantage")}
           </h3>
-          <div className="self-center xl:hidden">
+          <div className="self-center lg:hidden">
             <Image
               src={getPrefixImageUrl(
-                truckingAsset?.attributes?.international_img?.data?.attributes
-                  ?.url
+                railAsset?.attributes?.advantag_image?.data?.attributes?.url
               )}
               width={735}
               height={400}
               alt=""
-              className="w-full h-full object-cover"
             />
           </div>
-          {!!truckingAsset?.attributes?.international_features?.length &&
-            truckingAsset?.attributes?.international_features.map(
-              (item, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-start gap-3 my-6 animation"
-                  data-animtion-delay={`${0.3 + 0.1 * idx}s`}
-                >
-                  <Image
-                    className="mt-2"
-                    src={RightDarkImg}
-                    width={20}
-                    height={20}
-                    alt=""
-                  />
-                  <div>
-                    <p className={styles.domesticItem}>{item?.title}</p>
-                    <p className="text-base text-th-gray-300 font-medium">
-                      {item?.description}
-                    </p>
-                  </div>
+          {!!railAsset?.attributes?.advantages?.length &&
+            railAsset?.attributes?.advantages.map((item, idx) => (
+              <div
+                key={idx}
+                className="flex items-start gap-3 my-6 animation"
+                data-animtion-delay={`${0.3 + 0.1 * idx}s`}
+              >
+                <Image
+                  className="mt-2"
+                  src={RightDarkImg}
+                  width={20}
+                  height={20}
+                  alt=""
+                />
+                <div>
+                  <p className={styles.domesticItem}>{item?.title}</p>
                 </div>
-              )
-            )}
+              </div>
+            ))}
           <div className="flex max-md:flex-col-reverse gap-6 mt-9">
             <ResgisterPopup
               locale={locale as ILocale}
@@ -362,12 +265,11 @@ const ServiceTrucking = async () => {
             <PricePopup
               buttonTxt={t("pricing")}
               title={
-                truckingAsset?.attributes?.international_price_table?.title ||
-                ""
+                railAsset?.attributes?.international_price_table?.title || ""
               }
               priceImage={
-                truckingAsset?.attributes?.international_price_table
-                  ?.price_image?.data?.attributes?.url || ""
+                railAsset?.attributes?.international_price_table?.price_image
+                  ?.data?.attributes?.url || ""
               }
             />
           </div>
@@ -380,7 +282,7 @@ const ServiceTrucking = async () => {
         <MoreService
           more={t("more")}
           services={
-            truckingAsset?.attributes?.other as Maybe<
+            railAsset?.attributes?.others as Maybe<
               ComponentTruckingOtherService[]
             >
           }

@@ -725,8 +725,10 @@ a.footer-link {
         }
       }
       .third-nav {
-        @apply block absolute top-1;
-        right: -220px;
+        @apply block absolute;
+        width: 208px;
+        top: -0.25rem;
+        left: 208px;
       }
     }
   }

@@ -102,15 +102,15 @@ const Header: FC<HeaderProps> = ({ titles, locale }) => {
             },
             {
               path: "/service/transportation/rail-transportation",
-              key: "rail_transportation",
+              key: "rail-transportation",
             },
             {
               path: "/service/transportation/sea-transport",
-              key: "sea_transport",
+              key: "sea-transport",
             },
             {
               path: "/service/transportation/air-freight",
-              key: "air_freight",
+              key: "air-freight",
             },
           ],
         },
@@ -128,7 +128,7 @@ const Header: FC<HeaderProps> = ({ titles, locale }) => {
         },
         {
           path: "/service/endpoint_delivery",
-          key: "endpoint_delivery",
+          key: "endpoint-delivery",
         },
       ],
     },
