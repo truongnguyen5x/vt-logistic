@@ -1,4 +1,4 @@
-import { useLocale } from "next-intl";
+import { NextIntlClientProvider, useLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { Fragment } from "react";
 import Banner from "@components/Banner";
@@ -62,9 +62,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 const ServiceTrucking = async () => {
   const locale = useLocale();
-  const [railAsset, t] = await Promise.all([
+  const [railAsset, t, message] = await Promise.all([
     getRailAsset(locale as ILocale),
     getTranslations("rail"),
+    import(`../../../../../dictionaries/${locale}.json`),
   ]);
 
   const breadcrumbs = [
@@ -101,6 +102,11 @@ const ServiceTrucking = async () => {
             >
           }
         />
+        <div className="mt-10 mb-20 flex justify-center">
+          <NextIntlClientProvider locale={locale} messages={message.default}>
+            <ResgisterPopup type="rail_transport" locale={locale as ILocale} />
+          </NextIntlClientProvider>
+        </div>
       </div>
       <div className="bg-th-gray-250 py-10 lg:py-28">
         <div className="container max-md:px-4 max-xl:px-6 mx-auto flex">
@@ -143,38 +149,15 @@ const ServiceTrucking = async () => {
                 </div>
               ))}
             <div className="flex max-md:flex-col-reverse gap-6 mt-9">
-              <ResgisterPopup
-                locale={locale as ILocale}
-                textBtn={t("create_order")}
-                title={t("register_popup.title")}
-                description={t("register_popup.description")}
-                successTxt={t("register_popup.success")}
-                requiredTxt={t("register_popup.requiredTxt")}
-                emailTxt={t("register_popup.emailTxt")}
-                label={{
-                  fullname: t("register_popup.fullname"),
-                  phone_number: t("register_popup.phone_number"),
-                  email: t("register_popup.email"),
-                  service: t("register_popup.service"),
-                  from: t("register_popup.from"),
-                  to: t("register_popup.to"),
-                  weight: t("register_popup.weight"),
-                  note: t("register_popup.note"),
-                  button: t("register_popup.button"),
-                  required: t("register_popup.required"),
-                }}
-                placeholder={{
-                  fullname: t("register_popup.placeholder.fullname"),
-                  phone_number: t("register_popup.placeholder.phone_number"),
-                  email: t("register_popup.placeholder.email"),
-                  from: t("register_popup.placeholder.from"),
-                  to: t("register_popup.placeholder.to"),
-                  weight: t("register_popup.placeholder.weight"),
-                  note: t("register_popup.placeholder.note"),
-                  select: t("register_popup.placeholder.select"),
-                }}
-              />
-
+              <NextIntlClientProvider
+                locale={locale}
+                messages={message.default}
+              >
+                <ResgisterPopup
+                  type="rail_transport"
+                  locale={locale as ILocale}
+                />
+              </NextIntlClientProvider>
               <PricePopup
                 buttonTxt={t("pricing")}
                 title={railAsset?.attributes?.price_table?.title || ""}
@@ -244,36 +227,12 @@ const ServiceTrucking = async () => {
               </div>
             ))}
           <div className="flex max-md:flex-col-reverse gap-6 mt-9">
-            <ResgisterPopup
-              locale={locale as ILocale}
-              textBtn={t("create_order")}
-              title={t("register_popup.title")}
-              description={t("register_popup.description")}
-              requiredTxt={t("register_popup.requiredTxt")}
-              emailTxt={t("register_popup.emailTxt")}
-              label={{
-                fullname: t("register_popup.fullname"),
-                phone_number: t("register_popup.phone_number"),
-                email: t("register_popup.email"),
-                service: t("register_popup.service"),
-                from: t("register_popup.from"),
-                to: t("register_popup.to"),
-                weight: t("register_popup.weight"),
-                note: t("register_popup.note"),
-                button: t("register_popup.button"),
-                required: t("register_popup.required"),
-              }}
-              placeholder={{
-                fullname: t("register_popup.placeholder.fullname"),
-                phone_number: t("register_popup.placeholder.phone_number"),
-                email: t("register_popup.placeholder.email"),
-                from: t("register_popup.placeholder.from"),
-                to: t("register_popup.placeholder.to"),
-                weight: t("register_popup.placeholder.weight"),
-                note: t("register_popup.placeholder.note"),
-                select: t("register_popup.placeholder.select"),
-              }}
-            />
+            <NextIntlClientProvider locale={locale} messages={message.default}>
+              <ResgisterPopup
+                type="rail_transport"
+                locale={locale as ILocale}
+              />
+            </NextIntlClientProvider>
             <PricePopup
               buttonTxt={t("pricing")}
               title={railAsset?.attributes?.price_table?.title || ""}

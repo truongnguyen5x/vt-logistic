@@ -1,6 +1,49 @@
 @import "../../../../../assets/css/_variables.scss";
 @import "../../../../../assets/css/animate.scss";
+
 .domesticItem {
   @apply font-medium text-th-gray-500;
   font-size: 20px;
+}
+
+.sliderFeature {
+  @include slick-dots-red(-30px);
+  @apply mt-6;
+  :global .slick-list {
+    @apply -mx-4;
+  }
+  :global .slick-slide {
+    & > div {
+      @apply mx-4;
+    }
+  }
+}
+
+.featureWp {
+  @apply relative overflow-hidden;
+  & > img {
+    @apply object-cover w-full transition-all duration-500;
+    height: 270px;
+  }
+  &:hover {
+    & > img {
+      transform: scale(1.1);
+    }
+    .overlay {
+      opacity: 50%;
+    }
+  }
+}
+
+.overlay {
+  @apply absolute bottom-0 left-0 right-0 top-1/2 transition-all duration-500 opacity-100;
+  background: var(--color-back-gray-gradient-2);
+}
+
+.featureTxt {
+  @apply text-th-white font-semibold;
+  font-size: 25px;
+}
+
+@media only screen and (max-width: 1440px) {
 }

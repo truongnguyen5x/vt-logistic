@@ -33,38 +33,12 @@ import { CreateOrderServiceDocument } from "@generated/graphql";
 import { toast } from "react-hot-toast";
 import useOutsideClose from "@hooks/use-click-outside";
 import clsx from "clsx";
+import { useTranslations } from "next-intl";
+import { IService } from "@type/common";
 
 type Props = {
-  textBtn?: string;
-  title: string;
-  description: string;
-  errorTxt?: string;
-  successTxt?: string;
-  requiredTxt: string;
-  emailTxt: string;
-  label: {
-    fullname: string;
-    phone_number: string;
-    email: string;
-    service: string;
-    from: string;
-    to: string;
-    weight: string;
-    note: string;
-    button: string;
-    required: string;
-  };
-  placeholder: {
-    fullname: string;
-    phone_number: string;
-    email: string;
-    from: string;
-    to: string;
-    weight: string;
-    note: string;
-    select: string;
-  };
   locale: ILocale;
+  type?: IService;
 };
 
 const schema = ({ required, email }: { required: string; email: string }) => {
@@ -78,20 +52,9 @@ const schema = ({ required, email }: { required: string; email: string }) => {
   });
 };
 
-const ResgisterPopup: FC<Props> = ({
-  textBtn = "",
-  label,
-  placeholder,
-  title,
-  description,
-  locale,
-  errorTxt,
-  successTxt,
-  requiredTxt,
-  emailTxt,
-}) => {
+const ResgisterPopup: FC<Props> = ({ locale, type = "trucking" }) => {
   const params = useParams();
-
+  const t = useTranslations("register_popup");
   const [open, setOpen] = useState<boolean>(false);
 
   const {
@@ -103,7 +66,9 @@ const ResgisterPopup: FC<Props> = ({
     setValue,
     watch,
   } = useForm({
-    resolver: yupResolver(schema({ required: requiredTxt, email: emailTxt })),
+    resolver: yupResolver(
+      schema({ required: t("requiredTxt"), email: t("emailTxt") })
+    ),
   });
 
   const { data: dataCountry } = useSuspenseQuery(gql(getCountryQueryString), {
@@ -137,13 +102,14 @@ const ResgisterPopup: FC<Props> = ({
       from: "",
       to: "",
       note: "",
+      weight: "",
     });
     document.body.style.overflowY = "auto";
   };
 
   const [mutation] = useMutation(CreateOrderServiceDocument, {
     onCompleted(data, clientOptions) {
-      toast.success(successTxt || "");
+      toast.success(t("success") || "");
       reset({
         fullname: "",
         phone_number: "",
@@ -152,6 +118,7 @@ const ResgisterPopup: FC<Props> = ({
         from: "",
         to: "",
         note: "",
+        weight: "",
       });
       handleClose();
     },
@@ -160,6 +127,10 @@ const ResgisterPopup: FC<Props> = ({
   useOutsideClose(ref, handleClose);
 
   const onSubmit = (data: any) => {
+    data.service_type = type;
+    if (data.weight) {
+      data.weight = parseFloat(data.weight);
+    }
     mutation({ variables: { data, locale: getLanguageForApi(locale) } });
   };
 
@@ -170,7 +141,7 @@ const ResgisterPopup: FC<Props> = ({
         className="btn-red animation max-md:w-full"
         data-animation-delay="0.6s"
       >
-        {textBtn}
+        {t("create_order")}
       </button>
       {open && (
         <div className="fixed inset-0 z-[9999] bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
@@ -203,16 +174,16 @@ const ResgisterPopup: FC<Props> = ({
               </button>
               <div className="relative max-w-6xl">
                 <h3 className="text-xl text-th-red-500 text-center font-bold max-w-[500px] mx-auto">
-                  {title}
+                  {t("title")}
                 </h3>
                 <p className="mt-4 text-th-gray-400 text-base text-center">
-                  {description}
+                  {t("description")}
                 </p>
                 <form onSubmit={handleSubmit(onSubmit)} className="mt-8">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
                       <label className="text-th-gray-320 text-sm font-semibold mb-1.5 relative after:absolute after:-right-2 after:content-['*'] after:text-th-red-500">
-                        {label.fullname}
+                        {t("fullname")}
                       </label>
                       <Controller
                         name="fullname"
@@ -227,7 +198,7 @@ const ResgisterPopup: FC<Props> = ({
                                   !!errors.fullname?.message,
                               }
                             )}
-                            placeholder={placeholder.fullname}
+                            placeholder={t("placeholder.fullname")}
                             {...field}
                           />
                         )}
@@ -240,7 +211,7 @@ const ResgisterPopup: FC<Props> = ({
                     </div>
                     <div>
                       <label className="text-th-gray-320 text-sm font-semibold mb-1.5 relative after:absolute after:-right-2 after:content-['*'] after:text-th-red-500">
-                        {label.phone_number}
+                        {t("phone_number")}
                       </label>
                       <Controller
                         name="phone_number"
@@ -255,7 +226,7 @@ const ResgisterPopup: FC<Props> = ({
                                   !!errors.fullname?.message,
                               }
                             )}
-                            placeholder={placeholder.phone_number}
+                            placeholder={t("placeholder.phone_number")}
                             {...field}
                           />
                         )}
@@ -269,7 +240,7 @@ const ResgisterPopup: FC<Props> = ({
                     </div>
                     <div>
                       <label className="text-th-gray-320 text-sm font-semibold mb-1.5">
-                        {label.email}
+                        {t("email")}
                       </label>
                       <Controller
                         name="email"
@@ -284,7 +255,7 @@ const ResgisterPopup: FC<Props> = ({
                                   !!errors.fullname?.message,
                               }
                             )}
-                            placeholder={placeholder.email}
+                            placeholder={t("placeholder.email")}
                             {...field}
                           />
                         )}
@@ -297,7 +268,7 @@ const ResgisterPopup: FC<Props> = ({
                     </div>
                     <div>
                       <label className="text-th-gray-320 text-sm font-semibold mb-1.5 relative after:absolute after:-right-2 after:content-['*'] after:text-th-red-500">
-                        {label.service}
+                        {t("service")}
                       </label>
                       <CustomAutocomplete
                         classNamePrefix={
@@ -320,7 +291,7 @@ const ResgisterPopup: FC<Props> = ({
                             shouldDirty: true,
                           });
                         }}
-                        placeholder={placeholder.select}
+                        placeholder={t("placeholder.select")}
                         options={[
                           { value: "Express", label: "Express" },
                           { value: "Fowarding", label: "Fowarding" },
@@ -335,7 +306,7 @@ const ResgisterPopup: FC<Props> = ({
                     </div>
                     <div>
                       <label className="text-th-gray-320 text-sm font-semibold mb-1.5 relative after:absolute after:-right-2 after:content-['*'] after:text-th-red-500">
-                        {label.from}
+                        {t("from")}
                       </label>
                       <CustomAutocomplete
                         classNamePrefix={
@@ -350,7 +321,7 @@ const ResgisterPopup: FC<Props> = ({
                             shouldDirty: true,
                           })
                         }
-                        placeholder={placeholder.select}
+                        placeholder={t("placeholder.select")}
                         options={
                           service == SERVICE_TRANSPORT.TRANSPORT
                             ? listProvince?.map(
@@ -375,7 +346,7 @@ const ResgisterPopup: FC<Props> = ({
                     </div>
                     <div>
                       <label className="text-th-gray-320 text-sm font-semibold mb-1.5 relative after:absolute after:-right-2 after:content-['*'] after:text-th-red-500">
-                        {label.to}
+                        {t("to")}
                       </label>
                       <CustomAutocomplete
                         classNamePrefix={
@@ -413,10 +384,28 @@ const ResgisterPopup: FC<Props> = ({
                       )}
                     </div>
                   </div>
-
+                  {type != "trucking" && (
+                    <div className="mt-8">
+                      <label className="text-th-gray-320 text-sm font-semibold mb-1.5">
+                        {t("weight")}
+                      </label>
+                      <Controller
+                        name="weight"
+                        control={control}
+                        defaultValue={""}
+                        render={({ field }) => (
+                          <input
+                            type="number"
+                            className="bg-th-gray-220 focus-visible:outline-none px-6 py-4 w-full"
+                            {...field}
+                          />
+                        )}
+                      />
+                    </div>
+                  )}
                   <div className="mt-8">
                     <label className="text-th-gray-320 text-sm font-semibold mb-1.5">
-                      {label.note}
+                      {t("note")}
                     </label>
                     <Controller
                       name="note"
@@ -426,7 +415,7 @@ const ResgisterPopup: FC<Props> = ({
                         <textarea
                           className="bg-th-gray-220 focus-visible:outline-none px-6 py-4 w-full"
                           rows={4}
-                          placeholder={placeholder.note}
+                          placeholder={t("placeholder.note")}
                           {...field}
                         />
                       )}
@@ -436,7 +425,7 @@ const ResgisterPopup: FC<Props> = ({
                     type="submit"
                     className="btn-red mt-8 flex justify-center items-center mx-auto"
                   >
-                    {label.button}
+                    {t("button")}
                   </button>
                 </form>
               </div>
@@ -448,28 +437,10 @@ const ResgisterPopup: FC<Props> = ({
   );
 };
 
-export default function ResgisterPopupWrap({
-  textBtn = "",
-  label,
-  placeholder,
-  title,
-  description,
-  locale,
-  requiredTxt,
-  emailTxt,
-}: Props) {
+export default function ResgisterPopupWrap({ locale, type }: Props) {
   return (
     <ApolloWrapper>
-      <ResgisterPopup
-        textBtn={textBtn}
-        label={label}
-        placeholder={placeholder}
-        title={title}
-        description={description}
-        locale={locale}
-        requiredTxt={requiredTxt}
-        emailTxt={emailTxt}
-      />
+      <ResgisterPopup locale={locale} type={type} />
     </ApolloWrapper>
   );
 }

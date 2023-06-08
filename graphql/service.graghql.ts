@@ -76,8 +76,10 @@ export const mutationOrderService = /* GraphQL */ `
           from
           to
           note
+          weight
+          service_type
         }
       }
     }
-  } 
-`
+  }
+`;
