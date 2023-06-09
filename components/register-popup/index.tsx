@@ -1,7 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { FC, Fragment, useEffect, useRef, useState } from "react";
+import {
+  Dispatch,
+  FC,
+  Fragment,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import BgPopup from "@assets/images/background/bg_popup.png";
 import CustomAutocomplete from "@components/CustomAutocomplete";
 
@@ -39,6 +47,8 @@ import { IService } from "@type/common";
 type Props = {
   locale: ILocale;
   type?: IService;
+  open?: boolean;
+  setOpen?: Dispatch<SetStateAction<boolean>>;
 };
 
 const schema = ({ required, email }: { required: string; email: string }) => {
@@ -52,10 +62,15 @@ const schema = ({ required, email }: { required: string; email: string }) => {
   });
 };
 
-const ResgisterPopup: FC<Props> = ({ locale, type = "trucking_domestic" }) => {
+const ResgisterPopup: FC<Props> = ({
+  locale,
+  open,
+  setOpen,
+  type = "trucking_domestic",
+}) => {
   const params = useParams();
   const t = useTranslations("register_popup");
-  const [open, setOpen] = useState<boolean>(false);
+  const [openPopup, setOpenPopup] = useState<boolean>(false);
 
   const {
     control,
@@ -88,12 +103,12 @@ const ResgisterPopup: FC<Props> = ({ locale, type = "trucking_domestic" }) => {
   const service = watch("service");
 
   const handleOpenPopup = () => {
-    setOpen(true);
+    setOpenPopup(true);
     document.body.style.overflowY = "hidden";
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setOpen ? setOpen(false) : setOpenPopup(false);
     reset({
       fullname: "",
       phone_number: "",
@@ -136,14 +151,16 @@ const ResgisterPopup: FC<Props> = ({ locale, type = "trucking_domestic" }) => {
 
   return (
     <Fragment>
-      <button
-        onClick={handleOpenPopup}
-        className="btn-red animation max-md:w-full"
-        data-animation-delay="0.6s"
-      >
-        {t("create_order")}
-      </button>
-      {open && (
+      {!setOpen && (
+        <button
+          onClick={handleOpenPopup}
+          className="btn-red animation max-md:w-full"
+          data-animation-delay="0.6s"
+        >
+          {t("create_order")}
+        </button>
+      )}
+      {(setOpen ? open : openPopup) && (
         <div className="fixed inset-0 z-[9999] bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
           <div className="flex flex-col items-center justify-center 2xl:h-full mx-auto">
             <div
@@ -438,10 +455,20 @@ const ResgisterPopup: FC<Props> = ({ locale, type = "trucking_domestic" }) => {
   );
 };
 
-export default function ResgisterPopupWrap({ locale, type }: Props) {
+export default function ResgisterPopupWrap({
+  locale,
+  type,
+  open,
+  setOpen,
+}: Props) {
   return (
     <ApolloWrapper>
-      <ResgisterPopup locale={locale} type={type} />
+      <ResgisterPopup
+        locale={locale}
+        type={type}
+        open={open}
+        setOpen={setOpen}
+      />
     </ApolloWrapper>
   );
 }

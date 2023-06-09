@@ -1,7 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import { FC, useEffect, useRef, useState } from "react";
+import {
+  Dispatch,
+  FC,
+  Fragment,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import BgPopup from "@assets/images/background/bg_popup.png";
 import styles from "./style.module.scss";
 import useOutsideClose from "@hooks/use-click-outside";
@@ -12,35 +20,45 @@ type Props = {
   buttonTxt: string;
   title: string;
   priceImage: string;
+  open?: boolean;
+  setOpen?: Dispatch<SetStateAction<boolean>>;
 };
 
-const PricePopup: FC<Props> = ({ buttonTxt, title, priceImage }) => {
-  const [open, setOpen] = useState<boolean>(false);
+const PricePopup: FC<Props> = ({
+  buttonTxt,
+  title,
+  priceImage,
+  open,
+  setOpen,
+}) => {
+  const [openPopup, setOpenPopup] = useState<boolean>(false);
 
   const ref = useRef(null);
 
   const handleOpenPopup = () => {
-    setOpen(true);
+    setOpenPopup(true);
     document.body.style.overflowY = "hidden";
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setOpen ? setOpen(false) : setOpenPopup(false);
     document.body.style.overflowY = "auto";
   };
 
   useOutsideClose(ref, handleClose);
 
   return (
-    <div>
-      <button
-        onClick={handleOpenPopup}
-        className="btn-gray-outlined animation max-md:w-full max-xl:!px-3"
-        data-animtion-delay="0.6s"
-      >
-        {buttonTxt}
-      </button>
-      {open && (
+    <Fragment>
+      {!setOpen && (
+        <button
+          onClick={handleOpenPopup}
+          className="btn-gray-outlined animation max-md:w-full max-xl:!px-3"
+          data-animtion-delay="0.6s"
+        >
+          {buttonTxt}
+        </button>
+      )}
+      {(setOpen ? open : openPopup) && (
         <div className="fixed inset-0 z-[9999] bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full ">
           <div className="flex flex-col items-center justify-center 2xl:h-full mx-auto">
             <div
@@ -82,7 +100,7 @@ const PricePopup: FC<Props> = ({ buttonTxt, title, priceImage }) => {
           </div>
         </div>
       )}
-    </div>
+    </Fragment>
   );
 };
 export default PricePopup;
