@@ -76,7 +76,7 @@ export default function RootLayout({
             trucking: t("trucking"),
             "rail-transportation": t("rail-transportation"),
             "sea-transport": t("sea-transport"),
-            "air-freight": t("air-freight"),
+            "air-transport": t("air-transport"),
             customs: t("customs"),
             warehouse: t("warehouse"),
             "endpoint-delivery": t("endpoint-delivery"),

@@ -150,7 +150,7 @@ const ResgisterPopup: FC<Props> = ({
   };
 
   return (
-    <Fragment>
+    <div>
       {!setOpen && (
         <button
           onClick={handleOpenPopup}
@@ -451,7 +451,7 @@ const ResgisterPopup: FC<Props> = ({
           </div>
         </div>
       )}
-    </Fragment>
+    </div>
   );
 };
 

@@ -15,7 +15,7 @@
     "trucking": "Vận tải đường bộ",
     "rail-transportation": "Vận tải đường sắt",
     "sea-transport": "Vận tải đường biển",
-    "air-freight": "Vận tải đường hàng không",
+    "air-transport": "Vận tải đường hàng không",
     "customs": "Hải quan",
     "warehouse": "Kho bãi",
     "endpoint-delivery": "Giao hàng điểm cuối",
@@ -104,6 +104,20 @@
       "home": "Trang chủ",
       "service": "Dịch vụ",
       "sea": "Dịch vụ vận tải đường biển"
+    }
+  },
+  "air": {
+    "more": "Xem thêm",
+    "create_order": "Tạo đơn hàng",
+    "title": "Dịch vụ vận tải đường hàng không",
+    "pricing": "Tra cứu bảng giá",
+    "domestic": "Dịch vụ vận tải hàng không nội địa",
+    "international": "Vận tải hàng không quốc tế",
+    "maybe_you_are_interested": "Có thể bạn quan tâm",
+    "breadcrumbs": {
+      "home": "Trang chủ",
+      "service": "Dịch vụ",
+      "air": "Dịch vụ vận tải đường hàng không"
     }
   },
   "register_popup": {

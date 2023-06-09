@@ -89,13 +89,13 @@ const ServiceSlider: FC<Props> = ({ services, locale }) => {
               </div>
               <div className="flex max-md:flex-col justify-center gap-5 md:gap-10 w-full mt-6">
                 <button
-                  className="btn-red-small max-md:w-full"
+                  className="btn-red-small max-md:w-full animation"
                   onClick={() => handleCreateOrder(feature.name)}
                 >
                   {t("create_order")}
                 </button>
                 <button
-                  className="btn-gray-outlined-small max-md:w-full"
+                  className="btn-gray-outlined-small max-md:w-full animation"
                   onClick={() =>
                     handleShowPrice(
                       feature.price_table as ComponentCommonPriceTable

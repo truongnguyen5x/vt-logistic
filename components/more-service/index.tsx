@@ -76,7 +76,7 @@ const MoreService: FC<MoreServiceProps> = ({ services, more }) => {
                 />
               </div>
             )}
-            <button className="btn-red absolute -bottom-7 right-0 max-lg:text-base max-lg:w-40 max-lg:h-12 max-lg:-bottom-5">
+            <button className="btn-red absolute -bottom-7 right-0 max-lg:text-base max-lg:h-12 max-lg:-bottom-5">
               {more}
               <Image src={RightImg} alt="next" width={20} height={20} />
             </button>

@@ -1,0 +1,20 @@
+@import "../../../../../assets/css/_variables.scss";
+@import "../../../../../assets/css/animate.scss";
+
+.domesticItem {
+  @apply font-medium text-th-gray-500;
+  font-size: 20px;
+}
+
+.sliderFeature {
+  @include slick-dots-red(-40px);
+  @apply mt-20 mb-20;
+  :global .slick-list {
+    @apply -mx-4;
+  }
+  :global .slick-slide {
+    & > div {
+      @apply mx-4;
+    }
+  }
+}

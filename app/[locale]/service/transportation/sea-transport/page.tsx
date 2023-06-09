@@ -114,7 +114,7 @@ const SeaTransport = async () => {
       </div>
       <div className="bg-th-gray-250 py-10 lg:py-28">
         <div className="container max-md:px-4 max-xl:px-6 mx-auto flex">
-          <div className="min-w-0 max-xl:flex-grow xl:basis-1/2">
+          <div className="min-w-0 max-lg:flex-grow lg:basis-1/2">
             <h3
               className={clsx(
                 "section-name-left mb-11 animation max-lg:text-center",
@@ -123,7 +123,7 @@ const SeaTransport = async () => {
             >
               {t("domestic")}
             </h3>
-            <div className="self-center lg:hidden">
+            <div className="self-center lg:hidden animation">
               <Image
                 src={getPrefixImageUrl(
                   seaTransportAsset?.attributes?.domestic_image?.data
@@ -132,6 +132,7 @@ const SeaTransport = async () => {
                 width={735}
                 height={400}
                 alt=""
+                className="w-full h-full object-cover"
               />
             </div>
             {!!seaTransportAsset?.attributes?.domestic_services?.length &&
@@ -177,7 +178,7 @@ const SeaTransport = async () => {
               />
             </div>
           </div>
-          <div className="self-center max-lg:hidden basis-1/2 xl:h-[450px]">
+          <div className="self-center max-lg:hidden basis-1/2 xl:h-[450px] animation">
             <Image
               src={getPrefixImageUrl(
                 seaTransportAsset?.attributes?.domestic_image?.data?.attributes

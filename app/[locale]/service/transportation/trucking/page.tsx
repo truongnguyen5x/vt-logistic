@@ -151,16 +151,16 @@ const ServiceTrucking = async () => {
       </div>
       <div className="bg-th-gray-250 py-10 xl:py-28">
         <div className="container max-md:px-4 max-xl:px-6 mx-auto flex">
-          <div className="min-w-0 max-xl:flex-grow xl:basis-1/2">
+          <div className="min-w-0 max-lg:flex-grow lg:basis-1/2">
             <h3
               className={clsx(
-                "section-name-left mb-11 animation max-xl:text-center",
-                "max-xl:after:left-1/2 max-xl:after:-translate-x-1/2"
+                "section-name-left mb-11 animation max-lg:text-center",
+                "max-lg:after:left-1/2 max-lg:after:-translate-x-1/2"
               )}
             >
               {t("domestic_shipping")}
             </h3>
-            <div className="self-center xl:hidden">
+            <div className="self-center lg:hidden animation">
               <Image
                 src={getPrefixImageUrl(
                   truckingAsset?.attributes?.internal_img?.data?.attributes?.url
@@ -215,7 +215,7 @@ const ServiceTrucking = async () => {
               />
             </div>
           </div>
-          <div className="self-center max-xl:hidden xl:basis-1/2 xl:h-[450px]">
+          <div className="self-center max-lg:hidden lg:basis-1/2 xl:h-[450px] animation">
             <Image
               src={getPrefixImageUrl(
                 truckingAsset?.attributes?.internal_img?.data?.attributes?.url
@@ -229,7 +229,7 @@ const ServiceTrucking = async () => {
         </div>
       </div>
       <div className="container max-md:px-4 max-xl:px-6 mx-auto flex py-10 xl:py-28 gap-16">
-        <div className="self-center max-xl:hidden xl:basis-1/2 xl:h-[450px]">
+        <div className="self-center max-lg:hidden lg:basis-1/2 lg:h-[450px]">
           <Image
             src={getPrefixImageUrl(
               truckingAsset?.attributes?.international_img?.data?.attributes
@@ -241,11 +241,11 @@ const ServiceTrucking = async () => {
             className="w-full h-full object-cover"
           />
         </div>
-        <div className="min-w-0 max-xl:flex-grow xl:basis-1/2">
-          <h3 className="section-name-left mb-11 animation max-xl:text-center max-xl:after:left-1/2 max-xl:after:-translate-x-1/2">
+        <div className="min-w-0 max-lg:flex-grow lg:basis-1/2">
+          <h3 className="section-name-left mb-11 animation max-lg:text-center max-lg:after:left-1/2 max-lg:after:-translate-x-1/2">
             {t("international_shipping")}
           </h3>
-          <div className="self-center xl:hidden">
+          <div className="self-center lg:hidden">
             <Image
               src={getPrefixImageUrl(
                 truckingAsset?.attributes?.international_img?.data?.attributes
