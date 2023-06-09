@@ -178,10 +178,18 @@
     @apply w-full absolute top-0 left-0 object-cover;
     height: 417px;
   }
+  :global .slick-list {
+    margin: 0 -2px;
+  }
+  :global .slick-slide {
+    & > div {
+      margin: 0 2px;
+    }
+  }
 }
 
 .serviceItem {
-  padding: 0 2px;
+  // padding: 0 2px;
 }
 
 .serviceItemInner {

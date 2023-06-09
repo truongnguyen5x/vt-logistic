@@ -61,20 +61,15 @@ const Mission: FC<Props> = ({ assets, className = "", title }) => {
                     "px-4 md:px-10 lg:px-14"
                   )}
                 >
-                  {isMobile && (
-                    <span className="w-4 h-4 bg-gradient-red inline-block"></span>
-                  )}
+                  <span className="w-4 h-4 bg-gradient-red inline-block"></span>
                   <div
-                    className={styles.text}
+                    className={isMobile ? styles.text : styles.textTypewriter}
                     // style={{
                     //   animation: !isMobile
                     //     ? `typing 1.2s steps(${item?.title.length}, end) 1s`
                     //     : "",
                     // }}
                   >
-                    {!isMobile && (
-                      <span className="w-4 h-4 mr-2 bg-gradient-red inline-block"></span>
-                    )}
                     {item?.title}
                   </div>
                 </div>
