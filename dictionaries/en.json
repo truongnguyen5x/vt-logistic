@@ -1,316 +1,316 @@
 {
   "layout": {
-    "home": "Trang chủ",
-    "introduce": "Giới thiệu",
-    "service": "Dịch vụ",
-    "news": "Tin tức",
-    "recruitment": "Tuyển dụng",
-    "contact": "Liên hệ",
-    "about": "Giới thiệu về viettel logistics",
-    "connect_with_us": "Kết nối với chúng tôi",
-    "certified_by": "Chứng nhận bởi",
-    "introduce_general": "Giới thiệu chung",
-    "milestones": "Dấu mốc phát triển",
-    "transportation": "Vận tải",
-    "trucking": "Vận tải đường bộ",
-    "rail-transportation": "Vận tải đường sắt",
-    "sea-transport": "Vận tải đường biển",
-    "air-transport": "Vận tải đường hàng không",
-    "customs": "Hải quan",
-    "warehouse": "Kho bãi",
-    "endpoint-delivery": "Giao hàng điểm cuối",
-    "packing": "Đóng gói & Chia chọn",
-    "insider_news": "Tin nội bộ",
-    "service_common": "Dịch vụ chung",
-    "market_news": "Tin thị trường",
-    "specialized_news": "Kiến thức chuyên ngành",
-    "receive_info": "Nhận thông tin mới nhất từ Viettel Logistics",
-    "placeholder": "Nhập địa chỉ Email",
-    "register_txt": "Đăng ký",
-    "back_to_head": "Về đầu trang",
-    "email_validate": "Địa chỉ email của bạn không đúng",
-    "register_success": "Đăng ký email thành công",
+    "home": "Home",
+    "introduce": "Introduction",
+    "service": "Services",
+    "news": "News",
+    "recruitment": "Recruitment",
+    "contact": "Contact",
+    "about": "About us",
+    "connect_with_us": "Connect with us",
+    "certified_by": "Certified by",
+    "introduce_general": "General introduction",
+    "milestones": "Development milestones",
+    "transportation": "Transportation",
+    "trucking": "Trucking",
+    "rail-transportation": "Railway transport",
+    "sea-transport": "Sea freight",
+    "air-transport": "Air freight",
+    "customs": "Customs services",
+    "warehouse": "Warehousing & Storing",
+    "endpoint-delivery": "Last mile delivery",
+    "packing": "Packing & Sorting",
+    "insider_news": "Internal News",
+    "service_common": "General service",
+    "market_news": "Market News",
+    "specialized_news": "Specialized knowledge",
+    "receive_info": "Get updates from us",
+    "placeholder": "Enter your email address",
+    "register_txt": "Register now",
+    "back_to_head": "Back to top",
+    "email_validate": "Your email address is inccorect",
+    "register_success": "Your email has been registered successfully",
     "copyright": "Copyright @ 2023 Viettel Logistics All right reserved",
-    "search": "Tìm kiếm"
+    "search": "Search"
   },
   "home": {
-    "about_us": "Về chúng tôi",
-    "partner": "Đối tác chiến lược",
-    "news_event": "Tin tức & Sự kiện",
-    "learn_more": "Tìm hiểu thêm",
-    "detail": "Chi tiết",
-    "all_service": "Tất cả dịch vụ",
-    "from": "Điểm gửi",
-    "to": "Điểm nhận",
-    "lookup": "Tra cứu",
-    "service_unavailable": "DỊCH VỤ KHÔNG KHẢ DỤNG",
-    "service_available": "Dịch vụ khả dụng",
-    "service_available_des": "Để biết thêm chi tiết về hành trình & Giá cước vận chuyển\n khách hàng vui lòng liên hệ",
-    "select": "Chọn...",
-    "back": "Quay lại"
+    "about_us": "About us",
+    "partner": "Strategic partners",
+    "news_event": "News & Events",
+    "learn_more": "Learn more",
+    "detail": "Details",
+    "all_service": "All services",
+    "from": "From",
+    "to": "To",
+    "lookup": "Search",
+    "service_unavailable": "Service is unavailable",
+    "service_available": "Service is available",
+    "service_available_des": "For more details about itineraries and freight rates,\n please contact",
+    "select": "Select...",
+    "back": "Back"
   },
   "introduce": {
-    "common": "Giới thiệu chung",
-    "mission": "Sứ mệnh",
-    "core_values": "Giá trị cốt lõi",
-    "read_more": "Đọc thêm",
-    "reason": "Tại sao chọn chúng tôi?",
+    "common": "General introduction",
+    "mission": "Mission",
+    "core_values": "Core values",
+    "read_more": "Read more",
+    "reason": "Why you should choose us",
     "breadcrumbs": {
-      "home": "Trang chủ",
-      "introduce": "Giới thiệu"
+      "home": "Home",
+      "introduce": "Introduction"
     }
   },
   "service": {
-    "title": "Dịch vụ",
-    "my_service": "Dịch vụ của chúng tôi",
-    "learn_more": "Tìm hiểu thêm Logistics Viettel",
+    "title": "Services",
+    "my_service": "Our services",
+    "learn_more": "Learn more about us",
     "breadcrumbs": {
-      "home": "Trang chủ",
-      "service": "Dịch vụ"
+      "home": "Home",
+      "service": "Services"
     },
-    "transportation": "Dịch vụ vận tải",
-    "more": "Xem thêm"
+    "transportation": "Transport services",
+    "more": "More"
   },
   "milestones": {
-    "title": "Dấu mốc phát triển",
+    "title": "Development milestones",
     "breadcrumbs": {
-      "home": "Trang chủ",
-      "introduce": "Giới thiệu",
-      "general_intro": "Giới thiệu chung"
+      "home": "Home",
+      "introduce": "Introduction",
+      "general_intro": "General introduction"
     }
   },
   "trucking": {
-    "more": "Xem thêm",
-    "title": "Dịch vụ vận tải đường bộ",
-    "pricing": "Tra cứu bảng giá",
-    "domestic_shipping": "Vận chuyển nội địa",
-    "international_shipping": "Vận chuyển quốc tế xuyên biên giới",
-    "maybe_you_are_interested": "Có thể bạn quan tâm",
+    "more": "See more",
+    "title": "Trucking services",
+    "pricing": "View price list",
+    "domestic_shipping": "Inland trucking",
+    "international_shipping": "Cross border trucking",
+    "maybe_you_are_interested": "Maybe you are interested",
     "breadcrumbs": {
-      "home": "Trang chủ",
-      "service": "Dịch vụ",
-      "trucking": "Dịch vụ vận tải đường bộ"
+      "home": "Home",
+      "service": "Services",
+      "trucking": "Trucking services"
     }
   },
   "sea": {
-    "more": "Xem thêm",
-    "create_order": "Tạo đơn hàng",
-    "title": "Dịch vụ vận tải đường biển",
-    "pricing": "Tra cứu bảng giá",
-    "domestic": "Dịch vụ vận chuyển đường thuỷ nội địa",
-    "international": "Vận tải đường biển quốc tế và gom hàng lẻ (LCL)",
-    "maybe_you_are_interested": "Có thể bạn quan tâm",
+    "more": "See more",
+    "create_order": "Create order",
+    "title": "Sea freight services",
+    "pricing": "View price list",
+    "domestic": "Inland waterway transport",
+    "international": "International sea freight and (LCL)",
+    "maybe_you_are_interested": "Maybe you are interested",
     "breadcrumbs": {
-      "home": "Trang chủ",
-      "service": "Dịch vụ",
-      "sea": "Dịch vụ vận tải đường biển"
+      "home": "Home",
+      "service": "Services",
+      "sea": "Sea freight services"
     }
   },
   "air": {
-    "more": "Xem thêm",
-    "create_order": "Tạo đơn hàng",
-    "title": "Dịch vụ vận tải đường hàng không",
-    "pricing": "Tra cứu bảng giá",
-    "domestic": "Dịch vụ vận tải hàng không nội địa",
-    "international": "Vận tải hàng không quốc tế",
-    "maybe_you_are_interested": "Có thể bạn quan tâm",
+    "more": "See more",
+    "create_order": "Create order",
+    "title": "Air freight services",
+    "pricing": "View price list",
+    "domestic": "Domestic air freight",
+    "international": "International air freight",
+    "maybe_you_are_interested": "Maybe you are interested",
     "breadcrumbs": {
-      "home": "Trang chủ",
-      "service": "Dịch vụ",
-      "air": "Dịch vụ vận tải đường hàng không"
+      "home": "Home",
+      "service": "Services",
+      "air": "Air freight services"
     }
   },
   "register_popup": {
-    "create_order": "Tạo đơn hàng",
-    "title": "VUI LÒNG ĐIỀN CÁC THÔNG TIN DƯỚI ĐÂY ĐỂ VIETTEL LOGISTICS HỖ TRỢ KHÁCH HÀNG TỐT NHẤT",
-    "description": "(Lưu ý: không để trống các trường thông tin có dấu *)",
-    "fullname": "Họ và tên",
-    "phone_number": "Số điện thoại",
-    "email": "Email",
-    "service": "Dịch vụ",
-    "from": "Điểm đi",
-    "to": "Điểm đến",
-    "weight": "Trọng lượng (Tính theo Kilogam)*",
-    "note": "Ghi chú",
-    "button": "Gửi liên hệ",
-    "required": "(Vui lòng điền đủ các trường thông tin có dấu * để hoàn tất việc tạo đơn)",
+    "create_order": "Create order",
+    "title": "Please fill in the informations below for the best support",
+    "description": "(Note: do not leave the informations marked with *)",
+    "fullname": "Full name",
+    "phone_number": "Phone number",
+    "email": "Email address",
+    "service": "Services",
+    "from": "From",
+    "to": "To",
+    "weight": "Weight (in Kilograms)*",
+    "note": "Note",
+    "button": "Send information",
+    "required": "(Please fill in all informations with * to complete the order creation)",
     "placeholder": {
-      "fullname": "VD: Nguyễn Văn A",
-      "phone_number": "VD: 0123456789",
-      "email": "VD: example@gmail.com",
-      "from": "VD: QL32, P.Minh Khai, Hà Nội",
-      "to": "VD: Hà Nội, Đà Nẵng, Cần Thơ",
-      "weight": "VD: 1000 tấn",
-      "note": "Nội dung",
-      "select": "Chọn..."
+      "fullname": "Example: John Tommy",
+      "phone_number": "Example: 0123456789",
+      "email": "Example: example@gmail.com",
+      "from": "Example: West Side Ave, New York City, USA",
+      "to": "Example: West Side Ave, New York City, USA",
+      "weight": "Example: 1000 tons",
+      "note": "Note",
+      "select": "Select..."
     },
-    "success": "Đăng ký thành công",
-    "fail": "Đăng ký thất bại",
-    "requiredTxt": "Vui lòng nhập",
-    "emailTxt": "Vui lòng nhập email"
+    "success": "Registered successfully",
+    "fail": "Registration failed",
+    "requiredTxt": "Please enter",
+    "emailTxt": "Please enter your email address"
   },
   "rail": {
-    "more": "Xem thêm",
-    "title": "Dịch vụ vận tải đường sắt",
-    "create_order": "Tạo đơn hàng",
-    "pricing": "Tra cứu bảng giá",
-    "service": "Dịch vụ vận chuyển",
-    "advantage": "Ưu điểm vượt trội",
-    "maybe_you_are_interested": "Có thể bạn quan tâm",
+    "more": "See more",
+    "title": "Railway transport services",
+    "create_order": "Create order",
+    "pricing": "View price list",
+    "service": "Shipping services",
+    "advantage": "Outstanding advantages",
+    "maybe_you_are_interested": "Maybe you are interested",
     "breadcrumbs": {
-      "home": "Trang chủ",
-      "service": "Dịch vụ",
-      "rail": "Dịch vụ vận tải đường sắt"
+      "home": "Home",
+      "service": "Services",
+      "rail": "Railway transport services"
     }
   },
   "customs": {
-    "pricing": "Bảng giá",
-    "register_now": "Đăng ký ngay",
-    "procedure": "Quy trình",
-    "title": "Dịch vụ hải quan",
-    "short_name": "Hải quan",
-    "policy": "Tham khảo thêm về chính sách và chính sách chiết khấu hấp dẫn nhất",
+    "pricing": "View price list",
+    "register_now": "Register now",
+    "procedure": "Procedures",
+    "title": "Customs services",
+    "short_name": "Customs",
+    "policy": "Learn more about the most attractive policy and discount policy",
     "breadcrumbs": {
-      "home": "Trang chủ",
-      "service": "Dịch vụ",
-      "customs": "Hải quan"
+      "home": "Home",
+      "service": "Services",
+      "customs": "Customs"
     }
   },
   "endpoint_delivery": {
-    "title": "Giao hàng điểm cuối",
-    "heading": "Dịch vụ giao hàng điểm cuối",
+    "title": "Last mile delivery",
+    "heading": "Last mile delivery services",
     "breadcrumbs": {
-      "home": "Trang chủ",
-      "service": "Dịch vụ"
+      "home": "Home",
+      "service": "Services"
     },
-    "register_now": "Đăng ký ngay",
-    "policy": "Tham khảo thêm về chính sách và chính sách chiết khấu hấp dẫn nhất",
-    "pricing": "Bảng giá"
+    "register_now": "Register now",
+    "policy": "Learn more about the most attractive policy and discount policy",
+    "pricing": "View price list"
   },
   "warehouse": {
-    "title": "Kho bãi",
-    "heading": "Dịch vụ kho bãi",
+    "title": "Warehousing & Storing",
+    "heading": "Warehousing & storing services",
     "breadcrumbs": {
-      "home": "Trang chủ",
-      "service": "Dịch vụ"
+      "home": "Home",
+      "service": "Services"
     },
-    "register_now": "Đăng ký ngay",
-    "policy": "Tham khảo thêm về chính sách và chính sách chiết khấu hấp dẫn nhất",
-    "pricing": "Bảng giá"
+    "register_now": "Register now",
+    "policy": "Learn more about the most attractive policy and discount policy",
+    "pricing": "View price list"
   },
   "packing": {
-    "title": "Đóng gói & chia chọn hàng hóa",
-    "heading": "Dịch vụ đóng gói & chia chọn hàng hóa",
+    "title": "Packing & Sorting",
+    "heading": "Packing & Sorting services",
     "breadcrumbs": {
-      "home": "Trang chủ",
-      "service": "Dịch vụ"
+      "home": "Home",
+      "service": "Services"
     },
-    "register_now": "Đăng ký ngay",
-    "policy": "Tham khảo thêm về chính sách và chính sách chiết khấu hấp dẫn nhất",
-    "pricing": "Bảng giá"
+    "register_now": "Register now",
+    "policy": "Learn more about the most attractive policy and discount policy",
+    "pricing": "View price list"
   },
   "internal_news": {
-    "title": "Tin nội bộ",
-    "search": "Tìm kiếm",
-    "placeholder": "Nhập từ khóa",
-    "hot_news": "Tin nổi bật",
-    "contact": "Liên hệ",
+    "title": "Internal news",
+    "search": "Search",
+    "placeholder": "What are you looking for?",
+    "hot_news": "Hot News",
+    "contact": "Contact us",
     "breadcrumbs": {
-      "home": "Trang chủ",
-      "news": "Tin tức",
-      "internal_news": "Tin nội bộ",
-      "market_news": "Tin thị trường",
-      "specialized_news": "Kiến thức chuyên ngành",
-      "recruitment": "Tuyển dụng"
+      "home": "Home",
+      "news": "News",
+      "internal_news": "Internal news",
+      "market_news": "Market News",
+      "specialized_news": "Specialized  knowledge",
+      "recruitment": "Recruitment"
     },
-    "read_more": "Đọc thêm",
-    "help_title": "Chúng tôi có thể giúp gì?",
-    "help_content": "Bạn đang tìm kiếm thêm về giải pháp vận chuyển cho doanh nghiệp của bạn?",
-    "readed": "lượt đọc",
-    "post_useful": "Bài viết hữu ích?",
-    "related_post": "Bài viết liên quan",
-    "search_placeholder": "Nhập từ khóa",
+    "read_more": "Read more",
+    "help_title": "What can we help?",
+    "help_content": "Are you looking for more about shipping solutions for your business?",
+    "readed": "view",
+    "post_useful": "Useful post?",
+    "related_post": "Related post",
+    "search_placeholder": "What are you looking for?",
     "no_data": "No data!"
   },
   "market_news": {
-    "title": "Tin thị trường",
-    "search": "Tìm kiếm",
-    "placeholder": "Nhập từ khóa",
-    "hot_news": "Tin nổi bật",
-    "contact": "Liên hệ",
+    "title": "Market News",
+    "search": "Search",
+    "placeholder": "What are you looking for?",
+    "hot_news": "Hot News",
+    "contact": "Contact us",
     "breadcrumbs": {
-      "home": "Trang chủ",
-      "news": "Tin tức"
+      "home": "Home",
+      "news": "News"
     },
-    "read_more": "Đọc thêm",
-    "help_title": "Chúng tôi có thể giúp gì?",
-    "help_content": "Bạn đang tìm kiếm thêm về giải pháp vận chuyển cho doanh nghiệp của bạn?",
-    "search_placeholder": "Nhập từ khóa",
+    "read_more": "Read more",
+    "help_title": "What can we help?",
+    "help_content": "Are you looking for more about shipping solutions for your business?",
+    "search_placeholder": "What are you looking for?",
     "no_data": "No data!"
   },
   "specialized_news": {
-    "title": "Kiến thức chuyên ngành",
-    "search": "Tìm kiếm",
-    "placeholder": "Nhập từ khóa",
-    "hot_news": "Tin nổi bật",
-    "contact": "Liên hệ",
+    "title": "Specialized knowledge",
+    "search": "Search",
+    "placeholder": "What are you looking for?",
+    "hot_news": "Hot News",
+    "contact": "Contact us",
     "breadcrumbs": {
-      "home": "Trang chủ",
-      "news": "Tin tức"
+      "home": "Home",
+      "news": "News"
     },
-    "read_more": "Đọc thêm",
-    "help_title": "Chúng tôi có thể giúp gì?",
-    "help_content": "Bạn đang tìm kiếm thêm về giải pháp vận chuyển cho doanh nghiệp của bạn?",
-    "search_placeholder": "Nhập từ khóa",
+    "read_more": "Read more",
+    "help_title": "What can we help?",
+    "help_content": "Are you looking for more about shipping solutions for your business?",
+    "search_placeholder": "What are you looking for?",
     "no_data": "No data!"
   },
   "recruitment": {
-    "title": "Tuyển dụng",
-    "search": "Tìm kiếm",
-    "placeholder": "Nhập từ khóa",
-    "hot_news": "Tin nổi bật",
-    "contact": "Liên hệ",
+    "title": "Recruitment",
+    "search": "Search",
+    "placeholder": "What are you looking for?",
+    "hot_news": "Hot News",
+    "contact": "Contact us",
     "breadcrumbs": {
-      "home": "Trang chủ",
-      "recruitment": "Tuyển dụng"
+      "home": "Home",
+      "recruitment": "Recruitment"
     },
-    "read_more": "Đọc thêm",
-    "help_title": "Chúng tôi có thể giúp gì?",
-    "help_content": "Bạn đang tìm kiếm thêm về giải pháp vận chuyển cho doanh nghiệp của bạn?",
-    "search_placeholder": "Nhập từ khóa",
+    "read_more": "Read more",
+    "help_title": "What can we help?",
+    "help_content": "Are you looking for more about shipping solutions for your business?",
+    "search_placeholder": "What are you looking for?",
     "no_data": "No data!"
   },
   "contact": {
-    "title": "Liên hệ",
+    "title": "Contact us",
     "breadcrumbs": {
-      "home": "Trang chủ"
+      "home": "Home"
     },
     "hotline": "Hotline",
     "email": "Email",
-    "contact_we": "Liên hệ với chúng tôi",
+    "contact_we": "Contact us",
     "form": {
-      "title": "Tiêu đề",
-      "placeholder_title": "Nhập tiêu đề",
-      "fullname": "Họ và tên",
-      "placeholder_fullname": "Nhập họ và tên",
-      "phone_number": "Số điện thoại",
-      "placeholder_phone_number": "Nhập số điện thoại",
-      "email": "Email",
-      "placeholder_email": "Nhập email",
-      "address": "Địa chỉ",
-      "placeholder_address": "Nhập địa chỉ",
-      "note": "Nội dung",
-      "placeholder_note": "Nội dung",
-      "button": "Gửi liên hệ"
+      "title": "Title",
+      "placeholder_title": "Enter title",
+      "fullname": "Full name",
+      "placeholder_fullname": "Enter full name",
+      "phone_number": "Phone number",
+      "placeholder_phone_number": "Enter a phone number",
+      "email": "Email address",
+      "placeholder_email": "Enter an email address",
+      "address": "Address",
+      "placeholder_address": "enter an address",
+      "note": "Note",
+      "placeholder_note": "Note",
+      "button": "Send information"
     },
-    "success": "Đăng ký thành công"
+    "success": "Registered successfully"
   },
   "search": {
-    "title": "Tìm kiếm",
-    "breadcrumb": "Tìm kiếm từ khóa",
+    "title": "Search",
+    "breadcrumb": "What are you looking for?",
     "no_data": "No data!",
     "breadcrumbs": {
-      "home": "Trang chủ"
+      "home": "Home"
     }
   }
 }
