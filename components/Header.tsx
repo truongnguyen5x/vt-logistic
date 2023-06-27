@@ -127,7 +127,7 @@ const Header: FC<HeaderProps> = ({ titles, locale }) => {
           key: "packing",
         },
         {
-          path: "/service/endpoint_delivery",
+          path: "/service/endpoint-delivery",
           key: "endpoint-delivery",
         },
       ],
