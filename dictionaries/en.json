@@ -302,7 +302,9 @@
       "placeholder_address": "enter an address",
       "note": "Note",
       "placeholder_note": "Note",
-      "button": "Send information"
+      "button": "Send information",
+      "required": "Required!",
+      "email_required": "Email required!"
     },
     "success": "Registered successfully"
   },

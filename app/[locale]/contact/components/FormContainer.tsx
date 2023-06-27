@@ -34,6 +34,8 @@ type PropsContent = {
     note: string;
   };
   successTxt: string;
+  requiredTxt: string;
+  emailRequiredTxt: string;
   locale: ILocale;
 };
 
@@ -42,6 +44,8 @@ const FormContainer: FC<PropsContent> = ({
   placeholder,
   locale,
   successTxt,
+  requiredTxt,
+  emailRequiredTxt,
 }) => {
   return (
     <ApolloWrapper>
@@ -50,6 +54,8 @@ const FormContainer: FC<PropsContent> = ({
         placeholder={placeholder}
         locale={locale}
         successTxt={successTxt}
+        requiredTxt={requiredTxt}
+        emailRequiredTxt={emailRequiredTxt}
       />
     </ApolloWrapper>
   );
@@ -57,20 +63,21 @@ const FormContainer: FC<PropsContent> = ({
 
 export default FormContainer;
 
-const schema = yup.object({
-  title: yup.string().required("Vui lòng nhập"),
-  fullname: yup.string().required("Vui lòng nhập"),
-  phone_number: yup.string().required("Vui lòng nhập"),
-  content: yup.string().required("Vui lòng nhập"),
-  email: yup.string().email("Nhập Email"),
-});
-
 const FormContent: FC<PropsContent> = ({
   title,
   placeholder,
   locale,
   successTxt,
+  emailRequiredTxt,
+  requiredTxt,
 }) => {
+  const schema = yup.object({
+    title: yup.string().required(requiredTxt),
+    fullname: yup.string().required(requiredTxt),
+    phone_number: yup.string().required(requiredTxt),
+    content: yup.string().required(requiredTxt),
+    email: yup.string().email(emailRequiredTxt),
+  });
   const {
     control,
     handleSubmit,

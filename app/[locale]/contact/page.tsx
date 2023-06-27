@@ -121,6 +121,8 @@ const Contact = async () => {
                 note: t("form.note"),
                 text_button: t("form.button"),
               }}
+              requiredTxt={t("form.required")}
+              emailRequiredTxt={t("form.email_required")}
               successTxt={t("success")}
               placeholder={{
                 title: t("form.placeholder_title"),
