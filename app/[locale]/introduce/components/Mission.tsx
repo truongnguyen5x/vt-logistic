@@ -14,8 +14,16 @@ type Props = {
   assets: ComponentIntroduceMission | null;
   className?: string;
   title: string;
+  showMoreTxt: string;
+  hideTxt: string;
 };
-const Mission: FC<Props> = ({ assets, className = "", title }) => {
+const Mission: FC<Props> = ({
+  assets,
+  className = "",
+  title,
+  showMoreTxt,
+  hideTxt,
+}) => {
   // const t = useTranslations("introduce");
   const { isMobile } = useWindowSize();
 
@@ -47,7 +55,13 @@ const Mission: FC<Props> = ({ assets, className = "", title }) => {
               {title}
             </p>
           </div>
-          {!!assets?.description && <Truncate content={assets?.description} />}
+          {!!assets?.description && (
+            <Truncate
+              showMoreTxt={showMoreTxt}
+              hideTxt={hideTxt}
+              content={assets?.description}
+            />
+          )}
           {!!assets?.properties?.length && (
             <div
               className="flex items-center justify-center max-w-[800px] mx-auto px-5 border-solid border-th-gray-50 border border-x-0 mt-6 md:mt-[55px] animation"

@@ -89,6 +89,8 @@ const Introduce = async () => {
       </div>
       <Mission
         title={t("mission")}
+        hideTxt={t("hide")}
+        showMoreTxt={t("read_more")}
         assets={
           introAssets?.attributes?.mission as Maybe<ComponentIntroduceMission>
         }

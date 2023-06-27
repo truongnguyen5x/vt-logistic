@@ -5,7 +5,11 @@ import ArrowRight from "@assets/images/icons/arrow_right.svg";
 import Image from "next/image";
 import clsx from "clsx";
 
-const Truncate: FC<{ content: string }> = ({ content }) => {
+const Truncate: FC<{
+  content: string;
+  showMoreTxt: string;
+  hideTxt: string;
+}> = ({ content, hideTxt, showMoreTxt }) => {
   const ref = useRef(null);
   const { isTruncated, isShowingMore, toggleIsShowingMore } =
     useTruncatedElement({
@@ -28,7 +32,7 @@ const Truncate: FC<{ content: string }> = ({ content }) => {
           onClick={toggleIsShowingMore}
           className="mx-auto mt-2 flex items-center justify-center gap-2"
         >
-          {isShowingMore ? "Ẩn bớt" : "Đọc thêm"}
+          {isShowingMore ? hideTxt : showMoreTxt}
           <Image
             src={ArrowRight}
             alt=""
