@@ -62,8 +62,6 @@ const Customs = async () => {
     { title: t("breadcrumbs.service"), link: "/service" },
     {
       title: t("breadcrumbs.customs"),
-      link: "/service/customs",
-      active: true,
     },
   ];
 

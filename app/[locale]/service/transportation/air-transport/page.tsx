@@ -73,8 +73,6 @@ const ServiceAirTransport = async () => {
     { title: t("breadcrumbs.service"), link: "/service" },
     {
       title: t("breadcrumbs.air"),
-      link: "/service/transportation/air-transport",
-      active: true,
     },
   ];
 

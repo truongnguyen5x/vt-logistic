@@ -16,8 +16,7 @@ type Props = {
   title: string;
   breadcrumbs: Array<{
     title: string;
-    link: string;
-    active?: boolean;
+    link?: string;
   }>;
   category: Enum_News_Type;
   sideData: {

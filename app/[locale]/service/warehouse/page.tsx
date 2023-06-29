@@ -62,8 +62,6 @@ const Warehouse = async () => {
     { title: t("breadcrumbs.service"), link: "/service" },
     {
       title: t("title"),
-      link: "#",
-      active: true,
     },
   ];
 

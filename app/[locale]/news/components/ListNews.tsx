@@ -99,17 +99,17 @@ const ListNews = async ({
     getTranslations(category),
   ]);
 
-
   const breadcrumbs = [
     { title: t("breadcrumbs.home"), link: "#" },
-    { title: t("breadcrumbs.news"), link: "#" },
-    { title: t("title"), link: "#", active: true },
+    { title: t("title") },
   ];
 
   return (
     <ListNewsPage
       category={category}
-      banner={getPrefixImageUrl(banner?.attributes?.banner?.data?.attributes?.url)}
+      banner={getPrefixImageUrl(
+        banner?.attributes?.banner?.data?.attributes?.url
+      )}
       title={t("title")}
       breadcrumbs={breadcrumbs}
       data={newsAsset?.data as Maybe<NewsEntity[]>}

@@ -61,7 +61,7 @@ const Service = async () => {
 
   const breadcrumbs = [
     { title: t("breadcrumbs.home"), link: "#" },
-    { title: t("breadcrumbs.service"), link: "/service", active: true },
+    { title: t("breadcrumbs.service") },
   ];
 
   return (

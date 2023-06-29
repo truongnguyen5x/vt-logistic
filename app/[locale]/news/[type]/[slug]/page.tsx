@@ -27,7 +27,13 @@ import {
   getLanguageForApi,
   getPrefixImageUrl,
 } from "@ultility/index";
-import { Enum_Listnew_Type, Enum_News_Type, Maybe, News, NewsEntity } from "@generated/graphql";
+import {
+  Enum_Listnew_Type,
+  Enum_News_Type,
+  Maybe,
+  News,
+  NewsEntity,
+} from "@generated/graphql";
 import { NewsInput } from "@generated/graphql";
 import ReactPost from "./components/ReactPost";
 import SliderNew from "@components/news/SliderNew";
@@ -136,7 +142,7 @@ const PostDetail = async (props: any) => {
 
   const breadcrumbs = [
     { title: t("breadcrumbs.home"), link: "#" },
-    { title: t("breadcrumbs.news"), link: "#" },
+    { title: t("breadcrumbs.news"), link: "/news" },
     {
       title:
         t(`breadcrumbs.${convertNewsUrlToType(props?.params?.type)}`) || "",
@@ -144,8 +150,6 @@ const PostDetail = async (props: any) => {
     },
     {
       title: decodeURIComponent(props?.params?.slug) || "",
-      link: "#",
-      active: true,
     },
   ];
 

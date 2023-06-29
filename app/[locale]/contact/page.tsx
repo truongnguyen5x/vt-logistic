@@ -58,7 +58,7 @@ const Contact = async () => {
 
   const breadcrumbs = [
     { title: t("breadcrumbs.home"), link: "#" },
-    { title: t("title"), link: "#", active: true },
+    { title: t("title") },
   ];
 
   return (

@@ -77,8 +77,6 @@ const SeaTransport = async () => {
     { title: t("breadcrumbs.service"), link: "/service" },
     {
       title: t("breadcrumbs.sea"),
-      link: "/service/transportation/sea-transport",
-      active: true,
     },
   ];
 

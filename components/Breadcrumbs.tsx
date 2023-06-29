@@ -7,8 +7,7 @@ import clsx from "clsx";
 
 type IBreadCrumb = {
   title: string;
-  link: string;
-  active?: boolean;
+  link?: string;
 };
 
 type IBreadCrumbProps = {
@@ -23,15 +22,18 @@ const BreadCrumbs: FC<IBreadCrumbProps> = ({ breadcrumbs, className = "" }) => {
         <div className="inline">
           {breadcrumbs.map((item, index) => (
             <p key={index} className="inline mr-2 last:mr-0">
-              <Link
-                href={item.link}
-                className={clsx("font-medium hover:text-th-red-500", {
-                  "text-th-red-500": item.active,
-                  "text-th-gray-300": !item.active,
-                })}
-              >
-                {item.title}
-              </Link>
+              {index == breadcrumbs.length - 1 ? (
+                <span className="font-medium text-th-red-500">
+                  {item.title}
+                </span>
+              ) : (
+                <Link
+                  href={item.link || "#"}
+                  className="font-medium hover:text-th-red-500 text-th-gray-300"
+                >
+                  {item.title}
+                </Link>
+              )}
               {index < breadcrumbs.length - 1 && (
                 <Image
                   className="inline-block"

@@ -57,7 +57,7 @@ const Milestones = async () => {
   const breadcrumbs = [
     { title: t("breadcrumbs.home"), link: "#" },
     { title: t("breadcrumbs.introduce"), link: "/introduce" },
-    { title: t("title"), link: "#", active: true },
+    { title: t("title") },
   ];
 
   return (

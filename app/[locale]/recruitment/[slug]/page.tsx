@@ -132,12 +132,9 @@ const RecruitmentDetail = async (props: any) => {
 
   const breadcrumbs = [
     { title: t("breadcrumbs.home"), link: "#" },
-    { title: t("breadcrumbs.news"), link: "#" },
     { title: t("breadcrumbs.recruitment"), link: "/recruitment" },
     {
       title: decodeURIComponent(props?.params?.slug) || "",
-      link: "#",
-      active: true,
     },
   ];
 

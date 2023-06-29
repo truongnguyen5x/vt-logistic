@@ -66,8 +66,7 @@ const Introduce = async () => {
 
   const breadcrumbs = [
     { title: t("breadcrumbs.home"), link: "#" },
-    { title: t("breadcrumbs.introduce"), link: "#" },
-    { title: t("common"), link: "#", active: true },
+    { title: t("common") },
   ];
 
   return (

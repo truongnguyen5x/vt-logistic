@@ -72,20 +72,21 @@ const SearchPage = async ({
     getTranslations("search"),
   ]);
 
-
-
   const breadcrumbs = [
     { title: t("breadcrumbs.home"), link: "#" },
     {
       title: `${t("breadcrumb")} "${searchParams.keyword}"`,
-      link: "#",
-      active: true,
     },
   ];
 
   return (
     <Fragment>
-      <Banner image={getPrefixImageUrl(banner?.attributes?.banner.data?.attributes?.url)} title={t("title")} />
+      <Banner
+        image={getPrefixImageUrl(
+          banner?.attributes?.banner.data?.attributes?.url
+        )}
+        title={t("title")}
+      />
       <div className="container mx-auto mb-10 lg:mb-32">
         <BreadCrumbs breadcrumbs={breadcrumbs} className="my-6 xl:mb-20" />
         <div className="grid grid-cols-2 gap-[50px] max-lg:hidden">
