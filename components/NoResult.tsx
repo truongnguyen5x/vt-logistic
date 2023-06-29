@@ -8,7 +8,7 @@ interface Props {
 
 const NoResult: FC<Props> = ({ txt }) => {
   return (
-    <div className="flex flex-col items-center self-center my-5">
+    <div className="flex flex-col items-center self-center my-5 gap-6">
       <Image src={SearchImg} width={48} height={48} alt="" />
       <p className="text-lg">{txt}</p>
     </div>
