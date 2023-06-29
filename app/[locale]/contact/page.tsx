@@ -92,14 +92,14 @@ const Contact = async () => {
                 <div className="animation text-th-gray-300 font-medium text-base mb-[6px]">
                   {item?.role}
                 </div>
-                <Link
+                <a
                   href={`tel:${item?.hotline}`}
                   className="animation text-th-gray-300 font-medium text-base mb-[6px]"
-                >{`${t("hotline")}: ${item?.formatted_hotline || ""}`}</Link>
-                <Link
+                >{`${t("hotline")}: ${item?.formatted_hotline || ""}`}</a>
+                <a
                   href={`mailto:${item?.email}`}
                   className="animation text-th-gray-300 font-medium text-base"
-                >{`${t("email")}: ${item?.email || ""}`}</Link>
+                >{`${t("email")}: ${item?.email || ""}`}</a>
               </div>
             ))}
           </div>
