@@ -56,14 +56,17 @@ const getNewAsset = async (
   return data.newss;
 };
 
-const getBannerNewAsset = async (locale: ILocale) => {
+const getBannerNewAsset = async (locale: ILocale, type: Enum_News_Type) => {
   const { data } = await getClient().query({
     query: gql(getBannerNewQueryString),
-    variables: { locale: getLanguageForApi(locale) },
+    variables: {
+      locale: getLanguageForApi(locale),
+      filter: { type: { eq: type } },
+    },
   });
 
   // get last element
-  return data.listNews?.data;
+  return data.listNews?.data?.[0];
 };
 
 const ListNews = async ({
@@ -81,7 +84,7 @@ const ListNews = async ({
 
   const locale = useLocale();
 
-  const [newsAsset, hotNews, listBanner, t] = await Promise.all([
+  const [newsAsset, hotNews, banner, t] = await Promise.all([
     getNewAsset(
       locale as ILocale,
       { keyword: keyword, type: category },
@@ -92,20 +95,10 @@ const ListNews = async ({
       { keyword: "", type: category, is_hot: true },
       { page: 1 }
     ),
-    getBannerNewAsset(locale as ILocale),
+    getBannerNewAsset(locale as ILocale, category),
     getTranslations(category),
   ]);
 
-  const banner = () => {
-    const ojBanner: ListNewEntity | null = !!listBanner?.length
-      ? (listBanner.find(
-          (item) =>
-            item.attributes?.type === (category as unknown as Enum_Listnew_Type)
-        ) as Maybe<ListNewEntity> | null)
-      : null;
-
-    return ojBanner?.attributes?.banner?.data?.attributes?.url;
-  };
 
   const breadcrumbs = [
     { title: t("breadcrumbs.home"), link: "#" },
@@ -116,7 +109,7 @@ const ListNews = async ({
   return (
     <ListNewsPage
       category={category}
-      banner={getPrefixImageUrl(banner())}
+      banner={getPrefixImageUrl(banner?.attributes?.banner?.data?.attributes?.url)}
       title={t("title")}
       breadcrumbs={breadcrumbs}
       data={newsAsset?.data as Maybe<NewsEntity[]>}

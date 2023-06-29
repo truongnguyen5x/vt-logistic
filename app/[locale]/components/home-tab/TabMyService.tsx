@@ -5,7 +5,6 @@ import ArrowListImg from "@assets/images/icons/arrow_list.svg";
 import { FC, useState } from "react";
 import RightImg from "@assets/images/icons/arrow_right_2.svg";
 import Link from "next-intl/link";
-// import Link from "next/link";
 import { useRouter } from "next-intl/client";
 import { ComponentHomeHomeService, Maybe } from "@generated/graphql";
 import { getPrefixImageUrl } from "@ultility/index";

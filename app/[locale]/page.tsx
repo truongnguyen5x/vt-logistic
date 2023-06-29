@@ -165,6 +165,7 @@ export default async function Home() {
         }
       >
         <ListPost
+          locale={locale as ILocale}
           title={t("news_event")}
           detail={t("detail")}
           learn_more={t("learn_more")}

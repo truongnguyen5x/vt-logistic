@@ -11,7 +11,12 @@ import {
 import { gql } from "@generated/gql";
 import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
 import { getTranslations } from "next-intl/server";
-import { ListNewEntity, Maybe, NewsEntity } from "@generated/graphql";
+import {
+  Enum_Listnew_Type,
+  ListNewEntity,
+  Maybe,
+  NewsEntity,
+} from "@generated/graphql";
 import { Fragment } from "react";
 import Banner from "@components/Banner";
 import BreadCrumbs from "@components/Breadcrumbs";
@@ -39,12 +44,15 @@ const getNewsAsset = async (
   return data.newss;
 };
 
-const getBannerNewAsset = async (locale: ILocale) => {
+const getBannerNewAsset = async (locale: ILocale, type: Enum_Listnew_Type) => {
   const { data } = await getClient().query({
     query: gql(getBannerNewQueryString),
-    variables: { locale: getLanguageForApi(locale) },
+    variables: {
+      locale: getLanguageForApi(locale),
+      filter: { type: { eq: type } },
+    },
   });
-  return data.listNews?.data;
+  return data.listNews?.data?.[0];
 };
 
 const SearchPage = async ({
@@ -54,22 +62,17 @@ const SearchPage = async ({
 }) => {
   const locale = useLocale();
 
-  const [searchNews, listBanner, t] = await Promise.all([
+  const [searchNews, banner, t] = await Promise.all([
     getNewsAsset(
       locale as ILocale,
-      { keyword: searchParams.keyword, type: "recruitment" },
+      { keyword: searchParams.keyword },
       { page: Number(searchParams.page) }
     ),
-    getBannerNewAsset(locale as ILocale),
+    getBannerNewAsset(locale as ILocale, Enum_Listnew_Type.InternalNews),
     getTranslations("search"),
   ]);
 
-  const banner = () => {
-    const ojBanner: ListNewEntity | null = !!listBanner?.length
-      ? (listBanner[0] as Maybe<ListNewEntity> | null)
-      : null;
-    return ojBanner?.attributes?.banner?.data?.attributes?.url;
-  };
+
 
   const breadcrumbs = [
     { title: t("breadcrumbs.home"), link: "#" },
@@ -82,7 +85,7 @@ const SearchPage = async ({
 
   return (
     <Fragment>
-      <Banner image={getPrefixImageUrl(banner())} title={t("title")} />
+      <Banner image={getPrefixImageUrl(banner?.attributes?.banner.data?.attributes?.url)} title={t("title")} />
       <div className="container mx-auto mb-10 lg:mb-32">
         <BreadCrumbs breadcrumbs={breadcrumbs} className="my-6 xl:mb-20" />
         <div className="grid grid-cols-2 gap-[50px] max-lg:hidden">

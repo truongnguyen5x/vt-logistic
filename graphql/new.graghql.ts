@@ -1,6 +1,6 @@
 export const getBannerNewQueryString = /* GraphQL */ `
-  query getBannerNew($locale: I18NLocaleCode) {
-    listNews(locale: $locale) {
+  query getBannerNew($locale: I18NLocaleCode, $filter: ListNewFiltersInput) {
+    listNews(locale: $locale, filters: $filter) {
       data {
         attributes {
           banner {

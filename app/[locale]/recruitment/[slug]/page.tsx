@@ -17,12 +17,14 @@ import { Filter, Pagination } from "@app/news/components/ListNews";
 import { getClient } from "@graphql/graphql-client";
 import { gql } from "@generated/gql";
 import {
+  getBannerNewQueryString,
   getDetailNewsQueryString,
   getNewQueryString,
   mutationPageView,
 } from "@graphql/new.graghql";
 import { getLanguageForApi, getPrefixImageUrl } from "@ultility/index";
 import {
+  Enum_Listnew_Type,
   Enum_News_Type,
   Maybe,
   NewsEntity,
@@ -53,6 +55,17 @@ const getNewAsset = async (
 
   // get last element
   return data.newss;
+};
+
+const getBannerNewAsset = async (locale: ILocale, type: Enum_Listnew_Type) => {
+  const { data } = await getClient().query({
+    query: gql(getBannerNewQueryString),
+    variables: {
+      locale: getLanguageForApi(locale),
+      filter: { type: { eq: type } },
+    },
+  });
+  return data.listNews?.data?.[0];
 };
 
 const updateNew = async (locale: ILocale, id: string, data: NewsInput) => {
@@ -99,7 +112,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const RecruitmentDetail = async (props: any) => {
   const locale = useLocale();
 
-  const [data, dataHotNews, t] = await Promise.all([
+  const [data, dataHotNews, banner, t] = await Promise.all([
     getNewAsset(
       locale as ILocale,
       {
@@ -113,6 +126,7 @@ const RecruitmentDetail = async (props: any) => {
       { type: "recruitment", is_hot: true },
       { page: 1 }
     ),
+    getBannerNewAsset(locale as ILocale, Enum_Listnew_Type.InternalNews),
     getTranslations("internal_news"),
   ]);
 
@@ -196,7 +210,8 @@ const RecruitmentDetail = async (props: any) => {
     <Fragment>
       <Banner
         image={getPrefixImageUrl(
-          dataNew?.attributes?.featured_image?.data?.attributes?.url
+          dataNew?.attributes?.featured_image?.data?.attributes?.url ||
+            banner?.attributes?.banner.data?.attributes?.url
         )}
         title={t("breadcrumbs.recruitment")}
       />

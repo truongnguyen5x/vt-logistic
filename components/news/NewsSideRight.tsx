@@ -1,9 +1,9 @@
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { FC } from "react";
 import { SideCard } from "./Cards";
 import { Enum_News_Type, NewsEntity } from "@generated/graphql";
 import SearchInput from "./Search";
-import Link from "next/link";
+import Link from "next-intl/link";
 import clsx from "clsx";
 
 type IDataHotNews = {

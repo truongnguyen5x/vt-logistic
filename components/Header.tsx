@@ -2,7 +2,7 @@
 
 import LogoImg from "@assets/images/logos/logo_light.svg";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "next-intl/link";
 import { useRouter, useSelectedLayoutSegment } from "next/navigation";
 import { FC, Fragment, useEffect, useRef, useState } from "react";
 import clsx from "clsx";
@@ -31,6 +31,7 @@ const Header: FC<HeaderProps> = ({ titles, locale }) => {
   const segment = useSelectedLayoutSegment();
   const ref = useRef(null);
   const pathName = usePathname();
+
   const { isMobile, width } = useWindowSize();
 
   const [openNav, setOpenNav] = useState(false);

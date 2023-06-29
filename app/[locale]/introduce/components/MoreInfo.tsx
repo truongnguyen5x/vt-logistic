@@ -3,7 +3,7 @@ import Image from "next/image";
 import { FC } from "react";
 
 import ArrowRight from "@assets/images/icons/arrow_right.svg";
-import Link from "next/link";
+import Link from "next-intl/link";
 import { ComponentCommonGroupImageContent } from "@generated/graphql";
 import { getPrefixImageUrl } from "@ultility/index";
 import styles from "../style.module.scss";

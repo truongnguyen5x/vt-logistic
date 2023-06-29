@@ -106,7 +106,7 @@ const SeaTransport = async () => {
             >
           }
         />
-        <div className="mt-10 mb-20 text-center">
+        <div className="mt-10 mb-20 flex justify-center">
           <NextIntlClientProvider locale={locale} messages={message.default}>
             <ResgisterPopup type="sea_transport" locale={locale as ILocale} />
           </NextIntlClientProvider>

@@ -18,6 +18,8 @@ import useWindowSize from "@hooks/use-window-size";
 import clsx from "clsx";
 import LeftArrowImg from "@assets/images/icons/arrow_left_4.svg";
 import RightArrowImg from "@assets/images/icons/arrow_right_4.svg";
+import { useLocale } from "next-intl";
+import { ILocale } from "@type/locale";
 
 interface MoreServiceProps {
   services:
@@ -25,6 +27,7 @@ interface MoreServiceProps {
     | ComponentTruckingOtherService[]
     | null;
   more: string;
+  locale: ILocale;
 }
 
 function SampleNextArrow(props: any) {
@@ -45,7 +48,7 @@ function SamplePrevArrow(props: any) {
   );
 }
 
-const MoreService: FC<MoreServiceProps> = ({ services, more }) => {
+const MoreService: FC<MoreServiceProps> = ({ services, more, locale }) => {
   const { isDesktop, isTablet } = useWindowSize();
   const content = (
     service:
@@ -61,6 +64,7 @@ const MoreService: FC<MoreServiceProps> = ({ services, more }) => {
         data-animation-delay="0.4s"
       >
         <Link
+          locale={locale}
           href={service?.link || "#"}
           className="absolute top-0 left-0 right-0 bottom-0 cursor-pointer"
         >

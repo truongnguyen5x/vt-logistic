@@ -41,7 +41,7 @@ const BackToTop = ({ txt }: { txt: string }) => {
         href="http://m.me/LogisticsViettel"
         target="_blank"
         title="Contact us via Messenger"
-        className="z-20 fixed right-2 md:right-3 xl:right-[94px] bottom-4 xl:bottom-20 transition duration-700"
+        className="z-20 fixed right-2 md:right-3 xl:right-[98px] bottom-4 xl:bottom-20 transition duration-700"
         style={{
           transform: showBtn
             ? isDesktop

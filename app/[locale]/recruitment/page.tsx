@@ -8,6 +8,7 @@ import ListNewsPage from "@components/news/ListPage";
 import { ILocale } from "@type/locale";
 import { gql } from "@generated/gql";
 import {
+  Enum_Listnew_Type,
   Enum_News_Type,
   ListNewEntity,
   Maybe,
@@ -40,14 +41,17 @@ const getRecruimentAsset = async (
   return data.newss;
 };
 
-const getBannerNewAsset = async (locale: ILocale) => {
+const getBannerNewAsset = async (locale: ILocale, type: Enum_Listnew_Type) => {
   const { data } = await getClient().query({
     query: gql(getBannerNewQueryString),
-    variables: { locale: getLanguageForApi(locale) },
+    variables: {
+      locale: getLanguageForApi(locale),
+      filter: { type: { eq: type } },
+    },
   });
 
   // get last element
-  return data.listNews?.data;
+  return data.listNews?.data?.[0];
 };
 
 const Recruitment = async ({
@@ -57,7 +61,7 @@ const Recruitment = async ({
 }) => {
   const locale = useLocale();
 
-  const [newsAsset, hotNews, listBanner, t] = await Promise.all([
+  const [newsAsset, hotNews, banner, t] = await Promise.all([
     getRecruimentAsset(
       locale as ILocale,
       { keyword: searchParams.keyword, type: "recruitment" },
@@ -68,19 +72,11 @@ const Recruitment = async ({
       { keyword: "", type: "recruitment", is_hot: true },
       { page: 1 }
     ),
-    getBannerNewAsset(locale as ILocale),
+    getBannerNewAsset(locale as ILocale, Enum_Listnew_Type.Recruitment),
     getTranslations("recruitment"),
   ]);
 
-  const banner = () => {
-    const ojBanner: ListNewEntity | null = !!listBanner?.length
-      ? (listBanner.find(
-          (item) => item.attributes?.type === "recruitment"
-        ) as Maybe<ListNewEntity> | null)
-      : null;
 
-    return ojBanner?.attributes?.banner?.data?.attributes?.url;
-  };
 
   const breadcrumbs = [
     { title: t("breadcrumbs.home"), link: "#" },
@@ -90,7 +86,7 @@ const Recruitment = async ({
   return (
     <ListNewsPage
       category={Enum_News_Type.Recruitment}
-      banner={getPrefixImageUrl(banner())}
+      banner={getPrefixImageUrl(banner?.attributes?.banner.data?.attributes?.url)}
       title={t("title")}
       breadcrumbs={breadcrumbs}
       data={newsAsset?.data as Maybe<NewsEntity[]>}

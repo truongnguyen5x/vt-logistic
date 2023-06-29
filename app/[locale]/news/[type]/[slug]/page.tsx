@@ -17,6 +17,7 @@ import { Filter, Pagination } from "@app/news/components/ListNews";
 import { getClient } from "@graphql/graphql-client";
 import { gql } from "@generated/gql";
 import {
+  getBannerNewQueryString,
   getDetailNewsQueryString,
   getNewQueryString,
   mutationPageView,
@@ -26,7 +27,7 @@ import {
   getLanguageForApi,
   getPrefixImageUrl,
 } from "@ultility/index";
-import { Enum_News_Type, Maybe, News, NewsEntity } from "@generated/graphql";
+import { Enum_Listnew_Type, Enum_News_Type, Maybe, News, NewsEntity } from "@generated/graphql";
 import { NewsInput } from "@generated/graphql";
 import ReactPost from "./components/ReactPost";
 import SliderNew from "@components/news/SliderNew";
@@ -53,6 +54,17 @@ const getNewAsset = async (
 
   // get last element
   return data.newss;
+};
+
+const getBannerNewAsset = async (locale: ILocale, type: Enum_Listnew_Type) => {
+  const { data } = await getClient().query({
+    query: gql(getBannerNewQueryString),
+    variables: {
+      locale: getLanguageForApi(locale),
+      filter: { type: { eq: type } },
+    },
+  });
+  return data.listNews?.data?.[0];
 };
 
 const updateNew = async (locale: ILocale, id: string, data: NewsInput) => {
@@ -101,7 +113,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const PostDetail = async (props: any) => {
   const locale = useLocale();
 
-  const [data, dataHotNews, t] = await Promise.all([
+  const [data, dataHotNews, banner, t] = await Promise.all([
     getNewAsset(
       locale as ILocale,
       {
@@ -114,6 +126,10 @@ const PostDetail = async (props: any) => {
       locale as ILocale,
       { type: convertNewsUrlToType(props?.params?.type), is_hot: true },
       { page: 1 }
+    ),
+    getBannerNewAsset(
+      locale as ILocale,
+      convertNewsUrlToType(props?.params?.type) as Enum_Listnew_Type
     ),
     getTranslations("internal_news"),
   ]);
@@ -149,58 +165,61 @@ const PostDetail = async (props: any) => {
         </div>
       );
     }
-    return   <div className="max-w-[100%] min-w-[1px] lg:max-w-[940px] basis-2/3 overflow-x-hidden">
-    <h5 className="text-th-gray-400 text-4xl font-semibold animation">
-      {dataNew?.attributes?.title}
-    </h5>
-    <div className="flex items-center gap-3 mb-5 mt-2 animation">
-      <Image src={Clock} alt="" width={14} height={14} />
-      <div className="text-th-gray-300 text-[13px] leading-[22px]">
-        {!!dataNew?.attributes?.updatedAt
-          ? formatDate2(new Date(dataNew.attributes?.updatedAt))
-          : ""}
-      </div>
-    </div>
-    <div
-      className={styles.unreset}
-      dangerouslySetInnerHTML={{
-        __html: dataNew?.attributes?.contents || "",
-      }}
-    />
-    <div className="flex mb-2 animation">
-      <div className="flex flex-1 items-center gap-3 ">
-        <Image src={Eye} alt="" width={20} height={20} />
-        <div className="text-th-gray-300 text-[16px] leading-[22px]">
-          {dataNew?.attributes?.page_view}{" "}
-          <span className="max-lg:hidden">{t("readed")}</span>
+    return (
+      <div className="max-w-[100%] min-w-[1px] lg:max-w-[940px] basis-2/3 overflow-x-hidden">
+        <h5 className="text-th-gray-400 text-4xl font-semibold animation">
+          {dataNew?.attributes?.title}
+        </h5>
+        <div className="flex items-center gap-3 mb-5 mt-2 animation">
+          <Image src={Clock} alt="" width={14} height={14} />
+          <div className="text-th-gray-300 text-[13px] leading-[22px]">
+            {!!dataNew?.attributes?.updatedAt
+              ? formatDate2(new Date(dataNew.attributes?.updatedAt))
+              : ""}
+          </div>
+        </div>
+        <div
+          className={styles.unreset}
+          dangerouslySetInnerHTML={{
+            __html: dataNew?.attributes?.contents || "",
+          }}
+        />
+        <div className="flex mb-2 animation">
+          <div className="flex flex-1 items-center gap-3 ">
+            <Image src={Eye} alt="" width={20} height={20} />
+            <div className="text-th-gray-300 text-[16px] leading-[22px]">
+              {dataNew?.attributes?.page_view}{" "}
+              <span className="max-lg:hidden">{t("readed")}</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <ReactPost
+              dataNew={dataNew as NewsEntity}
+              locale={locale as ILocale}
+            />
+            <div className="text-th-gray-300 text-[16px] leading-[22px]">
+              {t("post_useful")}
+            </div>
+          </div>
+        </div>
+        <div className="max-lg:hidden">
+          {!!dataNew?.attributes?.news?.data.length && (
+            <RelatedPost
+              title={t("related_post")}
+              post={dataNew?.attributes?.news?.data as Maybe<NewsEntity[]>}
+            />
+          )}
         </div>
       </div>
-      <div className="flex items-center gap-4">
-        <ReactPost
-          dataNew={dataNew as NewsEntity}
-          locale={locale as ILocale}
-        />
-        <div className="text-th-gray-300 text-[16px] leading-[22px]">
-          {t("post_useful")}
-        </div>
-      </div>
-    </div>
-    <div className="max-lg:hidden">
-      {!!dataNew?.attributes?.news?.data.length && (
-        <RelatedPost
-          title={t("related_post")}
-          post={dataNew?.attributes?.news?.data as Maybe<NewsEntity[]>}
-        />
-      )}
-    </div>
-  </div>
+    );
   };
 
   return (
     <Fragment>
       <Banner
         image={getPrefixImageUrl(
-          dataNew?.attributes?.featured_image?.data?.attributes?.url
+          dataNew?.attributes?.featured_image?.data?.attributes?.url ||
+            banner?.attributes?.banner.data?.attributes?.url
         )}
         title={t(`breadcrumbs.${convertNewsUrlToType(props?.params?.type)}`)}
       />
