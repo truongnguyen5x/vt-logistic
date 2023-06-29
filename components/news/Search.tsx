@@ -42,10 +42,14 @@ const SearchInput: FC<Props> = ({ placeholder }) => {
   // }, [keyword, searchParams, pathname, router]);
 
   const onSearch = () => {
-    const regex = /\/news\/(.*)\/.*/gm;
-    const match = regex.exec(pathname);
-    if (match) {
-      router.replace(`/news/${match[1]}?page=1&keyword=${keyword}`);
+    const regex1 = /\/news\/(.*)\/.*/gm;
+    const regex2 = /\/recruitment\/.*/gm;
+    const match1 = regex1.exec(pathname);
+    const match2 = regex2.exec(pathname);
+    if (match1) {
+      router.replace(`/news/${match1[1]}?page=1&keyword=${keyword}`);
+    } else if (match2) {
+      router.replace(`/recruitment?page=1&keyword=${keyword}`);
     } else {
       router.replace(`${pathname}?page=1&keyword=${keyword}`);
     }
