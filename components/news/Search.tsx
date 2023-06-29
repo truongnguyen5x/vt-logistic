@@ -22,7 +22,7 @@ const SearchInput: FC<Props> = ({ placeholder }) => {
 
   const onEnter = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
-      router.replace(`${pathname}?page=1&keyword=${keyword}`);
+      onSearch();
     }
   };
 
@@ -30,16 +30,26 @@ const SearchInput: FC<Props> = ({ placeholder }) => {
     if (!keyword && keyword !== searchParams.get("keyword")) {
       setKeyword(searchParams.get("keyword") || "");
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-  useEffect(() => {
-    if (!!keyword && keyword !== searchParams.get("keyword")) {
-      setTimeout(() => {
-        router.replace(`${pathname}?page=1&keyword=${keyword}`);
-      }, 3000);
+  // useEffect(() => {
+  //   if (!!keyword && keyword !== searchParams.get("keyword")) {
+  //     setTimeout(() => {
+  //       router.replace(`${pathname}?page=1&keyword=${keyword}`);
+  //     }, 3000);
+  //   }
+  // }, [keyword, searchParams, pathname, router]);
+
+  const onSearch = () => {
+    const regex = /\/news\/(.*)\/.*/gm;
+    const match = regex.exec(pathname);
+    if (match) {
+      router.replace(`/news/${match[1]}?page=1&keyword=${keyword}`);
+    } else {
+      router.replace(`${pathname}?page=1&keyword=${keyword}`);
     }
-  }, [keyword, searchParams, pathname, router]);
+  };
 
   return (
     <div
@@ -58,7 +68,8 @@ const SearchInput: FC<Props> = ({ placeholder }) => {
         alt=""
         width={24}
         height={24}
-        className="absolute right-6 top-4"
+        onClick={onSearch}
+        className="absolute right-6 top-4 cursor-pointer"
       />
     </div>
   );

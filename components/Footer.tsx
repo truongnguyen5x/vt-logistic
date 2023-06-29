@@ -191,7 +191,10 @@ const Footer = async () => {
         </div>
       </div>
       <div className="footer-copyright">
-        <p>{t("copyright")}</p>
+        <p>
+          Copyright @ {new Date().getFullYear()} Viettel Logistics All right
+          reserved
+        </p>
       </div>
     </Fragment>
   );
