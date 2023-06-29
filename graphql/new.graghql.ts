@@ -55,7 +55,6 @@ export const getNewQueryString = /* GraphQL */ `
             data {
               attributes {
                 title
-                contents
                 preview_content
                 page_view
                 type

@@ -32,6 +32,7 @@ import ReactPost from "./components/ReactPost";
 import SliderNew from "@components/news/SliderNew";
 import { Metadata } from "next";
 import { formatDate2 } from "@ultility/date_time";
+import NoResult from "@components/NoResult";
 
 const getNewAsset = async (
   locale: ILocale,
@@ -140,6 +141,61 @@ const PostDetail = async (props: any) => {
     });
   }
 
+  const renderContent = () => {
+    if (!dataNew) {
+      return (
+        <div className="max-w-[100%] min-w-[1px] lg:max-w-[940px] basis-2/3 overflow-x-hidden">
+          <NoResult txt={t("no_data")} />
+        </div>
+      );
+    }
+    return   <div className="max-w-[100%] min-w-[1px] lg:max-w-[940px] basis-2/3 overflow-x-hidden">
+    <h5 className="text-th-gray-400 text-4xl font-semibold animation">
+      {dataNew?.attributes?.title}
+    </h5>
+    <div className="flex items-center gap-3 mb-5 mt-2 animation">
+      <Image src={Clock} alt="" width={14} height={14} />
+      <div className="text-th-gray-300 text-[13px] leading-[22px]">
+        {!!dataNew?.attributes?.updatedAt
+          ? formatDate2(new Date(dataNew.attributes?.updatedAt))
+          : ""}
+      </div>
+    </div>
+    <div
+      className={styles.unreset}
+      dangerouslySetInnerHTML={{
+        __html: dataNew?.attributes?.contents || "",
+      }}
+    />
+    <div className="flex mb-2 animation">
+      <div className="flex flex-1 items-center gap-3 ">
+        <Image src={Eye} alt="" width={20} height={20} />
+        <div className="text-th-gray-300 text-[16px] leading-[22px]">
+          {dataNew?.attributes?.page_view}{" "}
+          <span className="max-lg:hidden">{t("readed")}</span>
+        </div>
+      </div>
+      <div className="flex items-center gap-4">
+        <ReactPost
+          dataNew={dataNew as NewsEntity}
+          locale={locale as ILocale}
+        />
+        <div className="text-th-gray-300 text-[16px] leading-[22px]">
+          {t("post_useful")}
+        </div>
+      </div>
+    </div>
+    <div className="max-lg:hidden">
+      {!!dataNew?.attributes?.news?.data.length && (
+        <RelatedPost
+          title={t("related_post")}
+          post={dataNew?.attributes?.news?.data as Maybe<NewsEntity[]>}
+        />
+      )}
+    </div>
+  </div>
+  };
+
   return (
     <Fragment>
       <Banner
@@ -151,51 +207,7 @@ const PostDetail = async (props: any) => {
       <div className="container px-4 md:px-6 2xl:px-0 mx-auto lg:mt-0 mb-10 lg:mb-32">
         <BreadCrumbs breadcrumbs={breadcrumbs} className="my-6 xl:mb-20" />
         <div className="flex items-start lg:gap-10 2xl:gap-[100px] flex-col lg:flex-row">
-          <div className="max-w-[100%] min-w-[1px] lg:max-w-[940px] basis-2/3 overflow-x-hidden">
-            <h5 className="text-th-gray-400 text-4xl font-semibold animation">
-              {dataNew?.attributes?.title}
-            </h5>
-            <div className="flex items-center gap-3 mb-5 mt-2 animation">
-              <Image src={Clock} alt="" width={14} height={14} />
-              <div className="text-th-gray-300 text-[13px] leading-[22px]">
-                {!!dataNew?.attributes?.updatedAt
-                  ? formatDate2(new Date(dataNew.attributes?.updatedAt))
-                  : ""}
-              </div>
-            </div>
-            <div
-              className={styles.unreset}
-              dangerouslySetInnerHTML={{
-                __html: dataNew?.attributes?.contents || "",
-              }}
-            />
-            <div className="flex mb-2 animation">
-              <div className="flex flex-1 items-center gap-3 ">
-                <Image src={Eye} alt="" width={20} height={20} />
-                <div className="text-th-gray-300 text-[16px] leading-[22px]">
-                  {dataNew?.attributes?.page_view}{" "}
-                  <span className="max-lg:hidden">{t("readed")}</span>
-                </div>
-              </div>
-              <div className="flex items-center gap-4">
-                <ReactPost
-                  dataNew={dataNew as NewsEntity}
-                  locale={locale as ILocale}
-                />
-                <div className="text-th-gray-300 text-[16px] leading-[22px]">
-                  {t("post_useful")}
-                </div>
-              </div>
-            </div>
-            <div className="max-lg:hidden">
-              {!!dataNew?.attributes?.news?.data.length && (
-                <RelatedPost
-                  title={t("related_post")}
-                  post={dataNew?.attributes?.news?.data as Maybe<NewsEntity[]>}
-                />
-              )}
-            </div>
-          </div>
+          {renderContent()}
           <div className="max-lg:hidden basis-1/3">
             <NewsSideRight
               data={{ hot_news: dataHotNews?.data as Maybe<NewsEntity[]> }}
