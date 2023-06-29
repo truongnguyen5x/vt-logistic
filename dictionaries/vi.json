@@ -230,7 +230,7 @@
     "post_useful": "Bài viết hữu ích?",
     "related_post": "Bài viết liên quan",
     "search_placeholder": "Nhập từ khóa",
-    "no_data": "No data!"
+    "no_data": "Không có dữ liệu!"
   },
   "market_news": {
     "title": "Tin thị trường",
@@ -246,7 +246,7 @@
     "help_title": "Chúng tôi có thể giúp gì?",
     "help_content": "Bạn đang tìm kiếm thêm về giải pháp vận chuyển cho doanh nghiệp của bạn?",
     "search_placeholder": "Nhập từ khóa",
-    "no_data": "No data!"
+    "no_data": "Không có dữ liệu!"
   },
   "specialized_news": {
     "title": "Kiến thức chuyên ngành",
@@ -262,7 +262,7 @@
     "help_title": "Chúng tôi có thể giúp gì?",
     "help_content": "Bạn đang tìm kiếm thêm về giải pháp vận chuyển cho doanh nghiệp của bạn?",
     "search_placeholder": "Nhập từ khóa",
-    "no_data": "No data!"
+    "no_data": "Không có dữ liệu!"
   },
   "recruitment": {
     "title": "Tuyển dụng",
@@ -278,7 +278,7 @@
     "help_title": "Chúng tôi có thể giúp gì?",
     "help_content": "Bạn đang tìm kiếm thêm về giải pháp vận chuyển cho doanh nghiệp của bạn?",
     "search_placeholder": "Nhập từ khóa",
-    "no_data": "No data!"
+    "no_data": "Không có dữ liệu!"
   },
   "contact": {
     "title": "Liên hệ",
@@ -310,7 +310,7 @@
   "search": {
     "title": "Tìm kiếm",
     "breadcrumb": "Tìm kiếm từ khóa",
-    "no_data": "No data!",
+    "no_data": "Không có dữ liệu!",
     "breadcrumbs": {
       "home": "Trang chủ"
     }
