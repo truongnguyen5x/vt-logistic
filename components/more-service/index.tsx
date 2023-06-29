@@ -27,7 +27,6 @@ interface MoreServiceProps {
     | ComponentTruckingOtherService[]
     | null;
   more: string;
-  locale: ILocale;
 }
 
 function SampleNextArrow(props: any) {
@@ -48,7 +47,7 @@ function SamplePrevArrow(props: any) {
   );
 }
 
-const MoreService: FC<MoreServiceProps> = ({ services, more, locale }) => {
+const MoreService: FC<MoreServiceProps> = ({ services, more }) => {
   const { isDesktop, isTablet } = useWindowSize();
   const content = (
     service:
@@ -64,7 +63,6 @@ const MoreService: FC<MoreServiceProps> = ({ services, more, locale }) => {
         data-animation-delay="0.4s"
       >
         <Link
-          locale={locale}
           href={service?.link || "#"}
           className="absolute top-0 left-0 right-0 bottom-0 cursor-pointer"
         >
