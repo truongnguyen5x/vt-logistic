@@ -309,7 +309,7 @@
   },
   "search": {
     "title": "Search",
-    "breadcrumb": "What are you looking for?",
+    "breadcrumb": "Search results for keyword",
     "no_data": "No data!",
     "breadcrumbs": {
       "home": "Home"
