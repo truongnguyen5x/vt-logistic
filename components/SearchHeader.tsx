@@ -5,11 +5,7 @@ import useOutsideClose from "@hooks/use-click-outside";
 import clsx from "clsx";
 import Image from "next/image";
 import CloseImg from "@assets/images/icons/close_dark.svg";
-import {
-  useRouter,
-  useSearchParams,
-  useSelectedLayoutSegment,
-} from "next/navigation";
+import { useSearchParams, useSelectedLayoutSegment } from "next/navigation";
 import {
   ChangeEvent,
   Dispatch,
@@ -21,6 +17,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { useRouter } from "next-intl/client";
 import useWindowSize from "@hooks/use-window-size";
 
 interface Props {
