@@ -2,7 +2,7 @@ import Image from "next/image";
 import { FC } from "react";
 import Calendar from "@assets/images/icons/calendar.svg";
 import { format, getDate, getDaysInMonth, getMonth } from "date-fns";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import ArrowRight from "@assets/images/icons/arrow_right_red.svg";
 import Clock from "@assets/images/icons/clock.svg";
 import Link from "next-intl/link";
@@ -24,6 +24,7 @@ export const Card: FC<CardProps> = ({
   category = "internal_news",
 }) => {
   const t = useTranslations("internal_news");
+  const locale = useLocale();
 
   return (
     <Link
@@ -65,9 +66,11 @@ export const Card: FC<CardProps> = ({
                 }
               )}
             </div>
-            <div className="text-center font-medium text-base text-th-gray-300">{`Tháng ${
-              getMonth(new Date(post.attributes?.updatedAt)) + 1
-            }`}</div>
+            <div className="text-center font-medium text-base text-th-gray-300">
+              {locale == "vi"
+                ? `Tháng ${getMonth(new Date(post.attributes?.updatedAt)) + 1}`
+                : `${format(new Date(post.attributes?.updatedAt), "LLLL")}`}
+            </div>
           </div>
           <div className="pl-8 border-l border-th-gray-330 max-w-[782px]">
             <h4 className="break-words text-th-gray-320 text-[25px] leading-8 font-semibold">
