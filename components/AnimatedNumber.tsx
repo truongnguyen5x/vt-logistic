@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { FC, Fragment } from "react";
 import { useSpring, animated } from "react-spring";
 
@@ -22,4 +23,4 @@ const AnimatedNumber = ({ n }: { n: number }) => {
   );
 };
 
-export default AnimatedNumber;
+export default React.memo(AnimatedNumber);
