@@ -93,6 +93,21 @@ export default function RootLayout({
         <BackToTop txt={t("back_to_head")} />
         <Toaster position="top-right" reverseOrder={false} />
       </body>
+
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-4NGEGNW40Y"
+      ></Script>
+      <Script id="show-banner">
+        {` 
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-4NGEGNW40Y');
+        
+        `}
+      </Script>
       <Script src="/js/script.js" />
     </html>
   );
