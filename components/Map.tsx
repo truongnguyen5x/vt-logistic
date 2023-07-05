@@ -1,11 +1,11 @@
 "use client";
 import React from "react";
 import { Map, Marker } from "pigeon-maps";
-import { maptiler } from 'pigeon-maps/providers'
+import { maptiler } from "pigeon-maps/providers";
 
-const MAPTILER_ACCESS_TOKEN = 'yviQnWhzph2Vh5cdZUXz'
+const MAPTILER_ACCESS_TOKEN = "yviQnWhzph2Vh5cdZUXz";
 
-const maptilerProvider = maptiler(MAPTILER_ACCESS_TOKEN, 'dataviz-light')
+const maptilerProvider = maptiler(MAPTILER_ACCESS_TOKEN, "dataviz-light");
 
 const MapContact = () => {
   return (
@@ -13,11 +13,11 @@ const MapContact = () => {
       <Map
         provider={maptilerProvider}
         dprs={[1, 2]}
-        defaultCenter={[21.03047, 105.78326]}
+        defaultCenter={[21.048829371080853, 105.74216030868638]}
         defaultZoom={16}
         boxClassname="animation"
       >
-        <Marker width={50} anchor={[21.03047, 105.78326]} />
+        <Marker width={50} anchor={[21.048829371080853, 105.74216030868638]} />
       </Map>
     </div>
   );

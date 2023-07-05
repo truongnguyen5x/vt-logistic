@@ -53,6 +53,20 @@ const Footer = async () => {
             {asset.title}
           </a>
         );
+      } else if (asset.url.startsWith("/")) {
+        return (
+          <Link href={asset.url} className="footer-link my-3">
+            {asset?.icon?.data && (
+              <Image
+                src={getPrefixImageUrl(asset.icon.data?.attributes?.url)}
+                width={22}
+                height={22}
+                alt=""
+              />
+            )}
+            {asset.title}
+          </Link>
+        );
       } else {
         return (
           <a href={asset.url} className="footer-link my-3">
