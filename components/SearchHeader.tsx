@@ -23,10 +23,16 @@ import useWindowSize from "@hooks/use-window-size";
 interface Props {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
+  setOpenNav: Dispatch<SetStateAction<boolean>>;
   placeholder: string;
 }
 
-const SearchHeader: FC<Props> = ({ open, setOpen, placeholder }) => {
+const SearchHeader: FC<Props> = ({
+  open,
+  setOpen,
+  placeholder,
+  setOpenNav,
+}) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const segment = useSelectedLayoutSegment();
@@ -65,6 +71,7 @@ const SearchHeader: FC<Props> = ({ open, setOpen, placeholder }) => {
   const submit = () => {
     if (keyword.trim()) {
       setOpen(false);
+      setOpenNav(false);
       router.push("/search?keyword=" + keyword.trim());
     }
   };

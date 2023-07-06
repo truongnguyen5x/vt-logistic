@@ -311,6 +311,7 @@ const Header: FC<HeaderProps> = ({ titles, locale }) => {
                   open={openSearch}
                   setOpen={setOpenSearch}
                   placeholder={titles.search}
+                  setOpenNav={setOpenNav}
                 />
                 <SelectLocale locale={locale} />
                 <ProfileHeader />
