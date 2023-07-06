@@ -355,6 +355,7 @@ body {
     @apply w-32 rounded-r-full text-th-white text-xl font-semibold;
     background-color: var(--color-gray-320);
     padding-bottom: 2px;
+    line-height: 20px;
   }
   &.footer-email-error {
     input {
